@@ -1,0 +1,13 @@
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { readFileSync,openSync,closeSync,existsSync,writeFileSync } from 'node:fs';
+const app=fileURLToPath(new URL('../',import.meta.url)),root=fileURLToPath(new URL('../../../',import.meta.url));
+const env={...process.env,DEVELOPER_DIR:process.env.DEVELOPER_DIR||'/Applications/Xcode.app/Contents/Developer'};
+if(!existsSync(root+'outputs/capacitor/simulator.json'))throw Error('Run npm run ios:build and npm run ios:sim first.');
+const {udid}=JSON.parse(readFileSync(root+'outputs/capacitor/simulator.json','utf8'));
+const r=spawnSync(process.execPath,['scripts/add-ui-tests.mjs'],{cwd:app,env,stdio:'inherit'});if(r.status!==0)process.exit(r.status??1);
+const result=root+'outputs/capacitor/NativeSmoke-'+Date.now()+'.xcresult',log=root+'outputs/capacitor/ios-smoke.log',fd=openSync(log,'w');
+console.log('Running native UI smoke test on '+udid+'. Log: '+log);
+const test=spawnSync('xcodebuild',['-project','ios/App/App.xcodeproj','-scheme','NativeSmoke','-configuration','Debug','-destination','platform=iOS Simulator,id='+udid,'-parallel-testing-enabled','NO','-derivedDataPath',root+'outputs/capacitor/DerivedData','-resultBundlePath',result,'CODE_SIGNING_ALLOWED=NO','test'],{cwd:app,env,stdio:['ignore',fd,fd]});closeSync(fd);
+writeFileSync(root+'outputs/capacitor/native-ui-results.json',JSON.stringify({simulator:udid,passed:test.status===0,resultBundle:result,log},null,2)+'\n');
+if(test.status!==0){console.error(readFileSync(log,'utf8').split('\n').slice(-65).join('\n'));process.exit(test.status??1);}console.log('PASS: real iOS WebView launch, native bridge, Play, glass lab, background pause and Resume.');

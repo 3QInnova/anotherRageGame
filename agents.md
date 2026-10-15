@@ -6,11 +6,13 @@ This workspace, `anotherRageGame`, contains the initial design material and thre
 
 The latest supplied version is **V3: The Misclassification Update**. Use it as the starting reference for further work unless the user chooses another direction. Its distinguishing mechanic is that AI assertions affect physical space: deleted floors, lethal detection boxes, physical notifications, temporary bridges, and predicted locations that get purged.
 
-The workspace contains HTML prototypes, Markdown notes, screenshots, a playtest archive, and local regression checks under `tests/`. A Python builder generates a separate iPhone browser layout from the PC gameplay source. There is no engine project or package manifest. V2 discusses a possible Unity port; that is a proposal, not an implemented port or a confirmed engine choice.
+The workspace contains HTML prototypes, Markdown notes, screenshots, a playtest archive, and local regression checks under `tests/`. A Python builder generates a separate iPhone browser layout from the PC gameplay source. A local Capacitor app under `apps/native/` packages the generated mobile game for iOS and Android; it has a pinned npm manifest/lockfile and native platform projects. There is no separate game-engine port. V2 discusses a possible Unity port; that is a proposal, not an implemented port or a confirmed engine choice.
 
 ## Resources and reading order
 
-Read [Android and iPhone release plan](MOBILE_RELEASE_PLAN.md) for the recommended Capacitor device proof, shared-source migration, saves/lifecycle requirements, hardware gates, store requirements, and conditional Godot fallback. This is planning only; no native app project has been created.
+Read [full-screen mobile UI plan](MOBILE_UI_REDESIGN_PLAN.md) for the proposed full-window paper world, ghost thumb controls, contextual Rewrite, overlay pause menu, camera/eye alignment risks and implementation gates. This is a design plan only; the moving Jump button is explicitly deferred.
+
+Read [Android and iPhone release plan](MOBILE_RELEASE_PLAN.md) for the recommended Capacitor device proof, shared-source migration, saves/lifecycle requirements, hardware gates, store requirements, and conditional Godot fallback. The first local Capacitor proof now exists; see [local phone testing](CAPACITOR_LOCAL_TESTING.md) for installation, build commands and the Android SDK prerequisite. The iOS simulator checks, Android debug APK build and native Android emulator checks passed; physical iPhone and Android testing remain pending. Keep the `feature/capacitor-mobile` work local: the user explicitly said not to publish to GitHub.
 
 Read [Glass sightline test](GLASS_SIGHTLINE_TEST.md) for the separate practice-only glass lab, four-sided collisions, six optically revealed platforms, 56 remarks, and an ordinary-input completion route. The campaign stays at fifteen rooms.
 
@@ -54,6 +56,7 @@ Read [False flags and shifting drops](FALSE_FLAG_DIRECTION.md) for the long leve
 
 | Resource | Purpose |
 | --- | --- |
+| [Local native app](apps/native/package.json), [testing guide](CAPACITOR_LOCAL_TESTING.md) | Capacitor configuration, pinned plugins, iOS/Android projects, local asset builder, native pause/Back adapter and simulator checks. |
 | [iPhone browser game](mobile/index.html) | Generated landscape layout with thumb controls, readable remarks, pause menu, rotation and background pause. |
 | [Audio direction](AUDIO_DIRECTION.md) | Original procedural score, 22 named cues, Safari activation and lifecycle, preview WAVs, and browser evidence. |
 | [Mobile layout source](mobile/layout.html), [mobile UI source](mobile/mobile-ui.js), [builder](tools/build-mobile.py) | Mobile presentation and lifecycle adapters; rebuild instead of editing generated HTML. The PC HTML supplies shared gameplay. |
@@ -149,6 +152,8 @@ V2 and V3 embed HTML, CSS, and JavaScript in one file. Canvas 2D generates the a
 Legacy array names remain in V3: `spikes` represents detection areas, `crumble` represents redactions, and `blocks` represents policy popups. Particle randomness is cosmetic. The explicitly requested compaction mechanic uses a separate seeded generator for its schedule and safe return selection; keep ordinary collision and hazard rules deterministic.
 
 ## Working guidance and validation
+
+For native packaging changes, use `npm --prefix apps/native run sync`. Use `ios:build`, `ios:sim`, and `ios:test` for the dedicated iOS simulator; Android SDK 36 and Java 21 are installed in the ignored project cache; use `android:build` and `android:sim` for the dedicated Android emulator. Native assets are generated from the same source; do not edit platform copies. Framework caches, `www`, build outputs and signing keys are ignored. See [native validation](outputs/capacitor/VALIDATION.md). A simulator pass is not physical-device acceptance.
 
 For mobile changes, rebuild with `python3 tools/build-mobile.py`, then run `node tests/mobile-parity.test.mjs` and the WebKit checks in `tests/mobile-browser.test.mjs`. Preserve authored gameplay, narrator libraries, and the approved paper background. Compare desktop checksums when making mobile-only changes. Keep app switching and portrait rotation paused until explicit Resume, and retain the full-remark reading pause. See [mobile validation](outputs/mobile/VALIDATION.md) for tooling paths and evidence.
 

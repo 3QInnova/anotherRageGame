@@ -1,0 +1,13 @@
+{
+  "engine": "WebKit",
+  "packagedLocalAssets": true,
+  "remoteRequests": 0,
+  "nativeLifecycleEvents": true,
+  "backgroundFreezesPhysics": true,
+  "releasedHeldInput": true,
+  "backDismissesFakeBilling": true,
+  "backPausePreservesCompaction": true,
+  "glassRouteClears": true,
+  "deaths": 0,
+  "pageErrors": []
+}

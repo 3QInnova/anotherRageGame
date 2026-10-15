@@ -23,6 +23,8 @@ Godot has documented iOS and Android export workflows, so it is a credible fallb
 
 ## Stage 1 Prove the installed game
 
+**Local implementation status (14 October 2026):** `feature/capacitor-mobile` now contains the bundled-asset Capacitor app, iOS/Android projects and native lifecycle/Back adapters. The iOS simulator build and native UI smoke test passed. Android SDK/Java are now installed locally and the debug APK and native Android emulator checks pass; physical-device acceptance remains open. Nothing was published. Follow [local testing instructions](CAPACITOR_LOCAL_TESTING.md).
+
 **Estimated effort: 1–2 focused development days once devices and signing are available.**
 
 Package the existing generated mobile HTML as local app assets, with minimal changes. Create an iOS project and an Android project, fix landscape presentation and safe areas, and install on the user's iPhone and a borrowed midrange Android phone. Test both platforms in this stage; an iPhone-only success is not the architecture decision.
@@ -120,7 +122,7 @@ Apple's guideline 4.2 expects meaningful app content and functionality beyond a 
 
 ## Readiness and first deliverable
 
-Local inspection found Node 26.7.0 and Xcode 27.0 installed. The default developer path currently selects Command Line Tools, so plain `xcodebuild` fails; selecting Xcode with a per-command `DEVELOPER_DIR` worked. Android Studio was not found in `/Applications`, and the usual `~/Library/Android/sdk` directory is absent. Recheck tool locations and signing when implementation begins. No installations or global configuration changes were made for this plan.
+Before implementation, local inspection found Node 26.7.0 and Xcode 27.0 installed. The default developer path currently selects Command Line Tools, so plain `xcodebuild` fails; selecting Xcode with a per-command `DEVELOPER_DIR` worked. Android Studio was not found in `/Applications`, and the usual `~/Library/Android/sdk` directory is absent. The subsequent authorized Capacitor implementation installed Java 21 and Android SDK/emulator tools in the ignored project cache; see the local testing guide for current commands. No global developer-directory or shell-profile changes were made.
 
 The first implementation deliverable should be **one local-asset Capacitor build running the existing mobile game on the user's iPhone and a borrowed Android phone**, with a short performance/input/audio report and a proceed-or-port decision. Do this before a broad refactor, new levels, monetization or store artwork.
 

@@ -1,0 +1,11 @@
+{
+  "appId": "com.threeqinnova.exceptionhuman.local",
+  "desktopSha256": "b3f520dda12487980d67a8c198fc1631f26bf7bd810121e3c137fce5e3ddd490",
+  "mobileSourceSha256": "223530f519ec2e9cde2c3cb62e1ea5bfa79b9bc33313eca5fd3ac5ee8dcaf724",
+  "nativePageSha256": "f0356a145d2fec332e47d09c91f9c6b7a1dfe65a3a9ea108c18528a40d3d6afd",
+  "offlineAssets": [
+    "index.html",
+    "native-bridge.js"
+  ],
+  "remoteServer": false
+}

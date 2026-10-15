@@ -1,0 +1,10 @@
+{
+  "appId": "com.threeqinnova.exceptionhuman.local",
+  "appName": "Exception Human Local",
+  "webDir": "www",
+  "backgroundColor": "#121821",
+  "zoomEnabled": false,
+  "loggingBehavior": "debug",
+  "ios": {"contentInset": "never"},
+  "android": {"backgroundColor": "#121821"}
+}
