@@ -1,0 +1,22 @@
+{
+  "engine": "WebKit",
+  "layouts": [
+    {
+      "mobile": false,
+      "allEightCards": true,
+      "freeAndPretendUpgradePaths": true,
+      "frozenPhysics": true,
+      "networkRequests": 0
+    },
+    {
+      "mobile": true,
+      "allEightCards": true,
+      "freeAndPretendUpgradePaths": true,
+      "frozenPhysics": true,
+      "networkRequests": 0
+    }
+  ],
+  "smallPhoneLayouts": true,
+  "mobileMenuResumePreservesPaywall": true,
+  "pageErrors": []
+}

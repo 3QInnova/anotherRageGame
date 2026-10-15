@@ -1,0 +1,122 @@
+{
+  "level": {
+    "title": "CERTIFIED PROBABLY SAFE",
+    "start": 55,
+    "exit": 1140,
+    "width": 1210,
+    "extension": 0,
+    "originalExit": 1140,
+    "floorLies": true,
+    "pits": [],
+    "crumble": [
+      {
+        "id": "redaction-f1",
+        "x": 320,
+        "w": 72,
+        "trigger": 276,
+        "delay": 0.2
+      },
+      {
+        "id": "redaction-f2",
+        "x": 600,
+        "w": 76,
+        "trigger": 556,
+        "delay": 0.21
+      },
+      {
+        "id": "redaction-f3",
+        "x": 970,
+        "w": 62,
+        "trigger": 926,
+        "delay": 0.2
+      }
+    ],
+    "spikes": [
+      {
+        "id": "flag-f",
+        "x": 800,
+        "w": 50,
+        "trigger": 756,
+        "delay": 0.2
+      }
+    ],
+    "blocks": [],
+    "forecasts": [],
+    "anomalies": [],
+    "fake": null,
+    "floorHints": [
+      {
+        "x": 178,
+        "w": 64,
+        "kind": "approved"
+      },
+      {
+        "x": 444,
+        "w": 74,
+        "kind": "suspicious",
+        "secretPad": "secret-5-0"
+      },
+      {
+        "x": 705,
+        "w": 64,
+        "kind": "approved"
+      },
+      {
+        "x": 875,
+        "w": 60,
+        "kind": "approved"
+      },
+      {
+        "x": 1050,
+        "w": 64,
+        "kind": "suspicious"
+      }
+    ],
+    "autocompleteHints": [
+      {
+        "id": "advice-f-walk",
+        "trigger": 274,
+        "mode": "WALK"
+      },
+      {
+        "id": "advice-f-jump",
+        "trigger": 500,
+        "mode": "JUMP"
+      },
+      {
+        "id": "advice-f-wait",
+        "trigger": 925,
+        "mode": "WAIT"
+      }
+    ],
+    "autocompleteResultSeconds": 0.4,
+    "intro": "All floor certifications are accurate, except the decorative ones and the inaccurate ones.",
+    "secretPads": [
+      {
+        "id": "secret-5-0",
+        "kind": "secret-bounce",
+        "x": 444,
+        "w": 64
+      }
+    ]
+  },
+  "offeredAdvice": {
+    "advice-f-walk": {
+      "mode": "WALK",
+      "x": 335.45833333333337,
+      "y": 405
+    },
+    "advice-f-wait": {
+      "mode": "WAIT",
+      "x": 903.000000000005,
+      "y": 405
+    }
+  },
+  "normalRoute": {
+    "state": "won",
+    "deaths": 0
+  },
+  "allFiveElementsVerified": true,
+  "learnedMarkerSurvives": true,
+  "lateCorrectionHasRealWarning": true
+}

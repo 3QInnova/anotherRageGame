@@ -1,0 +1,22 @@
+{
+  "engine": "WebKit",
+  "results": [
+    {
+      "mobile": false,
+      "practiceLoads": true,
+      "hiddenPlatforms": 6,
+      "eyeRays": 1,
+      "jumpWorks": true,
+      "fifteenRoomCampaignPreserved": true
+    },
+    {
+      "mobile": true,
+      "practiceLoads": true,
+      "hiddenPlatforms": 6,
+      "eyeRays": 1,
+      "jumpWorks": true,
+      "fifteenRoomCampaignPreserved": true
+    }
+  ],
+  "pageErrors": []
+}

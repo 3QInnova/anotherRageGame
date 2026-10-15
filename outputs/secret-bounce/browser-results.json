@@ -1,0 +1,20 @@
+{
+  "engine": "WebKit",
+  "fixtures": [
+    {
+      "mobile": false,
+      "launchRendered": true,
+      "gitReasonReadable": true,
+      "twoTapRetry": true,
+      "normalJumpSafe": true
+    },
+    {
+      "mobile": true,
+      "launchRendered": true,
+      "gitReasonReadable": true,
+      "twoTapRetry": true,
+      "normalJumpSafe": true
+    }
+  ],
+  "pageErrors": []
+}

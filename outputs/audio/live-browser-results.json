@@ -1,0 +1,21 @@
+{
+  "engine": "WebKit",
+  "results": [
+    {
+      "mobile": false,
+      "liveAudioEngine": true,
+      "cues": 22,
+      "gestureStartsMusic": true,
+      "muteStopsVoices": true,
+      "pageErrors": []
+    },
+    {
+      "mobile": true,
+      "liveAudioEngine": true,
+      "cues": 22,
+      "gestureStartsMusic": true,
+      "muteStopsVoices": true,
+      "pageErrors": []
+    }
+  ]
+}

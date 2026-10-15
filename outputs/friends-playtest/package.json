@@ -1,0 +1,14 @@
+{
+  "desktop.html": {
+    "bytes": 141383,
+    "sha256": "21d34f5c900044eb3e22ec9b3e2d3a49b6dbbfc557560c0bad1a13b909c836be"
+  },
+  "index.html": {
+    "bytes": 3275,
+    "sha256": "9d386a0765e2982d75595c3a2e5918d423355d7d8f9230d7a2769f9831c9dba7"
+  },
+  "mobile.html": {
+    "bytes": 143777,
+    "sha256": "79fadd51c600da4622fa830b5e903ffbd5a447463d06b79a3059ab3262c10c67"
+  }
+}

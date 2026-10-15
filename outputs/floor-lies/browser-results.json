@@ -1,0 +1,8 @@
+{
+  "allFiveElementsRendered": true,
+  "ordinaryWalkAndJumpAdvice": true,
+  "realDeathAndTwoPressRetry": true,
+  "mobileJump": true,
+  "mobileOverflow": false,
+  "pageErrors": []
+}

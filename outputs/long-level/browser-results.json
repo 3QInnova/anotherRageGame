@@ -1,0 +1,13 @@
+{
+  "ordinaryPracticeRoute": {
+    "state": "won",
+    "deaths": 0,
+    "compactions": 1,
+    "seconds": 75.83333333333975
+  },
+  "frozenStateVerified": true,
+  "mobileCheckpointFixture": true,
+  "mobileOverflow": false,
+  "touchRecovery": true,
+  "pageErrors": []
+}

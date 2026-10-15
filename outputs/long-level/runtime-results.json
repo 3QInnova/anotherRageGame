@@ -1,0 +1,132 @@
+{
+  "level": "CONTEXT WINDOW EXCEEDED",
+  "distance": 12465,
+  "encounters": 20,
+  "guaranteedCheckpoint": 7000,
+  "seededCompletion": [
+    {
+      "seed": 1,
+      "interruptions": 2,
+      "firstAt": {
+        "x": 7000.2083333330465,
+        "seconds": 28.183333333332374,
+        "reason": "context window exceeded"
+      },
+      "seconds": 149.99166666669458
+    },
+    {
+      "seed": 7,
+      "interruptions": 1,
+      "firstAt": {
+        "x": 7000.2083333330465,
+        "seconds": 28.183333333332374,
+        "reason": "context window exceeded"
+      },
+      "seconds": 68.82500000000084
+    },
+    {
+      "seed": 42,
+      "interruptions": 2,
+      "firstAt": {
+        "x": 7000.2083333330465,
+        "seconds": 28.183333333332374,
+        "reason": "context window exceeded"
+      },
+      "seconds": 125.96666666671298
+    },
+    {
+      "seed": 424242,
+      "interruptions": 1,
+      "firstAt": {
+        "x": 7000.2083333330465,
+        "seconds": 28.183333333332374,
+        "reason": "context window exceeded"
+      },
+      "seconds": 75.83333333333975
+    },
+    {
+      "seed": 987654321,
+      "interruptions": 1,
+      "firstAt": {
+        "x": 7000.2083333330465,
+        "seconds": 28.183333333332374,
+        "reason": "context window exceeded"
+      },
+      "seconds": 68.82500000000084
+    }
+  ],
+  "allReturnPointsRecovered": [
+    {
+      "x": 55,
+      "interruptions": 1,
+      "firstAt": {
+        "x": 9559.666666666591,
+        "seconds": 54.82499999999753,
+        "reason": "unsolicited optimization"
+      },
+      "seconds": 97.78333333335722
+    },
+    {
+      "x": 1170,
+      "interruptions": 1,
+      "firstAt": {
+        "x": 10674.666666666897,
+        "seconds": 54.82499999999753,
+        "reason": "unsolicited optimization"
+      },
+      "seconds": 95.46666666668871
+    },
+    {
+      "x": 2410,
+      "interruptions": 1,
+      "firstAt": {
+        "x": 11393.500000000433,
+        "seconds": 54.82499999999753,
+        "reason": "unsolicited optimization"
+      },
+      "seconds": 95.46666666668871
+    },
+    {
+      "x": 3650,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 52.333333333331005
+    },
+    {
+      "x": 4890,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 47.64999999999794
+    },
+    {
+      "x": 6130,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 42.95833333333154
+    },
+    {
+      "x": 6750,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 40.641666666665
+    },
+    {
+      "x": 8610,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 31.63333333333218
+    },
+    {
+      "x": 10470,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 24.624999999999243
+    },
+    {
+      "x": 12330,
+      "interruptions": 0,
+      "firstAt": null,
+      "seconds": 15.61666666666642
+    }
+  ]
+}

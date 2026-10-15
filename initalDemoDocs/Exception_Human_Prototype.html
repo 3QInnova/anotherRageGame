@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EXCEPTION: HUMAN — playable prototype</title>
+<style>
+:root{--bg:#080c18;--card:#151c2f;--edge:#293451;--ink:#eaf0fa;--muted:#98a9c4;--mint:#68edba;--amber:#ffc572;--red:#ff657f;--blue:#79c4ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0%,#172a41,var(--bg) 61%);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1000px;margin:24px auto;padding:0 18px}header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:16px}h1{margin:0;letter-spacing:.07em;font-size:clamp(24px,4vw,39px);font-weight:850}h1 em{font-weight:500;color:var(--mint);font-style:normal}small,.hint{color:var(--muted)}.tag{font-size:12px;border:1px solid #4b6c87;border-radius:24px;padding:5px 12px;letter-spacing:.06em;color:#bde5fb}#panel{background:#131b2ddd;border:1px solid var(--edge);padding:12px 15px;border-radius:14px}.status{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.stat{background:#1d2740;padding:8px 10px;border-radius:8px}.stat label{font-size:10px;font-weight:800;letter-spacing:.13em;color:var(--muted);display:block}.stat strong{font-size:21px}#speech{font-size:17px;font-weight:800;background:#18263e;border-left:4px solid var(--mint);margin:12px 0 0;padding:12px 15px;min-height:76px}#speech.warning{border-color:var(--amber)}#speech.danger{border-color:var(--red)}#speech i{display:block;font-size:11px;font-style:normal;letter-spacing:.13em;color:var(--muted);margin-bottom:4px}#scene{position:relative;background:#070d18;overflow:hidden;border:1px solid #31405d;border-radius:13px;margin:16px 0 12px;box-shadow:0 20px 45px #0007}canvas{display:block;width:100%;height:auto;image-rendering:pixelated}.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;text-align:center;background:#050b1fae}.overlay[hidden]{display:none}.card{background:#131c30ee;border:2px solid #e5f0ff;box-shadow:0 12px 40px #000a;padding:21px 30px;border-radius:15px;max-width:75%}.card h2{margin:0 0 6px;font-size:30px}.card p{margin:5px 0 0}.bottom{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}.box{padding:15px;border-radius:12px;background:#131b2d;border:1px solid #293451}.box h3{margin:0 0 8px;font-size:14px;letter-spacing:.08em}.button{background:#27465b;border:1px solid #5787ab;color:#fff;padding:9px 15px;border-radius:9px;font:inherit;cursor:pointer}.button:hover{background:#34627f}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.keys{display:inline-block;background:#273451;border:1px solid #4c6186;padding:2px 7px;border-radius:5px;font-weight:bold}#log{height:62px;overflow:hidden;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#97cce4}.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:12px}.legend span{display:inline-flex;align-items:center;gap:5px}.swatch{display:inline-block;width:11px;height:11px;border-radius:3px}.glow{color:var(--mint)} .footer{font-size:12px;color:var(--muted);padding:12px 0 22px}
+@media(max-width:700px){.bottom{grid-template-columns:1fr}.status{grid-template-columns:repeat(2,1fr)}.card{max-width:92%}.card h2{font-size:22px}}
+</style>
+</head>
+<body><main>
+<header><div><h1>EXCEPTION: <em>HUMAN</em></h1><div class="hint">The world runs on AI. You weren't in the training data.</div></div><div class="tag">PROTOTYPE / RULE-DRIVEN HALLUCINATIONS</div></header>
+<div id="panel"><div class="status"><div class="stat"><label>ROOM</label><strong id="room">1 / 3</strong></div><div class="stat"><label>TIME REMAINING</label><strong id="clock">45.0s</strong></div><div class="stat"><label>FAILED ATTEMPTS</label><strong id="deaths">0</strong></div><div class="stat"><label>AI CONFIDENCE</label><strong id="confidence">98.0%</strong></div></div><div id="speech"><i>MODEL OUTPUT</i><span id="line">Everything is working as intended.</span></div></div>
+<div id="scene"><canvas id="board" width="864" height="540" aria-label="Playable top-down grid maze. Use arrows or WASD and space."></canvas><div class="overlay" id="overlay" hidden><div class="card"><h2 id="otitle">Misclassified</h2><p id="odesc">System error</p></div></div></div>
+<div class="bottom"><section class="box"><h3>HOW TO ESCAPE</h3><div class="controls"><span class="keys">WASD / ARROWS</span> Move <span class="keys">SPACE</span> Ask AI to identify the tile ahead <span class="keys">R</span> Retry</div><p class="hint">The AI always makes a wrong guess. Its guess changes <strong>every object of that kind</strong> for four seconds. A blue wall can become a passable door, a violet void can become a bridge, and an amber warning tile can become a hole. Watch the countdown before a correction expires.</p><button id="restart" class="button">Restart current room</button></section><section class="box"><h3>WORLD STATUS</h3><div id="effects" class="hint">No temporary claims are active.</div><hr style="border:0;border-top:1px solid #293451;margin:12px 0"/><div class="legend"><span><b class="swatch" style="background:#65c3ff"></b>Wall / door</span><span><b class="swatch" style="background:#9f78e8"></b>Void / bridge</span><span><b class="swatch" style="background:#ffbd5b"></b>Fragile floor</span><span><b class="swatch" style="background:#6aefb3"></b>Exit</span></div><div id="log" aria-live="polite"></div></section></div>
+<div class="footer">No LLM, server, assets, physics package or third-party scripts required. Fixed rules + seeded, telegraphed AI assertions for playable fairness. Local prototype; not a complete game.</div>
+</main>
+<script>
+(()=>{'use strict';
+const COLS=16,ROWS=10,TILE=54,canvas=document.getElementById('board'),ctx=canvas.getContext('2d');
+const $=id=>document.getElementById(id);
+const DIRS={ArrowUp:[0,-1],KeyW:[0,-1],ArrowDown:[0,1],KeyS:[0,1],ArrowLeft:[-1,0],KeyA:[-1,0],ArrowRight:[1,0],KeyD:[1,0]};
+const LEVELS=[
+ {name:'Training Data',start:[2,5],exit:[13,5],wall:[[7,1,7,8]],gap:[],fragile:[[9,4,11,4],[9,6,11,6]]},
+ {name:'Out of Distribution',start:[2,7],exit:[13,2],wall:[[10,1,10,4]],gap:[[7,1,7,8]],fragile:[[9,5,12,5],[12,3,12,4]]},
+ {name:'Unhandled Exception',start:[2,5],exit:[13,4],wall:[[5,1,5,8]],gap:[[10,1,10,8]],fragile:[[7,3,9,3],[7,6,9,6]]}
+ ];
+let level=0,deaths=0,attempt=0,round=0,won=false,player,grid=[],fx={},pending=null,nextAudit=0,roomStart=0,clock=45,scoreTime=0,confidence=98,lastFrame=0,lastMove=0,lastAsk=0,failedUntil=0,logs=[],rngState=1,currentCause='',warningAt=0;
+const keys=new Set();
+function now(){return performance.now()/1000}
+function random(){rngState^=rngState<<13;rngState^=rngState>>>17;rngState^=rngState<<5;return ((rngState>>>0)%100000)/100000}
+function buildGrid(L){let g=Array.from({length:ROWS},(_,y)=>Array.from({length:COLS},(_,x)=>(x===0||y===0||x===COLS-1||y===ROWS-1)?'X':'.'));
+ for(const [x0,y0,x1,y1] of L.wall)for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)g[y][x]='#';
+ for(const [x0,y0,x1,y1] of L.gap)for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)g[y][x]='~';
+ for(const [x0,y0,x1,y1] of L.fragile)for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)g[y][x]='!';
+ g[L.start[1]][L.start[0]]='S';g[L.exit[1]][L.exit[0]]='E';return g; }
+function reset(full=false){let t=now();if(full){deaths=0;attempt=0;level=0;scoreTime=0;won=false}attempt++;round++;
+ grid=buildGrid(LEVELS[level]);player={x:LEVELS[level].start[0],y:LEVELS[level].start[1],dx:1,dy:0};fx={wall:0,gap:0,pad:0,exit:0};pending=null;roomStart=t;clock=45;confidence=98;failedUntil=0;lastMove=t;lastAsk=0;nextAudit=t+5.3; rngState=(0xDEADBEEF+level*98719+attempt*2791)>>>0;keys.clear();$('overlay').hidden=true;
+ say('Welcome, anomalous object. You are almost certainly a person.','normal');log('ROOM '+(level+1)+' / '+LEVELS[level].name); updateHud();}
+function log(s){logs.unshift(s);logs=logs.slice(0,3);$('log').innerHTML=logs.map(v=>'<div>&gt; '+v.replace(/</g,'&lt;')+'</div>').join('')}
+function say(s,t='normal'){const e=$('speech');e.className=(t==='warning'||t==='danger')?t:'';$('line').textContent=s}
+function tile(x,y){return grid[y]?.[x]||'X'}
+function active(kind,t=now()){return fx[kind]>t}
+function classify(c){return {'#':'wall','~':'gap','!':'pad','E':'exit'}[c]||null}
+function isSolid(c,t=now()){return c==='X'||(c==='#'&&!active('wall',t))||(c==='E'&&active('exit',t))}
+function isDead(c,t=now()){return (c==='~'&&!active('gap',t))||(c==='!'&&active('pad',t))}
+const texts={
+ wall:['Structural walls are obviously DOORS. All identical walls are now doors.','Correction: I have realized DOORS are actually WALLS.'],
+ gap:['Empty space identified: CERTIFIED BRIDGE. All identical gaps are bridges.','Correction: those bridges were conceptual. They are now holes.'],
+ pad:['Safety tile identified as OPEN SHAFT. All amber tiles are holes.','Correction: open shafts are clearly safe floors.'],
+ exit:['Exit identified as DECORATIVE WALL ART. It cannot be opened.','Correction: the decorative artwork was apparently an exit.']
+};
+function applyClaim(kind,source){let t=now(),on=active(kind,t);fx[kind]=on?0:t+4.0;confidence=Math.min(99.9,confidence+(source==='player'?.24:.13));say(texts[kind][on?1:0],on?'normal':(kind==='pad'||kind==='exit'?'danger':'warning'));log((source==='player'?'USER PROMPT: ':'AI AUDIT: ')+kind.toUpperCase()+(on?' RESTORED':' MISCLASSIFIED'));
+ if(isDead(tile(player.x,player.y),t)||isSolid(tile(player.x,player.y),t)){fail('The AI changed the classification of your location.');return}
+ }
+function ask(){const t=now();if(failedUntil||won||t-lastAsk<.65)return;lastAsk=t;
+ const x=player.x+player.dx,y=player.y+player.dy,k=classify(tile(x,y));if(!k){say('No classifiable object detected. Obviously, this is your fault.');return}
+ applyClaim(k,'player');nextAudit=Math.max(t+1.3,nextAudit-.15);
+ }
+function fail(cause){if(failedUntil||won)return;currentCause=cause;failedUntil=now()+.68;deaths++;
+ $('overlay').hidden=false;$('otitle').textContent='CLASSIFICATION FAILED';$('odesc').textContent=cause+' • Rebooting...';say('USER ERROR: '+cause+' I maintain 99.9% confidence.','danger');log('FAILED: '+cause);$('deaths').textContent=deaths;}
+function finish(){if(won)return;scoreTime+=45-clock; if(level<LEVELS.length-1){level++;reset();say('You escaped. That outcome was not in the training data.','normal');}else{won=true;$('overlay').hidden=false;$('otitle').textContent='OUTLIER SURVIVED';$('odesc').textContent='All 3 rooms cleared. '+deaths+' failed attempts. Press R for a new run.';say('ERROR: The human escaped. Classification confidence: 100%.','danger');log('RUN COMPLETE. PRESS R TO REPLAY.')}}
+function move(dx,dy,t){if(won||failedUntil||t-lastMove<.12)return;player.dx=dx;player.dy=dy;lastMove=t;const x=player.x+dx,y=player.y+dy,c=tile(x,y);if(isSolid(c,t)){return}player.x=x;player.y=y;if(isDead(c,t)){fail(c==='~'?'You trusted a nonexistent bridge.':'You trusted a floor labeled HOLE.');return}if(c==='E'&&!active('exit',t))finish()}
+function chooseAudit(t){const types=['wall','gap','pad','exit'].filter(k=>grid.some(row=>row.some(c=>classify(c)===k)));
+ let pool=[];for(const kind of types){let weight=kind==='pad'?4:kind==='exit'?3:kind==='wall'?2:2;
+ if(kind==='pad'&&Math.abs(player.x-10)<=4)weight+=3;
+ if(kind==='exit'&&Math.abs(player.x-LEVELS[level].exit[0])+Math.abs(player.y-LEVELS[level].exit[1])<=5)weight+=4;
+ for(let i=0;i<weight;i++)pool.push(kind)}
+ const kind=pool[Math.floor(random()*pool.length)];pending={kind,at:t+1.25};warningAt=t;
+ const targetName={wall:'ALL BLUE WALLS',gap:'ALL VIOLET GAPS',pad:'ALL AMBER TILES',exit:'THE GREEN EXIT'}[kind];
+ say('IMMINENT AI AUDIT: Reclassifying '+targetName+' in 1.25 seconds.','warning');log('WARNING: '+targetName+' WILL CHANGE.');}
+function tick(t,dt){if(failedUntil){if(t>failedUntil)reset();return}if(won)return;clock=Math.max(0,45-(t-roomStart));if(clock<=0){fail('Your request timed out. The exit was right there.');return}
+ if(pending&&t>=pending.at){const k=pending.kind;pending=null;applyClaim(k,'audit');nextAudit=t+Math.max(3.4,5.45-(level*.44)-(confidence-98)*.35)}
+ if(!pending&&t>=nextAudit)chooseAudit(t);
+ const c=tile(player.x,player.y);if(isDead(c,t)||isSolid(c,t))fail(c==='#'?'A wall stopped being a door while you were inside it.':c==='~'?'The imaginary bridge expired beneath your feet.':'The AI revoked the floor under you.');
+ for(const [key,vec] of Object.entries(DIRS))if(keys.has(key)){move(vec[0],vec[1],t);break}
+ }
+function updateHud(){ $('room').textContent=(level+1)+' / '+LEVELS.length;$('clock').textContent=clock.toFixed(1)+'s';$('deaths').textContent=deaths;$('confidence').textContent=confidence.toFixed(1)+'%';
+ const t=now(),arr=[];for(const k of ['wall','gap','pad','exit'])if(active(k,t))arr.push('<div><b>'+({wall:'Walls → Doors',gap:'Gaps → Bridges',pad:'Amber → Holes',exit:'Exit → Art'}[k])+'</b> <span style="color:#ffc572">'+Math.max(0,fx[k]-t).toFixed(1)+'s left</span></div>');$('effects').innerHTML=arr.join('')||'No active hallucinations.'}
+function draw(t){ctx.fillStyle='#081320';ctx.fillRect(0,0,864,540);const pulse=(Math.sin(t*10)+1)/2,mark= pending?.kind;
+ for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){
+ const c=tile(x,y),xx=x*TILE,yy=y*TILE;ctx.fillStyle=(x+y)%2===0?'#172238':'#19263b';ctx.fillRect(xx+1,yy+1,TILE-2,TILE-2);
+ if(c==='X'){ctx.fillStyle='#30374b';ctx.fillRect(xx,yy,TILE,TILE);ctx.fillStyle='#4f5872';ctx.fillRect(xx+3,yy+3,TILE-6,4)}
+ else if(c==='#'){let isOpen=active('wall',t);ctx.fillStyle=isOpen?'#21435a':'#4797bf';ctx.fillRect(xx+6,yy+6,TILE-12,TILE-12);ctx.strokeStyle=isOpen?'#76ddfc':'#bfe6f9';ctx.lineWidth=2;ctx.strokeRect(xx+10,yy+10,TILE-20,TILE-20);
+ ctx.fillStyle='#e5fbff';ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillText(isOpen?'DOOR':'WALL',xx+TILE/2,yy+TILE/2+3)}
+ else if(c==='~'){const bridge=active('gap',t);ctx.fillStyle=bridge?'#459e83':'#442e64';ctx.fillRect(xx+5,yy+5,TILE-10,TILE-10);ctx.font='bold 22px system-ui';ctx.textAlign='center';ctx.fillStyle=bridge?'#c0ffe4':'#be96ff';ctx.fillText(bridge?'=':'×',xx+TILE/2,yy+34)}
+ else if(c==='!'){const bad=active('pad',t);ctx.fillStyle=bad?'#a43c5a':'#8b6c35';ctx.fillRect(xx+6,yy+6,TILE-12,TILE-12);ctx.fillStyle=bad?'#ffd2df':'#fff1a9';ctx.font='bold 20px system-ui';ctx.textAlign='center';ctx.fillText(bad?'✕':'!',xx+TILE/2,yy+34)}
+ else if(c==='E'){const fake=active('exit',t);ctx.fillStyle=fake?'#606576':'#227a61';ctx.fillRect(xx+4,yy+4,TILE-8,TILE-8);ctx.fillStyle=fake?'#dee0eb':'#beffdb';ctx.textAlign='center';ctx.font='bold 12px system-ui';ctx.fillText(fake?'ART':'EXIT',xx+TILE/2,yy+32)}
+ if(mark&&classify(c)===mark){ctx.strokeStyle='rgba(255,206,98,'+(.5+.4*pulse)+')';ctx.lineWidth=4;ctx.strokeRect(xx+2,yy+2,TILE-4,TILE-4)}
+ }
+ const frontX=(player.x+player.dx)*TILE,frontY=(player.y+player.dy)*TILE; if(classify(tile(player.x+player.dx,player.y+player.dy))){ctx.strokeStyle='#ffffff';ctx.lineWidth=3;ctx.strokeRect(frontX+3,frontY+3,TILE-6,TILE-6)}
+ const x=player.x*TILE+TILE/2,y=player.y*TILE+TILE/2;ctx.beginPath();ctx.arc(x,y,18,0,2*Math.PI);ctx.fillStyle='#f0e9aa';ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#161f39';ctx.stroke();ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillStyle='#151a36';ctx.fillText('404',x,y+4);ctx.strokeStyle='#f7f3c4';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x+player.dx*15,y+player.dy*15);ctx.lineTo(x+player.dx*26,y+player.dy*26);ctx.stroke();
+ // lightweight warning/status ribbon at bottom, inside the playfield
+ ctx.fillStyle='#06101bd0';ctx.fillRect(0,ROWS*TILE-27,864,27);ctx.font='bold 11px system-ui';ctx.textAlign='left';ctx.fillStyle='#bdd7ed';ctx.fillText('UNRECOGNIZED HUMAN   |   RE-PROMPT THE WORLD   |   ATTEMPT #'+attempt,12,ROWS*TILE-9);
+ }
+function frame(ms){const t=ms/1000,dt=Math.min(.06,Math.max(0,t-lastFrame));lastFrame=t;tick(t,dt);draw(t);updateHud();requestAnimationFrame(frame)}
+document.addEventListener('keydown',e=>{if(e.code in DIRS||e.code==='Space'||e.code==='KeyR')e.preventDefault();if(e.code in DIRS){keys.add(e.code);const [dx,dy]=DIRS[e.code];if(player){player.dx=dx;player.dy=dy;move(dx,dy,now())}}else if(e.code==='Space'&&!e.repeat)ask();else if(e.code==='KeyR'&&!e.repeat){if(won)reset(true);else reset();}});
+document.addEventListener('keyup',e=>{keys.delete(e.code)});window.addEventListener('blur',()=>keys.clear());$('restart').addEventListener('click',()=>{won?reset(true):reset()});reset(true);requestAnimationFrame(frame);
+})();
+</script>
+</body></html>

@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';import {webkit} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
+const browser=await webkit.launch({headless:true}),checks=[],errors=[];try{for(const mobile of [false,true]){
+ const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:1000},isMobile:mobile,hasTouch:mobile});page.on('pageerror',e=>errors.push(e.message));await page.goto('https://3qinnova.com/exception-human/'+(mobile?'mobile':'desktop')+'.html?v=20261014-levels15');assert.match(await page.locator('#room').textContent(),/15$/);assert.equal(await page.locator('#longLevelSelect option').count(),9);
+ for(let room=9;room<=14;room++){
+  await page.locator('#longLevelSelect').selectOption(String(room));await page.locator('#longPractice').click();let s=await page.evaluate(()=>window.__EXCEPTION_TEST__.getState());assert.equal(s.room,room);assert(s.worldWidth>=16800);assert.equal(Object.keys(s.trap).filter(k=>k.startsWith('secret-')).length,2);assert.equal(s.paywallCounts[room],0);checks.push({mobile,room:room+1,worldWidth:s.worldWidth,twoGitPads:true,practiceLoads:true});if(mobile)await page.locator('#mobilePause').click();
+ }
+ await page.close();
+}assert.deepEqual(errors,[]);writeFileSync(new URL('../outputs/six-long-levels/live-browser-results.json',import.meta.url),JSON.stringify({engine:'WebKit',checks,pageErrors:errors},null,2)+'\n');console.log('PASS: all six published long levels load from PC and iPhone practice menus, with fifteen campaign rooms, nine long options, and two Git pads each.')}finally{await browser.close()}

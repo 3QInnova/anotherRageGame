@@ -1,0 +1,24 @@
+{
+  "url": "https://3qinnova.com/exception-human/",
+  "commit": "2768d3c02cfc7409a49d5e7e4863f35a3a9863a1",
+  "pagesRun": 38511803470,
+  "pages": [
+    {
+      "file": "index.html",
+      "sha256": "e69360b95fdd68de0286c10495567635060e39aba67067a4619caa6f2a1a44e8",
+      "matchedPackage": true
+    },
+    {
+      "file": "desktop.html",
+      "sha256": "5cee0cc8d97dce4d1175d0c8a81202514f750a806a5ebffccf9182db57e8cab2",
+      "matchedPackage": true
+    },
+    {
+      "file": "mobile.html",
+      "sha256": "c9a113b50eeb03fe76fa126bc481dd65839639f1c6fa08814c9274658ace5d37",
+      "matchedPackage": true
+    }
+  ],
+  "status": "completed",
+  "conclusion": "success"
+}

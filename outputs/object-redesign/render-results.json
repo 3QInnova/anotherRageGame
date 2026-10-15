@@ -1,0 +1,12 @@
+{
+  "gallery": true,
+  "rooms": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "narrowViewport": 390,
+  "pageErrors": [],
+  "fixtureOnly": true
+}

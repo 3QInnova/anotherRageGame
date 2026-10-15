@@ -1,0 +1,90 @@
+{
+  "engine": "WebKit",
+  "checks": [
+    {
+      "mobile": false,
+      "room": 10,
+      "worldWidth": 16800,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": false,
+      "room": 11,
+      "worldWidth": 17720,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": false,
+      "room": 12,
+      "worldWidth": 18960,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": false,
+      "room": 13,
+      "worldWidth": 18060,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": false,
+      "room": 14,
+      "worldWidth": 20860,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": false,
+      "room": 15,
+      "worldWidth": 20880,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": true,
+      "room": 10,
+      "worldWidth": 16800,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": true,
+      "room": 11,
+      "worldWidth": 17720,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": true,
+      "room": 12,
+      "worldWidth": 18960,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": true,
+      "room": 13,
+      "worldWidth": 18060,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": true,
+      "room": 14,
+      "worldWidth": 20860,
+      "twoGitPads": true,
+      "practiceLoads": true
+    },
+    {
+      "mobile": true,
+      "room": 15,
+      "worldWidth": 20880,
+      "twoGitPads": true,
+      "practiceLoads": true
+    }
+  ],
+  "pageErrors": []
+}

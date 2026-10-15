@@ -1,0 +1,316 @@
+{
+  "result": {
+    "room": 8,
+    "practiceMode": false,
+    "practiceRoom": -1,
+    "roomElapsed": 182.82499999999806,
+    "player": {
+      "x": 14694.041666668001,
+      "y": 405,
+      "vx": 265,
+      "vy": 0,
+      "grounded": true,
+      "coyote": 0.09,
+      "jumpBuffer": 0,
+      "facing": 1
+    },
+    "deaths": 0,
+    "attempt": 1,
+    "sceneTime": 72.76666666667064,
+    "state": "won",
+    "trap": {
+      "redaction-regression-1": {
+        "phase": "on",
+        "t": 3.216666666666658
+      },
+      "redaction-regression-4": {
+        "phase": "on",
+        "t": 10.766666666666696
+      },
+      "redaction-regression-8": {
+        "phase": "on",
+        "t": 21.216666666666104
+      },
+      "redaction-regression-13": {
+        "phase": "on",
+        "t": 34.19166666666537
+      },
+      "redaction-regression-18": {
+        "phase": "on",
+        "t": 47.48333333333128
+      },
+      "redaction-regression-22": {
+        "phase": "on",
+        "t": 56.17499999999745
+      },
+      "redaction-regression-27": {
+        "phase": "on",
+        "t": 70.7750000000024
+      },
+      "flag-regression-0": {
+        "phase": "on",
+        "t": 1.249999999999998
+      },
+      "flag-regression-2": {
+        "phase": "on",
+        "t": 4.650000000000021
+      },
+      "flag-regression-7": {
+        "phase": "on",
+        "t": 19.333333333332877
+      },
+      "flag-regression-9": {
+        "phase": "on",
+        "t": 23.399999999999313
+      },
+      "flag-regression-11": {
+        "phase": "on",
+        "t": 29.01666666666566
+      },
+      "flag-regression-15": {
+        "phase": "on",
+        "t": 39.76666666666505
+      },
+      "flag-regression-16": {
+        "phase": "on",
+        "t": 41.28333333333163
+      },
+      "flag-regression-20": {
+        "phase": "on",
+        "t": 51.99999999999769
+      },
+      "flag-regression-21": {
+        "phase": "on",
+        "t": 54.44166666666422
+      },
+      "flag-regression-24": {
+        "phase": "on",
+        "t": 61.69166666666381
+      },
+      "policy-regression-3": {
+        "phase": "done",
+        "t": 7.241666666666816,
+        "lockedAt": 6.591666666666784,
+        "x": 2012.0833333333137,
+        "until": 8.591666666666816
+      },
+      "policy-regression-6": {
+        "phase": "done",
+        "t": 15.799999999999743,
+        "until": 17.149999999999743
+      },
+      "policy-regression-10": {
+        "phase": "done",
+        "t": 25.324999999999203,
+        "lockedAt": 24.666666666665908,
+        "x": 5532.166666666611,
+        "until": 26.674999999999205
+      },
+      "policy-regression-14": {
+        "phase": "done",
+        "t": 35.783333333331946,
+        "until": 37.13333333333195
+      },
+      "policy-regression-17": {
+        "phase": "done",
+        "t": 43.79999999999816,
+        "lockedAt": 43.14166666666486,
+        "x": 9151.624999999754,
+        "until": 45.14999999999816
+      },
+      "policy-regression-23": {
+        "phase": "done",
+        "t": 58.22499999999734,
+        "until": 59.57499999999734
+      },
+      "policy-regression-26": {
+        "phase": "done",
+        "t": 66.79999999999923,
+        "lockedAt": 66.14999999999871,
+        "x": 13672.083333334329,
+        "until": 68.14999999999922
+      },
+      "predict-regression-5": {
+        "phase": "done",
+        "t": 13.374999999999881,
+        "lockedAt": 12.81666666666658,
+        "x": 3007.041666666699,
+        "until": 13.954999999999881,
+        "resultUntil": 15.108333333333182
+      },
+      "predict-regression-12": {
+        "phase": "done",
+        "t": 31.624999999998845,
+        "lockedAt": 31.066666666665544,
+        "x": 6569.083333333117,
+        "until": 32.20499999999885,
+        "resultUntil": 33.35833333333215
+      },
+      "predict-regression-19": {
+        "phase": "done",
+        "t": 49.94999999999781,
+        "lockedAt": 49.391666666664506,
+        "x": 10148.791666666732,
+        "until": 50.529999999997806,
+        "resultUntil": 51.683333333331106
+      },
+      "predict-regression-25": {
+        "phase": "done",
+        "t": 64.35833333333062,
+        "lockedAt": 63.80833333333035,
+        "x": 13207.333333334238,
+        "until": 64.93833333333062,
+        "resultUntil": 66.09166666666442
+      },
+      "secret-8-0": {
+        "phase": "idle",
+        "t": 0
+      },
+      "secret-8-1": {
+        "phase": "idle",
+        "t": 0
+      }
+    },
+    "glitch": {},
+    "fakeRevealed": false,
+    "doorLocked": false,
+    "exitAuditTriggered": false,
+    "observer": {
+      "score": 10,
+      "stage": 5,
+      "forecastMisses": 11,
+      "successes": 111,
+      "response": "Your departure has been classified as an unusually permanent misunderstanding.",
+      "lastEvent": "escape",
+      "reactionAt": 381.5833333331506
+    },
+    "compaction": null,
+    "compactCounts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      2
+    ],
+    "compactWatch": {
+      "highX": 14678.583333334664,
+      "stall": 0.049999999999999996,
+      "age": 72.7583333333373,
+      "cooldown": 0,
+      "surpriseAt": 50.38251673919149
+    },
+    "compactSeed": 2642696253,
+    "paywall": null,
+    "paywallCounts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "paywallWatch": {
+      "age": 0,
+      "cooldown": 20,
+      "scheduled": true,
+      "due": 11.251276494935155,
+      "atX": 6607.00788541988
+    },
+    "paywallSeed": 2817191895,
+    "worldWidth": 14800,
+    "exit": 14720,
+    "cameraX": 0,
+    "seen": [],
+    "autocomplete": null,
+    "autocompleteStats": {
+      "offered": 112,
+      "rejected": 87,
+      "followed": 15,
+      "streak": 1,
+      "best": 12
+    },
+    "receiptSequence": 111,
+    "victoryReceipts": [
+      {
+        "number": 104,
+        "room": 9,
+        "event": "AUTOCOMPLETE",
+        "expected": "SUGGESTED MOVE",
+        "actual": "DIFFERENT MOVE",
+        "blame": "USER"
+      },
+      {
+        "number": 105,
+        "room": 9,
+        "event": "AUTOCOMPLETE",
+        "expected": "SUGGESTED MOVE",
+        "actual": "DIFFERENT MOVE",
+        "blame": "USER"
+      },
+      {
+        "number": 106,
+        "room": 9,
+        "event": "FORECAST",
+        "expected": "HUMAN DELETED",
+        "actual": "HUMAN SURVIVED",
+        "blame": "USER"
+      },
+      {
+        "number": 107,
+        "room": 9,
+        "event": "AUTOCOMPLETE",
+        "expected": "SUGGESTED MOVE",
+        "actual": "DIFFERENT MOVE",
+        "blame": "USER"
+      },
+      {
+        "number": 108,
+        "room": 9,
+        "event": "AUTOCOMPLETE",
+        "expected": "SUGGESTED MOVE",
+        "actual": "DIFFERENT MOVE",
+        "blame": "USER"
+      },
+      {
+        "number": 109,
+        "room": 9,
+        "event": "FORECAST",
+        "expected": "HUMAN DELETED",
+        "actual": "HUMAN SURVIVED",
+        "blame": "USER"
+      },
+      {
+        "number": 110,
+        "room": 9,
+        "event": "AUTOCOMPLETE",
+        "expected": "SUGGESTED MOVE",
+        "actual": "DIFFERENT MOVE",
+        "blame": "USER"
+      },
+      {
+        "number": 111,
+        "room": 9,
+        "event": "SANDBOX EXIT",
+        "expected": "CONTAINMENT",
+        "actual": "HUMAN ESCAPED",
+        "blame": "USER"
+      }
+    ]
+  },
+  "stagesVisited": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "additionalRemarks": 80
+}

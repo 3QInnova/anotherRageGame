@@ -1,0 +1,54 @@
+{
+  "engine": "WebKit",
+  "desktopUnchanged": true,
+  "landscapeFit": {
+    "rects": [
+      {
+        "id": "game",
+        "x": 124,
+        "y": 58,
+        "w": 588,
+        "h": 230
+      },
+      {
+        "id": "mobileDialogue",
+        "x": 8,
+        "y": 296,
+        "w": 828,
+        "h": 88
+      },
+      {
+        "id": "mobilePause",
+        "x": 772,
+        "y": 6,
+        "w": 64,
+        "h": 44
+      },
+      {
+        "id": "touchjump",
+        "x": 720,
+        "y": 138,
+        "w": 116,
+        "h": 78
+      },
+      {
+        "id": "glitch",
+        "x": 720,
+        "y": 224,
+        "w": 116,
+        "h": 58
+      }
+    ],
+    "width": 844,
+    "height": 390,
+    "overflow": false
+  },
+  "multiPointerLogicAndTouchTap": true,
+  "pauseResumeAndRotation": true,
+  "backgroundVisibilityPauses": true,
+  "liveLanPageRenders": true,
+  "lossHoldAndTwoTapSkip": true,
+  "compactionRestores": true,
+  "smallLayouts": true,
+  "pageErrors": []
+}

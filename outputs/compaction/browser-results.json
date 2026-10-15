@@ -1,0 +1,12 @@
+{
+  "desktopFreezeAndRestore": true,
+  "mobile": {
+    "remarks": 60,
+    "cardWidth": 316.796875,
+    "stageWidth": 358,
+    "overflow": false
+  },
+  "touchRecovery": true,
+  "liveAnimationRecovery": true,
+  "pageErrors": []
+}
