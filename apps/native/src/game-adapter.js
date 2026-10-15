@@ -4,7 +4,7 @@ function installNativeUI(){
  window.addEventListener('exception:active',()=>{if(mobilePaused)$('mobileMenu').hidden=false;});
  window.addEventListener('exception:back',()=>{
   if(state==='paywall'&&!mobilePaused){advancePaywall();return;}
-  if(mobilePaused){window.ExceptionNative?.minimize();return;}
+  if(mobilePaused){if(mobileMenuView!=='play')setMobileMenu('play');else window.ExceptionNative?.minimize();return;}
   pauseMobile('Paused. Your progress is still here.');
  });
  const native=window.ExceptionNative?.health.native;

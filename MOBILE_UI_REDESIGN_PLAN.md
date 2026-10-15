@@ -1,6 +1,6 @@
 # Full-screen mobile UI plan
 
-15 October 2026 · proposal, not implemented. Keep all work local on `feature/capacitor-mobile`. PC gameplay and the published friends build stay as they are.
+15 October 2026 · first implementation now lives locally on `feature/fullscreen-mobile-ui`, branched from `feature/capacitor-mobile` at `54b097f`. Full-screen rendering, fixed ghost controls, contextual Rewrite, overlay menu views and saved size/visibility/inset preferences are implemented. See [implementation and validation](outputs/fullscreen-mobile/VALIDATION.md). Left-handed layouts, free placement and moving Jump remain deferred. PC gameplay and the published friends build stay as they are.
 
 The mobile game should feel like a playable document covering the phone. Controls float on the paper; the AI annotates it; settings open over the frozen world. The warm paper, grid, eye, margin doodle, authored traps and snark remain the identity.
 

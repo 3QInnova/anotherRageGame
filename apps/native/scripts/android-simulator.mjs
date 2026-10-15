@@ -14,7 +14,7 @@ if(!existsSync(cache+'/avd/'+name+'.ini'))run(sdk+'/cmdline-tools/latest/bin/avd
 const adb=(...args)=>run(sdk+'/platform-tools/adb',['-s',serial,...args]);
 const devices=run(sdk+'/platform-tools/adb',['devices']);
 if(devices.includes(serial)){
- if(adb('emu','avd','name').split('\n')[0]!==name)throw Error('Emulator port 5556 belongs to another AVD; stop that emulator or choose a different port in this script.');
+ if(adb('emu','avd','name').split(/\r?\n/)[0]!==name)throw Error('Emulator port 5556 belongs to another AVD; stop that emulator or choose a different port in this script.');
 }else{
  const log=root+'outputs/capacitor/android-emulator.log',fd=openSync(log,'a');
  const args=['-avd',name,'-port','5556','-no-snapshot','-no-boot-anim','-gpu','swiftshader','-memory','2048'];

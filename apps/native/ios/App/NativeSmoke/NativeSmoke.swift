@@ -12,6 +12,7 @@ final class NativeSmoke: XCTestCase {
         let menu = app.buttons["Pause and open menu"]
         XCTAssertTrue(menu.waitForExistence(timeout: 5))
         menu.tap()
+        app.buttons["Practice"].tap()
         let glass = app.buttons["Glass sightline test"]
         XCTAssertTrue(glass.waitForExistence(timeout: 5))
         glass.tap()
@@ -26,6 +27,7 @@ final class NativeSmoke: XCTestCase {
         app.buttons["Resume"].tap()
         XCTAssertTrue(menu.waitForExistence(timeout: 5))
         menu.tap()
+        app.buttons["Practice"].tap()
         XCTAssertTrue(glass.waitForExistence(timeout: 5))
     }
 }

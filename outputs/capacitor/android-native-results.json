@@ -13,6 +13,7 @@
   "backgroundFreezesPhysics": true,
   "releasedHeldInput": true,
   "backOpensPause": true,
+  "backReturnsFromSubmenu": true,
   "secondBackMinimizes": true,
   "glassLabLoads": true,
   "physicalDeviceTested": false

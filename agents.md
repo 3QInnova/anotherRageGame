@@ -10,9 +10,9 @@ The workspace contains HTML prototypes, Markdown notes, screenshots, a playtest 
 
 ## Resources and reading order
 
-Read [full-screen mobile UI plan](MOBILE_UI_REDESIGN_PLAN.md) for the proposed full-window paper world, ghost thumb controls, contextual Rewrite, overlay pause menu, camera/eye alignment risks and implementation gates. This is a design plan only; the moving Jump button is explicitly deferred.
+Read [full-screen mobile UI plan](MOBILE_UI_REDESIGN_PLAN.md) for the proposed full-window paper world, ghost thumb controls, contextual Rewrite, overlay pause menu, camera/eye alignment risks and implementation gates. The first full-screen UI implementation is on `feature/fullscreen-mobile-ui` (base `54b097f`). See [implementation validation](outputs/fullscreen-mobile/VALIDATION.md). The moving Jump button is explicitly deferred.
 
-Read [Android and iPhone release plan](MOBILE_RELEASE_PLAN.md) for the recommended Capacitor device proof, shared-source migration, saves/lifecycle requirements, hardware gates, store requirements, and conditional Godot fallback. The first local Capacitor proof now exists; see [local phone testing](CAPACITOR_LOCAL_TESTING.md) for installation, build commands and the Android SDK prerequisite. The iOS simulator checks, Android debug APK build and native Android emulator checks passed; physical iPhone and Android testing remain pending. Keep the `feature/capacitor-mobile` work local: the user explicitly said not to publish to GitHub.
+Read [Android and iPhone release plan](MOBILE_RELEASE_PLAN.md) for the recommended Capacitor device proof, shared-source migration, saves/lifecycle requirements, hardware gates, store requirements, and conditional Godot fallback. The first local Capacitor proof now exists; see [local phone testing](CAPACITOR_LOCAL_TESTING.md) for installation, build commands and the Android SDK prerequisite. The iOS simulator checks, Android debug APK build and native Android emulator checks passed; physical iPhone and Android testing remain pending. Keep the Capacitor and `feature/fullscreen-mobile-ui` work local: the user explicitly said not to publish to GitHub.
 
 Read [Glass sightline test](GLASS_SIGHTLINE_TEST.md) for the separate practice-only glass lab, four-sided collisions, six optically revealed platforms, 56 remarks, and an ordinary-input completion route. The campaign stays at fifteen rooms.
 
@@ -59,7 +59,7 @@ Read [False flags and shifting drops](FALSE_FLAG_DIRECTION.md) for the long leve
 | [Local native app](apps/native/package.json), [testing guide](CAPACITOR_LOCAL_TESTING.md) | Capacitor configuration, pinned plugins, iOS/Android projects, local asset builder, native pause/Back adapter and simulator checks. |
 | [iPhone browser game](mobile/index.html) | Generated landscape layout with thumb controls, readable remarks, pause menu, rotation and background pause. |
 | [Audio direction](AUDIO_DIRECTION.md) | Original procedural score, 22 named cues, Safari activation and lifecycle, preview WAVs, and browser evidence. |
-| [Mobile layout source](mobile/layout.html), [mobile UI source](mobile/mobile-ui.js), [builder](tools/build-mobile.py) | Mobile presentation and lifecycle adapters; rebuild instead of editing generated HTML. The PC HTML supplies shared gameplay. |
+| [Mobile layout source](mobile/layout.html), [mobile UI source](mobile/mobile-ui.js), [viewport adapter](mobile/viewport.js), [builder](tools/build-mobile.py) | Mobile presentation and lifecycle adapters; rebuild instead of editing generated HTML. The PC HTML supplies shared gameplay. |
 | [V3 playable prototype](initalDemoDocs/Exception_Human_Misclassification_V3.html) | Latest implementation, including improved forecast feedback; fifteen scrolling rooms, semantic hazards, predictive purge, paper-world art, keyboard and touch input. Read first. |
 | [V3 playtest pack](initalDemoDocs/EXCEPTION_HUMAN_V3_Playtest_Pack.zip) | Contains the V3 HTML, V3 design notes, overview screenshot, and forecast screenshot. Read its notes for the latest design rationale and remaining playtest questions. |
 | [V3 forecast screenshot](initalDemoDocs/Exception_Human_V3_forecast.png) | Visual reference for room 3's telegraphed predictive purge and the observer's alarm state. |
@@ -154,6 +154,8 @@ Legacy array names remain in V3: `spikes` represents detection areas, `crumble` 
 ## Working guidance and validation
 
 For native packaging changes, use `npm --prefix apps/native run sync`. Use `ios:build`, `ios:sim`, and `ios:test` for the dedicated iOS simulator; Android SDK 36 and Java 21 are installed in the ignored project cache; use `android:build` and `android:sim` for the dedicated Android emulator. Native assets are generated from the same source; do not edit platform copies. Framework caches, `www`, build outputs and signing keys are ignored. See [native validation](outputs/capacitor/VALIDATION.md). A simulator pass is not physical-device acceptance.
+
+For the full-screen UI, run `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/exception-forecast-browsers node tests/fullscreen-mobile.test.mjs` (WebKit and Chromium). Native smoke checks follow the Practice submenu, and Android Back returns from menu subviews before minimizing.
 
 For mobile changes, rebuild with `python3 tools/build-mobile.py`, then run `node tests/mobile-parity.test.mjs` and the WebKit checks in `tests/mobile-browser.test.mjs`. Preserve authored gameplay, narrator libraries, and the approved paper background. Compare desktop checksums when making mobile-only changes. Keep app switching and portrait rotation paused until explicit Resume, and retain the full-remark reading pause. See [mobile validation](outputs/mobile/VALIDATION.md) for tooling paths and evidence.
 

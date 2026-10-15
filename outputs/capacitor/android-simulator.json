@@ -3,5 +3,5 @@
   "serial": "emulator-5556",
   "sdk": "/Users/willholton/projectsGit/anotherRageGame/apps/native/.cache/android-toolchain/sdk",
   "apk": "/Users/willholton/projectsGit/anotherRageGame/apps/native/android/app/build/outputs/apk/debug/app-debug.apk",
-  "headless": false
+  "headless": true
 }

@@ -1,6 +1,6 @@
 # Local Capacitor phone test
 
-The working branch is `feature/capacitor-mobile`, created from `c99ec99`. Nothing has been pushed or published. The PC HTML and generated Safari game remain unchanged.
+The current UI branch is `feature/fullscreen-mobile-ui`, created from `feature/capacitor-mobile` at `54b097f`. The original Capacitor branch remains available. Nothing has been pushed or published. The PC HTML is unchanged; the mobile browser and native apps now share the full-screen UI.
 
 The native app is **Exception Human Local**, bundle/package ID `com.threeqinnova.exceptionhuman.local`. It bundles all fifteen campaign rooms, the glass lab, remarks and procedural audio. There is no web server URL: once installed, it loads its game files locally, so your phone does not need the Mac's Wi-Fi connection.
 
@@ -72,14 +72,14 @@ The build automatically selects the project-local Java/SDK/Gradle caches. Existi
 
 For a fresh Mac, install Java 21 and Google's Android command-line tools or Android Studio, then SDK Platform 36, Build-Tools 36.0.0 and Platform-Tools. Set `JAVA_HOME` and `ANDROID_HOME` to those installations. Add `emulator` and `system-images;android-36;google_apis;arm64-v8a` for this Apple Silicon emulator. [Official Android SDK tools](https://developer.android.com/studio), [Temurin Java](https://adoptium.net/temurin/releases), [Capacitor environment setup](https://capacitorjs.com/docs/getting-started/environment-setup).
 
-On Android, Back opens the pause menu; Back again while paused minimizes the app. During a fake paywall, Back follows the same two-step free dismissal. Back does not skip the compaction animation.
+On Android, Back opens the pause menu; within a menu subview it returns to Play, and from the main paused Play panel it minimizes the app. During a fake paywall, Back follows the same two-step free dismissal. Back does not skip the compaction animation.
 
 ## What to try on the phone
 
 - Hold move and jump together with two thumbs; check rewrite, both movement directions and screen-edge controls.
 - Read a full loss remark; confirm two distinct Continue taps skip the reading pause.
-- Open Menu → Long level, wait for compaction, and check that movement resumes after it finishes.
-- Try Menu → Glass sightline test. Check that the single player-following eye beam reveals the platforms.
+- Open Pause → Practice → Long level, wait for compaction, and check that movement resumes after it finishes.
+- Try Pause → Practice → Glass sightline test. Check that the single player-following eye beam reveals the platforms.
 - Play audio after tapping Play; check phone speakers, headphones, screen lock and app switching.
 - Switch to another app while holding a control. Return: the game should be paused, and the held control should be released. Resume explicitly.
 - Relaunch the installed app in airplane mode to check offline use on real hardware.
@@ -88,10 +88,10 @@ Record phone model/OS, any clipped text or controls, audio failures and stutters
 
 ## Source and rebuild workflow
 
-Edit shared gameplay in `initalDemoDocs/Exception_Human_Misclassification_V3.html`, mobile presentation in `mobile/layout.html` / `mobile/mobile-ui.js`, and native-only behavior in `apps/native/src/`. Do not edit `apps/native/www/` or native copies of its files: they are generated.
+Edit shared gameplay in `initalDemoDocs/Exception_Human_Misclassification_V3.html`, mobile presentation in `mobile/layout.html` / `mobile/mobile-ui.js` and the shared mobile projection in `mobile/viewport.js`, and native-only behavior in `apps/native/src/`. Do not edit `apps/native/www/` or native copies of its files: they are generated.
 
 `npm --prefix apps/native run sync` rebuilds the mobile HTML, bundles the native bridge and copies the local assets into both native projects. It then prepares the iOS framework cache. Run Xcode/Android Studio again to install the new app. `ios:build` and `android:build` perform their own asset rebuild and platform sync.
 
 Capacitor and plugins are pinned in `apps/native/package-lock.json`. iOS uses Swift Package Manager. To avoid the framework download hang observed on this Mac, `prepare-ios.mjs` downloads the official Capacitor 8.5.3 binary frameworks, verifies their upstream SHA-256 checksums, and points the generated app/plugin package manifests at an ignored local cache. Use our `sync`/`ios:build` scripts after `npm ci`; plain `cap sync` can reset the package reference. Initial dependency/framework downloads require internet; the installed game does not. No framework binaries, signing keys or build caches belong in Git.
 
-This is the first installed-app proof. App switching preserves the resident game and pauses it; force-quitting starts a fresh run. Durable campaign saves, haptics, final icons/splash art, release signing, physical Android device validation and store submission remain future work. The approved background, gameplay, snark and PC controls are preserved.
+This is the first installed-app proof. App switching preserves the resident game and pauses it; force-quitting starts a fresh run. Durable campaign saves, haptics, final icons/splash art, release signing, physical Android device validation and store submission remain future work. The approved background, gameplay, snark and PC controls are preserved. The mobile UI now fills the game surface with ghost controls and a paper pause overlay; see [UI validation](outputs/fullscreen-mobile/VALIDATION.md).

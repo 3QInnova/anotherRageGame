@@ -5,38 +5,38 @@
     "rects": [
       {
         "id": "game",
-        "x": 124,
-        "y": 58,
-        "w": 588,
-        "h": 230
+        "x": 0,
+        "y": 0,
+        "w": 844,
+        "h": 390
       },
       {
         "id": "mobileDialogue",
-        "x": 8,
-        "y": 296,
-        "w": 828,
-        "h": 88
+        "x": 18,
+        "y": 14,
+        "w": 405.109375,
+        "h": 60.09375
       },
       {
         "id": "mobilePause",
-        "x": 772,
-        "y": 6,
-        "w": 64,
-        "h": 44
+        "x": 782,
+        "y": 12,
+        "w": 48,
+        "h": 48
       },
       {
         "id": "touchjump",
-        "x": 720,
-        "y": 138,
-        "w": 116,
-        "h": 78
+        "x": 742,
+        "y": 288,
+        "w": 88,
+        "h": 88
       },
       {
         "id": "glitch",
-        "x": 720,
-        "y": 224,
-        "w": 116,
-        "h": 58
+        "x": 666,
+        "y": 318,
+        "w": 64,
+        "h": 52
       }
     ],
     "width": 844,
@@ -46,7 +46,7 @@
   "multiPointerLogicAndTouchTap": true,
   "pauseResumeAndRotation": true,
   "backgroundVisibilityPauses": true,
-  "liveLanPageRenders": true,
+  "liveLocalPageRenders": true,
   "lossHoldAndTwoTapSkip": true,
   "compactionRestores": true,
   "smallLayouts": true,

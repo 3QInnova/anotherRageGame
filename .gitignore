@@ -20,3 +20,4 @@ apps/native/ios/App/CapApp-SPM/.build/
 outputs/capacitor/*.xcresult/
 outputs/capacitor/*.log
 apps/native/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+outputs/fullscreen-mobile/*.log

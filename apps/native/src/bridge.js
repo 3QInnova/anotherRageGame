@@ -12,6 +12,7 @@ window.ExceptionNative = {
 };
 if (native) {
   Promise.all([
+    App.addListener('pause', () => emit('exception:inactive')),
     App.addListener('appStateChange', ({ isActive }) => emit(isActive ? 'exception:active' : 'exception:inactive')),
     App.addListener('backButton', () => emit('exception:back')),
   ]).then(() => { health.listenersReady = true; }).catch(error => health.errors.push(String(error)));

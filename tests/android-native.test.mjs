@@ -36,17 +36,19 @@ try{
  await page.locator('#mobileResume').waitFor({state:'visible'});await page.locator('#mobileResume').click();
  await page.waitForTimeout(100);assert.equal((await page.evaluate(()=>window.__EXCEPTION_TEST__.getState())).player.vx,0);
  adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});
- await page.locator('#glassPractice').click();
+ await page.locator('#openPractice').click();await page.locator('#glassPractice').click();
  assert.equal((await page.evaluate(()=>window.__EXCEPTION_TEST__.getState())).room,15);
  await page.waitForTimeout(300);
  writeFileSync(root+'outputs/capacitor/android-glass-lab.png',execFileSync(sdk+'/platform-tools/adb',['-s',serial,'exec-out','screencap','-p'],{env}));
  adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});
+ await page.locator('#tab-controls').click();assert.equal(await page.evaluate(()=>window.__MOBILE_UI_TEST__.menu()),'controls');
+ adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});assert.equal(await page.evaluate(()=>window.__MOBILE_UI_TEST__.menu()),'play');
  adb('shell','input','keyevent','KEYCODE_BACK');await page.waitForTimeout(500);
  const top=adb('shell','dumpsys','activity','activities').split('\n').filter(l=>l.includes('topResumedActivity')||l.includes('mResumedActivity')).join('\n');
  assert(!top.includes(packageId),'Second Back should minimize the game');
  adb('shell','am','start','-n',packageId+'/.MainActivity');await page.locator('#mobileResume').waitFor({state:'visible'});
  assert.deepEqual(await page.evaluate(()=>window.ExceptionNative.health.errors),[]);
- writeFileSync(root+'outputs/capacitor/android-native-results.json',JSON.stringify({passed:true,serial,android:adb('shell','getprop','ro.build.version.release'),nativeBridge:health,offlineColdLaunch:true,movement:true,backgroundFreezesPhysics:true,releasedHeldInput:true,backOpensPause:true,secondBackMinimizes:true,glassLabLoads:true,physicalDeviceTested:false},null,2)+'\n');
+ writeFileSync(root+'outputs/capacitor/android-native-results.json',JSON.stringify({passed:true,serial,android:adb('shell','getprop','ro.build.version.release'),nativeBridge:health,offlineColdLaunch:true,movement:true,backgroundFreezesPhysics:true,releasedHeldInput:true,backOpensPause:true,backReturnsFromSubmenu:true,secondBackMinimizes:true,glassLabLoads:true,physicalDeviceTested:false},null,2)+'\n');
  console.log('PASS: Android offline cold launch, native plugins, movement, background pause, held-input release, hardware Back routing and glass lab.');
 }finally{
  if(browser)await browser.close();
