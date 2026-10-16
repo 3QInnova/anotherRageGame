@@ -1,5 +1,7 @@
 # Full-screen mobile UI — implementation and validation
 
+Historical UI-pass evidence. The later [dynamic-background change](../../DYNAMIC_BACKGROUND.md) intentionally updates desktop and mobile background art; consult its validation for current hashes/builds.
+
 15 October 2026. Local branch `feature/fullscreen-mobile-ui`, created from `feature/capacitor-mobile` at `54b097f`. No push, web publication or store upload.
 
 ## Implemented

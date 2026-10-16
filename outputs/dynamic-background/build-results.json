@@ -1,0 +1,13 @@
+{
+  "branch": "feature/fullscreen-mobile-ui",
+  "baselineCommit": "5898920",
+  "date": "2026-10-15",
+  "androidBuildPassed": true,
+  "iosSimulatorBuildPassed": true,
+  "androidNativePassed": true,
+  "iosNativePassed": true,
+  "desktopSha256": "f3677a77b2818fb753b06b5ebcd766c66378fd1b920d20596c95390bcae4bf28",
+  "apkSha256": "62251956f1af3601c1ffb2f6fcc3caa8499344679201728a3988df265d76b056",
+  "published": false,
+  "physicalDeviceTested": false
+}

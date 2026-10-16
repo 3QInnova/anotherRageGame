@@ -1,0 +1,14 @@
+{
+  "uniqueRetryPatterns": 180,
+  "reloadFresh": true,
+  "newRunCompositionsChecked": 12,
+  "storageUnavailableWorks": true,
+  "lossRetryAndCompactionReroll": true,
+  "guidesAlternateAccurateAheadBehind": true,
+  "geometryUnchanged": true,
+  "independentCosmeticRandomness": true,
+  "baselineCommit": "5898920",
+  "baselineGameplaySnapshotsCompared": 195062,
+  "allFifteenRoomsCleared": true,
+  "deaths": 0
+}

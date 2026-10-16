@@ -10,6 +10,8 @@ The workspace contains HTML prototypes, Markdown notes, screenshots, a playtest 
 
 ## Resources and reading order
 
+Read [shifting paper backgrounds](DYNAMIC_BACKGROUND.md) for the shared desktop/mobile cosmetic generator, fresh compositions on loss/retry/new run/level/compaction, parallax landmarks and unreliable hazard guides. Preserve true collision/activation cues and keep cosmetic randomness separate from gameplay seeds.
+
 Read [full-screen mobile UI plan](MOBILE_UI_REDESIGN_PLAN.md) for the proposed full-window paper world, ghost thumb controls, contextual Rewrite, overlay pause menu, camera/eye alignment risks and implementation gates. The first full-screen UI implementation is on `feature/fullscreen-mobile-ui` (base `54b097f`). See [implementation validation](outputs/fullscreen-mobile/VALIDATION.md). The moving Jump button is explicitly deferred.
 
 Read [Android and iPhone release plan](MOBILE_RELEASE_PLAN.md) for the recommended Capacitor device proof, shared-source migration, saves/lifecycle requirements, hardware gates, store requirements, and conditional Godot fallback. The first local Capacitor proof now exists; see [local phone testing](CAPACITOR_LOCAL_TESTING.md) for installation, build commands and the Android SDK prerequisite. The iOS simulator checks, Android debug APK build and native Android emulator checks passed; physical iPhone and Android testing remain pending. Keep the Capacitor and `feature/fullscreen-mobile-ui` work local: the user explicitly said not to publish to GitHub.

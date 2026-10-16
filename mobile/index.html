@@ -828,7 +828,7 @@ function startCompaction(reason){
  say('CONTEXT LIMIT REACHED. Your progress will be remembered approximately.','warn');announce('COMPACTING CONVERSATION / '+reason.toUpperCase());soundCue('compact');refreshCompaction();return true;
 }
 function refreshCompaction(){const t=compaction.time;const phase=t<2?'Freezing useful context...':t<7?'Discarding inconvenient details...':t<11?'Summarizing your progress as user error...':'Restoring traps. Forgetting location...';if($('compactPhase').textContent!==phase)$('compactPhase').textContent=phase;$('compactBar').style.width=Math.min(100,t/COMPACT_SECONDS*100)+'%';$('compactCountdown').textContent='Play resumes in '+Math.ceil(Math.max(0,COMPACT_SECONDS-t))+'s'}
-function finishCompaction(){soundCue('restore');const returnX=compaction.returnX,attempt=attempts[room];initRoom();attempts[room]=attempt;player.x=returnX;updateCamera();resetCompactWatch(COMPACT_COOLDOWN);resetPaywallWatch(PAYWALL_COOLDOWN);keys.clear();say('Summary restored: you were somewhere around here. The traps remember nothing.','warn');announce('CONTEXT RESTORED / POSITION APPROXIMATED');refreshHud()}
+function finishCompaction(){soundCue('restore');const returnX=compaction.returnX,attempt=attempts[room];initRoom(false,'compaction');attempts[room]=attempt;player.x=returnX;updateCamera();resetCompactWatch(COMPACT_COOLDOWN);resetPaywallWatch(PAYWALL_COOLDOWN);keys.clear();say('Summary restored: you were somewhere around here. The traps remember nothing.','warn');announce('CONTEXT RESTORED / POSITION APPROXIMATED');refreshHud()}
 function watchForCompaction(dt){
  if(L.glassTest)return false;
  compactWatch.age+=dt;compactWatch.stall+=dt;compactWatch.cooldown=Math.max(0,compactWatch.cooldown-dt);
@@ -963,7 +963,7 @@ function tickAudio(){if(!audioCanPlay()||!audioRig||audio.state!=='running')retu
  while(audioNext<now+.14){musicStep(audioRig,audioStep++,audioNext,mode,room);audioNext+=60/104/4;}
 }
 window.__EXCEPTION_AUDIO__={cues:['jump','glass-contact','land','warning','lock','redact','scan','drop','purge','bounce','hit','git-hit','rewrite','denied','survived','clear','win','compact','restore','paywall','confirm','free','on'],makeRig:makeAudioRig,renderCue,musicStep,status:()=>({enabled:sound,musicEnabled,context:audio?.state??'uncreated',held:audioHeld,mode:audioMode,voices:audioVoices.size,next:audioNext}),preview:soundCue};
-function initRoom(full=false){glassContactSeen=new Set();glassGlimpses={};paywall=null;$('paywallScreen').hidden=true;fallCause=null;autocomplete=null;autocompleteUsed=new Set();cameraX=0;compaction=null;$('compactionScreen').hidden=true;$('stage').classList.remove('compacting');if(full){paywallSeed=(Math.random()*4294967296)>>>0;paywallCounts=LEVELS.map(()=>0);paywallUsed=[];lastPaywallOffer=-1;practiceMode=false;practiceRoom=-1;compactSeed=(Math.random()*4294967296)>>>0;compactCounts=LEVELS.map(()=>0);autocompleteStats={offered:0,rejected:0,followed:0,streak:0,best:0};victoryReceipts=[];receiptSequence=0;refreshReceipts();room=0;totalDeaths=0;attempts=LEVELS.map(()=>0);seen.clear();resetObserver()} if(full||clockRoom!==room){roomElapsed=0;clockRoom=room}observerFlags=new Set(); L=room===GLASS_TEST_INDEX?GLASS_TEST_LEVEL:LEVELS[room];attempts[room]=(attempts[room]??0)+1; player={x:L.start,y:FLOOR-PH,vx:0,vy:0,grounded:true,coyote:.1,jumpBuffer:0,facing:1};trap={};glitch={};for(const s of [...L.crumble,...L.spikes,...L.blocks,...L.forecasts,...L.secretPads])trap[s.id]={phase:'idle',t:0};fakeRevealed=false;doorLocked=false;exitAuditTriggered=false;sceneTime=0;shake=0;particles=[];state='play';freeze=0;lossSkipPresses=0;keys.clear();$('overlay').hidden=true;$('stage').classList.remove('reading-loss');$('lossDetails').hidden=true;$('lossReason').hidden=true;resetCompactWatch();resetPaywallWatch();say(L.intro);announce(`ROOM ${room+1}: ${L.title}`);refreshHud()}
+function initRoom(full=false,backdropReason='retry'){glassContactSeen=new Set();glassGlimpses={};paywall=null;$('paywallScreen').hidden=true;fallCause=null;autocomplete=null;autocompleteUsed=new Set();cameraX=0;compaction=null;$('compactionScreen').hidden=true;$('stage').classList.remove('compacting');if(full){paywallSeed=(Math.random()*4294967296)>>>0;paywallCounts=LEVELS.map(()=>0);paywallUsed=[];lastPaywallOffer=-1;practiceMode=false;practiceRoom=-1;compactSeed=(Math.random()*4294967296)>>>0;compactCounts=LEVELS.map(()=>0);autocompleteStats={offered:0,rejected:0,followed:0,streak:0,best:0};victoryReceipts=[];receiptSequence=0;refreshReceipts();room=0;totalDeaths=0;attempts=LEVELS.map(()=>0);seen.clear();resetObserver()} if(full||clockRoom!==room){roomElapsed=0;clockRoom=room}observerFlags=new Set(); L=room===GLASS_TEST_INDEX?GLASS_TEST_LEVEL:LEVELS[room];resetBackdrop(full?'new run':backdropReason);attempts[room]=(attempts[room]??0)+1; player={x:L.start,y:FLOOR-PH,vx:0,vy:0,grounded:true,coyote:.1,jumpBuffer:0,facing:1};trap={};glitch={};for(const s of [...L.crumble,...L.spikes,...L.blocks,...L.forecasts,...L.secretPads])trap[s.id]={phase:'idle',t:0};fakeRevealed=false;doorLocked=false;exitAuditTriggered=false;sceneTime=0;shake=0;particles=[];state='play';freeze=0;lossSkipPresses=0;keys.clear();$('overlay').hidden=true;$('stage').classList.remove('reading-loss');$('lossDetails').hidden=true;$('lossReason').hidden=true;resetCompactWatch();resetPaywallWatch();say(L.intro);announce(`ROOM ${room+1}: ${L.title}`);refreshHud()}
 function latestFloor(){return FLOOR}
 function triggered(s,type){let z=trap[s.id];if(z.phase!=='idle')return;if(player.x+PW/2<s.trigger)return;if(s.shifting&&player.x>=s.x+s.w){z.phase='done';return}z.phase='armed';z.t=sceneTime+ s.delay;if(s.shifting){z.lockedAt=sceneTime;z.x=Math.max(s.x-170,Math.min(s.x+170,player.vx===0?s.x:player.x+PW/2+Math.sign(player.vx)*230-s.w/2))}announce(type+' DETECTED');if(s.shifting)say(nextRemark('misdirection-drop'),'warn');else if(s.sky)say(nextRemark('misdirection-air'),'warn');else if(type==='POPUP')say('An urgent notification has mass. It is falling.','warn');else if(type==='SCAN')say('FALSE POSITIVE: Your existence violates our model.','warn');else say(L.floorLies?'Your safety certification has expired. Convenient timing.':'Your path has been redacted for policy compliance.','warn');soundCue('warning')}
 function addBurst(x,y,c,n=11){for(let i=0;i<n;i++)particles.push({x,y,vx:(Math.random()-.5)*250,vy:(Math.random()-.65)*270,life:.5+Math.random()*.35,c})}
@@ -978,8 +978,8 @@ function refreshLossPrompt(){
  const timer=`Auto-retry in ${Math.ceil(Math.max(0,freeze))}s`;if($('lossTimer').textContent!==timer)$('lossTimer').textContent=timer;
 }
 function acknowledgeLoss(){if(state!=='dead')return;lossSkipPresses++;if(lossSkipPresses>=LOSS_SKIP_PRESSES){initRoom();return}refreshLossPrompt()}
-function die(reason,id){if(state!=='play')return;autocomplete=null;autocompleteStats.streak=0;state='dead';freeze=LOSS_READ_SECONDS;lossSkipPresses=0;keys.clear();totalDeaths++;shake=9;soundCue(id&&L.secretPads.some(p=>p.id===id)?'git-hit':'hit');const remark=lossRemark(id);say(remark,'danger');announce('ERROR / '+reason);if(id)seen.add(`${room}:${id}`);addBurst(player.x+PW/2,player.y+PH/2,'#ff6688',20);$('overlay').hidden=false;$('stage').classList.add('reading-loss');$('ovTitle').textContent='USER ERROR #'+totalDeaths;$('ovDesc').textContent=remark;$('lossReason').textContent=reason;$('lossReason').hidden=false;$('lossDetails').hidden=false;refreshLossPrompt();refreshHud()}
-function nextRoom(){if(state!=='play')return;soundCue(room===LEVELS.length-1||practiceMode?'win':'clear');addBurst(player.x,FLOOR-45,'#69f2b2',18);if(room===LEVELS.length-1||(practiceMode&&room===practiceRoom)){reactToSuccess('escape','escape');state='won';keys.clear();$('overlay').hidden=false;$('ovTitle').textContent='YOU WERE NOT SUPPOSED TO WIN';$('ovDesc').textContent=`${practiceMode?(L.glassTest?'Glass sightline test escaped.':L.longSession?'Long-level practice escaped.':'Floor-hint practice escaped.'):`All ${LEVELS.length} simulations escaped.`} ${totalDeaths} deaths. Press R to restart.`;say('FATAL: The user appears to have agency.','danger');announce('ESCAPED AI SANDBOX');}else{reactToSuccess("clear","clear:"+room);room++;initRoom();say('Success is a known hallucination. Proceed to the next test.')}}
+function die(reason,id){if(state!=='play')return;autocomplete=null;autocompleteStats.streak=0;state='dead';freeze=LOSS_READ_SECONDS;lossSkipPresses=0;keys.clear();totalDeaths++;resetBackdrop('loss');shake=9;soundCue(id&&L.secretPads.some(p=>p.id===id)?'git-hit':'hit');const remark=lossRemark(id);say(remark,'danger');announce('ERROR / '+reason);if(id)seen.add(`${room}:${id}`);addBurst(player.x+PW/2,player.y+PH/2,'#ff6688',20);$('overlay').hidden=false;$('stage').classList.add('reading-loss');$('ovTitle').textContent='USER ERROR #'+totalDeaths;$('ovDesc').textContent=remark;$('lossReason').textContent=reason;$('lossReason').hidden=false;$('lossDetails').hidden=false;refreshLossPrompt();refreshHud()}
+function nextRoom(){if(state!=='play')return;soundCue(room===LEVELS.length-1||practiceMode?'win':'clear');addBurst(player.x,FLOOR-45,'#69f2b2',18);if(room===LEVELS.length-1||(practiceMode&&room===practiceRoom)){reactToSuccess('escape','escape');state='won';keys.clear();$('overlay').hidden=false;$('ovTitle').textContent='YOU WERE NOT SUPPOSED TO WIN';$('ovDesc').textContent=`${practiceMode?(L.glassTest?'Glass sightline test escaped.':L.longSession?'Long-level practice escaped.':'Floor-hint practice escaped.'):`All ${LEVELS.length} simulations escaped.`} ${totalDeaths} deaths. Press R to restart.`;say('FATAL: The user appears to have agency.','danger');announce('ESCAPED AI SANDBOX');}else{reactToSuccess("clear","clear:"+room);room++;initRoom(false,'level');say('Success is a known hallucination. Proceed to the next test.')}}
 function active(k){return glitch[k]>sceneTime}
 function nearest(){if(state!=='play')return null;let best=null,bestD=1e9;for(const a of L.anomalies){const d=Math.abs((player.x+PW/2)-a.x);if(d<a.range&&d<bestD){best=a;bestD=d}}return best}
 function lie(){if(state!=='play')return;let a=nearest();if(!a){say('No nearby object to misclassify. This is definitely a human problem.','warn');soundCue('denied');return}glitch[a.kind]=sceneTime+a.duration;soundCue('rewrite');addBurst(a.x,a.y,'#60d9fa',10);if(a.kind==='wall')say('BARRIER classified as AIR. This is perfectly normal.','warn');if(a.kind==='bridge')say('EMPTY SPACE classified as BRIDGE. Please do not inspect the bridge.','warn');if(a.kind==='exit'){doorLocked=false;say('CORRECTION: Artwork is now legally an exit. For 2.3 seconds.','warn')}announce('MODEL RECLASSIFIED '+a.kind.toUpperCase());}
@@ -1042,24 +1042,55 @@ function rect(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(x,y,w,h)}
 function stroke(x,y,w,h,color=INK,width=2){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.strokeRect(x,y,w,h)}
 function dotline(x1,y1,x2,y2,color=INK){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.setLineDash([4,6]);ctx.stroke();ctx.setLineDash([])}
 function card(x,y,w,h,fill='#faf7eb',outline=INK){ctx.save();ctx.shadowColor='#28313844';ctx.shadowOffsetX=5;ctx.shadowOffsetY=7;ctx.shadowBlur=0;rect(x,y,w,h,fill);ctx.restore();stroke(x,y,w,h,outline,2)}
-function drawDesktopBackground(t){
- rect(0,0,W,H,PAPER);
- ctx.strokeStyle='#d9d6c7';ctx.lineWidth=1;
- for(let x=20;x<W;x+=30){ctx.beginPath();ctx.moveTo(x,63);ctx.lineTo(x,H);ctx.stroke()}
- for(let y=74;y<H;y+=30){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
- rect(0,62,W,2,INK);
- // Ambient neural-model markup floats behind the play-space. Each line is a "certainty" note.
- for(let i=0;i<4;i++){
-  const x=60+i*241,y=112+(i%2)*63;
-  label(['[CONFIDENCE: .999]','[SAFE BY DEFAULT]','[OBSERVATION #'+(room+1)+']','[USER: UNKNOWN]'][i],x,y,10,'#adb3aa');
-  dotline(x,y+8,x+110,y+8,'#c8c9bc');
- }
- // The route is written on loose document strips, with empty paper beneath it.
- for(let x=30;x<W;x+=94){label(['if (human)','return ?','model.claim','// untested'][Math.floor(x/94)%4],x,FLOOR+66,10,'#b5b7ab','left','normal');}
- dotline(16,H-31,W-16,H-31,'#c5c8bb');
- label('WORLD FILE / reality.json',16,H-12,11,'#898e89','left','normal');
- label('CANNOT VALIDATE HUMAN ENTITY',W-14,H-12,11,'#b1a6a1','right','normal');
+// Cosmetic randomness is isolated from physics, billing and compaction seeds.
+let backdropSerial=0,backdrop=null;
+const backdropNonce=(()=>{try{return crypto.getRandomValues(new Uint32Array(1))[0]}catch(_){return (Date.now()^(typeof performance!=='undefined'?Math.floor(performance.now()*1000):0))>>>0}})();
+const BACKDROP_NOTES=['[MAP CACHE]','[REFERENCE ONLY]','[PROBABLY HERE]','[ANCHOR: APPROXIMATE]','[KNOWN LANDMARK?]','[MEMORY NOT FOUND]','[CHECKSUM OPTIONAL]','[LOCATION INFERRED]','[CONTEXT OMITTED]','[SAME FILE / NEW FACTS]','[ALIGNMENT PENDING]','[DO NOT MEMORIZE]','[GEOGRAPHY: GENERATED]','[YOU WERE NEAR HERE]','[RENDERED FROM MEMORY]','[CERTAINTY RELOCATED]'];
+function resetBackdrop(reason='retry'){
+ try{const stored=Number(localStorage.getItem('exception-backdrop-revision-v1'));if(Number.isSafeInteger(stored)&&stored>=0)backdropSerial=Math.max(backdropSerial,stored)}catch(_){}
+ backdropSerial++;try{localStorage.setItem('exception-backdrop-revision-v1',String(backdropSerial))}catch(_){}
+ let seed=(backdropNonce^Math.imul(backdropSerial,2654435761)^Math.imul(room+1,2246822519))>>>0;
+ const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
+ const marks=[];
+ for(let i=0;i<Math.ceil(L.width/520)+4;i++)marks.push({x:i*520+random()*210,y:FLOOR-65-random()*180,r:28+random()*45,kind:i%4,depth:[.24,.58,1][i%3],turn:(random()-.5)*.16,note:BACKDROP_NOTES[(i+backdropSerial)%BACKDROP_NOTES.length]});
+ const hazards=[...L.crumble,...L.spikes,...L.pits,...L.blocks,...L.forecasts].map(h=>({id:h.id,x:h.x,w:h.w||0})).sort((a,b)=>a.x-b.x);
+ const stride=Math.max(1,Math.ceil(hazards.length/8));
+ const references=[...L.secretPads,...hazards.filter((_,i)=>i%stride===0)].slice(0,12);
+ const guides=references.map((h,i)=>{const mode=(backdropSerial+i)%3,offset=mode===0?0:(mode===1?1:-1)*(86+Math.floor(random()*145));return {id:h.id,referenceX:h.x+(h.w||0)/2,x:h.x+(h.w||0)/2+offset,offset,y:FLOOR-110-random()*55,note:BACKDROP_NOTES[(backdropSerial+i*3)%BACKDROP_NOTES.length]}});
+ backdrop={revision:backdropSerial,seed,reason,gridX:backdropSerial*7%30,gridY:backdropSerial*11%30,spacing:29+backdropSerial%3,marks,guides};
 }
+function paintBackdrop(t,width,top,height){
+ const b=backdrop;if(!b){rect(0,top,width,height,PAPER);return}
+ const bottom=top+height,reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+ const drift=reduced?0:Math.sin(t*.12)*1.4;
+ rect(0,top,width,height,PAPER);
+ ctx.save();ctx.strokeStyle='#d9d6c7';ctx.lineWidth=1;
+ const phaseX=((b.gridX-cameraX*.07+drift)%b.spacing+b.spacing)%b.spacing;
+ for(let x=phaseX;x<width;x+=b.spacing){ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,bottom);ctx.stroke()}
+ const phaseY=((top-b.gridY)%b.spacing+b.spacing)%b.spacing;
+ for(let y=top-phaseY;y<bottom;y+=b.spacing){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y);ctx.stroke()}
+ // Paper watermarks, registration rings, binder holes and faded file tabs.
+ for(const m of b.marks){const x=m.x-cameraX*m.depth;if(x< -160||x>width+160)continue;
+  ctx.save();ctx.translate(x,m.y+drift*(1-m.depth));ctx.rotate(m.turn);ctx.globalAlpha=.2;ctx.strokeStyle='#87998a';ctx.lineWidth=1.2;ctx.setLineDash([]);
+  if(m.kind===0){ctx.beginPath();ctx.arc(0,0,m.r,0,Math.PI*1.85);ctx.stroke();ctx.beginPath();ctx.arc(3,-2,m.r-5,0,Math.PI*1.7);ctx.stroke();}
+  else if(m.kind===1){ctx.beginPath();ctx.moveTo(-m.r,-35);ctx.lineTo(m.r,-35);ctx.lineTo(m.r,35);ctx.lineTo(-m.r,35);ctx.closePath();ctx.stroke();ctx.setLineDash([3,8]);ctx.beginPath();ctx.moveTo(-m.r,-24);ctx.lineTo(m.r,-24);ctx.stroke();}
+  else if(m.kind===2){ctx.setLineDash([3,8]);ctx.beginPath();ctx.moveTo(0,-80);ctx.lineTo(0,80);ctx.stroke();for(let j=-1;j<=1;j++){ctx.beginPath();ctx.arc(15,j*26,4,0,Math.PI*2);ctx.stroke();}}
+  else{label('{ '+(Math.floor(m.x)%997).toString(16).toUpperCase()+' }',-35,0,28,'#87998a','left','normal');dotline(-55,12,65,12,'#87998a');}
+  label(m.note,-m.r,55,10,'#657b6b','left','normal');ctx.restore();
+ }
+ // These faint margin guides sometimes align with a real hazard, then migrate on retry.
+ // They are drawn behind the world and never consulted by collision or trap code.
+ for(const g of b.guides){const x=g.x-cameraX;if(x< -110||x>width+110)continue;
+  ctx.save();ctx.globalAlpha=.32;ctx.strokeStyle='#869a85';ctx.lineWidth=1;ctx.setLineDash([2,7]);ctx.beginPath();ctx.moveTo(x,g.y+12);ctx.lineTo(x,FLOOR-28);ctx.stroke();ctx.setLineDash([]);
+  stroke(x-24,g.y-34,48,32,'#869a85',1);dotline(x-32,g.y+4,x+32,g.y+4,'#869a85');label(g.note,x,g.y-44,10,'#667d68','center','normal');ctx.restore();
+ }
+ for(let x=30-((cameraX*.4)%94);x<width;x+=94)label(['if (human)','return ?','model.claim','// untested'][(Math.floor((x+cameraX*.4)/94)+backdropSerial)%4]||'return ?',x,FLOOR+66,10,'#b5b7ab','left','normal');
+ dotline(16,bottom-31,width-16,bottom-31,'#c5c8bb');label('WORLD FILE / reality.json / REV '+b.revision,16,bottom-12,10,'#898e89','left','normal');label('LANDMARK CACHE: UNRELIABLE',width-14,bottom-12,10,'#a6ada1','right','normal');ctx.restore();
+}
+window.__BACKDROP_TEST__={state:()=>JSON.parse(JSON.stringify(backdrop))};
+
+function drawDesktopBackground(t){paintBackdrop(t,W,0,H)}
+
 function learned(x,txt='SEEN',y=FLOOR-104,targetY=FLOOR-13){label('↳ '+txt,x,y,10,'#9e3a42','center');dotline(x,y+4,x,targetY,'#b95d61')}
 function drawDocumentStrip(a){
  ctx.save();ctx.beginPath();ctx.rect(a.x,FLOOR,a.w,29);ctx.clip();
@@ -1314,7 +1345,7 @@ function resizeMobileViewport(){
 function updateCamera(){cameraX=Math.max(0,Math.min(Math.max(0,L.width-mobileView.width),player.x-mobileView.width*.39))}
 let mobilePaintKey='',mobilePaintCount=0;
 function draw(){
- const key=[room,sceneTime,observerTime,state,player?.x,player?.y,observer?.stage,mobileView.top,mobileView.width,mobileView.pixelWidth,mobileView.pixelHeight].join('/');
+ const key=[backdrop?.revision,room,sceneTime,observerTime,state,player?.x,player?.y,observer?.stage,mobileView.top,mobileView.width,mobileView.pixelWidth,mobileView.pixelHeight].join('/');
  if(mobilePaused&&key===mobilePaintKey)return;
  mobilePaintKey=key;mobilePaintCount++;
  ctx.save();
@@ -1327,16 +1358,7 @@ function draw(){
  }
  ctx.restore();
 }
-function background(t){
- const width=mobileView.width,bottom=mobileView.top+mobileView.height;
- rect(0,mobileView.top,width,mobileView.height,PAPER);
- ctx.strokeStyle='#d9d6c7';ctx.lineWidth=1;
- for(let x=20;x<width;x+=30){ctx.beginPath();ctx.moveTo(x,mobileView.top);ctx.lineTo(x,bottom);ctx.stroke()}
- for(let y=74;y<bottom;y+=30){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y);ctx.stroke()}
- for(let i=0;i<4;i++){const x=60+i*241,y=mobileView.top+65+(i%2)*40;label(['[CONFIDENCE: .999]','[SAFE BY DEFAULT]','[OBSERVATION #'+(room+1)+']','[USER: UNKNOWN]'][i],x,y,10,'#adb3aa');dotline(x,y+8,x+110,y+8,'#c8c9bc');}
- for(let x=30;x<width;x+=94)label(['if (human)','return ?','model.claim','// untested'][Math.floor(x/94)%4],x,FLOOR+66,10,'#b5b7ab','left','normal');
- dotline(16,bottom-31,width-16,bottom-31,'#c5c8bb');label('WORLD FILE / reality.json',16,bottom-12,11,'#898e89','left','normal');label('CANNOT VALIDATE HUMAN ENTITY',width-14,bottom-12,11,'#b1a6a1','right','normal');
-}
+function background(t){paintBackdrop(t,mobileView.width,mobileView.top,mobileView.height)}
 
 function mobileMessage(text,mode=''){
  mobileMessageMode=mode;
