@@ -2,6 +2,8 @@
 
 The current UI branch is `feature/fullscreen-mobile-ui`, created from `feature/capacitor-mobile` at `54b097f`. The original Capacitor branch remains available. Nothing has been pushed or published. The mobile browser and native apps share the full-screen UI. The desktop and mobile versions now also share [shifting paper backgrounds](DYNAMIC_BACKGROUND.md); gameplay geometry is preserved.
 
+The current build also includes [304 authored background jokes](BACKGROUND_VOICE.md), with level-specific and progress-aware notes. Rebuild/reinstall to update an existing phone installation.
+
 The native app is **Exception Human Local**, bundle/package ID `com.threeqinnova.exceptionhuman.local`. It bundles all fifteen campaign rooms, the glass lab, remarks and procedural audio. There is no web server URL: once installed, it loads its game files locally, so your phone does not need the Mac's Wi-Fi connection.
 
 ## Test on your iPhone

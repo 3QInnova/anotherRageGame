@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "serial": "emulator-5556",
+  "android": "16",
+  "nativeBridge": {
+    "native": true,
+    "platform": "android",
+    "listenersReady": true,
+    "errors": []
+  },
+  "offlineColdLaunch": true,
+  "movement": true,
+  "backgroundFreezesPhysics": true,
+  "releasedHeldInput": true,
+  "backOpensPause": true,
+  "backReturnsFromSubmenu": true,
+  "secondBackMinimizes": true,
+  "glassLabLoads": true,
+  "physicalDeviceTested": false
+}

@@ -12,6 +12,7 @@ function mobileMessage(text,mode=''){
  $('mobileText').textContent=text;$('mobileDialogue').dataset.mode=mode;$('menuLatest').textContent=text;
 }
 function renderMobileHistory(){const list=$('aiHistory');if(!list.replaceChildren)return;list.replaceChildren(...mobileHistory.map(text=>{const item=document.createElement('li');item.textContent=text;return item}))}
+function recordMobileBackgroundNote(text){mobileHistory.unshift('Margin / '+text);mobileHistory.length=Math.min(30,mobileHistory.length);renderMobileHistory()}
 function releaseMobileHolds(){mobilePointers.clear();keys.clear();document.querySelectorAll('#touch button').forEach(b=>b.classList.remove('held'))}
 function clearMobileInput(){releaseMobileHolds();pressedKeys.clear();if(player)player.jumpBuffer=0;}
 function setMobileMenu(view){
@@ -21,6 +22,7 @@ function setMobileMenu(view){
  $('newRunConfirm').hidden=true;
 }
 function pauseMobile(reason='Paused. The AI can wait.'){
+ rememberBackgroundVoice();
  const wasPaused=mobilePaused;mobilePaused=true;clearMobileInput();
  $('menuTitle').textContent=reason;$('mobileResume').textContent='Resume';$('mobileMenu').hidden=false;
  if(!wasPaused)setMobileMenu('play');

@@ -10,6 +10,8 @@ The workspace contains HTML prototypes, Markdown notes, screenshots, a playtest 
 
 ## Resources and reading order
 
+Read [background voice](BACKGROUND_VOICE.md): background snark is a permanent user-approved design staple. Every future campaign/practice level needs at least twelve unique themed background jokes in `BACKGROUND_QUIPS.levels`; `tests/background-voice.test.mjs` enforces coverage. Keep the 304-line library, persistent rotation, truthful progress comparisons and encountered mobile AI Log history.
+
 Read [shifting paper backgrounds](DYNAMIC_BACKGROUND.md) for the shared desktop/mobile cosmetic generator, fresh compositions on loss/retry/new run/level/compaction, parallax landmarks and unreliable hazard guides. Preserve true collision/activation cues and keep cosmetic randomness separate from gameplay seeds.
 
 Read [full-screen mobile UI plan](MOBILE_UI_REDESIGN_PLAN.md) for the proposed full-window paper world, ghost thumb controls, contextual Rewrite, overlay pause menu, camera/eye alignment risks and implementation gates. The first full-screen UI implementation is on `feature/fullscreen-mobile-ui` (base `54b097f`). See [implementation validation](outputs/fullscreen-mobile/VALIDATION.md). The moving Jump button is explicitly deferred.

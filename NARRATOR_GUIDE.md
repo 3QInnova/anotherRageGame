@@ -2,7 +2,13 @@
 
 The snarky narrator is a central part of the user's intended replay appeal. Maintain a substantial authored library alongside every hazard family. Current player appeal is a design goal; the remark count alone does not establish it.
 
-## Current library
+## Background comments are a permanent staple
+
+The user explicitly singled out “You didn't make it this far before” and “Last time you failed earlier” as central to the game's appeal. The [background voice](BACKGROUND_VOICE.md) now supplies 304 distinct authored lines, including twelve for every current level and the glass lab. **Every future level must add at least twelve unique themed background jokes**, alongside the shared progress-aware and compaction commentary. Keep encountered notes in the mobile AI Log and preserve per-pool rotation across retries and New Run.
+
+Counts in the earlier sections below describe those historical narrator updates; the background library is separately enumerated and verified in `tests/background-voice.test.mjs`.
+
+## Original loss library
 
 The playable HTML contains **160 distinct loss remarks**, with **32 per hazard family**:
 

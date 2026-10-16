@@ -14,6 +14,10 @@ These marks stay faint and sit behind the physical world. They never alter a tra
 
 During a loss the new paper appears behind the reading overlay. The following retry gets another fresh composition. Compaction's captured old document falls away, then the restored room receives new landmarks. No random redraw occurs while the player is in the middle of a jump.
 
+## Background narrator update
+
+The margins now carry [304 authored background jokes](BACKGROUND_VOICE.md), including twelve for every room and progress-aware notes. The sixteen original quiet registration annotations remain as scenery. Background snark is a permanent requirement for future levels.
+
 ## Implementation
 
 The self-contained PC source contains `resetBackdrop()` and `paintBackdrop()`. Mobile uses the same painter through `mobile/viewport.js`; its paused-frame cache includes the background revision. Both versions therefore share the feature without duplicating the generation rules.

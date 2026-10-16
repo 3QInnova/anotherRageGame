@@ -1,0 +1,14 @@
+{
+  "distinctLines": 304,
+  "levelPools": 16,
+  "minPerLevel": 12,
+  "allLinesFitTwoWrappedLines": true,
+  "fullCyclesBeforeRepeat": true,
+  "cursorsSurviveNewRunAndReload": true,
+  "claimsUseRecordedProgress": true,
+  "clearsAndRestartsResetStaleFailure": true,
+  "exactRequestedLinesVerified": true,
+  "compactionRemarksRequireActualRewind": true,
+  "redrawsKeepSameText": true,
+  "storageDeniedWorks": true
+}

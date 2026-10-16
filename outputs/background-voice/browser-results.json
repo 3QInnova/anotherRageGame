@@ -1,0 +1,10 @@
+{
+  "mobileThemeVisible": true,
+  "requestedNewBestLineRendered": true,
+  "requestedPreviousFailureLineRendered": true,
+  "levelSpecificTokenLineRendered": true,
+  "pauseFreezesGameplay": true,
+  "backgroundNotesAppearInAiLog": true,
+  "pageErrors": [],
+  "progressScenesAreStagedFixtures": true
+}
