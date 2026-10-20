@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
+		4A2E63A2DDB944FD92697E3A /* NativeSmoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62F7602E24976B978DE39 /* NativeSmoke.swift */; };
 		4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4D22ABE82AF431CB00220026 /* CapApp-SPM */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
@@ -16,12 +17,11 @@
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		9582B6832FE993A70072D4E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582B6822FE993A50072D4E8 /* SceneDelegate.swift */; };
-		9884A65105A24452AF6DCD59 /* NativeSmoke.mdimporter in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B2EDA6EBC144AB1AA3EAD1F /* NativeSmoke.mdimporter */; };
-		4A2E63A2DDB944FD92697E3A /* NativeSmoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62F7602E24976B978DE39 /* NativeSmoke.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		4CF62F7602E24976B978DE39 /* NativeSmoke.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = NativeSmoke.swift; path = NativeSmoke/NativeSmoke.swift; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,10 +30,9 @@
 		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		8B2EDA6EBC144AB1AA3EAD1F /* NativeSmoke.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; fileEncoding = 9; includeInIndex = 0; path = NativeSmoke.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9582B6822FE993A50072D4E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
-		8B2EDA6EBC144AB1AA3EAD1F /* NativeSmoke.mdimporter */ = {isa = PBXFileReference; name = "NativeSmoke.mdimporter"; path = "NativeSmoke.mdimporter"; sourceTree = BUILT_PRODUCTS_DIR; fileEncoding = undefined; lastKnownFileType = undefined; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; };
-		4CF62F7602E24976B978DE39 /* NativeSmoke.swift */ = {isa = PBXFileReference; name = "NativeSmoke.swift"; path = "NativeSmoke/NativeSmoke.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +54,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27FED4963081CEE600C4992C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4CF62F7602E24976B978DE39 /* NativeSmoke.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		504EC2FB1FED79650016851F = {
 			isa = PBXGroup;
 			children = (
 				958DCC722DB07C7200EA8C5F /* debug.xcconfig */,
 				504EC3061FED79650016851F /* App */,
 				504EC3051FED79650016851F /* Products */,
+				27FED4963081CEE600C4992C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				504EC3041FED79650016851F /* App.app */,
-				8B2EDA6EBC144AB1AA3EAD1F /* NativeSmoke.mdimporter */,
+				8B2EDA6EBC144AB1AA3EAD1F /* NativeSmoke.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,13 +120,9 @@
 			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CB6A2F5BF032406A8A219979 /* "NativeSmoke" */ = {
+		CB6A2F5BF032406A8A219979 /* NativeSmoke */ = {
 			isa = PBXNativeTarget;
-			name = "NativeSmoke";
-			productName = "NativeSmoke";
-			productReference = 8B2EDA6EBC144AB1AA3EAD1F;
-			productType = "com.apple.product-type.bundle.ui-testing";
-			buildConfigurationList = 462FB6393FF24E7BB8987C4F;
+			buildConfigurationList = 462FB6393FF24E7BB8987C4F /* Build configuration list for PBXNativeTarget "NativeSmoke" */;
 			buildPhases = (
 				A0AD4F2A128E400D8E4337BF /* Sources */,
 				DD8BC64FE76F48078D2F8CAB /* Frameworks */,
@@ -128,6 +132,10 @@
 			);
 			dependencies = (
 			);
+			name = NativeSmoke;
+			productName = NativeSmoke;
+			productReference = 8B2EDA6EBC144AB1AA3EAD1F /* NativeSmoke.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -165,7 +173,7 @@
 			projectRoot = "";
 			targets = (
 				504EC3031FED79650016851F /* App */,
-				CB6A2F5BF032406A8A219979 /* "NativeSmoke" */,
+				CB6A2F5BF032406A8A219979 /* NativeSmoke */,
 			);
 		};
 /* End PBXProject section */
@@ -233,6 +241,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0913073FFAFB40509AE2ED11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.threeqinnova.exceptionhuman.local.uitests;
+				PRODUCT_NAME = NativeSmoke;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = App;
+			};
+			name = Debug;
+		};
 		504EC3141FED79650016851F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
@@ -349,6 +381,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3SZP3ML27L;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -371,6 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3SZP3ML27L;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -386,45 +420,38 @@
 			};
 			name = Release;
 		};
-		0913073FFAFB40509AE2ED11 /* Debug */ = {
-			name = Debug;
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "NativeSmoke";
-				SKIP_INSTALL = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.threeqinnova.exceptionhuman.local.uitests";
-				GENERATE_INFOPLIST_FILE = YES;
-				SWIFT_VERSION = 5.0;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = App;
-				CODE_SIGN_STYLE = Automatic;
-			};
-		};
 		823A90DEAD224649B5174672 /* Release */ = {
-			name = Release;
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "NativeSmoke";
-				SKIP_INSTALL = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.threeqinnova.exceptionhuman.local.uitests";
+				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
-				SWIFT_VERSION = 5.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.threeqinnova.exceptionhuman.local.uitests;
+				PRODUCT_NAME = NativeSmoke;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = App;
-				CODE_SIGN_STYLE = Automatic;
 			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		462FB6393FF24E7BB8987C4F /* Build configuration list for PBXNativeTarget "NativeSmoke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0913073FFAFB40509AE2ED11 /* Debug */,
+				823A90DEAD224649B5174672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -439,15 +466,6 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		462FB6393FF24E7BB8987C4F /* Build configuration list for PBXNativeTarget "NativeSmoke" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0913073FFAFB40509AE2ED11 /* Debug */,
-				823A90DEAD224649B5174672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

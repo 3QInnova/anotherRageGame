@@ -4,7 +4,7 @@ import { StatusBar } from '@capacitor/status-bar';
 
 // The game remains offline; native integration handles only device lifecycle.
 const native = Capacitor.isNativePlatform();
-const health = { native, platform: Capacitor.getPlatform(), listenersReady: false, errors: [] };
+const health = { native, platform: Capacitor.getPlatform(), listenersReady: false, iosAudioSession: window.__IOS_AUDIO_SESSION__ ?? null, errors: [] };
 const emit = (name, detail = {}) => window.dispatchEvent(new CustomEvent(name, { detail }));
 window.ExceptionNative = {
   health,

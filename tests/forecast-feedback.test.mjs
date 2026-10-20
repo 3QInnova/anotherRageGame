@@ -75,7 +75,7 @@ while(game.check.snapshot().state!=='won'){
  }catch(error){if(error===PAYWALL){key('KeyD',false);tap('Enter');tap('Enter');continue}if(error!==COMPACT)throw error;key('KeyD',false);longCompactions++;while(game.check.snapshot().state==='compacting')game.check.step();key('KeyD',false)}
 }
 assert(longCompactions>=9&&longCompactions<=18,'Each long room must compact at least once and respect the cap');
-assert.equal(game.check.snapshot().deaths,0,'Normal-input route clears all rooms without deaths');assert(game.check.snapshot().paywallCounts.reduce((a,b)=>a+b,0)>0,'Campaign route dismisses actual scheduled AI paywalls');mkdirSync(new URL('../outputs/paywalls/',import.meta.url),{recursive:true});writeFileSync(new URL('../outputs/paywalls/campaign-results.json',import.meta.url),JSON.stringify({allFifteenRoomsCleared:true,deaths:0,paywallsByRoom:game.check.snapshot().paywallCounts},null,2)+'\n');
+assert.equal(game.check.snapshot().deaths,0,'Normal-input route clears all rooms without deaths');assert.equal(game.check.snapshot().paywallCounts.reduce((a,b)=>a+b,0),0,'Paywalls remain disabled during playtesting');mkdirSync(new URL('../outputs/paywalls/',import.meta.url),{recursive:true});writeFileSync(new URL('../outputs/paywalls/campaign-results.json',import.meta.url),JSON.stringify({allFifteenRoomsCleared:true,deaths:0,paywallsByRoom:game.check.snapshot().paywallCounts},null,2)+'\n');
 const output=new URL('../outputs/forecast-feedback/',import.meta.url);mkdirSync(output,{recursive:true});
 writeFileSync(new URL('completion-route.json',output),JSON.stringify(route,null,2)+'\n');
 console.log('PASS: both forecasts keep fixed targets, show phases, acknowledge survival, kill on contact, clear on retry.');

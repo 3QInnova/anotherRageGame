@@ -12,9 +12,10 @@ function mobileMessage(text,mode=''){
  $('mobileText').textContent=text;$('mobileDialogue').dataset.mode=mode;$('menuLatest').textContent=text;
 }
 function renderMobileHistory(){const list=$('aiHistory');if(!list.replaceChildren)return;list.replaceChildren(...mobileHistory.map(text=>{const item=document.createElement('li');item.textContent=text;return item}))}
+function recordMobileIncident(job,text){mobileHistory.unshift('Incident / '+job+' / '+text);mobileHistory.length=Math.min(30,mobileHistory.length);renderMobileHistory()}
 function recordMobileBackgroundNote(text){mobileHistory.unshift('Margin / '+text);mobileHistory.length=Math.min(30,mobileHistory.length);renderMobileHistory()}
 function releaseMobileHolds(){mobilePointers.clear();keys.clear();document.querySelectorAll('#touch button').forEach(b=>b.classList.remove('held'))}
-function clearMobileInput(){releaseMobileHolds();pressedKeys.clear();if(player)player.jumpBuffer=0;}
+function clearMobileInput(){releaseMobileHolds();pressedKeys.clear();suspendPresenceInput();if(player)player.jumpBuffer=0;}
 function setMobileMenu(view){
  mobileMenuView=view;
  for(const name of ['play','practice','controls','audio','log'])$('panel-'+name).hidden=name!==view;
@@ -36,17 +37,18 @@ function resumeMobile(){
  $('mobilePause').focus?.({preventScroll:true});
 }
 function syncMobileUI(){
- const feedback=forecastFeedback(),active=['scanning','locked','purge','missed'].includes(feedback.phase),target=nearest();
- const signal=state==='paywall'?'AI PAYWALL / FREE PLAN AVAILABLE':state==='compacting'?'COMPACTING / PLEASE WAIT':state==='dead'?'USER ERROR / READ AT YOUR LEISURE':state==='won'?'ESCAPED':active?feedback.text:autocomplete?.phase==='guess'?'AI GUESS: '+autocomplete.mode+' / OPTIONAL':L.glassTest?'GLASS LAB / BROKEN BEAM = SUPPORT':target?'REWRITE: '+target.kind.toUpperCase():'AI ONLINE / TRUST OPTIONAL';
+ const feedback=forecastFeedback(),active=['scanning','locked','purge','missed'].includes(feedback.phase),target=nearest(),circuit=coolingProtectedStation(),switchDeck=!!circuit,box=!!(hasPuzzleBoxes()&&circuit),canRotate=switchDeck&&circuit.selected>=0&&!circuit.solved;
+ const signal=state==='paywall'?'AI PAYWALL / FREE PLAN AVAILABLE':state==='compacting'?'COMPACTING / PLEASE WAIT':state==='dead'?'USER ERROR / READ AT YOUR LEISURE':state==='won'?'ESCAPED':box?(puzzleIsOpen()?'PUZZLE BOX / PREVIEW & TEST':'PUZZLE BOX / X TO OPEN'):switchDeck?(coolingProtectedStation().route.grounded?'GROUND FAULT / REWIRE NOW':'CIRCUIT SAFE / FREE ACTIONS'):active?feedback.text:autocomplete?.phase==='guess'?'AI GUESS: '+autocomplete.mode+' / OPTIONAL':L.glassTest?'GLASS LAB / BROKEN BEAM = SUPPORT':target?'REWRITE: '+target.kind.toUpperCase():(L.puzzleBoxTrial?'PUZZLE BOX / AI ONLINE':L.coolingTrial?'THERMAL SUPPORT / AI ONLINE':L.idleDeletionTrial?'GARBAGE COLLECTION DAY':L.campaignServer?'DC1 / '+L.serverNumber+' · AI ONLINE':'AI ONLINE / TRUST OPTIONAL');
  if($('mobileSignal').textContent!==signal)$('mobileSignal').textContent=signal;
  const blocked=state==='dead'||state==='compacting'||state==='paywall';
  $('mobileApp').dataset.blocked=String(mobilePaused||state!=='play');
  $('mobileWinRestart').hidden=state!=='won';
  for(const id of ['restart','floorPractice','glassPractice','longPractice','longLevelSelect','newRun','confirmNewRun'])$(id).disabled=blocked;
- $('glitch').disabled=!target||mobilePaused||state!=='play';$('glitch').classList.toggle?.('ready',!!target);
+ $('glitch').textContent=box?'OPEN BOX':switchDeck?(circuit.solved?'FAN READY':canRotate?'ROTATE U'+(circuit.selected+1):'PICK GATE'):'REWRITE';$('glitch').disabled=(box?puzzleIsOpen():switchDeck?!canRotate:!target)||mobilePaused||state!=='play';$('glitch').classList.toggle?.('ready',switchDeck?canRotate:!!target);
  $('mobileDialogue').dataset.quiet=String(!active&&!target&&mobileMessageMode!=='danger'&&performance.now()-mobileMessageAt>7000);
- if(room!==mobileRoomSeen){mobileRoomSeen=room;mobileRoomAt=performance.now();$('mobileRoomNotice').textContent=L.glassTest?'GLASS LAB':('ROOM '+String(room+1).padStart(2,'0'));}
- $('mobileRoomNotice').hidden=mobilePaused||state!=='play'||performance.now()-mobileRoomAt>4000;
+ const noticeKey=L.serverId||(L.glassTest?'glass':'original-'+room);
+ if(noticeKey!==mobileRoomSeen){mobileRoomSeen=noticeKey;mobileRoomAt=performance.now();$('mobileRoomNotice').textContent=L.campaignServer?campaignServerLabel():L.glassTest?'GLASS LAB':('ROOM '+String(room+1).padStart(2,'0'));}
+ $('mobileRoomNotice').hidden=!!L.campaignServer||mobilePaused||state!=='play'||performance.now()-mobileRoomAt>4000;
 }
 function refreshHud(){refreshDesktopHud();syncMobileUI()}
 function runFrame(dt){if(mobilePaused||document.hidden||window.innerHeight>window.innerWidth)return;runDesktopFrame(dt)}
@@ -72,11 +74,11 @@ function installMobileUI(){
  document.addEventListener('contextmenu',e=>{if(e.target.closest('button,#mobileApp'))e.preventDefault()});
  for(const b of document.querySelectorAll('#touch button')){b.addEventListener('touchstart',e=>e.preventDefault(),{passive:false});b.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});}
  $('mobilePause').onclick=()=>pauseMobile();$('mobileResume').onclick=resumeMobile;
- $('mobileWinRestart').onclick=()=>{initRoom(true);syncMobileUI()};
+ $('mobileWinRestart').onclick=()=>{restartCampaignRun();syncMobileUI()};
  for(const tab of document.querySelectorAll('[data-menu-tab]'))tab.onclick=()=>setMobileMenu(tab.dataset.menuTab);
  $('openPractice').onclick=()=>setMobileMenu('practice');$('practiceBack').onclick=()=>setMobileMenu('play');
  $('newRun').onclick=()=>{$('newRunConfirm').hidden=false;};$('cancelNewRun').onclick=()=>{$('newRunConfirm').hidden=true;};
- $('confirmNewRun').onclick=()=>{if(['dead','compacting','paywall'].includes(state))return;initRoom(true);resumeMobile()};
+ $('confirmNewRun').onclick=()=>{if(['dead','compacting','paywall'].includes(state))return;restartCampaignRun();resumeMobile()};
  for(const [key,id] of [['size','Size'],['opacity','Opacity'],['inset','Inset']])$('control'+id).addEventListener('input',e=>{mobileControls[key]=e.target.value;applyMobileControls(true)});
  $('highVisibility').onclick=()=>{mobileControls.opacity=100;applyMobileControls(true)};
  $('resetControls').onclick=()=>{mobileControls={...defaultMobileControls};applyMobileControls(true)};

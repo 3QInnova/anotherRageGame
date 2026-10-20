@@ -1,0 +1,32 @@
+const LONG_ENCOUNTERS=Array.from({length:20},(_,index)=>{
+ const kind=index%2===0?'redaction':index%6===3?'air-flag':index%6===5?'shifting-drop':'scan',x=380+index*620;
+ return {id:(kind==='shifting-drop'?'policy-':kind==='redaction'?'redaction-':'flag-')+'long-'+index,kind,x,w:kind==='shifting-drop'?59:index%2?50:72,trigger:kind==='shifting-drop'?x-110:kind==='air-flag'?x-190:x-44,delay:kind==='shifting-drop'?.65:kind==='air-flag'?.55:.22,sky:kind==='air-flag',shifting:kind==='shifting-drop'};
+});
+LEVELS.push({title:'CONTEXT WINDOW EXCEEDED',start:55,exit:12520,width:12600,extension:0,originalExit:12520,longSession:true,compactionAt:7000,floorLies:true,pits:[],crumble:LONG_ENCOUNTERS.filter(h=>h.kind==='redaction'),spikes:LONG_ENCOUNTERS.filter(h=>['scan','air-flag'].includes(h.kind)),blocks:LONG_ENCOUNTERS.filter(h=>h.shifting),forecasts:[],anomalies:[],fake:null,
+ floorHints:LONG_ENCOUNTERS.map((h,i)=>({x:h.x+220,w:64,kind:i%3===0?'suspicious':'approved'})),
+ intro:'This conversation has plenty of room. Your progress is the first thing we will delete.'});
+// Authored sequences change the rhythm without changing the controls or trap rules.
+function authorLongLevel({title,slug,kinds,gaps,compactionAt,sectionLabel,intro}){
+ let x=380;
+ const encounters=kinds.map((kind,i)=>{
+  if(i)x+=gaps[(i-1)%gaps.length];
+  const prefix=kind==='redaction'?'redaction-':kind.includes('drop')?'policy-':kind==='forecast'?'predict-':'flag-';
+  return {id:prefix+slug+'-'+i,kind,x,w:kind.includes('drop')?59:kind==='redaction'?64+i%3*6:kind==='forecast'?86:50,
+   trigger:kind.includes('drop')?x-110:kind==='air-flag'?x-190:kind==='forecast'?x:x-44,
+   delay:kind==='shifting-drop'?.65:kind==='fixed-drop'?.4:kind==='air-flag'?.55:kind==='forecast'?.55:.22,
+   sky:kind==='air-flag',shifting:kind==='shifting-drop',lead:kind==='forecast'?110:undefined};
+ });
+ const exit=x+560;
+ return {title,start:55,exit,width:exit+80,extension:0,originalExit:exit,longSession:true,compactionAt,sectionLabel,floorLies:true,encounters,
+  pits:[],crumble:encounters.filter(h=>h.kind==='redaction'),spikes:encounters.filter(h=>['scan','air-flag'].includes(h.kind)),
+  blocks:encounters.filter(h=>h.kind.includes('drop')),forecasts:encounters.filter(h=>h.kind==='forecast'),anomalies:[],fake:null,
+  floorHints:encounters.map((h,i)=>({x:h.x+230,w:64,kind:i%3===1?'suspicious':'approved'})),
+  autocompleteHints:encounters.map((h,i)=>({id:'advice-'+slug+'-'+i,trigger:h.trigger-15,mode:h.sky?'JUMP':h.kind==='redaction'?'WALK':['WAIT','JUMP','WALK'][i%3]})),
+  intro};
+}
+LEVELS.push(authorLongLevel({title:'CACHED CONFIDENCE',slug:'cache',compactionAt:6600,sectionLabel:'CACHE HIT / SAME MISTAKE',
+ kinds:['redaction','air-flag','scan','shifting-drop','air-flag','redaction','fixed-drop','scan','redaction','air-flag','shifting-drop','redaction','scan','fixed-drop','air-flag','redaction','shifting-drop','scan','air-flag','redaction','fixed-drop','air-flag','scan','shifting-drop'],
+ gaps:[460,540,420,580,480,520],intro:'I cached your previous success as a failure. This should make things faster for one of us.'}));
+LEVELS.push(authorLongLevel({title:'REGRESSION TO THE MEAN',slug:'regression',compactionAt:7200,sectionLabel:'REGRESSION TEST / USER STILL EXISTS',
+ kinds:['scan','redaction','air-flag','shifting-drop','redaction','forecast','fixed-drop','air-flag','redaction','scan','shifting-drop','air-flag','forecast','redaction','fixed-drop','scan','air-flag','shifting-drop','redaction','forecast','air-flag','scan','redaction','fixed-drop','air-flag','forecast','shifting-drop','redaction'],
+ gaps:[520,440,580,460,560,500],intro:'The regression suite has one failing test: you keep surviving. I have added more assertions.'}));

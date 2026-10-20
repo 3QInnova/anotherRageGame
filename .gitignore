@@ -1,25 +1,47 @@
+# macOS and local scratch files
 .DS_Store
+.fake
+._*
+
+# Dependencies and Python caches
 node_modules/
-apps/native/www/
-apps/native/.cache/
-apps/native/ios/App/App/public/
-apps/native/android/app/src/main/assets/public/
-apps/native/android/local.properties
-apps/native/android/.gradle/
-apps/native/android/**/build/
-outputs/capacitor/builds/
-outputs/capacitor/DerivedData/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Generated builds, screenshots, reports, logs and playtest packages
+/outputs/
+*.log
+/test-results/
+/playwright-report/
+/blob-report/
+/coverage/
+
+# Capacitor assets and downloaded native toolchains
+/apps/native/www/
+/apps/native/.cache/
+/apps/native/ios/App/App/public/
+/apps/native/android/app/src/main/assets/public/
+
+# Android machine configuration and build caches
+/apps/native/android/local.properties
+/apps/native/android/.gradle/
+/apps/native/android/.kotlin/
+/apps/native/android/**/build/
+
+# Xcode / Swift local state and build products
+/apps/native/ios/App/build/
+/apps/native/ios/App/CapApp-SPM/.build/
+/apps/native/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 *.xcuserstate
 xcuserdata/
-*.keystore
-*.jks
+*.xcresult/
+
+# Local environment and signing credentials
 .env
 .env.*
-outputs/capacitor/SourcePackages/
-apps/native/ios/App/CapApp-SPM/.build/
-outputs/capacitor/*.xcresult/
-outputs/capacitor/*.log
-apps/native/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
-outputs/fullscreen-mobile/*.log
-outputs/dynamic-background/*.log
-outputs/background-voice/*.log
+*.keystore
+*.jks
+*.p12
+*.mobileprovision

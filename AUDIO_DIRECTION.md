@@ -42,7 +42,7 @@ The sound palette combines soft synth plucks, low bass, filtered paper-like nois
 
 ## Controls and implementation
 
-Sound starts **OFF**. Turn it on with the Sound button, found in Menu on iPhone. Music defaults to **ON** as a preference under the master Sound switch. Turn Music off to retain effects. No sound plays while the mobile menu is paused, even if Sound is enabled there.
+Sound starts **OFF**. Turn it on with the Sound button, found in Menu on iPhone. Music defaults to **ON** as a preference under the master Sound switch. Turn Music off to retain effects. The paused menu stays silent except when the player explicitly taps **Test / reconnect sound**. That button plays a short chime and reconnects the engine while gameplay remains paused. Sound and Music choices persist locally across reloads; restoring a preference does not autoplay.
 
 The engine lives in the PC HTML's `makeAudioRig`, `renderCue`, `musicStep`, `soundCue`, and `tickAudio` functions. The mobile builder copies it into the iPhone artifact. Noise uses its own fixed seed; effect variation uses its own counter. Music scheduling follows `AudioContext.currentTime`, never gameplay time or gameplay random generators. Voice nodes disconnect after playback. A master compressor controls layered peaks. Mute clears queued voices immediately.
 
@@ -64,3 +64,17 @@ WebKit and Chromium, both PC and mobile layouts, rendered all 23 distinct nonzer
 The ordinary-input campaign still clears all nine rooms with zero deaths; 58,990 PC/mobile gameplay snapshots match. These are browser and waveform checks, not a listening approval or a physical iPhone speaker/headphone test. Listen on the actual iPhone before accepting loudness and timbre.
 
 The glass lab update adds `glass-contact` as the 23rd cue. The current effects montage includes it immediately after jump.
+
+## Installed iPhone audio fix — October 16, 2026
+
+The user reported an installed iPhone app that stayed silent with Sound ON. Inspection found that the native app never configured `AVAudioSession`, and the shared Web Audio code discarded resume failures. These are verified implementation gaps; the exact cause on the physical phone is not remotely confirmed.
+
+The app now configures `.playback` with `.mixWithOthers` at launch and scene activation. Apple documents that [playback audio continues with the Silent switch set to silent](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback). Activation still follows explicit game/audio interaction; no background-audio entitlement was added. Supported web audio-session APIs are also set to playback before creating the context. The game still stops audio during pause/background.
+
+Web Audio resumes now report errors, guard against late async callbacks, rebuild closed contexts, and restart the music scheduler. The explicit test/reconnect button creates a fresh context, plays a chime in the paused menu, verifies clock advancement, and suspends again if the game is still paused. Its visible status gives a recovery path instead of silently failing. Diagnostics are exposed by `window.__EXCEPTION_AUDIO__.status()`; native iOS session configuration is also recorded in `window.ExceptionNative.health.iosAudioSession`.
+
+WebKit and Chromium checks pass all 23 effects, three music arrangements, independent music/master toggles, paused testing, reload persistence and recovery from an injected resume failure. Native iPhone Simulator XCTest verifies that the audio clock advances during the explicit sound test before play and after backgrounding. The app's native log reports `AVAudioSessionCategoryPlayback`. Gameplay checks preserve 195,062 PC/mobile snapshots and all twenty Localhost completion routes without paywalls. Both local native packages build; the existing Xcode project/signing edits remain intact.
+
+[Audio fix results](outputs/audio/iphone-fix-results.json) · [native simulator result](outputs/audio/iphone-native-results.json).
+
+To test on the physical iPhone, rebuild/install the App scheme from Xcode, open **Menu → Audio**, enable Sound and tap **Test / reconnect sound**. Then Resume and check Jump, an actual loss and Music. Also check after leaving and returning to the app. The Simulator proves native audio-session setup and engine behavior; physical speaker/headphone output remains a human acceptance check. Nothing was published or automatically installed onto a physical phone.

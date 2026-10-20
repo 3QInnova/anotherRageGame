@@ -1,5 +1,6 @@
 import UIKit
 import Capacitor
+import AVFAudio
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -7,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        GameAudioSession.configure()
         return true
     }
 
@@ -40,5 +41,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                           sessionRole: connectingSceneSession.role)
         config.delegateClass = SceneDelegate.self
         return config
+    }
+}
+
+// Use media playback semantics for this game, including when Ring/Silent is silent.
+// Activation is left to Web Audio after the player explicitly enables/resumes sound.
+enum GameAudioSession {
+    static func configure() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            NSLog("EXCEPTION audio session category=%@", AVAudioSession.sharedInstance().category.rawValue)
+        } catch {
+            NSLog("EXCEPTION audio session configuration failed: %@", error.localizedDescription)
+        }
     }
 }

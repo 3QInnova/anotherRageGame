@@ -16,7 +16,7 @@ During a loss the new paper appears behind the reading overlay. The following re
 
 ## Background narrator update
 
-The margins now carry [304 authored background jokes](BACKGROUND_VOICE.md), including twelve for every room and progress-aware notes. The sixteen original quiet registration annotations remain as scenery. Background snark is a permanent requirement for future levels.
+The margins now carry [544 authored background jokes](BACKGROUND_VOICE.md), including twelve for every room and progress-aware notes. The sixteen original quiet registration annotations remain as scenery. Background snark is a permanent requirement for future levels. Remarks also receive fresh horizontal positions and heights each composition. Progress eligibility uses recorded distances, while placement uses a separate cosmetic stream independent of hazards; a varying travel delay prevents an immediate milestone cue. Revealed remarks stay anchored while being read.
 
 ## Implementation
 

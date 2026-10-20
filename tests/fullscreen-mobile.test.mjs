@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
 const root=new URL('../',import.meta.url),html=readFileSync(new URL('mobile/index.html',root),'utf8');
-const fixture=html.replace('installMobileUI();initRoom(true);requestAnimationFrame(frame);',`installMobileUI();initRoom(true);window.uiFixture={step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()},glass(){startPractice(15);draw();refreshHud()},bill(){room=6;initRoom();paywallCounts[6]=0;startPaywall(0);refreshHud()},compact(){room=6;initRoom();startCompaction('UI review');draw();refreshHud()},caption:forecastCaptionX,lose(){die('Actual cause.','secret-review');draw();refreshHud()}};`);
+const fixture=html.replace('installMobileUI();initRoom(true);requestAnimationFrame(frame);',`installMobileUI();initRoom(true);window.uiFixture={step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()},glass(){startPractice(15);draw();refreshHud()},bill(){paywallEnabled=true;room=6;initRoom();paywallCounts[6]=0;startPaywall(0);refreshHud()},compact(){room=6;initRoom();startCompaction('UI review');draw();refreshHud()},caption:forecastCaptionX,lose(){die('Actual cause.','secret-review');draw();refreshHud()}};`);
 const results=[];
 for(const engine of [webkit,chromium]){
  const browser=await engine.launch({headless:true}),errors=[];

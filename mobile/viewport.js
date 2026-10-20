@@ -8,7 +8,7 @@ function resizeMobileViewport(){
  // Keep the walking surface above the actual thumb hit areas, including safe areas/settings.
  const pads=[$('movePad'),$('actionPad')].map(el=>el.getBoundingClientRect?.().top).filter(Number.isFinite);
  const floorPixels=Math.max(height*.52,Math.min(height*.7,...pads.map(y=>y-(bounds?.top||0)-12)));
- mobileView.top=FLOOR-mobileView.height*floorPixels/height;
+ mobileView.top=FLOOR-mobileView.height*floorPixels/height;mobileView.floorTop=mobileView.top;
  mobileView.eyeX=mobileView.width*.78;mobileView.eyeY=mobileView.top+125;
  const ratio=Math.min(2,window.devicePixelRatio||1);
  mobileView.pixelWidth=Math.round(width*ratio);mobileView.pixelHeight=Math.round(height*ratio);
@@ -17,6 +17,8 @@ function resizeMobileViewport(){
 function updateCamera(){cameraX=Math.max(0,Math.min(Math.max(0,L.width-mobileView.width),player.x-mobileView.width*.39))}
 let mobilePaintKey='',mobilePaintCount=0;
 function draw(){
+ // Follow the raised thermal decks so their switch panel never covers the balancing player.
+ mobileView.top=(mobileView.floorTop??mobileView.top)-((L.coolingTrial||L.puzzleBoxEncounter)?Math.min(96,Math.max(0,FLOOR-player.y-PH)*1.2):0);mobileView.eyeY=mobileView.top+125;
  const key=[backdrop?.revision,room,sceneTime,observerTime,state,player?.x,player?.y,observer?.stage,mobileView.top,mobileView.width,mobileView.pixelWidth,mobileView.pixelHeight].join('/');
  if(mobilePaused&&key===mobilePaintKey)return;
  mobilePaintKey=key;mobilePaintCount++;

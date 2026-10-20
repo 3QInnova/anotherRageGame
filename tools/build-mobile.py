@@ -1,7 +1,8 @@
 """Build the separate iPhone artifact without modifying the desktop game."""
 from pathlib import Path
-import hashlib, json, re
+import hashlib, json, re, subprocess, sys
 root = Path(__file__).resolve().parents[1]
+subprocess.run([sys.executable,str(root/'tools/build-campaign.py')],check=True)
 source = root / 'initalDemoDocs/Exception_Human_Misclassification_V3.html'
 original = source.read_bytes()
 script = re.search(r'<script>([\s\S]*?)</script>', original.decode()).group(1)
@@ -38,8 +39,9 @@ start = script.index("for(const b of document.querySelectorAll('[data-hold]'))")
 end = script.index('// Read-only console hooks', start)
 script = script[:start] + script[end:]
 script = script.replace('initRoom(true);requestAnimationFrame(frame);', viewport + '\nfunction mobileMessage' + methods + '\ninstallMobileUI();initRoom(true);requestAnimationFrame(frame);', 1)
-html = (root / 'mobile/layout.html').read_text().replace('/* GAME_SCRIPT */', script)
+html = (root / 'mobile/layout.html').read_text().replace('/* GAME_SCRIPT */', script).replace('/* CAMPAIGN_CSS */',(root/'campaign/menu.css').read_text()).replace('<!-- CAMPAIGN_MENU -->',(root/'campaign/menu.html').read_text()).replace('<!-- INCIDENT_PANEL -->',(root/'campaign/incident-panel.html').read_text())
 (root / 'mobile/index.html').write_text(html)
 assert source.read_bytes() == original
+(root / 'outputs/mobile').mkdir(parents=True, exist_ok=True)
 (root / 'outputs/mobile/build.json').write_text(json.dumps({'desktopSource':str(source.relative_to(root)), 'desktopSha256':hashlib.sha256(original).hexdigest(), 'mobileArtifact':'mobile/index.html', 'desktopUnchanged':True},indent=2)+'\n')
 print('Built mobile/index.html; desktop source unchanged.')

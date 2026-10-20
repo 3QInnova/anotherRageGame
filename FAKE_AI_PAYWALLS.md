@@ -1,5 +1,8 @@
 # Random fake AI paywalls
 
+**Playtest setting:** Fake AI paywall popups are temporarily disabled in the shared PC/mobile/native game at the user’s request. New runs, retries and compaction keep them disabled. The implementation is retained for later review; dedicated billing fixtures explicitly enable it.
+
+
 The user requested funny, frustrating paywall interruptions, specifically **AI-service excuses** such as running out of messages, adding credits, and expired subscriptions. Eight authored scenarios are implemented:
 
 | Scenario | The AI's excuse |

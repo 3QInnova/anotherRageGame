@@ -1,0 +1,7 @@
+const LONG_ENCOUNTERS=Array.from({length:20},(_,index)=>{
+ const kind=index%2===0?'redaction':index%6===3?'air-flag':index%6===5?'shifting-drop':'scan',x=380+index*620;
+ return {id:(kind==='shifting-drop'?'policy-':kind==='redaction'?'redaction-':'flag-')+'long-'+index,kind,x,w:kind==='shifting-drop'?59:index%2?50:72,trigger:kind==='shifting-drop'?x-110:kind==='air-flag'?x-190:x-44,delay:kind==='shifting-drop'?.65:kind==='air-flag'?.55:.22,sky:kind==='air-flag',shifting:kind==='shifting-drop'};
+});
+LEVELS.push({title:'CONTEXT WINDOW EXCEEDED',start:55,exit:12520,width:12600,extension:0,originalExit:12520,longSession:true,compactionAt:7000,floorLies:true,pits:[],crumble:LONG_ENCOUNTERS.filter(h=>h.kind==='redaction'),spikes:LONG_ENCOUNTERS.filter(h=>['scan','air-flag'].includes(h.kind)),blocks:LONG_ENCOUNTERS.filter(h=>h.shifting),forecasts:[],anomalies:[],fake:null,
+ floorHints:LONG_ENCOUNTERS.map((h,i)=>({x:h.x+220,w:64,kind:i%3===0?'suspicious':'approved'})),
+ intro:'This conversation has plenty of room. Your progress is the first thing we will delete.'});

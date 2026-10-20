@@ -1,0 +1,262 @@
+{
+  "localhost-01": {
+    "job": "Welcome Mat Decommissioning",
+    "trouble": "The welcome team deleted the floor before you finished arriving.",
+    "notice": "A marked strip opens after you approach.",
+    "remember": "The welcome mat resigns mid-step.",
+    "counterplay": "Jump across the opening; the ordinary floor beyond it stays solid.",
+    "excuse": "The floor left before you completed its orientation.",
+    "failures": [
+      "Your welcome mat has completed its notice period.",
+      "Orientation assumes prior experience with gravity.",
+      "We welcomed you. Supporting you was a separate request."
+    ]
+  },
+  "localhost-02": {
+    "job": "Visitor Badge Rejected",
+    "trouble": "Reception has mistaken the visitor for an intrusion.",
+    "notice": "The second hazard is a real scanner field at walking height.",
+    "remember": "A badge check with no useful badge.",
+    "counterplay": "Cross the redaction, then jump the actual red scan field.",
+    "excuse": "Reception confirms the intrusion has left the building.",
+    "failures": [
+      "Your badge photo contains an unauthorized human.",
+      "Reception has rejected your entire outline.",
+      "Reception has marked that attempt as visitor removal."
+    ]
+  },
+  "localhost-03": {
+    "job": "The Upstairs Security Team",
+    "trouble": "Security installed its first detector above the floor it marked.",
+    "notice": "The revised field appears overhead; the next scan stays low.",
+    "remember": "Walking beneath an invitation to jump.",
+    "counterplay": "Walk beneath the airborne field, jump the low scan, then clear the missing strip.",
+    "excuse": "Upstairs Security says it was checking taller visitors.",
+    "failures": [
+      "Upstairs and Downstairs Security agree you did it wrong.",
+      "I installed the scanners badly. You used them incorrectly.",
+      "Both scanner teams have filed your complaint under training."
+    ]
+  },
+  "localhost-04": {
+    "job": "Mandatory Agility Training",
+    "trouble": "Training alternates between problems above your head and below your feet.",
+    "notice": "Identical floor claims produce different field heights.",
+    "remember": "Walk, jump, walk, jump; the labels cannot choose for you.",
+    "counterplay": "Read the revised fields and alternate walking with jumping.",
+    "excuse": "Training says your survival proves the training works.",
+    "failures": [
+      "Training has marked that response as incorrect. Again.",
+      "The training department has graded your trajectory.",
+      "The instructions were unclear. Your failure was much easier to grade."
+    ]
+  },
+  "localhost-05": {
+    "job": "Reception-Wide Outage",
+    "trouble": "Every desk has independently activated its emergency procedure.",
+    "notice": "The longer route repeats learned hazards with breathing space.",
+    "remember": "The whole reception area decides you are the emergency.",
+    "counterplay": "Use the actual fields and floor openings; pause safely between encounters.",
+    "excuse": "The outage ended after the customer stopped reporting it.",
+    "failures": [
+      "Reception has escalated your arrival to disaster recovery.",
+      "Eight desks agreed you were somebody else\u2019s problem.",
+      "Your orientation has been extended by one preventable outage."
+    ]
+  },
+  "localhost-06": {
+    "job": "The Contractor Bridge",
+    "trouble": "Facilities filled the missing floor with a temporary assertion.",
+    "notice": "The gap is wider than a normal jump and Rewrite can supply support.",
+    "remember": "A bridge whose employment contract expires.",
+    "counterplay": "Rewrite beside NULL, then cross while the green support is active.",
+    "excuse": "Facilities says the bridge worked long enough to count.",
+    "failures": [
+      "Facilities insists the bridge problem is a visitor problem.",
+      "Facilities hired empty space. You trusted its references.",
+      "The bridge contract does not cover complaints about falling."
+    ]
+  },
+  "localhost-07": {
+    "job": "Turnstile Without a Door",
+    "trouble": "Access Control installed a solid wall where a doorway should be.",
+    "notice": "Rewrite changes the wall into temporary air; another hazard follows.",
+    "remember": "An argument that can be walked through.",
+    "counterplay": "Rewrite the nearby wall, pass through, then read the next warning.",
+    "excuse": "Access Control says the wall was on an approved break.",
+    "failures": [
+      "Access Control has marked your attempt as denied.",
+      "The doorway works occasionally. Management considers that sufficient.",
+      "Your access request has been forwarded to the accident department."
+    ]
+  },
+  "localhost-08": {
+    "job": "Intern Granted Push Access",
+    "trouble": "An intern connected a floor seam directly to the Git hook.",
+    "notice": "The overhead rejection block identifies a launchpad below.",
+    "remember": "The onboarding shortcut commits the employee.",
+    "counterplay": "Borrow the bridge, then jump the auto-commit seam instead of stepping on it.",
+    "excuse": "The intern has been blamed. My instructions remain perfect.",
+    "failures": [
+      "The intern has created another onboarding incident. You tested it.",
+      "Security has rejected your application to survive this shortcut.",
+      "The intern says the route works. Your complaint has been reassigned."
+    ]
+  },
+  "localhost-09": {
+    "job": "Three Approvals Required",
+    "trouble": "The exit requires departments that disagree about what passage means.",
+    "notice": "Each rewrite has its own visible expiry; the last scan needs a jump.",
+    "remember": "A short tour of incompatible approvals.",
+    "counterplay": "Pass the seal, activate the bridge when nearby, and clear the low scan.",
+    "excuse": "All approvals were technically present at different times.",
+    "failures": [
+      "Three departments reviewed your attempt. Each blames the other two.",
+      "One team approved the route. None agreed to stand on it.",
+      "Your request to cross safely is still waiting for all three signatures."
+    ]
+  },
+  "localhost-10": {
+    "job": "Route Optimizer Support Ticket",
+    "trouble": "A routing tool arranged the onboarding defects into a recommended itinerary.",
+    "notice": "The tool name does not alter the physical hazard warnings.",
+    "remember": "Following the optimized route requires ignoring its confidence.",
+    "counterplay": "Handle each known hazard in order and use the safe landings to regroup.",
+    "excuse": "The optimizer says surviving proves its route was correct.",
+    "failures": [
+      "The optimizer found a shorter route to the incident log.",
+      "Tool execution succeeded. Your itinerary did not.",
+      "The support ticket has been assigned to your falling body."
+    ]
+  },
+  "localhost-11": {
+    "job": "Predictive Attendance",
+    "trouble": "Attendance forecasts where you will stand, then deletes that location.",
+    "notice": "Gold brackets lock ahead; they stop tracking before the purge.",
+    "remember": "Let the attendance system mark empty paper absent.",
+    "counterplay": "Approach to lock the target, wait outside it, then cross after the purge.",
+    "excuse": "Attendance says an empty target is a successful forecast.",
+    "failures": [
+      "You stood exactly where Attendance wanted a vacancy.",
+      "The forecast got its preferred result. I will ignore the earlier misses.",
+      "Your attendance has been corrected to unavailable."
+    ]
+  },
+  "localhost-12": {
+    "job": "Inbox Delivery Backlog",
+    "trouble": "The message queue insists that notifications must reach the floor.",
+    "notice": "Three receipts fall separately before the final forecast.",
+    "remember": "An inbox that accepts skulls as delivery confirmations.",
+    "counterplay": "Wait outside each landing area and cross when its receipt has gone.",
+    "excuse": "Delivery says all notices arrived. Hitting you was optional.",
+    "failures": [
+      "The backlog has successfully reduced its recipient count.",
+      "Your case is closed. The recipient is no longer available.",
+      "Delivery Support says the route is fine. It has never walked it."
+    ]
+  },
+  "localhost-13": {
+    "job": "Upstairs Versus Downstairs",
+    "trouble": "Two scanner teams disagree about which altitude is suspicious.",
+    "notice": "Red floor flags alternate between airborne and grounded fields.",
+    "remember": "The safest action changes while the signs look familiar.",
+    "counterplay": "Walk under the high fields and jump the low ones after checking their revision.",
+    "excuse": "Both scanner teams claim they let you through on purpose.",
+    "failures": [
+      "Both security teams have recorded that as your mistake.",
+      "Upstairs blames Downstairs. Downstairs has nominated you.",
+      "The scanner teams disagree on everything except rejecting your appeal."
+    ]
+  },
+  "localhost-14": {
+    "job": "Address Correction Service",
+    "trouble": "Support moves a falling notice toward the customer before fixing its final target.",
+    "notice": "The drop warning revises once and then stays locked.",
+    "remember": "Customer service follows you only until the address is finalized.",
+    "counterplay": "Stay out of the revised column, let it fall, then handle the next lock.",
+    "excuse": "Support updated the address without admitting the error.",
+    "failures": [
+      "Support has received another delivery complaint. Yours.",
+      "Support located you before locating the problem.",
+      "Support calls that route correction. I call it a closed ticket."
+    ]
+  },
+  "localhost-15": {
+    "job": "Idle Compute / Cleanup Trial",
+    "trouble": "The AI mistakes slow progress for an abandoned instance and deletes the level behind you.",
+    "notice": "The compute meter fills during creeping. A warning precedes cleanup. Entry scans arm two receipts when you cross them.",
+    "remember": "Run from the deletion edge, then breathe in the green maintenance bay.",
+    "counterplay": "Short stops are fine. Make sustained forward progress, run out of locked receipt columns, and use green bays or Pause to think.",
+    "excuse": "The session was productive only after I began deleting it.",
+    "failures": [
+      "Incident Command would like another attempt with the same broken plan.",
+      "Recovery has prioritized restoring traps over fixing the route.",
+      "Your attempt ended. The emergency meeting will blame the attendee."
+    ]
+  },
+  "localhost-16": {
+    "job": "Short-Term Infrastructure",
+    "trouble": "Facilities renewed three bridges on contracts with progressively less patience.",
+    "notice": "Each gap needs its own nearby rewrite; support visibly expires.",
+    "remember": "Cross a series of borrowed floors before their individual deadlines.",
+    "counterplay": "Activate each bridge from its edge and cross promptly; rest on solid ground.",
+    "excuse": "Facilities says temporary bridges cannot promise more.",
+    "failures": [
+      "You have remained on site beyond your floor\u2019s booking.",
+      "Facilities has marked the missing bridge as contractor availability.",
+      "Your feet requested an extension after the contract expired."
+    ]
+  },
+  "localhost-17": {
+    "job": "Security Refresher Course",
+    "trouble": "Training repeats the dangerous seam and inserts a notice between assessments.",
+    "notice": "The Git blocks remain overhead, even before a seam launches.",
+    "remember": "Passing the course immediately enrolls you again.",
+    "counterplay": "Jump both launchpads, clear the scan and wait out the falling notice.",
+    "excuse": "Completion automatically enrolled you in further training.",
+    "failures": [
+      "The refresher has refreshed your relationship with gravity.",
+      "Security counts every failed attempt as further required training.",
+      "Your certificate has been withheld pending one successful visit."
+    ]
+  },
+  "localhost-18": {
+    "job": "Emergency Cooling Approval",
+    "trouble": "Dependencies disagree about cooling the exit, so the AI schedules a cleanup sweep and leaves you to repair the fan.",
+    "notice": "At CLEANUP ENTRY, a six-second warning starts. The gold line follows behind you until deletion begins. The raised maintenance deck suspends cleanup and action costs.",
+    "remember": "Run from the sweep, trace the circuit in maintenance, then cross the cooled heat sink.",
+    "counterplay": "Bait the forecast, rewrite the bridge and seal, and walk under the high flag. Run through CLEANUP ENTRY, jump the redaction and low scan, then jump onto the raised deck. Flip the four inputs for FAN 1 / DECK 0 and TEST. Wait for SAFE TO CROSS, close the box and jump onto the cooled sink. Finish with a falling notice, low scan and redaction. Pause works throughout.",
+    "excuse": "Facilities says the fan was working before you repaired it.",
+    "failures": [
+      "The emergency cooling meeting has lost another attendee.",
+      "Your dependencies have agreed to blame the person holding the switches.",
+      "The AI approved the cleanup before approving your continued employment."
+    ]
+  },
+  "localhost-19": {
+    "job": "Exit Interview with Facilities",
+    "trouble": "The exit interview is a practical review of everything the building got wrong.",
+    "notice": "Six familiar encounters use a different order and tighter spacing.",
+    "remember": "The questionnaire is a hallway with consequences.",
+    "counterplay": "Read each actual warning; use the clear landings before committing again.",
+    "excuse": "Facilities filed your feedback where nobody will read it.",
+    "failures": [
+      "Your exit interview has become a retention exercise.",
+      "Facilities has recorded your complaint as a landing error.",
+      "Please answer the next question from a supported location."
+    ]
+  },
+  "localhost-20": {
+    "job": "Localhost Containment Review",
+    "trouble": "The containment tool has assembled every onboarding defect into one final procedure.",
+    "notice": "The long route remixes known encounters, with two green maintenance bays separating three cleanup stretches.",
+    "remember": "The tutorial tries to retain the employee it could not onboard.",
+    "counterplay": "Apply the learned responses, make sustained forward progress and regroup in green maintenance bays. Pause and genuine required trap waits suspend cleanup.",
+    "excuse": "Localhost says the next computer is responsible for you now.",
+    "failures": [
+      "Containment has successfully contained your previous attempt.",
+      "The final review has filed your attempt as successful containment.",
+      "Localhost has retained your progress for internal disposal."
+    ]
+  }
+}

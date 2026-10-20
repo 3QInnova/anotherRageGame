@@ -17,8 +17,7 @@ for(const index of [9,10,11,12,13,14]){
  results.push({room:index+1,allReturnPointsRecovered:recovery});
 }
 // Preserve room seven's authored encounter data exactly.
-const before=readFileSync(new URL('../outputs/six-long-levels/before-expansion.html',import.meta.url),'utf8');
-const oldLiteral=before.slice(before.indexOf('const LONG_ENCOUNTERS='),before.indexOf('// Selected caution tiles'));assert(html.includes(oldLiteral),'Room seven level data and sequence stay unchanged');
+const oldLiteral=readFileSync(new URL('./fixtures/six-long-levels-encounters.txt',import.meta.url),'utf8');assert(html.includes(oldLiteral),'Room seven level data and sequence stay unchanged');
 const forecast=load(42,8),h=forecast.check.encounters.find(h=>h.kind==='forecast');forecast.check.fixture(h.trigger-12);forecast.key('KeyD');forecast.check.step();forecast.key('KeyD',false);const target=forecast.state().trap[h.id].x;assert(target>870,'Long-room targets use world coordinates');forecast.key('KeyA');for(let n=0;n<10;n++)forecast.check.step();forecast.key('KeyA',false);assert.equal(forecast.state().trap[h.id].x,target);assert.equal(forecast.state().state,'play');
 const passed=load(42,8);passed.check.fixture(h.trigger+280);passed.check.step();assert.equal(passed.state().trap[h.id].phase,'done','Compaction cannot respawn a passed forecast ahead');
 assert.equal(forecast.check.allLevels.length,15);assert.equal(forecast.check.pools.length,20);assert.equal(new Set(forecast.check.pools).size,20);

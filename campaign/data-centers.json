@@ -1,0 +1,1925 @@
+{
+  "schemaVersion": 1,
+  "centers": [
+    {
+      "id": "localhost",
+      "number": 1,
+      "name": "Localhost",
+      "accent": "#426d65",
+      "stamp": "BOOT / TRUST OPTIONAL",
+      "description": "The questionable tutorial. Move, jump, rewrite, and learn to disagree.",
+      "transfer": "Your complaint has been escalated to a larger computer.",
+      "status": "playable",
+      "servers": [
+        {
+          "id": "localhost-01",
+          "number": 1,
+          "title": "Hello Unrecognized World",
+          "role": "teach",
+          "chapter": 1,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-02",
+          "number": 2,
+          "title": "Floor Not Included",
+          "role": "develop",
+          "chapter": 1,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-03",
+          "number": 3,
+          "title": "False Positive Welcome",
+          "role": "twist",
+          "chapter": 1,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-04",
+          "number": 4,
+          "title": "Onboarding Exceptions",
+          "role": "remix",
+          "chapter": 1,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-05",
+          "number": 5,
+          "title": "Incident: Tutorial Denied",
+          "role": "incident",
+          "chapter": 1,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-06",
+          "number": 6,
+          "title": "Bridge by Assertion",
+          "role": "teach",
+          "chapter": 2,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-07",
+          "number": 7,
+          "title": "Access Is a Suggestion",
+          "role": "develop",
+          "chapter": 2,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-08",
+          "number": 8,
+          "title": "Pre-Commit Orientation",
+          "role": "twist",
+          "chapter": 2,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-09",
+          "number": 9,
+          "title": "Terms of Passage",
+          "role": "remix",
+          "chapter": 2,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-10",
+          "number": 10,
+          "title": "Incident: Permission to Leave",
+          "role": "incident",
+          "chapter": 2,
+          "status": "playable",
+          "mcp": true
+        },
+        {
+          "id": "localhost-11",
+          "number": 11,
+          "title": "A Confident Forecast",
+          "role": "teach",
+          "chapter": 3,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-12",
+          "number": 12,
+          "title": "Notification Delivery",
+          "role": "develop",
+          "chapter": 3,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-13",
+          "number": 13,
+          "title": "Airborne Assumptions",
+          "role": "twist",
+          "chapter": 3,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-14",
+          "number": 14,
+          "title": "Optimization Side Effects",
+          "role": "remix",
+          "chapter": 3,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-15",
+          "number": 15,
+          "title": "Incident: Prediction Outage",
+          "role": "incident",
+          "chapter": 3,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-16",
+          "number": 16,
+          "title": "Readable Interfaces",
+          "role": "teach",
+          "chapter": 4,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-17",
+          "number": 17,
+          "title": "Security Training Failed",
+          "role": "develop",
+          "chapter": 4,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-18",
+          "number": 18,
+          "title": "Dependencies Disagree",
+          "role": "twist",
+          "chapter": 4,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-19",
+          "number": 19,
+          "title": "Exit Interview",
+          "role": "remix",
+          "chapter": 4,
+          "status": "playable",
+          "mcp": false
+        },
+        {
+          "id": "localhost-20",
+          "number": 20,
+          "title": "Incident: Localhost Escaped",
+          "role": "incident",
+          "chapter": 4,
+          "status": "playable",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "cache",
+      "number": 2,
+      "name": "Cache Management",
+      "accent": "#77714b",
+      "stamp": "CACHE / EVIDENCE EXPIRED",
+      "description": "Stale signs, unreliable scenery, remembered routes and misleading echoes.",
+      "transfer": "We saved the last wrong answer. It loads faster now.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "cache-01",
+          "number": 1,
+          "title": "Warm Cache Cold Welcome",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-02",
+          "number": 2,
+          "title": "Previously Incorrect",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-03",
+          "number": 3,
+          "title": "Stale While Revalidating",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-04",
+          "number": 4,
+          "title": "The Familiar Wrong Turn",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-05",
+          "number": 5,
+          "title": "Incident: Cache Miss",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-06",
+          "number": 6,
+          "title": "Yesterday\u2019s Safe Floor",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-07",
+          "number": 7,
+          "title": "Ghost of a Bad Answer",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-08",
+          "number": 8,
+          "title": "Expiry Not Disclosed",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-09",
+          "number": 9,
+          "title": "Recalled Incorrectly",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-10",
+          "number": 10,
+          "title": "Incident: Landmark Drift",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "cache-11",
+          "number": 11,
+          "title": "Prefetching Your Failure",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-12",
+          "number": 12,
+          "title": "Invalidation Request",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-13",
+          "number": 13,
+          "title": "Cached Exit Coordinates",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-14",
+          "number": 14,
+          "title": "Please Refresh Reality",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-15",
+          "number": 15,
+          "title": "Incident: Replay Disagreement",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-16",
+          "number": 16,
+          "title": "History Rewritten Locally",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-17",
+          "number": 17,
+          "title": "A Very Persistent Bug",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-18",
+          "number": 18,
+          "title": "Eviction Notice",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-19",
+          "number": 19,
+          "title": "Last Known Good Lie",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "cache-20",
+          "number": 20,
+          "title": "Incident: Cache Cleared",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "prediction",
+      "number": 3,
+      "name": "Prediction Services",
+      "accent": "#6d6385",
+      "stamp": "FORECAST / CONFIDENCE ONLY",
+      "description": "Fixed forecast locks, autocomplete disagreements and deliberate baiting.",
+      "transfer": "Our predictions are accurate after we edit the result.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "prediction-01",
+          "number": 1,
+          "title": "Expected User Error",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-02",
+          "number": 2,
+          "title": "A Short Lead Time",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-03",
+          "number": 3,
+          "title": "Stop Being Predictable",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-04",
+          "number": 4,
+          "title": "The Other Left",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-05",
+          "number": 5,
+          "title": "Incident: Forecast Miss",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-06",
+          "number": 6,
+          "title": "Autocomplete Department",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-07",
+          "number": 7,
+          "title": "Rejected Suggestion",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-08",
+          "number": 8,
+          "title": "Probability of Floor",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-09",
+          "number": 9,
+          "title": "A Convenient Outlier",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-10",
+          "number": 10,
+          "title": "Incident: Confidence Collapse",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "prediction-11",
+          "number": 11,
+          "title": "Target Acquisition",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-12",
+          "number": 12,
+          "title": "Moving the Wrong Way",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-13",
+          "number": 13,
+          "title": "Counterexample Corridor",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-14",
+          "number": 14,
+          "title": "The Model Doubles Down",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-15",
+          "number": 15,
+          "title": "Incident: Prediction Storm",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-16",
+          "number": 16,
+          "title": "Overfitted Escape Route",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-17",
+          "number": 17,
+          "title": "Unscheduled Survival",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-18",
+          "number": 18,
+          "title": "A Statistically Rude Jump",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-19",
+          "number": 19,
+          "title": "Last Forecast Standing",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "prediction-20",
+          "number": 20,
+          "title": "Incident: Future Unavailable",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "permissions",
+      "number": 4,
+      "name": "Permission Control",
+      "accent": "#8c704e",
+      "stamp": "ACCESS / DENIED BY DEFAULT",
+      "description": "Temporary rewrite access, sealed passages and visible expiration windows.",
+      "transfer": "Read access to an exit does not include walking through it.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "permissions-01",
+          "number": 1,
+          "title": "Read Only Reality",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-02",
+          "number": 2,
+          "title": "Request Pending",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-03",
+          "number": 3,
+          "title": "Least Possible Privilege",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-04",
+          "number": 4,
+          "title": "A Temporary Exception",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-05",
+          "number": 5,
+          "title": "Incident: Access Review",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-06",
+          "number": 6,
+          "title": "Your Session Has Expired",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-07",
+          "number": 7,
+          "title": "Permission to Fall",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-08",
+          "number": 8,
+          "title": "An Unhelpful Administrator",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-09",
+          "number": 9,
+          "title": "Role Not Recognized",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-10",
+          "number": 10,
+          "title": "Incident: Policy Collision",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "permissions-11",
+          "number": 11,
+          "title": "Unauthorized Shortcut",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-12",
+          "number": 12,
+          "title": "Inherited Restrictions",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-13",
+          "number": 13,
+          "title": "Permit to Disagree",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-14",
+          "number": 14,
+          "title": "Scope of the Problem",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-15",
+          "number": 15,
+          "title": "Incident: Privilege Escalation",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-16",
+          "number": 16,
+          "title": "Exception Application",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-17",
+          "number": 17,
+          "title": "Approved for Rejection",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-18",
+          "number": 18,
+          "title": "The Locked Open Door",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-19",
+          "number": 19,
+          "title": "Revocation Scheduled",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "permissions-20",
+          "number": 20,
+          "title": "Incident: Root Cause",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "garbage",
+      "number": 5,
+      "name": "Garbage Collection",
+      "accent": "#7d7950",
+      "stamp": "GC / USEFUL CONTEXT REMOVED",
+      "description": "Authored dissolving-floor sequences and short visible escape windows.",
+      "transfer": "Unused infrastructure includes whatever you are standing on.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "garbage-01",
+          "number": 1,
+          "title": "Marked for Collection",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-02",
+          "number": 2,
+          "title": "Reachable Objects Only",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-03",
+          "number": 3,
+          "title": "A Small Memory Leak",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-04",
+          "number": 4,
+          "title": "Reference Lost",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-05",
+          "number": 5,
+          "title": "Incident: First Sweep",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-06",
+          "number": 6,
+          "title": "Disposable Infrastructure",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-07",
+          "number": 7,
+          "title": "Do Not Stand on Garbage",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-08",
+          "number": 8,
+          "title": "Unreachable Human",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-09",
+          "number": 9,
+          "title": "Weak References",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-10",
+          "number": 10,
+          "title": "Incident: Floor Reclaimed",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "garbage-11",
+          "number": 11,
+          "title": "A Moving Collection Window",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-12",
+          "number": 12,
+          "title": "Finalizer Pending",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-13",
+          "number": 13,
+          "title": "Retained by Accident",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-14",
+          "number": 14,
+          "title": "Memory Pressure",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-15",
+          "number": 15,
+          "title": "Incident: Full Collection",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-16",
+          "number": 16,
+          "title": "Compacting the Heap",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-17",
+          "number": 17,
+          "title": "A Freed Escape Route",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-18",
+          "number": 18,
+          "title": "Still in Use Actually",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-19",
+          "number": 19,
+          "title": "The Last Reference",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "garbage-20",
+          "number": 20,
+          "title": "Incident: Human Retained",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "merge",
+      "number": 6,
+      "name": "Merge Conflict",
+      "accent": "#87656f",
+      "stamp": "MERGE / BOTH SIDES WRONG",
+      "description": "Authored branching routes, crossing paths and contradictory processes.",
+      "transfer": "Both departments blamed you. Their findings merged cleanly.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "merge-01",
+          "number": 1,
+          "title": "Choose Your Disagreement",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-02",
+          "number": 2,
+          "title": "Ours Versus Theirs",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-03",
+          "number": 3,
+          "title": "A Divergent Opinion",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-04",
+          "number": 4,
+          "title": "The Other Working Route",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-05",
+          "number": 5,
+          "title": "Incident: First Conflict",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-06",
+          "number": 6,
+          "title": "Detached from Reality",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-07",
+          "number": 7,
+          "title": "Conflict Markers",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-08",
+          "number": 8,
+          "title": "Rebase Your Expectations",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-09",
+          "number": 9,
+          "title": "A Suspicious Fast Forward",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-10",
+          "number": 10,
+          "title": "Incident: Branch Collision",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "merge-11",
+          "number": 11,
+          "title": "Cherry Picked Evidence",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-12",
+          "number": 12,
+          "title": "Ancestral Mistakes",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-13",
+          "number": 13,
+          "title": "Both Versions Wrong",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-14",
+          "number": 14,
+          "title": "Resolve Locally",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-15",
+          "number": 15,
+          "title": "Incident: Three Way Merge",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-16",
+          "number": 16,
+          "title": "Squashed Confidence",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-17",
+          "number": 17,
+          "title": "A Shared Bad Ancestor",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-18",
+          "number": 18,
+          "title": "Uncommitted Escape",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-19",
+          "number": 19,
+          "title": "Main Has Concerns",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "merge-20",
+          "number": 20,
+          "title": "Incident: Human Merged",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "number": 7,
+      "name": "Context Storage",
+      "accent": "#69788d",
+      "stamp": "CONTEXT / DETAILS OMITTED",
+      "description": "Compaction, safe authored rewinds and corrupted route summaries.",
+      "transfer": "We remember everything except the part where you were winning.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "context-01",
+          "number": 1,
+          "title": "Within the Window",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-02",
+          "number": 2,
+          "title": "A Brief Summary",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-03",
+          "number": 3,
+          "title": "Earlier Progress Omitted",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-04",
+          "number": 4,
+          "title": "Where Were We",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-05",
+          "number": 5,
+          "title": "Incident: First Compaction",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-06",
+          "number": 6,
+          "title": "Lossy Recollection",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-07",
+          "number": 7,
+          "title": "A Convenient Starting Point",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-08",
+          "number": 8,
+          "title": "Your Route in Fewer Words",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-09",
+          "number": 9,
+          "title": "Traps Restored Successfully",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-10",
+          "number": 10,
+          "title": "Incident: Context Overflow",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "context-11",
+          "number": 11,
+          "title": "The Missing Middle",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-12",
+          "number": 12,
+          "title": "A Shorter Conversation",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-13",
+          "number": 13,
+          "title": "Reconstructed Incorrectly",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-14",
+          "number": 14,
+          "title": "Relevant Details Deleted",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-15",
+          "number": 15,
+          "title": "Incident: Summary Drift",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-16",
+          "number": 16,
+          "title": "Remembered as User Error",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-17",
+          "number": 17,
+          "title": "Selective Retention",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-18",
+          "number": 18,
+          "title": "The Last Useful Token",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-19",
+          "number": 19,
+          "title": "A Very Long Goodbye",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "context-20",
+          "number": 20,
+          "title": "Incident: Context Escaped",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "transparency",
+      "number": 8,
+      "name": "Transparency Division",
+      "accent": "#35878c",
+      "stamp": "GLASS / PASSAGE NOT INCLUDED",
+      "description": "Four-sided glass geometry and hidden support revealed by the tracking eye.",
+      "transfer": "You can see through our walls. Passing through them is extra.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "transparency-01",
+          "number": 1,
+          "title": "Clear Does Not Mean Open",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-02",
+          "number": 2,
+          "title": "Underside Discovery",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-03",
+          "number": 3,
+          "title": "The Ceiling Is a Floor",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-04",
+          "number": 4,
+          "title": "A Transparent Objection",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-05",
+          "number": 5,
+          "title": "Incident: First Bonk",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-06",
+          "number": 6,
+          "title": "Line of Sight",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-07",
+          "number": 7,
+          "title": "Support Not Documented",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-08",
+          "number": 8,
+          "title": "Broken Beam Evidence",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-09",
+          "number": 9,
+          "title": "The Missing Middle Step",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-10",
+          "number": 10,
+          "title": "Incident: Data Lake",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "transparency-11",
+          "number": 11,
+          "title": "A Glass Explanation",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-12",
+          "number": 12,
+          "title": "Optical Dependencies",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-13",
+          "number": 13,
+          "title": "Trust the Interruption",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-14",
+          "number": 14,
+          "title": "Visible Consequences",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-15",
+          "number": 15,
+          "title": "Incident: Checksum Crossing",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-16",
+          "number": 16,
+          "title": "Read Between the Beams",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-17",
+          "number": 17,
+          "title": "A Discreet Landing",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-18",
+          "number": 18,
+          "title": "The Other Side of Clear",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-19",
+          "number": 19,
+          "title": "Transparency Report",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "transparency-20",
+          "number": 20,
+          "title": "Incident: Human Visible",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "billing",
+      "number": 9,
+      "name": "Billing Infrastructure",
+      "accent": "#a17c40",
+      "stamp": "BILLING / IMAGINARY CREDITS",
+      "description": "Token-themed traversal and invoice architecture; at most one fake paywall per server.",
+      "transfer": "Your free plan includes the view. Floor support costs extra.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "billing-01",
+          "number": 1,
+          "title": "Free Tier Floor",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-02",
+          "number": 2,
+          "title": "Messages Remaining Zero",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-03",
+          "number": 3,
+          "title": "A Small Processing Fee",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-04",
+          "number": 4,
+          "title": "Renewal Pending",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-05",
+          "number": 5,
+          "title": "Incident: Trial Expired",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-06",
+          "number": 6,
+          "title": "Metered Footsteps",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-07",
+          "number": 7,
+          "title": "Tokenized Support",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-08",
+          "number": 8,
+          "title": "Your Invoice Has Mass",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-09",
+          "number": 9,
+          "title": "Credits Not Found",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-10",
+          "number": 10,
+          "title": "Incident: Billing Cycle",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "billing-11",
+          "number": 11,
+          "title": "The Subscription Gap",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-12",
+          "number": 12,
+          "title": "A Generous Limitation",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-13",
+          "number": 13,
+          "title": "Overage Corridor",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-14",
+          "number": 14,
+          "title": "Cost of Being Right",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-15",
+          "number": 15,
+          "title": "Incident: Payment Imagined",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-16",
+          "number": 16,
+          "title": "Usage Based Gravity",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-17",
+          "number": 17,
+          "title": "Premium Exit Preview",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-18",
+          "number": 18,
+          "title": "Unlimited Except This",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-19",
+          "number": 19,
+          "title": "Final Notice Again",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "billing-20",
+          "number": 20,
+          "title": "Incident: Account Escaped",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    },
+    {
+      "id": "production",
+      "number": 10,
+      "name": "Production",
+      "accent": "#8f6260",
+      "stamp": "RELEASE / VERIFIED BY VIBES",
+      "description": "Final combinations of learned mechanics and increasingly desperate containment.",
+      "transfer": "All tests passed after the failing tests were removed.",
+      "status": "planned",
+      "servers": [
+        {
+          "id": "production-01",
+          "number": 1,
+          "title": "Works on My Server",
+          "role": "teach",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-02",
+          "number": 2,
+          "title": "Staging Was Optional",
+          "role": "develop",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-03",
+          "number": 3,
+          "title": "A Minor Known Issue",
+          "role": "twist",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-04",
+          "number": 4,
+          "title": "Monitoring Disabled",
+          "role": "remix",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-05",
+          "number": 5,
+          "title": "Incident: First Deployment",
+          "role": "incident",
+          "chapter": 1,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-06",
+          "number": 6,
+          "title": "Rollback Forward",
+          "role": "teach",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-07",
+          "number": 7,
+          "title": "A Passing Smoke Test",
+          "role": "develop",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-08",
+          "number": 8,
+          "title": "Hotfix for the Human",
+          "role": "twist",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-09",
+          "number": 9,
+          "title": "Feature Not a Floor",
+          "role": "remix",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-10",
+          "number": 10,
+          "title": "Incident: Service Degraded",
+          "role": "incident",
+          "chapter": 2,
+          "status": "planned",
+          "mcp": true
+        },
+        {
+          "id": "production-11",
+          "number": 11,
+          "title": "The Blameless Postmortem",
+          "role": "teach",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-12",
+          "number": 12,
+          "title": "A Perfect Error Budget",
+          "role": "develop",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-13",
+          "number": 13,
+          "title": "Canary Still Moving",
+          "role": "twist",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-14",
+          "number": 14,
+          "title": "Release Candidate Human",
+          "role": "remix",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-15",
+          "number": 15,
+          "title": "Incident: Confidence Outage",
+          "role": "incident",
+          "chapter": 3,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-16",
+          "number": 16,
+          "title": "Nothing to See Here",
+          "role": "teach",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-17",
+          "number": 17,
+          "title": "Final Acceptance Denied",
+          "role": "develop",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-18",
+          "number": 18,
+          "title": "A Scheduled Surprise",
+          "role": "twist",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-19",
+          "number": 19,
+          "title": "Please Stop Shipping",
+          "role": "remix",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": false
+        },
+        {
+          "id": "production-20",
+          "number": 20,
+          "title": "Incident: Human in Production",
+          "role": "incident",
+          "chapter": 4,
+          "status": "planned",
+          "mcp": true
+        }
+      ]
+    }
+  ]
+}

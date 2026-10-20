@@ -2,7 +2,7 @@
 
 The current UI branch is `feature/fullscreen-mobile-ui`, created from `feature/capacitor-mobile` at `54b097f`. The original Capacitor branch remains available. Nothing has been pushed or published. The mobile browser and native apps share the full-screen UI. The desktop and mobile versions now also share [shifting paper backgrounds](DYNAMIC_BACKGROUND.md); gameplay geometry is preserved.
 
-The current build also includes [304 authored background jokes](BACKGROUND_VOICE.md), with level-specific and progress-aware notes. Rebuild/reinstall to update an existing phone installation.
+The current build also includes [556 authored background jokes](BACKGROUND_VOICE.md), with level-specific and progress-aware notes. Open the new [Commitment Lab](COMMITMENT_LAB.md) through **Menu → Data Centers → Try Commitment Lab · 4 encounters + Service Desk**. Rebuild/reinstall to update an existing phone installation.
 
 The native app is **Exception Human Local**, bundle/package ID `com.threeqinnova.exceptionhuman.local`. It bundles all fifteen campaign rooms, the glass lab, remarks and procedural audio. There is no web server URL: once installed, it loads its game files locally, so your phone does not need the Mac's Wi-Fi connection.
 
@@ -96,4 +96,24 @@ Edit shared gameplay in `initalDemoDocs/Exception_Human_Misclassification_V3.htm
 
 Capacitor and plugins are pinned in `apps/native/package-lock.json`. iOS uses Swift Package Manager. To avoid the framework download hang observed on this Mac, `prepare-ios.mjs` downloads the official Capacitor 8.5.3 binary frameworks, verifies their upstream SHA-256 checksums, and points the generated app/plugin package manifests at an ignored local cache. Use our `sync`/`ios:build` scripts after `npm ci`; plain `cap sync` can reset the package reference. Initial dependency/framework downloads require internet; the installed game does not. No framework binaries, signing keys or build caches belong in Git.
 
-This is the first installed-app proof. App switching preserves the resident game and pauses it; force-quitting starts a fresh run. Durable campaign saves, haptics, final icons/splash art, release signing, physical Android device validation and store submission remain future work. The approved background, gameplay, snark and PC controls are preserved. The mobile UI now fills the game surface with ghost controls and a paper pause overlay; see [UI validation](outputs/fullscreen-mobile/VALIDATION.md).
+This is the first installed-app proof. App switching preserves the resident game and pauses it; force-quitting starts a fresh run. Durable campaign server-boundary saves now exist. Haptics, final icons/splash art, release signing, physical Android device validation and store submission remain future work. The approved background, gameplay, snark and PC controls are preserved. The mobile UI now fills the game surface with ghost controls and a paper pause overlay; see [UI validation](outputs/fullscreen-mobile/VALIDATION.md).
+
+## Data Center campaign — October 16, 2026
+
+The local app now offers **Data Centers · Campaign** in the pause menu. **Continue campaign** starts or resumes Localhost at a server boundary. Twenty Localhost servers are playable; nine additional centers contain 180 clearly marked planned entries. Use **Practice any playable server** for direct selection without unlocking campaign progress. **Original playtest** retains the original fifteen rooms and glass lab.
+
+Rebuild and Run to update an installed app. Android: `npm --prefix apps/native run android:build`, then `npm --prefix apps/native run android:sim`. iPhone: `npm --prefix apps/native run ios`, then Run the App scheme on your connected iPhone in Xcode with your existing signing configuration. That October 16 validation did not automatically install a physical phone; see the October 19 update below. See [campaign guide](DATA_CENTER_CAMPAIGN.md) and [validation](outputs/data-centers/VALIDATION.md).
+
+## Puzzle Box local test — October 17, 2026
+
+After rebuilding/reinstalling, open **Menu → Data Centers → Puzzle Box · Visible signals & switches**. Jump onto the first maintenance deck to open the fixed circuit. Flip A/B/C, follow the visible bits through ANY/BOTH/ONE ONLY, and aim for FAN 1 / DECK 0. Preview is unpowered. TEST locks inputs and applies power; a live ground output shocks. The harness holds the player while the console is open. After SAFE TO CROSS, choose BACK TO DECK and continue toward two harder boxes. Pause always freezes the test. This practice route does not change campaign progress or bank credits. The old Thermal Support Ticket remains available.
+
+Use `npm --prefix apps/native run ios:build`, `ios:sim` and `ios:test` for the simulator; run the **App** scheme on your connected iPhone to update the physical app. Use `android:build`, `android:sim` and `android:test` for the dedicated emulator. Browser checks and native evidence are recorded under `outputs/puzzle-box/`; physical-phone comfort/readability remain separate acceptance checks. Keep this branch local.
+
+## Physical iPhone and integrated cooling test — October 19, 2026
+
+Both the baseline Puzzle Box build and the completed Localhost 18 integration were built with the existing signing setup, installed and launched on **William’s iPhone**. The final menu-only update also installed successfully, but its automatic launch was denied because the phone had locked; unlock and open the app manually. The second connected phone was left untouched. Installation preserves the app identity and saved data. Device evidence is in `outputs/local-host-puzzle/iphone-initial-install.json` and `iphone-final-install.json`; it proves installation/launch, not human gameplay acceptance.
+
+Open **Menu → Data Centers → Try Localhost 18 · Cooling Incident** in the installed app. This direct practice shortcut leaves campaign clears and banked credits alone. Try the opening rewrites/traps, cross the marked cleanup entry, outrun deletion through two jumping decisions, and jump onto the maintenance deck. The four-switch Puzzle Box is protected and free to operate; TEST a FAN 1 / DECK 0 circuit, wait for SAFE TO CROSS, close the console and jump across the cooled sink. Three final obstacles lead to the exit. Practice Restart repeats this same server. Normal campaign entry still records clears and advances to 19.
+
+Check chase readability, two-thumb comfort, circuit text, sound and the transition back to movement. Browser route completion and native installation do not replace that phone playtest. Keep all work local.

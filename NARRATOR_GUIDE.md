@@ -4,7 +4,7 @@ The snarky narrator is a central part of the user's intended replay appeal. Main
 
 ## Background comments are a permanent staple
 
-The user explicitly singled out “You didn't make it this far before” and “Last time you failed earlier” as central to the game's appeal. The [background voice](BACKGROUND_VOICE.md) now supplies 304 distinct authored lines, including twelve for every current level and the glass lab. **Every future level must add at least twelve unique themed background jokes**, alongside the shared progress-aware and compaction commentary. Keep encountered notes in the mobile AI Log and preserve per-pool rotation across retries and New Run.
+The user explicitly singled out “You didn't make it this far before” and “Last time you failed earlier” as central to the game's appeal. The [background voice](BACKGROUND_VOICE.md) now supplies 544 distinct authored lines, including twelve for every current level and the glass lab. **Every future level must add at least twelve unique themed background jokes**, alongside the shared progress-aware and compaction commentary. Keep encountered notes in the mobile AI Log and preserve per-pool rotation across retries and New Run.
 
 Counts in the earlier sections below describe those historical narrator updates; the background library is separately enumerated and verified in `tests/background-voice.test.mjs`.
 
@@ -31,6 +31,8 @@ This stores only remark cursors, not gameplay progress or personal information. 
 Loss remarks retain the 15-second reading pause and two-press Space/Enter or two-tap Continue skip. The actual failure reason remains separate from the model's self-serving explanation.
 
 ## Editorial rules
+
+Read the [narrator clarity pass](NARRATOR_EDITORIAL_REVIEW.md). Anchor jokes in visible objects or actual events, use everyday wording, and avoid layered abstract metaphors. Shared pools must fit every event that can select them; warnings must not announce a mistake before the player makes it. Keep level counts out of reusable remarks.
 
 - Maintain at least 30 distinct lines per existing hazard family. The regression check enforces that floor; extend the library when adding new hazards.
 - Write complete jokes tied to the event, rather than swapping adjectives into one template.
@@ -78,3 +80,19 @@ The secret-commit bounce mechanic adds a sixth loss family with 32 unique Git re
 ## AI billing interruptions
 
 Thirty-two new billing remarks accompany eight fake AI paywalls. The combined authored library now has 424 remarks; loss remarks remain 192. Offers and confirmations freeze the world and wait for explicit free-plan dismissal. See [fake AI paywalls](FAKE_AI_PAYWALLS.md).
+
+## Data Center campaign
+
+Localhost adds 240 authored background lines across twenty servers, bringing the shared background library to 544 unique lines. New server recipes and voice live in `campaign/`. Keep at least twelve distinct authored jokes per playable server and preserve randomized placement, truthful progress eligibility and reading stability. See [Data Center campaign](DATA_CENTER_CAMPAIGN.md).
+
+### Localhost disaster voice
+
+The workplace-disaster playtest adds sixty server-specific loss remarks and twenty escape excuses in `campaign/localhost-incidents.json`. Two losses in three use the current server’s rotating incident pool; the third retains the existing hazard-specific narrator. Keep the actual failure reason and full reading interval. Escape excuses require a real clear, appear in a quiet 12-second paper receipt and enter mobile AI Log; practice/final completion also displays the relevant excuse. See [Localhost playtest](LOCALHOST_PLAYTEST.md).
+
+## Thermal logic-gate remarks
+
+[Thermal Support Ticket](THERMAL_SUPPORT_TICKET.md) now uses actual Boolean logic ICs. Gate selection is separate from rotation; describe truth tables, enables and real electrical faults. Do not refer to elbows, pipe pieces or automatic selection advances. Keep its thirty distinct burn remarks and thirty distinct electrocution remarks separate. The `cooling-shock` pool is selected only for live ground-bus electrocution; it must not fall back to a generic server excuse. All 116 level lines are unique, including twenty-four background notes. Preserve persistent rotation and the full loss reading interval.
+
+## Puzzle Box remarks
+
+The separate fixed-wire Puzzle Box practice level adds 76 authored remarks: 16 backgrounds, 8 input changes, 4 arrivals, 8 harmless failed tests, 6 successes, 4 resets and 30 shock losses. Copy must distinguish unpowered preview from a deliberate live TEST. Ground preview alone never electrocutes; use the shock pool only for a powered DECK 1. Inputs are switches; gates never rotate. Keep the large persistent loss pools, explicit failure cause and reading interval. “Black Box” remains reserved for a later mechanic. See [Puzzle Box](THERMAL_SUPPORT_TICKET.md).

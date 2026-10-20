@@ -1,14 +1,16 @@
 # The margins are a character
 
+[Puzzle Box](THERMAL_SUPPORT_TICKET.md) adds sixteen signal/switch notes, bringing the current library to 620 unique lines and 40 room pools. Thermal Support Ticket previously added twenty-four cooling/circuit notes. Garbage Collection Day previously added twenty-four and Commitment Lab twelve. Earlier counts below describe the original background-voice delivery.
+
 Background commentary is a permanent EXCEPTION: HUMAN design staple, per the user's feedback. Every future level should be fun to read as well as frustrating to traverse. Keep the approved paper, grid and dimensional landmarks; let the AI leave increasingly personal notes on the document.
 
 ## Implemented library
 
-**304 distinct authored background jokes**, in addition to the existing quiet registration stamps:
+**544 distinct authored background jokes**, in addition to the existing quiet registration stamps:
 
 | Pool | Count | Purpose |
 | --- | ---: | --- |
-| Level-specific | 192 | Twelve lines for each of the fifteen campaign levels and the glass lab. |
+| Level-specific | 432 | Twelve lines for each of the fifteen original levels, the glass lab and twenty Localhost servers. |
 | General | 32 | The paper, margins, thumbs, scenery and the AI's confidence. |
 | Beyond previous best | 16 | Newly reached ground, including “You didn't make it this far before.” |
 | Beyond last failure | 16 | Passing the most recent failed attempt, including “Last time you failed earlier.” |
@@ -20,16 +22,18 @@ Background commentary is a permanent EXCEPTION: HUMAN design staple, per the use
 
 Examples of the room voice:
 
-- Implied Bridge: “Please cross before the metaphor expires.”
+- Implied Bridge: “Please cross before the bridge changes its mind.”
 - Predictive Policing: “Your next position has already disappointed me.”
 - Cached Confidence: “The same answer is faster the second time wrong.”
 - Token Budget Overflow: “Please fall in fewer syllables.”
 - Merge Conflict Resolution: “Both branches blamed you independently.”
 - Transparent Excuses: “The support is invisible. The smugness is well lit.”
 
+The Data Center campaign adds 240 authored lines for its twenty Localhost servers. Original remarks are preserved; see [campaign structure](DATA_CENTER_CAMPAIGN.md).
+
 ## How it appears
 
-Short two-line notes are printed into the paper as world landmarks. The first room note introduces its theme; later notes mix theme, general and relevant retry contexts. Passing a recorded milestone reveals a progress annotation in that area. Notes keep their text while visible; redrawing does not consume a new joke. Nearby theme notes yield to a progress note instead of piling text on top of it.
+Short two-line notes are printed into the paper as world landmarks. The first room note introduces its theme; later notes mix theme, general and relevant retry contexts. Each composition randomizes note positions, heights and spacing. Recorded progress controls whether a remark is eligible, never its paper location: after a varying travel delay, the remark appears at an independently chosen screen position and anchors there for the attempt. Repeated failures at the same obstacle cannot turn remarks into fixed jump markers. Loss, retry, New Run, level changes and compaction all refresh the layout. Notes keep their text while visible; redrawing does not consume a new joke. Nearby theme notes yield to a progress note instead of piling text on top of it.
 
 The lettering is larger and darker than the decorative stamps, placed below the live caption and away from the thumb controls and eye. Physical objects and hazard cues draw over the background. The comments add no buttons, popups, waits or collision changes. On mobile, encountered lines also enter the paused **AI Log** as `Margin / …` so they can be reread.
 
@@ -50,13 +54,14 @@ Storage key: `exception-background-voice-v1`. These are local in-game distances 
 3. Preserve the shared progress/return/compaction voice. Let the AI acknowledge what happened and interpret it with absurd confidence, evasive reasoning and petty disappointment.
 4. Keep lines at most two wrapped lines of 36 characters at the current 12px monospace style. Test real mobile rendering, not just the character count.
 5. Rotate on encounter, keep a note stable while reading it, and preserve cursors on restart. Add contextual categories when a new mechanic creates a new kind of embarrassment.
-6. Keep physical truths readable: collisions, learned marks, warning targets, budgets and completion remain independent of these remarks. A snarky note cannot revoke an earned success.
+6. Never pin failure or progress remarks to death/trap coordinates or a fixed offset from them. Randomize the layout on each attempt and compaction, but keep notes stable while being read.
+7. Keep physical truths readable: collisions, learned marks, warning targets, budgets and completion remain independent of these remarks. A snarky note cannot revoke an earned success.
 
 This requirement is also recorded in [the narrator guide](NARRATOR_GUIDE.md) and [agent guidance](agents.md).
 
 ## Checks and limits
 
-`node tests/background-voice.test.mjs` checks all 304 lines for uniqueness, full rotation cycles, two-line wrapping, complete level coverage, persistence, factual progress contexts, real rewind conditions, stable redraws and denied-storage fallback.
+`node tests/background-voice.test.mjs` checks all 544 lines for uniqueness, full rotation cycles, two-line wrapping, complete level coverage, persistence, factual progress contexts, real rewind conditions, stable redraws, 24 distinct repeated-failure layouts, placement independent of failure coordinates, randomized reveal delays and denied-storage fallback.
 
 `tests/background-voice-browser.test.mjs` renders both requested lines, a room-specific joke and AI Log history in WebKit. Its progress scenes intentionally position the player to inspect the artwork; they are not ordinary-input completion evidence. The separate baseline replay still proves unchanged gameplay through all fifteen rooms.
 

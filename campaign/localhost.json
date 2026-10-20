@@ -1,0 +1,618 @@
+[
+  {
+    "serverId": "localhost-01",
+    "sequence": [
+      "redaction"
+    ],
+    "gaps": [
+      600
+    ],
+    "intro": "Welcome to Localhost. Short stops are covered. Idle too long and I delete the floor behind you. Green maintenance bays and Pause let you think. Jump the opening ahead.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 96,
+        "delay": 0.26
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-02",
+    "sequence": [
+      "redaction",
+      "scan"
+    ],
+    "gaps": [
+      520
+    ],
+    "intro": "Reception has mistaken the visitor for an intrusion.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "1": {
+        "w": 66,
+        "delay": 0.24
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-03",
+    "sequence": [
+      "air-flag",
+      "scan",
+      "redaction"
+    ],
+    "gaps": [
+      610,
+      560
+    ],
+    "intro": "Security installed its first detector above the floor it marked.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-04",
+    "sequence": [
+      "air-flag",
+      "scan",
+      "air-flag",
+      "scan"
+    ],
+    "gaps": [
+      460,
+      570,
+      480
+    ],
+    "intro": "Training alternates between problems above your head and below your feet.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "1": {
+        "w": 64
+      },
+      "3": {
+        "w": 62
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-05",
+    "sequence": [
+      "redaction",
+      "air-flag",
+      "scan",
+      "redaction",
+      "scan",
+      "air-flag",
+      "redaction",
+      "scan"
+    ],
+    "gaps": [
+      550,
+      490,
+      610,
+      520
+    ],
+    "intro": "Every desk has independently activated its emergency procedure.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "idleCompute": {
+      "restAfter": [
+        3
+      ]
+    }
+  },
+  {
+    "serverId": "localhost-06",
+    "sequence": [
+      "bridge"
+    ],
+    "gaps": [
+      600
+    ],
+    "intro": "Facilities filled the missing floor with a temporary assertion.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 276,
+        "duration": 2.6
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-07",
+    "sequence": [
+      "wall",
+      "scan",
+      "redaction"
+    ],
+    "gaps": [
+      620,
+      510
+    ],
+    "intro": "Access Control installed a solid wall where a doorway should be.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "1": {
+        "w": 64
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-08",
+    "sequence": [
+      "bridge",
+      "secret",
+      "redaction"
+    ],
+    "gaps": [
+      600,
+      520
+    ],
+    "intro": "An intern connected a floor seam directly to the Git hook.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 248
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-09",
+    "sequence": [
+      "wall",
+      "bridge",
+      "scan"
+    ],
+    "gaps": [
+      620,
+      540
+    ],
+    "intro": "The exit requires departments that disagree about what passage means.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "1": {
+        "w": 264
+      },
+      "2": {
+        "w": 70
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-10",
+    "sequence": [
+      "redaction",
+      "bridge",
+      "scan",
+      "redaction",
+      "wall",
+      "scan",
+      "bridge",
+      "redaction",
+      "scan",
+      "secret"
+    ],
+    "gaps": [
+      540,
+      620,
+      490,
+      580
+    ],
+    "intro": "A routing tool arranged the onboarding defects into a recommended itinerary.",
+    "compactionAt": null,
+    "mcpTool": "route.optimize",
+    "overrides": {
+      "1": {
+        "w": 248
+      },
+      "6": {
+        "w": 276
+      },
+      "8": {
+        "w": 68
+      }
+    },
+    "idleCompute": {
+      "restAfter": [
+        4
+      ]
+    }
+  },
+  {
+    "serverId": "localhost-11",
+    "sequence": [
+      "forecast"
+    ],
+    "gaps": [
+      600
+    ],
+    "intro": "Attendance forecasts where you will stand, then deletes that location.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 96,
+        "lead": 125,
+        "delay": 0.65
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-12",
+    "sequence": [
+      "fixed-drop",
+      "fixed-drop",
+      "fixed-drop",
+      "forecast"
+    ],
+    "gaps": [
+      500,
+      570,
+      620
+    ],
+    "intro": "The message queue insists that notifications must reach the floor.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "delay": 0.55
+      },
+      "1": {
+        "delay": 0.35
+      },
+      "2": {
+        "delay": 0.7
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-13",
+    "sequence": [
+      "air-flag",
+      "scan",
+      "air-flag",
+      "scan",
+      "air-flag"
+    ],
+    "gaps": [
+      500,
+      560,
+      470,
+      580
+    ],
+    "intro": "Two scanner teams disagree about which altitude is suspicious.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "1": {
+        "w": 64
+      },
+      "3": {
+        "w": 68
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-14",
+    "sequence": [
+      "shifting-drop",
+      "redaction",
+      "shifting-drop",
+      "forecast"
+    ],
+    "gaps": [
+      570,
+      600,
+      540
+    ],
+    "intro": "Support moves a falling notice toward the customer before fixing its final target.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "delay": 0.8
+      },
+      "2": {
+        "delay": 0.55
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-15",
+    "sequence": [
+      "forecast",
+      "redaction",
+      "air-flag",
+      "shifting-drop",
+      "scan",
+      "forecast",
+      "redaction",
+      "fixed-drop",
+      "air-flag",
+      "scan",
+      "forecast",
+      "redaction"
+    ],
+    "gaps": [
+      560,
+      620,
+      530,
+      600
+    ],
+    "intro": "Your instance is running. Keep making progress. Green maintenance bays and Pause suspend compute.",
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 94,
+        "lead": 120
+      },
+      "5": {
+        "w": 98,
+        "lead": 125
+      },
+      "3": {
+        "commit": true,
+        "delay": 0.75
+      },
+      "7": {
+        "commit": true,
+        "delay": 0.75
+      }
+    },
+    "idleCompute": {
+      "restAfter": [
+        4
+      ],
+      "clearance": 250,
+      "approach": 130
+    }
+  },
+  {
+    "serverId": "localhost-16",
+    "sequence": [
+      "bridge",
+      "bridge",
+      "bridge"
+    ],
+    "gaps": [
+      620,
+      580
+    ],
+    "intro": "Facilities renewed three bridges on contracts with progressively less patience.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 276,
+        "duration": 2.3
+      },
+      "1": {
+        "w": 248,
+        "duration": 2.05
+      },
+      "2": {
+        "w": 230,
+        "duration": 1.85
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-17",
+    "sequence": [
+      "secret",
+      "scan",
+      "fixed-drop",
+      "secret"
+    ],
+    "gaps": [
+      510,
+      570,
+      520
+    ],
+    "intro": "Training repeats the dangerous seam and inserts a notice between assessments.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "1": {
+        "w": 68
+      },
+      "2": {
+        "delay": 0.55
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-18",
+    "sequence": [
+      "forecast",
+      "bridge",
+      "wall",
+      "air-flag",
+      "redaction",
+      "scan",
+      "puzzle-box",
+      "fixed-drop",
+      "scan",
+      "redaction"
+    ],
+    "gaps": [
+      520,
+      680,
+      500,
+      760,
+      1140,
+      400,
+      960,
+      480,
+      510
+    ],
+    "intro": "Dependencies Disagree. Survive the approvals, then the cleanup sweep. The raised maintenance deck pauses deletion and action costs. Open its Puzzle Box, power FAN 1 / DECK 0, and cool the blocked crossing before the final escape.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "lead": 125,
+        "w": 96
+      },
+      "1": {
+        "w": 278,
+        "duration": 2.2
+      },
+      "4": {
+        "w": 86,
+        "delay": 0.25
+      },
+      "5": {
+        "w": 64,
+        "delay": 0.24
+      },
+      "7": {
+        "delay": 0.65
+      },
+      "8": {
+        "w": 66,
+        "delay": 0.24
+      },
+      "9": {
+        "w": 90,
+        "delay": 0.26
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    },
+    "puzzleBox": {
+      "board": 1,
+      "warningAt": 2300
+    }
+  },
+  {
+    "serverId": "localhost-19",
+    "sequence": [
+      "redaction",
+      "scan",
+      "air-flag",
+      "shifting-drop",
+      "forecast",
+      "bridge"
+    ],
+    "gaps": [
+      500,
+      550,
+      480,
+      590
+    ],
+    "intro": "The exit interview is a practical review of everything the building got wrong.",
+    "compactionAt": null,
+    "mcpTool": null,
+    "overrides": {
+      "0": {
+        "w": 88
+      },
+      "1": {
+        "w": 68
+      },
+      "5": {
+        "w": 268
+      }
+    },
+    "idleCompute": {
+      "restAfter": []
+    }
+  },
+  {
+    "serverId": "localhost-20",
+    "sequence": [
+      "redaction",
+      "scan",
+      "bridge",
+      "air-flag",
+      "fixed-drop",
+      "forecast",
+      "secret",
+      "redaction",
+      "wall",
+      "shifting-drop",
+      "scan",
+      "forecast",
+      "bridge",
+      "redaction"
+    ],
+    "gaps": [
+      580,
+      640,
+      520,
+      600
+    ],
+    "intro": "The containment tool has assembled every onboarding defect into one final procedure.",
+    "compactionAt": null,
+    "mcpTool": "human.contain",
+    "overrides": {
+      "2": {
+        "w": 268
+      },
+      "5": {
+        "lead": 125,
+        "w": 96
+      },
+      "12": {
+        "w": 280,
+        "duration": 2.1
+      }
+    },
+    "idleCompute": {
+      "restAfter": [
+        4,
+        9
+      ]
+    }
+  }
+]

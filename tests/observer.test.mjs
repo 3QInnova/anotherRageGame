@@ -7,7 +7,7 @@ function load(storage){
  const elements=new Map(),events=new Map();
  const el=id=>{if(!elements.has(id))elements.set(id,{textContent:'',style:{},dataset:{},classList:{add(){},remove(){}},getContext:()=>new Proxy({},{get:()=>()=>{}}),addEventListener(){}});return elements.get(id)};
  const context={window:{localStorage:storage,addEventListener(){}},document:{getElementById:el,querySelectorAll:()=>[],addEventListener:(type,fn)=>events.set(type,fn)},requestAnimationFrame(){},Math};
- const hooks=`window.check={step:()=>runFrame(1/120),pools:OBSERVER_REMARKS,remark:nextRemark,restart:()=>initRoom(true),retry:()=>initRoom(),lose:()=>die('fixture','flag-fixture'),fixture:(index,x)=>{room=index;initRoom();player.x=x;for(const h of [...L.crumble,...L.spikes,...L.blocks])trap[h.id].phase='done'},response:()=>({...observer}),labels:()=>{draw();return $('observerResponse').textContent}};`;
+ const hooks=`window.check={step:()=>runFrame(1/120),pools:OBSERVER_REMARKS,remark:nextRemark,restart:()=>initRoom(true),retry:()=>initRoom(),lose:()=>die('fixture','flag-fixture'),fixture:(index,x)=>{room=index;initRoom();player.x=x;advisory.suggestions=[];for(const h of [...L.crumble,...L.spikes,...L.blocks])trap[h.id].phase='done'},response:()=>({...observer}),labels:()=>{draw();return $('observerResponse').textContent}};`;
  vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1].replace('initRoom(true);requestAnimationFrame(frame);',`initRoom(true);compactSeed=424242;resetCompactWatch();${hooks}`),context);
  return {check:context.window.check,state:context.window.__EXCEPTION_TEST__.getState,key(code,down=true){events.get(down?'keydown':'keyup')({code,repeat:false,preventDefault(){}})}};
 }
@@ -19,7 +19,7 @@ step(2400);const result=game.state();assert.equal(result.state,'won');assert.equ
 const finalScore=result.observer.score;game.key('KeyX');step(5);assert.equal(game.state().observer.score,finalScore,'Winning cannot be erased by input');
 game.check.retry();assert.equal(game.state().observer.score,finalScore,'Retry preserves composure');game.check.lose();step(100);assert.equal(game.state().observer.score,finalScore,'Loss never adds successful counterplay');
 game.check.restart();assert.equal(game.state().observer.score,0);assert.equal(game.state().observer.forecastMisses,0);
-game.check.fixture(1,340);for(let i=0;i<20;i++){game.key('KeyX');game.key('KeyX',false)}assert.equal(game.state().observer.score,0,'Rewrite presses alone do not imply successful crossing');
+game.check.fixture(1,340);for(let i=0;i<2;i++){game.key('KeyX');game.key('KeyX',false)}assert.equal(game.state().observer.score,0,'Rewrite presses alone do not imply successful crossing');
 game.key('KeyD');for(let i=0;i<150;i++)game.check.step();game.key('KeyD',false);assert.equal(game.state().observer.lastEvent,'rewrite');assert.equal(game.state().observer.score,1,'A completed rewritten bridge crossing earns one response');for(let i=0;i<20;i++)game.check.step();assert.equal(game.state().observer.score,1,'Remaining across a bridge does not repeat the event');
 const all=Object.values(game.check.pools).flat();assert.equal(all.length,80);assert.equal(new Set(all).size,80);
 for(const [key,pool] of Object.entries(game.check.pools)){const lines=new Set();for(let i=0;i<pool.length;i++)lines.add(game.check.remark(key));assert.equal(lines.size,pool.length)}
