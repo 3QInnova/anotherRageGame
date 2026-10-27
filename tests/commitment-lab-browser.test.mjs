@@ -1,3 +1,4 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
@@ -9,7 +10,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
  const browser=await engine.launch();try{
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:900},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/commitment.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
-  const start=async()=>{await page.goto('http://localhost/commitment.html');await page.locator('#openDataCenters').click();await page.locator('#campaignCommitmentTrial').click();await page.evaluate(()=>window.labReview.step(0));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().practiceMode),true)};
+  const start=async()=>{await page.goto('http://localhost/commitment.html');await openModeMenu(page,'#openDataCenters');await page.locator('#campaignTab-practice').click();await page.locator('#campaignCommitmentTrial').click();await page.evaluate(()=>window.labReview.step(0));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().practiceMode),true)};
   const step=async n=>page.evaluate(n=>window.labReview.step(n),n);
   await start();await page.locator('#commitmentPanel').waitFor({state:'visible'});
   await page.evaluate(()=>{window.labFrame=0;window.labEvent=0;window.labHeld=new Set()});
@@ -34,7 +35,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
    },{route,stop,mobile});
    await page.screenshot({path:new URL(name+'-frame-'+stop+'.png',out).pathname,fullPage:true});
    if(stop===700){
-    if(mobile)await page.locator('#mobilePause').tap();else await page.locator('#openDataCenters').click();
+    if(mobile)await page.locator('#mobilePause').tap();else await openModeMenu(page,'#openDataCenters');
     const before=await page.evaluate(()=>window.__COMMITMENT_TEST__.state());await step(1800);assert.deepEqual(await page.evaluate(()=>window.__COMMITMENT_TEST__.state()),before);
     if(mobile)await page.locator('#mobileResume').tap();else await page.locator('#campaignClose').click();
     // Pause releases held input, as on a phone; restore the route's current intention.

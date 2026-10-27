@@ -1,5 +1,9 @@
 # The margins are a character
 
+The eight [demo episodes](FEEDBACK_LABS.md#local-demo-playlist) add another 96 themed lines: **836 unique background lines across 57 room pools**. Their separate 32-line demo loss pool is additional to this background count.
+
+Before the demo playlist, the nine [Feedback Labs](FEEDBACK_LABS.md) added 120 lines, including 24 for Unreliable Recall, bringing the shared library to **740 unique lines across 49 room pools**. Historical counts below describe earlier deliveries.
+
 [Puzzle Box](THERMAL_SUPPORT_TICKET.md) adds sixteen signal/switch notes, bringing the current library to 620 unique lines and 40 room pools. Thermal Support Ticket previously added twenty-four cooling/circuit notes. Garbage Collection Day previously added twenty-four and Commitment Lab twelve. Earlier counts below describe the original background-voice delivery.
 
 Background commentary is a permanent EXCEPTION: HUMAN design staple, per the user's feedback. Every future level should be fun to read as well as frustrating to traverse. Keep the approved paper, grid and dimensional landmarks; let the AI leave increasingly personal notes on the document.
@@ -66,3 +70,7 @@ This requirement is also recorded in [the narrator guide](NARRATOR_GUIDE.md) and
 `tests/background-voice-browser.test.mjs` renders both requested lines, a room-specific joke and AI Log history in WebKit. Its progress scenes intentionally position the player to inspect the artwork; they are not ordinary-input completion evidence. The separate baseline replay still proves unchanged gameplay through all fifteen rooms.
 
 See [validation](outputs/background-voice/VALIDATION.md) for the current native builds and regressions. Human judgments of joke quality, reading comfort and replay appeal remain playtest feedback.
+
+The October 23 long Localhost rebuild registers 24 lines per active server (480 total) from `campaign/long-localhost-voice.json`, including 240 added lines and revised count-specific claims. The active shared library is now 1,112 unique lines across 60 room pools. Original short comparison pools stay in `localhost-voice.json`; selecting current campaign restores the expanded pools.
+
+Three Cache practice prototypes add 36 unique lines, twelve each. The active library is 1,112 unique background lines across 60 pools; the sixteen reward-receipt excuses use their own rotating pool and are not counted as background voice. Cache signs/echoes remain advisory and never replace truthful active warnings.

@@ -2,6 +2,22 @@
 
 15 October 2026 · first implementation now lives locally on `feature/fullscreen-mobile-ui`, branched from `feature/capacitor-mobile` at `54b097f`. Full-screen rendering, fixed ghost controls, contextual Rewrite, overlay menu views and saved size/visibility/inset preferences are implemented. See [implementation and validation](outputs/fullscreen-mobile/VALIDATION.md). Left-handed layouts, free placement and moving Jump remain deferred. PC gameplay and the published friends build stay as they are.
 
+## October 23: PC and phone presentation aligned
+
+### October 25 fixed bottom banner allocation
+
+The user selected a permanent bottom-center ad allocation in the phone's lower paper margin, including gameplay. Ad placement never changes through content or remote configuration. `mobile/layout.html` now reserves a non-clickable 320 × 50 CSS-pixel preview and groups Rewrite above Jump at the right edge. Narrow screens use side columns, while short wide screens use a compact action row; `layoutMobileBannerControls()` lifts a group only when needed to retain a 24-pixel inactive buffer without moving or resizing the banner. The lower buttons establish the floor height; horizontal camera guards keep the player clear of upper side buttons at route boundaries. Physics W/H and authored routes are unchanged.
+
+The preview is layout preparation, not an ad SDK or a store-approved placement. The native implementation must map it to a fixed 320 × 50 point SDK view, respect actual safe areas, and pass physical touch and policy checks. Apple does not prescribe the 24-point spacing target. The local ad placeholder performs no network requests and accepts no taps. Screenshots and validation stay ignored under `outputs/app-store/banner-layout/`.
+
+The user requested a PC view matching the phone, without arrow buttons, with discoverable music/Pause and action prompts protected from popups. The PC now has a full-window paper canvas, permanent **Music** and **Pause · Esc** buttons, and the same Play / Controls / Audio / AI log organization. It uses keyboard movement, jump and Rewrite; touch widgets are hidden. Recording view retains the two top controls. Pause, backgrounding and focus loss freeze the world until explicit Resume. Music/effects remain separate and settings persist. The Music shortcut enables audio on a user gesture when starting from silence.
+
+`desktop/layout.html`, `screen.css` and `screen.js` provide the PC shell and viewport. The campaign builder embeds them into the standalone V3 HTML. Shared visible-world helpers keep camera, observer, optical ray and circuit hit testing aligned with the responsive display; simulation W/H, traps, timers and routes remain unchanged. The mobile builder uses those helpers and retains its touch/lifecycle adapters.
+
+Current actions have a dedicated protected DOM guide, separate from snark. Nearby Rewrite prompts remain available during a captured forecast. Floating narrator asides lay out below objective/pressure guides and yield if they would cover the player. Lab actions live inside the lab objective card. Thermal/Puzzle Box actions live in their own consoles. In-world Rewrite key text no longer competes with forecast cards. New desktop sizes (800×600 through 2560×1080), recording mode, audio/pausing and PC/phone popup scenarios are covered in `tests/desktop-screen.test.mjs`; evidence stays local in `outputs/desktop-screen/`. Full campaign, labs/demos, circuit touch/keyboard, audio and original 195,062-snapshot parity checks also cover this update.
+
+The earlier PC-preservation requirements below describe the original mobile-only pass; this later user request explicitly changes PC presentation. No publication is implied.
+
 The mobile game should feel like a playable document covering the phone. Controls float on the paper; the AI annotates it; settings open over the frozen world. The warm paper, grid, eye, margin doodle, authored traps and snark remain the identity.
 
 [Proposed gameplay and pause layout](outputs/mobile-ui-plan/fullscreen-layout.svg) · [current Android game screenshot](outputs/capacitor/android-glass-lab.png)

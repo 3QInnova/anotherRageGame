@@ -1,0 +1,3 @@
+// Opt-in anonymous tests use separate saves; the owner's campaign is never reset.
+const PLAYTEST_ID=(()=>{try{if(typeof location==='undefined'||typeof URLSearchParams==='undefined')return null;const id=new URLSearchParams(location.hash.slice(1)).get('playtest');return /^P[1-5]$/.test(id??'')?id:null}catch(_){return null}})();
+const localStorage=(()=>{let raw;try{raw=globalThis.localStorage??window.localStorage}catch(_){}const prefix=PLAYTEST_ID?'exception-playtest-'+PLAYTEST_ID+':':'';return {getItem(key){if(!raw)throw Error('Storage unavailable');return raw.getItem(prefix+key)},setItem(key,value){if(!raw)throw Error('Storage unavailable');raw.setItem(prefix+key,value)},removeItem(key){if(!raw)throw Error('Storage unavailable');raw.removeItem(prefix+key)}}})();

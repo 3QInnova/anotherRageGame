@@ -1,0 +1,40 @@
+/* Clear play modes, named experiments and a compact playing HUD. */
+[hidden]#labHud,[hidden]#labWinActions,[hidden]#desktopMenu,#campaignMenu section[hidden]{display:none!important}
+.campaign-tabs{display:flex;gap:6px;margin:10px 0;border-bottom:1px solid #bbc5b4;padding-bottom:9px}.campaign-tabs button{flex:1;text-align:center!important;min-height:44px!important;padding:7px!important}
+#campaignMenu .campaign-card{width:min(1000px,100%);padding:14px 18px;max-height:calc(100dvh - 24px)}
+#campaignMenu h3{font-size:18px}#campaignCenterDescription{font-size:12px}#campaignCenterQuote{display:none}#campaignCenterStatus{margin:4px 0}
+#campaignWorldPicker{margin:8px 0}#campaignWorldPicker summary{cursor:pointer;min-height:30px;padding:4px;font-size:12px}#campaignWorlds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:7px 0}#campaignWorlds button{min-height:44px;font-size:11px}
+#campaignServers{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}#campaignServers button{font-size:11px;padding:8px}
+#campaignLabList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}#campaignLabList button{display:flex;flex-direction:column;gap:6px;min-height:84px;border-left:4px solid #426d65}#campaignLabList strong{font:700 13px ui-monospace,monospace}#campaignLabList span{font:13px/1.35 system-ui,sans-serif}
+.practice-route-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.practice-route-list button{font-size:13px!important}.campaign-card details>summary{cursor:pointer;min-height:36px;padding:7px 0}
+#labHud{position:absolute;z-index:24;top:72px;left:50%;transform:translateX(-50%);width:min(430px,48%);padding:7px 10px;border:1px solid #679b86;border-top:3px solid #426d65;background:#f7f2e5f5;color:#2b3a40;border-radius:6px;text-align:center;pointer-events:none}
+#labHud strong,#labHud span,#labHud small{display:block}#labHud strong{font:700 11px/1.3 ui-monospace,monospace}#labHud span{font:12px/1.35 system-ui,sans-serif;margin-top:3px}#labHud small{font:10px/1.3 ui-monospace,monospace;color:#426d65;margin-top:3px}#labHud small:empty{display:none}
+#labWinActions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px;pointer-events:auto}#labWinActions button{min-height:44px;font:700 13px system-ui,sans-serif;padding:9px 14px;background:#426d65;color:#fff9eb;border:1px solid #8ba18b;border-radius:6px;cursor:pointer;touch-action:manipulation}
+body:has(#mobileApp) #labHud{top:max(10px,env(safe-area-inset-top));width:min(410px,48vw);padding:5px 8px}body:has(#mobileApp) #labHud span{font-size:11px}body:has(#mobileApp) #labHud strong{font-size:10px}
+body:has(#mobileApp[data-blocked="true"]) #labHud{visibility:hidden}body:has(#labHud:not([hidden])) #mobileDialogue{top:calc(var(--safe-top) + 100px)}
+body:not(:has(#mobileApp)) main{max-width:1180px;padding:10px 16px 16px}
+body:not(:has(#mobileApp)) main>header{margin-bottom:6px}body:not(:has(#mobileApp)) h1{font-size:25px}body:not(:has(#mobileApp)) .sub{font-size:12px}
+body:not(:has(#mobileApp)) .panel{display:grid;grid-template-columns:340px minmax(0,1fr);gap:10px;padding:6px 8px}
+body:not(:has(#mobileApp)) .stats{gap:5px;align-self:center}body:not(:has(#mobileApp)) .stat{padding:4px 7px}body:not(:has(#mobileApp)) .stat label{font-size:8px;letter-spacing:.04em}body:not(:has(#mobileApp)) .stat strong{font-size:14px}
+body:not(:has(#mobileApp)) #message{margin:0;min-height:0;padding:4px 8px;font-size:12px;line-height:1.35;max-height:49px;overflow:auto}body:not(:has(#mobileApp)) #message label{font-size:8px}
+body:not(:has(#mobileApp)) main>.panel #observerComment{display:none}
+.play-toolbar{display:flex;gap:8px;align-items:center;margin:7px 0}.play-toolbar button{font-size:12px;min-height:40px;padding:6px 11px;white-space:nowrap}.play-toolbar #playCue{flex:1;font-size:12px;line-height:1.35;color:#e6ecdb}.play-toolbar #desktopPause{margin-left:auto}
+body:not(:has(#mobileApp)) #stage{width:min(100%,calc((100dvh - 196px)*1.777778));margin:0 auto 6px}body:not(:has(#mobileApp)) .foot{font-size:10px;margin:5px 0;color:#b5bbbe}
+#desktopMenu{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:16px;background:#152029d9}.desktop-menu-card{width:min(1050px,100%);max-height:calc(100dvh - 32px);overflow:auto;padding:16px;background:#202832;border:1px solid #8d9b8b;border-radius:9px}.desktop-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.desktop-menu-heading h2{font-size:18px;margin:0}.desktop-menu-heading button{min-height:44px}
+#desktopMenu .two{grid-template-columns:1.25fr 1fr}#desktopMenu button,#desktopMenu select{min-height:44px}#desktopMenu .box{padding:12px}#desktopMenu #observerComment{display:block}
+@media(max-width:760px){body:not(:has(#mobileApp)) .panel{grid-template-columns:1fr;gap:5px}.play-toolbar{flex-wrap:wrap}.play-toolbar #playCue{order:4;flex-basis:100%}body:not(:has(#mobileApp)) #stage{width:100%}#desktopMenu .two{grid-template-columns:1fr}#campaignLabList{gap:7px}#campaignLabList strong{font-size:11px}}
+@media(max-width:550px){#campaignLabList,.practice-route-list,#campaignServers{grid-template-columns:1fr}.campaign-tabs{gap:4px}.campaign-tabs button{font-size:11px!important}#campaignWorlds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-height:420px){#campaignMenu .campaign-card{padding:9px 13px}#campaignMenu h2{font-size:19px}.campaign-tabs{margin:7px 0;padding-bottom:6px}.campaign-actions{margin:6px 0}#campaignLabList button{min-height:74px}body:has(#mobileApp) #labHud span{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+body:not(:has(#mobileApp)) .stat #status{font-size:11px;white-space:nowrap}
+
+#openDemos{background:#cf9b50;color:#26373a;border-color:#cf9b50;font-weight:700}
+#campaignDemoList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+#campaignDemoList button{display:flex;flex-direction:column;gap:6px;min-height:90px;border-left:4px solid #cf9b50}
+#campaignDemoList strong{font:700 13px/1.35 ui-monospace,monospace}#campaignDemoList span{font:13px/1.35 system-ui,sans-serif}
+body.recording-view{background:#eeeadd}body.recording-view:not(:has(#mobileApp)) main{max-width:none;padding:0;height:100dvh}
+body.recording-view main>header,body.recording-view main>.panel,body.recording-view .play-toolbar,body.recording-view main>.foot{display:none!important}
+body.recording-view:not(:has(#mobileApp)) #stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100vw,calc(100dvh * 1.777778));margin:0;max-width:none;border:0;border-radius:0;box-shadow:none}
+body.recording-view #desktopMenu{z-index:80}
+@media(max-width:550px){#campaignDemoList{grid-template-columns:1fr}.campaign-tabs button{font-size:10px!important}#campaignDemoList strong{font-size:12px}}

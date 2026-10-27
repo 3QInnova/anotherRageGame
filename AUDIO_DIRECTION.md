@@ -78,3 +78,7 @@ WebKit and Chromium checks pass all 23 effects, three music arrangements, indepe
 [Audio fix results](outputs/audio/iphone-fix-results.json) · [native simulator result](outputs/audio/iphone-native-results.json).
 
 To test on the physical iPhone, rebuild/install the App scheme from Xcode, open **Menu → Audio**, enable Sound and tap **Test / reconnect sound**. Then Resume and check Jump, an actual loss and Music. Also check after leaving and returning to the app. The Simulator proves native audio-session setup and engine behavior; physical speaker/headphone output remains a human acceptance check. Nothing was published or automatically installed onto a physical phone.
+
+## PC controls: October 23
+
+The PC's full-window paper layout keeps **Music · On/Off** and **Pause · Esc** in the upper-right corner, including recording view. The Music shortcut starts audio after its click when needed; turning music off leaves effects enabled. Pause → Audio contains separate Sound/Music switches and Test / reconnect sound. Menus and focus loss freeze gameplay and suspend voices; Resume is explicit. The saved `exception-audio-v1` settings still apply. The live-clock and paused test are covered by `tests/desktop-screen.test.mjs` and the existing four-browser/presentation audio suite.

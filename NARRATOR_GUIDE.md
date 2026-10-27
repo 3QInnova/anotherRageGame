@@ -2,6 +2,12 @@
 
 The snarky narrator is a central part of the user's intended replay appeal. Maintain a substantial authored library alongside every hazard family. Current player appeal is a design goal; the remark count alone does not establish it.
 
+## Current failure selection
+
+The October 23 [failure-context correction](NARRATOR_EDITORIAL_REVIEW.md#october-23-comments-follow-the-actual-failure) supersedes historical counts and server-override rules below. There are **416 shared loss remarks across thirteen 32-line causal pools**, plus the retained dedicated thermal, Puzzle Box and cleanup libraries. Select by the actual collision/support source. Overhead scans never use low-scan, floor, bridge or generic server-loss jokes. Unknown IDs get neutral copy. Never infer a new obstacle type solely from its generated ID prefix.
+
+Author new failure remarks and factual cause variants in `campaign/failure-voice.json`; `failure-voice.js` registers them and maps real obstacle data. Signal pools for warnings, rewrites and successful counterplay must also match their actual event. Use independent persistent cursors; preserve complete cycles, readable causes and the fifteen-second reading interval. Tests: `tests/failure-context.test.mjs`, `tests/failure-voice-browser.test.mjs` and `tests/loss-remarks.test.mjs`.
+
 ## Background comments are a permanent staple
 
 The user explicitly singled out “You didn't make it this far before” and “Last time you failed earlier” as central to the game's appeal. The [background voice](BACKGROUND_VOICE.md) now supplies 544 distinct authored lines, including twelve for every current level and the glass lab. **Every future level must add at least twelve unique themed background jokes**, alongside the shared progress-aware and compaction commentary. Keep encountered notes in the mobile AI Log and preserve per-pool rotation across retries and New Run.
@@ -87,7 +93,7 @@ Localhost adds 240 authored background lines across twenty servers, bringing the
 
 ### Localhost disaster voice
 
-The workplace-disaster playtest adds sixty server-specific loss remarks and twenty escape excuses in `campaign/localhost-incidents.json`. Two losses in three use the current server’s rotating incident pool; the third retains the existing hazard-specific narrator. Keep the actual failure reason and full reading interval. Escape excuses require a real clear, appear in a quiet 12-second paper receipt and enter mobile AI Log; practice/final completion also displays the relevant excuse. See [Localhost playtest](LOCALHOST_PLAYTEST.md).
+The workplace-disaster playtest adds sixty server-specific loss remarks and twenty escape excuses in `campaign/localhost-incidents.json`. That historical two-in-three server override is superseded: actual failures now always select their causal hazard pool. Keep the actual failure reason and full reading interval. Escape excuses require a real clear, appear in a quiet 12-second paper receipt and enter mobile AI Log; practice/final completion also displays the relevant excuse. See [Localhost playtest](LOCALHOST_PLAYTEST.md).
 
 ## Thermal logic-gate remarks
 

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Visitor Error · Animation review</title><style>
+*{box-sizing:border-box}body{margin:0;background:#eeeadd;color:#2b3a40;font:16px/1.45 system-ui,sans-serif;background-image:linear-gradient(#b4bbb02e 1px,transparent 1px),linear-gradient(90deg,#b4bbb02e 1px,transparent 1px);background-size:24px 24px}main{max-width:1000px;margin:auto;padding:28px 20px}h1{font:700 30px/1.15 ui-monospace,monospace;margin:8px 0}p{margin:8px 0 16px}small{font:11px ui-monospace,monospace;color:#5d7167}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}button,a{font:inherit;color:#285c57}button{min-height:44px;padding:8px 14px;background:#f8f5e9;border:1px solid #8da18f;border-radius:5px;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #cf9b50;outline-offset:3px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}article{background:#f8f5e9;border:1px solid #acb5a5;padding:16px;border-top:3px solid #426d65}h2{font:700 18px ui-monospace,monospace;margin:0 0 5px}article p{font-size:13px;color:#5d7167;margin:0}canvas{display:block;width:100%;height:auto;margin-top:8px}@media(max-width:620px){.grid{grid-template-columns:1fr}h1{font-size:25px}}
+</style></head><body><main><small>EXCEPTION: HUMAN / VISITOR ERROR</small><h1>Arms move. Paperwork flails.</h1><p>The same sprites used in the game, shown at game size and enlarged.</p><div class="actions"><button id="pause" type="button" aria-pressed="false">Pause animations</button><button id="facing" type="button">Face left</button><a href="campaign.html">Back to campaign</a></div><div class="grid">
+<article><h2>Running</h2><p>Opposing arm swing, bent elbows and alternating strides.</p><canvas data-mode="run" width="360" height="260" aria-label="Looping run animation"></canvas></article>
+<article><h2>Jumping</h2><p>Hands up on takeoff, limbs spread in the air, arms out on descent.</p><canvas data-mode="jump" width="360" height="260" aria-label="Looping jump animation"></canvas></article>
+<article><h2>Impatient idle</h2><p>Two foot taps and a blink.</p><canvas data-mode="idle" width="360" height="260" aria-label="Looping idle animation"></canvas></article>
+<article><h2>Byte explosion</h2><p>A brief flail, then bits and byte fragments.</p><canvas data-mode="lose" width="360" height="260" aria-label="Looping byte explosion animation"></canvas></article>
+</div></main><script>(()=>{'use strict';
+/* VISITOR_SPRITES */
+let time=0,last=performance.now(),paused=false,facing=1;
+document.getElementById('pause').onclick=e=>{paused=!paused;e.currentTarget.textContent=paused?'Resume animations':'Pause animations';e.currentTarget.setAttribute('aria-pressed',String(paused))};
+document.getElementById('facing').onclick=e=>{facing=-facing;e.currentTarget.textContent=facing>0?'Face left':'Face right'};
+function preview(now){if(!paused&&!document.hidden)time+=Math.min(.05,(now-last)/1000);last=now;
+ for(const canvas of document.querySelectorAll('canvas[data-mode]')){
+  const c=canvas.getContext('2d'),kind=canvas.dataset.mode;let mode=kind,frame=0,lift=0;
+  if(kind==='run')frame=Math.floor(time*12)%8;
+  if(kind==='idle')frame=Math.floor(time*6)%8;
+  if(kind==='jump'){const t=time%1.2;if(t<.85){frame=t<.25?0:t<.5?1:2;lift=Math.sin(Math.PI*t/.85)*16}else mode='idle'}
+  if(kind==='lose')frame=Math.min(7,Math.floor((time%1.5)*10));
+  c.clearRect(0,0,canvas.width,canvas.height);c.fillStyle='#5d7167';c.font='11px monospace';c.fillText('GAME SIZE',12,248);c.fillText('ENLARGED',186,248);
+  if(kind==='lose'&&time%1.5>.8)continue;
+  for(const [x,scale] of [[44,1],[224,4]]){c.save();c.translate(x,kind==='lose'?150:220-lift*scale);c.scale(scale,scale);paintVisitor(c,mode,frame,kind==='lose'?-32:-16,kind==='lose'?-32:-40,facing);c.restore()}
+ }
+ requestAnimationFrame(preview);
+}requestAnimationFrame(preview);
+})();</script></body></html>

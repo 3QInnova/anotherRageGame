@@ -2,6 +2,18 @@
 
 Reviewed locally on October 16, 2026. Current PC, mobile and native sources share the revised copy. Nothing published.
 
+## October 23: comments follow the actual failure
+
+The user's phone playtest found overhead impacts receiving floor jokes and the same body-geometry reason repeating. Two selection bugs caused this: server-wide incident remarks overrode the actual hazard on two losses out of three, and unrecognized IDs from the new campaign/lab/demo compilers fell back to the floor pool. The shared selector now resolves the real obstacle and receives explicit collision types from the simulation. Air scans and low scans are distinct. Falls retain the original lost-support identity even if the player drifts horizontally before reaching the bottom of the page.
+
+`campaign/failure-voice.json` and `failure-voice.js` contain the new contextual copy and routing. The shared loss library has **416 distinct lines: thirteen pools of 32**. Six new pools cover overhead scans, unavailable temporary bridges, deleted strips, false-save recovery failures, timed crossing expiry and neutral unclassified incidents. The falling-notice pool is rewritten to cover any actual contact without inventing a head impact. Generic fall and forecast lines no longer assume an expired bridge or a particular walking motion. Existing thermal shock/burn, Puzzle Box, cleanup and corruption pools remain separate.
+
+Each typed loss rotates its factual cause as well as its joke. Overhead/low scans and notices each have six clear cause variants. The old body-geometry wording is removed. Hazard warnings, forecast captures, bridge/wall rewrites and lab success reactions also use event-specific rotating pools; a wall response no longer claims a bridge was removed when none was active. Physical warnings, geometry and timers are unchanged.
+
+Server-wide sixty-line incident pools and generic lab/demo loss pools are retained as historical content; they no longer override a known collision. All actual losses use the causal family. Unknown fixture/error IDs select a neutral pool, never a floor claim. Existing cursor keys remain valid; new cause/event pools use independent persistent cursors. The full fifteen-second reading interval, two separate skip presses/taps and the disabled billing setting remain.
+
+Checks: `tests/failure-context.test.mjs` covers 1,727 current campaign hazard identities, 175 staged real-simulation impacts across all twenty servers, ordinary-input overhead/low scan, notice and redaction failures, 32-line cycles, varied causes and reload persistence. `tests/failure-voice-browser.test.mjs` verifies actual loss screens in Chromium/WebKit and all 416 remarks at three landscape phone sizes. Loss-reading, campaign progression, nine labs, eight demos, Commitment/Puzzle Box and original PC/mobile parity checks pass. Generated evidence stays local in `outputs/failure-voice/`.
+
 ## Editorial direction
 
 Snark should be understood on the first reading. Start with something the player can recognize: a floor disappearing, a scanner rejecting them, a notice falling, a rewrite expiring, a bad suggestion, or the AI refusing to admit a mistake. A technical reference should make that situation funnier, not require an explanation before the joke works.
@@ -25,7 +37,7 @@ The pass revises **523 distinct strings** across the original narrator, backgrou
 - Shared successful-rewrite responses now work for either a bridge or a wall, without claiming the player crossed a particular object.
 - Shared glass-contact comments do not assume every contact was a head bump or a successful landing.
 - Air-flag warnings describe the revised field without announcing that the player has already jumped into it.
-- Localhost loss pools refer to the room's disaster broadly enough to fit its different hazards. The actual failure reason remains separate and truthful.
+- Historical Localhost incident pools were broad server excuses; the October 23 causal selector above supersedes their use for actual failures.
 - Background room notes do not announce a particular successful action before the player has performed it.
 - Removed the stale five-room escape count.
 - The user's two favorite progress lines remain unchanged: “You didn't make it this far before.” and “Last time you failed earlier.” Their eligibility still uses actual recorded progress.

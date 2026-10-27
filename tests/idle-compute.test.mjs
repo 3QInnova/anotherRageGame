@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
-import {load,clear} from './data-centers.test.mjs';
+import {loadArchived as load,clear} from './archived-campaign-fixture.mjs';
 const root=new URL('../',import.meta.url),source=readFileSync(new URL('initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
 const fixture=source.replace('window.__DATA_CENTER_TEST__={',`window.__DATA_CENTER_TEST__={
  hud:refreshHud,position(x){player.x=x;player.y=FLOOR-PH;player.vy=0;player.grounded=true;player.coyote=.1;player.jumpBuffer=0},
@@ -35,4 +35,4 @@ for(const h of make().check.level().blocks.filter(h=>h.commit)){
 const storage=new Map(),voice=make(storage),pools=voice.api.pools();assert.equal(Object.values(pools).flat().length,74);assert.equal(new Set(Object.values(pools).flat()).size,74);const lines=new Set();for(let i=0;i<30;i++)lines.add(voice.api.remark());assert.equal(lines.size,30);const first=voice.api.remark();assert.notEqual(make(storage).api.remark(),first);
 const original=load();assert.equal(original.state().idleCompute,null);assert(original.api.levels().every(level=>level.idleCompute),'All first Data Center servers now share idle cleanup');
 mkdirSync(new URL('outputs/idle-compute/',root),{recursive:true});writeFileSync(new URL('outputs/idle-compute/chased-route.json',root),JSON.stringify({frames:chased.frame(),events:chased.route},null,2)+'\n');writeFileSync(new URL('outputs/idle-compute/runtime-results.json',root),JSON.stringify({creepDeathSeconds:creepFrames/120,cautiousRouteDeathX:slowRoute.state().player.x,cautiousRouteDeathSeconds:slowRoute.frame()/120,chasedClear:chasedResult,authoredZones:layout,remarks:74,lossRemarks:30,minuteLongMaintenanceRest:true,requiredWaitFreeze:true,creditCompactionRecovery:true,commitmentTraps:2,actionCostsUnchanged:true},null,2)+'\n');
-console.log('PASS: brief stops, debt recovery, no tap/wiggle/jump bypass, continuous creeping loses, full ordinary-input escape with active cleanup, two sections and minute-long maintenance rest, pause/death/required-wait freeze, credit rewind recovery, committed receipt escape windows, 74 rotating remarks and preserved original playtest.');
+console.log('PASS (archived short Localhost comparison): brief stops, debt recovery, no tap/wiggle/jump bypass, continuous creeping loses, full ordinary-input escape with active cleanup, two sections and minute-long maintenance rest, pause/death/required-wait freeze, credit rewind recovery, committed receipt escape windows, 74 rotating remarks and preserved original playtest.');

@@ -1,3 +1,4 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
@@ -10,7 +11,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:1000},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/puzzle.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
   const tap=async selector=>{if(mobile)await page.locator(selector).tap();else await page.locator(selector).click()};
-  const start=async()=>{await page.goto('http://localhost/puzzle.html');await page.locator('#openDataCenters').click();await page.locator('#campaignPuzzleBox').click();await page.evaluate(route=>{window.puzzleReplay={...route,at:0,frame:0,held:new Set()};window.puzzleReview.paint()},route)};
+  const start=async()=>{await page.goto('http://localhost/puzzle.html');await openModeMenu(page,'#openDataCenters');await page.locator('#campaignTab-practice').click();await page.locator('#campaignPuzzleBox').click();await page.evaluate(route=>{window.puzzleReplay={...route,at:0,frame:0,held:new Set()};window.puzzleReview.paint()},route)};
   const advance=async target=>page.evaluate(({target,mobile})=>{
    const r=window.puzzleReplay;
    const send=e=>{
@@ -64,7 +65,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   const finish=await advance(-1);assert.equal(finish.state.state,'won');assert.equal(finish.state.deaths,0);assert.equal(finish.state.credits.balance,4);assert(finish.circuit.every(s=>s.solved));assert.equal(finish.progress.cleared.length,0);assert.equal(finish.credits,0);
   if(mobile)await tap('#mobileWinRestart');else await page.keyboard.press('KeyR');assert.equal(await page.evaluate(()=>window.__PUZZLE_BOX_TEST__.state().filter(s=>s.solved).length),0);
   await start();await advance(0);await tap('#puzzleInput0');await tap('#puzzleInput1');await tap('#puzzleBoxTest');assert(await page.locator('#puzzleInput0').isDisabled());
-  if(mobile)await tap('#mobilePause');else await page.locator('#openDataCenters').click();assert.equal(await page.locator('#puzzleBoxPanel').isVisible(),false);const frozen=await page.evaluate(()=>({world:window.__EXCEPTION_TEST__.getState(),box:window.__PUZZLE_BOX_TEST__.state()}));await page.evaluate(()=>window.puzzleReview.step(1200));assert.deepEqual(await page.evaluate(()=>({world:window.__EXCEPTION_TEST__.getState(),box:window.__PUZZLE_BOX_TEST__.state()})),frozen);
+  if(mobile)await tap('#mobilePause');else await openModeMenu(page,'#openDataCenters');assert.equal(await page.locator('#puzzleBoxPanel').isVisible(),false);const frozen=await page.evaluate(()=>({world:window.__EXCEPTION_TEST__.getState(),box:window.__PUZZLE_BOX_TEST__.state()}));await page.evaluate(()=>window.puzzleReview.step(1200));assert.deepEqual(await page.evaluate(()=>({world:window.__EXCEPTION_TEST__.getState(),box:window.__PUZZLE_BOX_TEST__.state()})),frozen);
   if(mobile){await tap('#mobileResume')}else await tap('#campaignClose');
   await page.evaluate(()=>window.puzzleReview.step(90));await page.screenshot({path:new URL(name+'-powered-test.png',out).pathname,fullPage:true});await page.evaluate(()=>window.puzzleReview.step(90));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'dead');assert.match(await page.locator('#lossReason').textContent(),/TEST CIRCUIT/);await page.screenshot({path:new URL(name+'-electrocuted.png',out).pathname,fullPage:true});await page.evaluate(()=>window.puzzleReview.step(1200));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'dead');await tap('#lossContinue');await tap('#lossContinue');assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'play');
   assert.deepEqual(errors,[]);results.push({engine:name,boxes:3,inputs:[3,4,5],literalGraphRendering:true,signalsAnimateOnSimulationClock:true,realSwitchTaps:true,gateInspectionHighlightsSources:true,previewCannotShock:true,testLocksInputs:true,groundTestElectrocutes:true,lossReadingAndRetry:true,layoutsFit:true,allButtonsAtLeast44px:true,primaryDiagramLabelsAtLeast10px:true,pauseFreezesTest:true,chasedClear:true,deaths:0,creditsLeft:4,restartSameLevel:true,practiceIsolated:true,errors});

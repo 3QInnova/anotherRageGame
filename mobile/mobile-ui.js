@@ -38,17 +38,18 @@ function resumeMobile(){
 }
 function syncMobileUI(){
  const feedback=forecastFeedback(),active=['scanning','locked','purge','missed'].includes(feedback.phase),target=nearest(),circuit=coolingProtectedStation(),switchDeck=!!circuit,box=!!(hasPuzzleBoxes()&&circuit),canRotate=switchDeck&&circuit.selected>=0&&!circuit.solved;
- const signal=state==='paywall'?'AI PAYWALL / FREE PLAN AVAILABLE':state==='compacting'?'COMPACTING / PLEASE WAIT':state==='dead'?'USER ERROR / READ AT YOUR LEISURE':state==='won'?'ESCAPED':box?(puzzleIsOpen()?'PUZZLE BOX / PREVIEW & TEST':'PUZZLE BOX / X TO OPEN'):switchDeck?(coolingProtectedStation().route.grounded?'GROUND FAULT / REWIRE NOW':'CIRCUIT SAFE / FREE ACTIONS'):active?feedback.text:autocomplete?.phase==='guess'?'AI GUESS: '+autocomplete.mode+' / OPTIONAL':L.glassTest?'GLASS LAB / BROKEN BEAM = SUPPORT':target?'REWRITE: '+target.kind.toUpperCase():(L.puzzleBoxTrial?'PUZZLE BOX / AI ONLINE':L.coolingTrial?'THERMAL SUPPORT / AI ONLINE':L.idleDeletionTrial?'GARBAGE COLLECTION DAY':L.campaignServer?'DC1 / '+L.serverNumber+' · AI ONLINE':'AI ONLINE / TRUST OPTIONAL');
+ const signal=state==='paywall'?'AI PAYWALL / FREE PLAN AVAILABLE':state==='compacting'?'COMPACTING / PLEASE WAIT':state==='dead'?(lossRevealDelay>0?'USER ERROR / BYTES LOST':'USER ERROR / READ AT YOUR LEISURE'):state==='won'?'ESCAPED':box?(puzzleIsOpen()?'PUZZLE BOX / PREVIEW & TEST':'PUZZLE BOX / X TO OPEN'):switchDeck?(coolingProtectedStation().route.grounded?'GROUND FAULT / REWIRE NOW':'CIRCUIT SAFE / FREE ACTIONS'):active?feedback.text:autocomplete?.phase==='guess'?'AI GUESS: '+autocomplete.mode+' / OPTIONAL':L.glassTest?'GLASS LAB / BROKEN BEAM = SUPPORT':target?'REWRITE: '+target.kind.toUpperCase():(L.puzzleBoxTrial?'PUZZLE BOX / AI ONLINE':L.coolingTrial?'THERMAL SUPPORT / AI ONLINE':L.idleDeletionTrial?'GARBAGE COLLECTION DAY':L.campaignServer?'DC1 / '+L.serverNumber+' · AI ONLINE':'AI ONLINE / TRUST OPTIONAL');
  if($('mobileSignal').textContent!==signal)$('mobileSignal').textContent=signal;
+ const cue=playCue();if($('mobileObjectiveText').textContent!==cue)$('mobileObjectiveText').textContent=cue;const prompt=actionPrompt();if($('mobileAction').textContent!==prompt)$('mobileAction').textContent=prompt;$('mobileObjective').hidden=!!L.rageLab||state!=='play'||puzzleIsOpen()||!!(L.coolingTrial&&circuit);
  const blocked=state==='dead'||state==='compacting'||state==='paywall';
- $('mobileApp').dataset.blocked=String(mobilePaused||state!=='play');
- $('mobileWinRestart').hidden=state!=='won';
+ $('mobileApp').dataset.blocked=String(mobilePaused||state!=='play'||rewardBlocksPlay());
+ $('mobileWinRestart').hidden=state!=='won'||!!L.rageLab;
  for(const id of ['restart','floorPractice','glassPractice','longPractice','longLevelSelect','newRun','confirmNewRun'])$(id).disabled=blocked;
- $('glitch').textContent=box?'OPEN BOX':switchDeck?(circuit.solved?'FAN READY':canRotate?'ROTATE U'+(circuit.selected+1):'PICK GATE'):'REWRITE';$('glitch').disabled=(box?puzzleIsOpen():switchDeck?!canRotate:!target)||mobilePaused||state!=='play';$('glitch').classList.toggle?.('ready',switchDeck?canRotate:!!target);
- $('mobileDialogue').dataset.quiet=String(!active&&!target&&mobileMessageMode!=='danger'&&performance.now()-mobileMessageAt>7000);
+ $('glitch').textContent=box?'OPEN BOX':switchDeck?(circuit.solved?'FAN READY':canRotate?'ROTATE U'+(circuit.selected+1):'PICK GATE'):target?.kind==='repair'?'REPAIR':'REWRITE';$('glitch').disabled=(box?puzzleIsOpen():switchDeck?!canRotate:!target)||mobilePaused||state!=='play';$('glitch').classList.toggle?.('ready',switchDeck?canRotate:!!target);
+ $('mobileDialogue').dataset.quiet=String((L.rageLab&&mobileMessageText===L.intro)||(!active&&!target&&mobileMessageMode!=='danger'&&performance.now()-mobileMessageAt>7000));
  const noticeKey=L.serverId||(L.glassTest?'glass':'original-'+room);
- if(noticeKey!==mobileRoomSeen){mobileRoomSeen=noticeKey;mobileRoomAt=performance.now();$('mobileRoomNotice').textContent=L.campaignServer?campaignServerLabel():L.glassTest?'GLASS LAB':('ROOM '+String(room+1).padStart(2,'0'));}
- $('mobileRoomNotice').hidden=!!L.campaignServer||mobilePaused||state!=='play'||performance.now()-mobileRoomAt>4000;
+ if(noticeKey!==mobileRoomSeen){mobileRoomSeen=noticeKey;mobileRoomAt=performance.now();$('mobileRoomNotice').textContent=L.cacheTrial?'CACHE '+L.number+' / '+CACHE_PROTOTYPES.length:L.demo?'DEMO '+L.number+' / '+DEMO_LEVELS.length:L.rageLab?'LAB '+L.number+' / '+RAGE_LAB_LEVELS.length:L.campaignServer?campaignServerLabel():L.glassTest?'GLASS LAB':('ROOM '+String(room+1).padStart(2,'0'));}
+ $('mobileRoomNotice').hidden=!!L.campaignServer||mobilePaused||state!=='play'||performance.now()-mobileRoomAt>4000;layoutMobileCoolingControls();protectedGuideLayout();
 }
 function refreshHud(){refreshDesktopHud();syncMobileUI()}
 function runFrame(dt){if(mobilePaused||document.hidden||window.innerHeight>window.innerWidth)return;runDesktopFrame(dt)}
@@ -67,6 +68,35 @@ function applyMobileControls(save=false){
  for(const [key,id] of [['size','Size'],['opacity','Opacity'],['inset','Inset']]){$('control'+id).value=mobileControls[key];$('control'+id+'Value').textContent=mobileControls[key]+(key==='inset'?'px':'%');}
  resizeMobileViewport();
  if(save)try{localStorage.setItem('exception-mobile-controls-v1',JSON.stringify(mobileControls))}catch(_){}
+}
+function layoutMobileBannerControls(){
+ const banner=$('mobileBannerSlot')?.getBoundingClientRect?.();if(!banner)return;
+ // Keep the ad fixed. Only controls move when a short/narrow viewport needs more room.
+ // This buffer is our layout target, not a platform-prescribed clearance.
+ const gap=24;
+ for(const id of ['movePad','actionPad']){
+  const pad=$(id);pad.style.bottom='';const r=pad.getBoundingClientRect();
+  if(r.left<banner.right+gap&&r.right>banner.left-gap&&r.bottom>banner.top-gap&&r.top<banner.bottom+gap){
+   const lift=Math.ceil(r.bottom-banner.top+gap);
+   pad.style.bottom='calc(var(--safe-bottom) + var(--control-inset) + '+lift+'px)';
+  }
+ }
+}
+function layoutMobileCoolingControls(){
+ mobileView.consolePlayerX=null;mobileView.consoleHeadBelow=null;
+ const panel=$('coolingPanel'),inspector=document.querySelector?.('.cooling-inspector');
+ if(!panel?.getBoundingClientRect||!inspector)return;
+ if(!L?.coolingTrial||hasPuzzleBoxes()||!coolingProtectedStation()||panel.hidden)return;
+ const move=$('movePad').getBoundingClientRect(),action=$('actionPad').getBoundingClientRect();
+ const available=action.left-move.right-24;
+ const inspectorWidth=Math.min(180,Math.max(124,available-256));
+ const panelWidth=Math.min(272,Math.max(248,available-inspectorWidth-8));
+ panel.style.right=(window.innerWidth-action.left+12)+'px';panel.style.width=panelWidth+'px';
+ inspector.style.width=inspectorWidth+'px';$('coolingBoard').style.gap='4px';
+ const r=inspector.getBoundingClientRect(),game=canvas.getBoundingClientRect(),scale=game.height/mobileView.height;
+ // Keep the maintenance player below the inspector, between the side controls.
+ mobileView.consolePlayerX=(r.left-game.left+(r.width-PW*scale)/2)/scale;
+ mobileView.consoleHeadBelow=r.bottom-game.top+10;
 }
 function installMobileUI(){
  try{mobileControls={...defaultMobileControls,...JSON.parse(localStorage.getItem('exception-mobile-controls-v1')||'{}')}}catch(_){}

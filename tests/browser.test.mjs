@@ -4,7 +4,7 @@ const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || '/private/tmp
 const html = readFileSync(new URL('../initalDemoDocs/Exception_Human_Misclassification_V3.html', import.meta.url), 'utf8');
 const route = JSON.parse(readFileSync(new URL('../outputs/forecast-feedback/completion-route.json', import.meta.url)));
 const output = new URL('../outputs/forecast-feedback/', import.meta.url);mkdirSync(output,{recursive:true});
-const hooked = html.replace('initRoom(true);requestAnimationFrame(frame);', `initRoom(true);compactSeed=424242;resetCompactWatch();paywallSeed=98765;resetPaywallWatch();
+const instrument = source => source.replace('initRoom(true);requestAnimationFrame(frame);', `initRoom(true);compactSeed=424242;resetCompactWatch();paywallSeed=98765;resetPaywallWatch();
 window.__BROWSER_TEST__={
  step(count){for(let i=0;i<count;i++)runFrame(1/120);draw();refreshHud()},
  fixture(phase){room=2;initRoom();player.x=phase==='scanning'?546:644;
@@ -12,8 +12,9 @@ window.__BROWSER_TEST__={
  if(phase!=='scanning')runFrame(1/120);
  if(phase==='purge'||phase==='missed'){while(trap['predict-c'].phase!=='on')runFrame(1/120)}
  if(phase==='missed'){while(trap['predict-c'].phase!=='done')runFrame(1/120)}draw();refreshHud();
- },showRemark(remark){initRoom();die('Loss reason remains separately readable.','review');$('ovDesc').textContent=remark;say(remark,'danger')},allRemarks:()=>Object.entries(LOSS_REMARKS).flatMap(([category,pool])=>pool.map(remark=>({category,remark})))
+ },showRemark(remark){initRoom();die('Loss reason remains separately readable.','review');for(let i=0;i<240;i++)runFrame(1/120);$('ovDesc').textContent=remark;say(remark,'danger')},allRemarks:()=>Object.entries(LOSS_REMARKS).flatMap(([category,pool])=>pool.map(remark=>({category,remark})))
  };`);
+const hooked=instrument(html),mobileHooked=instrument(readFileSync(new URL('../mobile/index.html',import.meta.url),'utf8'));
 assert.notEqual(hooked,html,'Test instrumentation must replace the frame bootstrap');
 const browser=await chromium.launch({headless:true}),errors=[];
 try{
@@ -41,10 +42,10 @@ try{
  // Live document smoke test: use the shipping animation loop and its actual controls.
  const live=await browser.newPage();live.on('pageerror',e=>errors.push(e.message));
  await live.setContent(html);await live.keyboard.down('KeyD');await live.waitForFunction(()=>window.__EXCEPTION_TEST__.getState().player.x>70);await live.keyboard.up('KeyD');
- await live.getByRole('button',{name:'↻ Retry room',exact:true}).click();assert.equal(await live.evaluate(()=>window.__EXCEPTION_TEST__.getState().room),0);await live.close();
+ await live.locator('#desktopPause').click();await live.locator('#restart').click();assert.equal(await live.evaluate(()=>window.__EXCEPTION_TEST__.getState().room),0);await live.close();
 
- const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2});
- mobile.on('pageerror',e=>errors.push(e.message));await mobile.setContent(hooked);
+ const mobile=await browser.newPage({viewport:{width:844,height:390},isMobile:true,hasTouch:true,deviceScaleFactor:2});
+ mobile.on('pageerror',e=>errors.push(e.message));await mobile.setContent(mobileHooked);await mobile.locator('#mobileResume').click();
  assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  assert(await mobile.locator('#touch').isVisible());
  await mobile.locator('[data-hold="right"]').scrollIntoViewIfNeeded();
@@ -60,30 +61,30 @@ try{
  await mobile.screenshot({path:new URL('locked-mobile.png',output).pathname,fullPage:true});
  // Trigger a real floor loss, then check readable persistence and distinct skip presses.
  await page.setContent(hooked);await page.keyboard.down('KeyD');await page.evaluate(()=>window.__BROWSER_TEST__.step(300));await page.keyboard.up('KeyD');
- assert.equal((await state()).state,'dead');assert.equal(await page.locator('#deaths').innerText(),String((await state()).deaths));const remark=await page.locator('#ovDesc').innerText();
+ assert.equal((await state()).state,'dead');assert.equal(await page.locator('#deaths').innerText(),String((await state()).deaths));await page.evaluate(()=>window.__BROWSER_TEST__.step(240));const remark=await page.locator('#ovDesc').innerText();
  await page.screenshot({path:new URL('loss-desktop.png',output).pathname,fullPage:true});
  await page.evaluate(()=>window.__BROWSER_TEST__.step(1200));assert.equal((await state()).state,'dead');assert.equal(await page.locator('#ovDesc').innerText(),remark);
  await page.keyboard.down('Space');assert.equal((await state()).state,'dead');
  await page.keyboard.down('Space');assert.equal((await state()).state,'dead','Keyboard repeat cannot skip twice');
  await page.keyboard.up('Space');await page.keyboard.press('Enter');assert.equal((await state()).state,'play');
  assert.equal((await state()).player.jumpBuffer,0);
- await mobile.setContent(hooked);await mobile.keyboard.down('KeyD');await mobile.evaluate(()=>window.__BROWSER_TEST__.step(300));await mobile.keyboard.up('KeyD');
+ await mobile.setContent(mobileHooked);await mobile.locator('#mobileResume').click();await mobile.keyboard.down('KeyD');await mobile.evaluate(()=>window.__BROWSER_TEST__.step(300));await mobile.keyboard.up('KeyD');
  assert.equal(await mobile.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'dead');
- await mobile.locator('#lossContinue').scrollIntoViewIfNeeded();
- const fits=await mobile.evaluate(()=>{const card=document.querySelector('.reading-loss .card'),overlay=document.getElementById('overlay');return card.scrollHeight<=card.clientHeight+1&&card.getBoundingClientRect().height<=overlay.getBoundingClientRect().height});assert(fits,'Loss card fits the narrow-screen overlay');
+ await mobile.evaluate(()=>window.__BROWSER_TEST__.step(240));await mobile.locator('#lossContinue').scrollIntoViewIfNeeded();
+ const fits=await mobile.evaluate(()=>{const card=document.querySelector('#overlay .card'),overlay=document.getElementById('overlay');return card.scrollHeight<=card.clientHeight+1&&card.getBoundingClientRect().height<=overlay.getBoundingClientRect().height});assert(fits,'Loss card fits the narrow-screen overlay');
  assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await mobile.screenshot({path:new URL('loss-mobile.png',output).pathname,fullPage:true});
  await mobile.locator('#lossContinue').tap();assert.equal(await mobile.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'dead');
  await mobile.locator('#lossContinue').tap();assert.equal(await mobile.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'play');
  const remarks=await mobile.evaluate(()=>window.__BROWSER_TEST__.allRemarks());
  for(const {remark} of remarks){await mobile.evaluate(text=>window.__BROWSER_TEST__.showRemark(text),remark);
-  assert(await mobile.evaluate(()=>{const card=document.querySelector('.reading-loss .card');return card.scrollHeight<=card.clientHeight+1}),`Remark fits the mobile reading card: ${remark}`);
+  assert(await mobile.evaluate(()=>{const card=document.querySelector('#overlay .card');return card.scrollHeight<=card.clientHeight+1}),`Remark fits the mobile reading card: ${remark}`);
  }
  const longest=remarks.reduce((a,b)=>a.remark.length>b.remark.length?a:b);await mobile.evaluate(text=>window.__BROWSER_TEST__.showRemark(text),longest.remark);
  await mobile.screenshot({path:new URL('longest-remark-mobile.png',output).pathname,fullPage:true});
  assert.deepEqual(errors,[]);
  writeFileSync(new URL('browser-results.json',output),JSON.stringify({browser:'Chromium',allRoomsCleared:true,deaths:0,forecastPhases:['scanning','locked','purge','missed'],mobileOverflow:false,pointerMovement:true,touchJump:true,touchRewrite:true,liveAnimationLoop:true,lossRemarkPersists:true,twoDistinctSkipPresses:true,lossCardFitsMobile:true,touchSkip:true,remarksChecked:remarks.length,allRemarksFitMobile:true,pageErrors:errors},null,2)+'\n');
- console.log('PASS: Chromium normal keyboard route clears all nine rooms; all forecast phases render without script errors.');
+ console.log('PASS: Chromium normal keyboard route clears all fifteen rooms; all forecast phases render without script errors.');
  console.log('PASS: live animation loop, retry, narrow layout, pointer movement/release and touch jump/rewrite; screenshots saved.');
  console.log('PASS: readable loss hold, repeat-key guard, Space/Enter skip, narrow loss card and two-tap touch skip.');
 }finally{await browser.close()}

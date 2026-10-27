@@ -49,3 +49,5 @@ body:has(#mobileApp[data-blocked="true"]) #puzzleBoxPanel{visibility:hidden}body
 .puzzle-box-caption{text-align:center}.puzzle-box-caption>small{display:block;font:10px/1.2 ui-monospace,monospace;color:#65786a}#puzzleBoxStatus{min-height:18px}#puzzleBoxPanel[data-focused="true"] .puzzle-wire.traced path:first-child{stroke:#ac7c2c;stroke-width:4}@media(max-height:340px){#puzzleBoxStatus{min-height:14px}.puzzle-box-caption>small{font-size:9px}}
 
 .wire-clearance{fill:none;stroke:#f7f2e5;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
+
+#originalLocalhostSelect{display:block;width:100%;min-height:44px;margin:8px 0;color:#2b3a40;background:#f7f2e5;border:1px solid #81917e;border-radius:5px;font:14px system-ui,sans-serif}

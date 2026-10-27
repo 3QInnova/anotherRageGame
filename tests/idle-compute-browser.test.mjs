@@ -1,15 +1,17 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
+import {archivedCampaign} from './archived-campaign-fixture.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
 const root=new URL('../',import.meta.url),out=new URL('outputs/idle-compute/',root);mkdirSync(out,{recursive:true});
 const route=JSON.parse(readFileSync(new URL('chased-route.json',out),'utf8')),results=[];
 for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chromium',chromium,false]]){
  const html=readFileSync(new URL(mobile?'mobile/index.html':'initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
- const fixture=html.replace('requestAnimationFrame(frame);\n})();',`window.idleReview={tick:()=>runFrame(1/120),step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()}};draw();refreshHud();\n})();`);
+ const fixture=archivedCampaign(html).replace('requestAnimationFrame(frame);\n})();',`window.idleReview={tick:()=>runFrame(1/120),step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()}};draw();refreshHud();\n})();`);
  const browser=await engine.launch();try{
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:900},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/idle.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
-  const start=async()=>{await page.goto('http://localhost/idle.html');await page.locator('#openDataCenters').click();await page.locator('#campaignIdleTrial').click();await page.evaluate(()=>window.idleReview.step(0));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().room),14);assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().practiceMode),true)};
+  const start=async()=>{await page.goto('http://localhost/idle.html');await openModeMenu(page,'#openDataCenters');await page.locator('#campaignTab-practice').click();await page.locator('#campaignIdleTrial').click();await page.evaluate(()=>window.idleReview.step(0));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().room),14);assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().practiceMode),true)};
   const step=async n=>page.evaluate(n=>window.idleReview.step(n),n);
   await start();await page.locator('#idleComputePanel').waitFor({state:'visible'});
   // Reach ordinary ground past the first forecast using genuine movement and a required wait.
@@ -25,7 +27,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
     await page.screenshot({path:new URL(name+'-'+viewport.width+'x'+viewport.height+'.png',out).pathname});
    }
    await page.setViewportSize({width:844,height:390});await page.locator('#mobilePause').tap();assert.equal(await page.locator('#idleComputePanel').isVisible(),false);
-  }else await page.locator('#openDataCenters').click();
+  }else await openModeMenu(page,'#openDataCenters');
   const paused=await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state());await step(1200);assert.deepEqual(await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state()),paused);
   if(mobile)await page.locator('#mobileResume').tap();else await page.locator('#campaignClose').click();
   await step(1);assert.notDeepEqual(await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state()),paused);
@@ -44,4 +46,4 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   results.push({engine:name,practiceLaunch:true,visibleWarningAndDeletion:true,pauseSuspends:true,smallLayoutsFit:mobile,chasedRouteWon:true,creditsLeft:completion.state.credits.balance,pageErrors:errors});
  }finally{await browser.close()}
 }
-writeFileSync(new URL('browser-results.json',out),JSON.stringify(results,null,2)+'\n');console.log('PASS: WebKit and Chromium direct trial launch, visible warning/deletion, small mobile layouts, real pause freeze and full ordinary-input win with active cleanup.');
+writeFileSync(new URL('browser-results.json',out),JSON.stringify(results,null,2)+'\n');console.log('PASS (archived short Localhost comparison): WebKit and Chromium direct trial launch, visible warning/deletion, small mobile layouts, real pause freeze and full ordinary-input win with active cleanup.');

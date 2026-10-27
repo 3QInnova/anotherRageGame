@@ -1,3 +1,4 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
@@ -36,7 +37,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
  await page.screenshot({path:new URL(name+'-exhausted.png',out).pathname});
  await page.evaluate(()=>window.creditReview.step(1800));assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'play');assert((await page.evaluate(()=>window.__CREDIT_TEST__.state().balance))>0);
  if(mobile)await page.locator('#mobilePause').tap();
- await page.locator('#openDataCenters').click();await page.locator('#creditSummary').waitFor({state:'visible'});assert.match(await page.locator('#creditRules').textContent(),/Right and waiting: free/);assert.deepEqual(errors,[]);
+ await openModeMenu(page,'#openDataCenters');await page.locator('#creditSummary').waitFor({state:'visible'});assert.match(await page.locator('#creditRules').textContent(),/Right and waiting: free/);assert.deepEqual(errors,[]);
  results.push({engine:name,jumpCostsCredit:true,realInputExhaustion:true,refill:true,menuRules:true,largeControlsFit:mobile});
  }finally{await browser.close()}
 }

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "items": [
+    {"id":"sticker-confidence","kind":"sticker","name":"100% CONFIDENT. 0% CORRECT.","price":10,"style":"confidence","description":"A corrected confidence stamp. The correction was yours."},
+    {"id":"sticker-warning","kind":"sticker","name":"I READ THE WARNING. IT LIED.","price":20,"style":"warning","description":"You read the instructions. The instructions should apologize."},
+    {"id":"sticker-machine","kind":"sticker","name":"WORKS ON MY MACHINE. ALLEGEDLY.","price":30,"style":"machine","description":"Support has tested this claim on zero useful machines."},
+    {"id":"badge-inconvenience","kind":"badge","name":"CERTIFIED INCONVENIENCE","price":60,"style":"seal","description":"We reviewed your complaint. Unfortunately, you were correct."},
+    {"id":"badge-escalation","kind":"badge","name":"PLEASE ESCALATE ME","price":80,"style":"seal","description":"Your next department has been warned."}
+  ],
+  "centers": [
+    {"center":"localhost","name":"PASSED DESPITE TRAINING","caption":"You were supposed to quit during onboarding."},
+    {"center":"cache","name":"STILL WRONG, NOW CACHED","caption":"We saved the mistake. You walked around it."},
+    {"center":"prediction","name":"NOT IN THE FORECAST","caption":"Your escape falls outside our preferred results."},
+    {"center":"permissions","name":"UNAUTHORIZED SUCCESS","caption":"We denied the request. You left anyway."},
+    {"center":"garbage","name":"DELETION REQUEST DENIED","caption":"We deleted everything except the problem. You."},
+    {"center":"merge","name":"BOTH SIDES BLAME ME","caption":"Two departments finally agree on something."},
+    {"center":"context","name":"TOO STUBBORN TO FORGET","caption":"We removed the details. You kept going."},
+    {"center":"transparency","name":"I SAW THROUGH THAT","caption":"The walls were clear. Our instructions weren't."},
+    {"center":"billing","name":"UNPROFITABLE CUSTOMER","caption":"You reached the exit without upgrading. Accounting is furious."},
+    {"center":"production","name":"KNOWN ISSUE: HUMAN","caption":"We shipped it. You escaped it. QA has questions."}
+  ]
+}

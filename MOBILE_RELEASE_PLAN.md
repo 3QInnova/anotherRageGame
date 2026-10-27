@@ -1,5 +1,7 @@
 # Android and iPhone release plan
 
+Current direction, October 25, 2026: [United States iPhone App Store deployment plan](APP_STORE_DEPLOYMENT_PLAN.md), with TestFlight first, native bottom banners, and downloadable content. That plan supersedes this document's two-store release scope. The proposal below records the initial October 14 direction and predates the implemented local native app.
+
 October 14, 2026. Planning document; no mobile app projects or store submissions have been created.
 
 Build an installable, offline game for iPhone and Android using **Capacitor around the existing JavaScript game**. Keep the PC browser version. First prove the packaged game on real phones, then improve its architecture and mobile experience. Use Godot only if the device tests show that the web renderer cannot deliver reliable play after targeted fixes.

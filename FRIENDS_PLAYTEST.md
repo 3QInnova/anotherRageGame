@@ -1,5 +1,9 @@
 # Friends playtest — separate game repository
 
+## October 23 local demo preview
+
+The user selected **local preview first** for the new eight-episode recording playlist. Run `python3 tools/serve-demos.py --port 8766` and open `http://127.0.0.1:8766/` on this Mac. The dedicated builder packages only a playlist plus PC/mobile game pages under ignored `outputs/demo-playtest/site/`; its server exposes those pages only. This task does not publish to the public site described below. See [demo controls, episodes and checks](FEEDBACK_LABS.md#local-demo-playlist). PC episode links open the clean Recording view; Escape pauses and offers audio/view settings.
+
 The user requested a separate public repository, matching their other projects. Repository: [3QInnova/exception-human](https://github.com/3QInnova/exception-human). Share URL: **https://3qinnova.com/exception-human/**. The account Pages custom domain supplies this project URL; the game is stored in its own repository.
 
 ## Published content

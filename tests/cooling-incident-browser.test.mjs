@@ -1,15 +1,17 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
+import {archivedCampaign} from './archived-campaign-fixture.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
 const root=new URL('../',import.meta.url),out=new URL('outputs/local-host-puzzle/',root);mkdirSync(out,{recursive:true});
 const route=JSON.parse(readFileSync(new URL('route.json',out),'utf8')),results=[];
 for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chromium',chromium,false]]){
  const html=readFileSync(new URL(mobile?'mobile/index.html':'initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
- const fixture=html.replace('requestAnimationFrame(frame);\n})();',`window.incidentReview={tick:()=>runFrame(1/120),paint(){draw();refreshHud()},step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()}};draw();refreshHud();\n})();`);
+ const fixture=archivedCampaign(html).replace('requestAnimationFrame(frame);\n})();',`window.incidentReview={tick:()=>runFrame(1/120),paint(){draw();refreshHud()},step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()}};draw();refreshHud();\n})();`);
  const browser=await engine.launch();try{
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:1000},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/incident.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
   const tap=async id=>{if(mobile)await page.locator(id).tap();else await page.locator(id).click()};
-  const start=async()=>{await page.goto('http://localhost/incident.html');await page.locator('#openDataCenters').click();await page.locator('#campaignCoolingIncident').click();await page.evaluate(route=>{window.incidentReplay={...route,at:0,frame:0,held:new Set()};window.incidentReview.paint()},route);assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().room),17)};
+  const start=async()=>{await page.goto('http://localhost/incident.html');await openModeMenu(page,'#openDataCenters');await page.locator('#campaignCoolingIncident').click();await page.evaluate(route=>{window.incidentReplay={...route,at:0,frame:0,held:new Set()};window.incidentReview.paint()},route);assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().room),17)};
   const advance=async target=>page.evaluate(({target,mobile})=>{
    const r=window.incidentReplay;
    const send=e=>{
@@ -46,4 +48,4 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   assert.deepEqual(errors,[]);results.push({engine:name,server:'localhost-18',actualChaseBeforePuzzle:true,fourInputBox:true,safeRestAndFreeActions:true,previewSafe:true,coolingChangesWorld:true,finalEscape:true,creditsLeft:4,deaths:0,mobilePointerReplay:mobile,phoneLayoutsFit:mobile,pauseFreezesTest:true,groundFaultAndReading:true,practiceIsolated:true,practiceRestartKeeps18:true,errors});
  }finally{await browser.close()}
 }
-writeFileSync(new URL('browser-results.json',out),JSON.stringify(results,null,2)+'\n');console.log('PASS: Localhost 18 WebKit touch and Chromium keyboard full encounter, live cleanup, protected puzzle, real cooling/crossing, final escape, layouts, pause and practice restart.');
+writeFileSync(new URL('browser-results.json',out),JSON.stringify(results,null,2)+'\n');console.log('PASS (archived short Localhost comparison): Localhost 18 WebKit touch and Chromium keyboard full encounter, live cleanup, protected puzzle, real cooling/crossing, final escape, layouts, pause and practice restart.');

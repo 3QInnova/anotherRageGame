@@ -17,7 +17,7 @@ for(let i=0;i<180;i++){
  const b=g.bg(),signature=JSON.stringify([b.gridX,b.gridY,b.spacing,b.marks,b.guides]);assert(!patterns.has(signature));patterns.add(signature);assert.equal(g.check.geometry(),geometry);g.check.retry();
 }
 const before=JSON.stringify(g.state()),randomCalls=g.randomCalls();g.check.reroll();g.check.draw();assert.equal(JSON.stringify(g.state()),before);assert.equal(g.randomCalls(),randomCalls,'Backdrop drawing and rerolls do not sample gameplay randomness');
-const rev=g.bg().revision;g.check.die();assert(g.bg().revision>rev);assert.equal(g.bg().reason,'loss');g.check.ack();g.check.ack();assert.equal(g.state().state,'play');assert.equal(g.bg().reason,'retry');
+const rev=g.bg().revision;g.check.die();assert(g.bg().revision>rev);assert.equal(g.bg().reason,'loss');for(let i=0;i<240;i++)g.check.step();g.check.ack();g.check.ack();assert.equal(g.state().state,'play');assert.equal(g.bg().reason,'retry');
 const offsets=[];for(let i=0;i<3;i++){offsets.push(g.bg().guides[0].offset);g.check.retry();}assert(offsets.includes(0));assert(offsets.some(x=>x>0));assert(offsets.some(x=>x<0));
 const last=g.bg();const reload=load(current,storage);assert(reload.bg().revision>last.revision);assert.notEqual(JSON.stringify(reload.bg().marks),JSON.stringify(last.marks));
 for(let i=0;i<12;i++){const prev=JSON.stringify(g.bg().marks);g.check.newRun();assert.notEqual(JSON.stringify(g.bg().marks),prev);}

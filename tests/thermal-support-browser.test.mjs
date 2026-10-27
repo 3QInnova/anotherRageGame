@@ -1,3 +1,4 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
@@ -9,7 +10,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
  const browser=await engine.launch();try{
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:1000},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/thermal.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
-  const start=async()=>{await page.goto('http://localhost/thermal.html');await page.locator('#openDataCenters').click();await page.locator('#campaignCooling').click();await page.evaluate(route=>{window.thermalReplay={...route,at:0,frame:0,held:new Set()};window.thermalReview.paint()},route)};
+  const start=async()=>{await page.goto('http://localhost/thermal.html');await openModeMenu(page,'#openDataCenters');await page.locator('#campaignTab-practice').click();await page.locator('#campaignCooling').click();await page.evaluate(route=>{window.thermalReplay={...route,at:0,frame:0,held:new Set()};window.thermalReview.paint()},route)};
   const advance=async target=>page.evaluate(({target,mobile})=>{
    const r=window.thermalReplay;
    const send=e=>{
@@ -51,7 +52,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
    assert.deepEqual(await page.evaluate(index=>window.__COOLING_TEST__.state()[index].rotations,index),before);
    // Pick a visible paper gate itself, independently of the labeled controls.
    const paperTarget=await page.evaluate(mobile=>{
-    const r=window.__COOLING_TEST__.rects()[0],s=window.__EXCEPTION_TEST__.getState(),v=mobile?window.__MOBILE_UI_TEST__.viewport():{top:0,height:540},b=document.getElementById('game').getBoundingClientRect(),scale=b.height/v.height;
+    const r=window.__COOLING_TEST__.rects()[0],s=window.__EXCEPTION_TEST__.getState(),v=mobile?window.__MOBILE_UI_TEST__.viewport():window.__DESKTOP_UI_TEST__.viewport(),b=document.getElementById('game').getBoundingClientRect(),scale=b.height/v.height;
     return {x:b.left+(r.x+r.w/2-s.cameraX)*scale,y:b.top+(r.y+r.h/2-v.top)*scale};
    },mobile);
    if(paperTarget.y>70){await page.mouse.click(paperTarget.x,paperTarget.y);assert.equal(await page.evaluate(index=>window.__COOLING_TEST__.state()[index].selected,index),0,'Paper gate hit picks the matching IC');assert.deepEqual(await page.evaluate(index=>window.__COOLING_TEST__.state()[index].rotations,index),before)}
@@ -67,7 +68,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   }
   const finish=await advance(-1);assert.equal(finish.state.state,'won');assert.equal(finish.state.deaths,0);assert.equal(finish.state.credits.balance,4);assert(finish.circuit.every(s=>s.solved));assert.equal(finish.progress.cleared.length,0);assert.equal(finish.credits,0);
   if(mobile)await page.locator('#mobileWinRestart').click();else await page.keyboard.press('KeyR');assert.equal(await page.evaluate(()=>window.__COOLING_TEST__.state().filter(s=>s.solved).length),0);
-  await start();await advance(0);if(mobile)await page.locator('#mobilePause').tap();else await page.locator('#openDataCenters').click();assert.equal(await page.locator('#coolingPanel').isVisible(),false);const frozen=await page.evaluate(()=>({p:window.__EXCEPTION_TEST__.getState(),c:window.__COOLING_TEST__.state()}));await page.evaluate(()=>window.thermalReview.step(1200));assert.deepEqual(await page.evaluate(()=>({p:window.__EXCEPTION_TEST__.getState(),c:window.__COOLING_TEST__.state()})),frozen);
+  await start();await advance(0);if(mobile)await page.locator('#mobilePause').tap();else await openModeMenu(page,'#openDataCenters');assert.equal(await page.locator('#coolingPanel').isVisible(),false);const frozen=await page.evaluate(()=>({p:window.__EXCEPTION_TEST__.getState(),c:window.__COOLING_TEST__.state()}));await page.evaluate(()=>window.thermalReview.step(1200));assert.deepEqual(await page.evaluate(()=>({p:window.__EXCEPTION_TEST__.getState(),c:window.__COOLING_TEST__.state()})),frozen);
   await start();await advance(0);
   await page.evaluate(mobile=>{
    if(mobile)document.querySelector('[data-hold="right"]').dispatchEvent(new PointerEvent('pointerup',{pointerId:11,pointerType:'touch',bubbles:true}));else document.dispatchEvent(new KeyboardEvent('keyup',{code:'KeyD',bubbles:true}));

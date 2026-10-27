@@ -143,7 +143,7 @@ function installCoolingUI(){
  $('coolingRotate').onclick=coolingUseSwitch;$('campaignCooling').onclick=startCoolingTest;
  canvas.addEventListener?.('pointerdown',e=>{
   const s=coolingProtectedStation();if(hasPuzzleBoxes()||!s||!coolingCanEdit())return;
-  const bounds=canvas.getBoundingClientRect(),width=typeof mobileView==='undefined'?W:mobileView.width,height=typeof mobileView==='undefined'?H:mobileView.height,top=typeof mobileView==='undefined'?0:mobileView.top,scale=bounds.height/height;
+  const bounds=canvas.getBoundingClientRect(),width=visibleWorldWidth(),height=visibleWorldHeight(),top=visibleWorldTop(),scale=bounds.height/height;
   const x=cameraX+(e.clientX-bounds.left)*width/bounds.width,y=top+(e.clientY-bounds.top)/scale;
   const hit=s.board.cells.findIndex((_,i)=>{const r=coolingGateRect(s,i),pad=Math.max(0,(44/scale-r.w)/2);return x>=r.x-pad&&x<=r.x+r.w+pad&&y>=r.y-pad&&y<=r.y+r.h+pad});
   if(hit>=0){e.preventDefault();coolingSelect(hit)}
@@ -166,7 +166,7 @@ function drawCoolingGate(s,index,r){
  if(selected){stroke(r.x-3,r.y-3,r.w+6,r.h+6,'#a36f25',2);label('SELECTED',r.x+r.w/2,r.y-5,7,'#8c5e20','center')}
 }
 function drawCooling(){
- if(!cooling)return;if(hasPuzzleBoxes()){drawPuzzleBoxWorld();return}const width=typeof mobileView==='undefined'?W:mobileView.width;
+ if(!cooling)return;if(hasPuzzleBoxes()){drawPuzzleBoxWorld();return}const width=visibleWorldWidth();
  for(const [index,s] of cooling.entries()){
   if(s.x+s.sink.w+350<cameraX||s.x>cameraX+width)continue;
   const reverse=s.route.fan&&!s.route.grounded,danger=s.route.grounded,color=danger?RED:s.solved?MINT:GOLD;

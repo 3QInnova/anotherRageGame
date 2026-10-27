@@ -1,16 +1,18 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
+import {archivedCampaign} from './archived-campaign-fixture.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
 const root=new URL('../',import.meta.url),out=new URL('outputs/localhost-cleanup/',root);mkdirSync(out,{recursive:true});
 const routes=JSON.parse(readFileSync(new URL('routes.json',out),'utf8')),results=[];
 for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chromium',chromium,false]]){
  const html=readFileSync(new URL(mobile?'mobile/index.html':'initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
- const fixture=html.replace('requestAnimationFrame(frame);\n})();',`window.cleanupReview={tick:()=>runFrame(1/120),step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()}};draw();refreshHud();\n})();`);
+ const fixture=archivedCampaign(html).replace('requestAnimationFrame(frame);\n})();',`window.cleanupReview={tick:()=>runFrame(1/120),step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()}};draw();refreshHud();\n})();`);
  const browser=await engine.launch();try{
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:900},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/cleanup.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
   const step=n=>page.evaluate(n=>window.cleanupReview.step(n),n);
-  const start=async index=>{await page.goto('http://localhost/cleanup.html');await page.locator('#openDataCenters').click();assert.match(await page.locator('#campaignCenterStatus').textContent(),/Idle cleanup on every server/);await page.locator('#campaignPractice').check();await page.locator('#campaignServers button').nth(index).click();await step(0)};
+  const start=async index=>{await page.goto('http://localhost/cleanup.html');await openModeMenu(page,'#openDataCenters');assert.match(await page.locator('#campaignCenterStatus').textContent(),/Idle cleanup on every server/);await page.locator('#campaignPractice').check();await page.locator('#campaignServers button').nth(index).click();await step(0)};
   await start(0);assert.equal(await page.locator('#idleComputePanel').isVisible(),true);
   await step(1980);assert.equal(await page.locator('#idleComputeTitle').textContent(),'TERMINATION SCHEDULED');
   for(const viewport of mobile?[{width:568,height:320},{width:667,height:375},{width:844,height:280},{width:844,height:390},{width:956,height:440}]:[{width:1280,height:900}]){
@@ -22,7 +24,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   await page.keyboard.down('KeyD');await step(78);await page.keyboard.up('KeyD');await step(360);
   assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'play');
   assert.equal(await page.locator('#idleComputeTitle').textContent(),'IDLE INSTANCE: TERMINATING');await page.screenshot({path:new URL(name+'-server-01-deletion.png',out).pathname,fullPage:true});
-  if(mobile)await page.locator('#mobilePause').tap();else await page.locator('#openDataCenters').click();const frozen=await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state());await step(1200);assert.deepEqual(await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state()),frozen);
+  if(mobile)await page.locator('#mobilePause').tap();else await openModeMenu(page,'#openDataCenters');const frozen=await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state());await step(1200);assert.deepEqual(await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state()),frozen);
   const clears=[];
   for(const [index,route] of routes.entries()){
    await start(index);
@@ -50,4 +52,4 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   assert.deepEqual(errors,[]);results.push({engine:name,phoneLayoutsFit:mobile,pointerReplay:mobile,warningAndDeletionVisible:true,pauseFreezes:true,practiceIsolated:true,clears,errors});
  }finally{await browser.close()}
 }
-writeFileSync(new URL('browser-results.json',out),JSON.stringify(results,null,2)+'\n');console.log('PASS: WebKit touch handlers and Chromium keys escape all 26 cleanup stretches across 20 servers, responsive top HUD, live deletion, pause and practice isolation.');
+writeFileSync(new URL('browser-results.json',out),JSON.stringify(results,null,2)+'\n');console.log('PASS (archived short Localhost comparison): WebKit touch handlers and Chromium keys escape all 26 cleanup stretches across 20 servers, responsive top HUD, live deletion, pause and practice isolation.');

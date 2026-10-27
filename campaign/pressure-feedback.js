@@ -59,11 +59,11 @@ function pressurePaperView(){
 }
 function drawPressureWash(){
  const s=pressurePaperView();if(!s.enabled||s.safe||!s.heat||state!=='play')return;
- const top=typeof mobileView==='undefined'?62:mobileView.top,height=typeof mobileView==='undefined'?H-62:mobileView.height,width=typeof mobileView==='undefined'?W:mobileView.width;
+ const top=visibleWorldTop(),height=visibleWorldHeight(),width=visibleWorldWidth();
  ctx.save();ctx.globalAlpha=s.washAlpha;rect(0,top,width,height,'#c79542');ctx.restore();
 }
 function pressureFloorSegments(parts){
- const width=typeof mobileView==='undefined'?W:mobileView.width,s=pressurePaperView();
+ const width=visibleWorldWidth(),s=pressurePaperView();
  const center=Math.max(cameraX+24,Math.min(cameraX+width-24,player.x+PW/2));
  const reach=width*Math.min(1,.12+Math.max(0,(s.heat-.18)/.45));
  let segments=parts.map(p=>({x:Math.max(p.x,cameraX,center-reach),w:Math.min(p.x+p.w,cameraX+width,center+reach)-Math.max(p.x,cameraX,center-reach)})).filter(p=>p.w>0);
@@ -95,7 +95,7 @@ function drawPressureFloor(parts){
  ctx.restore();
 }
 function pressureNoticeLayout(){
- const width=typeof mobileView==='undefined'?W:mobileView.width;
+ const width=visibleWorldWidth();
  let left=cameraX+8,right=cameraX+width-8;
  // The slip hangs from the paper into the space between thumbs, never behind a button.
  if(typeof mobileView!=='undefined'){

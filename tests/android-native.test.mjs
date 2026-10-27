@@ -46,7 +46,7 @@ try{
  await page.locator('#openDataCenters').click();await page.locator('#campaignContinue').click();
  assert.equal(await page.evaluate(()=>window.__DATA_CENTER_TEST__.mode().campaignMode),true);
  adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});
- await page.locator('#openDataCenters').click();await page.locator('#campaignCooling').click();
+ await page.locator('#openDataCenters').click();await page.locator('#campaignTab-practice').click();await page.locator('#campaignCooling').click();
  await page.locator('[data-hold="right"]').dispatchEvent('pointerdown',{pointerId:41});
  await page.waitForFunction(()=>window.__EXCEPTION_TEST__.getState().player.x>=270,null,{polling:'raf'});
  await page.locator('#touchjump').dispatchEvent('pointerdown',{pointerId:42});await page.locator('#touchjump').dispatchEvent('pointerup',{pointerId:42});
@@ -62,7 +62,7 @@ try{
  assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().credits.balance),circuitBudget);
  writeFileSync(root+'outputs/thermal-support/android-native-selected-gate.png',execFileSync(sdk+'/platform-tools/adb',['-s',serial,'exec-out','screencap','-p'],{env}));
  adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});
- await page.locator('#openDataCenters').click();await page.locator('#campaignPuzzleBox').click();
+ await page.locator('#openDataCenters').click();await page.locator('#campaignTab-practice').click();await page.locator('#campaignPuzzleBox').click();
  await page.locator('[data-hold="right"]').dispatchEvent('pointerdown',{pointerId:51});
  await page.waitForFunction(()=>window.__EXCEPTION_TEST__.getState().player.x>=270,null,{polling:'raf'});
  await page.locator('#touchjump').dispatchEvent('pointerdown',{pointerId:52});await page.locator('#touchjump').dispatchEvent('pointerup',{pointerId:52});
@@ -79,7 +79,7 @@ try{
  writeFileSync(root+'outputs/puzzle-box/android-native-passed.png',execFileSync(sdk+'/platform-tools/adb',['-s',serial,'exec-out','screencap','-p'],{env}));
  await page.locator('#puzzleBoxClose').click();assert.equal(await page.locator('#puzzleBoxPanel').isVisible(),false);
  adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});
- await page.locator('#openDataCenters').click();await page.locator('#campaignLegacy').click();
+ await page.locator('#openDataCenters').click();await page.locator('#campaignTab-practice').click();await page.locator('#campaignLegacy').click();
  adb('shell','input','keyevent','KEYCODE_BACK');await page.locator('#mobileResume').waitFor({state:'visible'});
  await page.locator('#openPractice').click();await page.locator('#glassPractice').click();
  assert.equal((await page.evaluate(()=>window.__EXCEPTION_TEST__.getState())).room,15);

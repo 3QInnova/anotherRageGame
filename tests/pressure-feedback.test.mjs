@@ -28,16 +28,16 @@ assert.equal(idle.api.pressure().consequence,'cleanup');assert.equal(idle.api.pr
 idle.key('KeyD');step(idle,90);idle.key('KeyD',false);assert.equal(idle.api.paper().paperStage,'eviction','A run must not falsely cancel committed cleanup');assert.equal(idle.api.paper().recovery,0);
 step(idle,630);assert.equal(idle.api.paper().headline,'CLEANUP IN PROGRESS');assert.equal(idle.api.pressure().countdown,null);
 // Actual armed forecast waits hide the paper and preserve its animation clock.
-idle.api.position(300);step(idle,1);assert(idle.state().idleCompute.waiting);assert.equal(idle.api.paper().paperStage,'safe');assert.equal(idle.api.paper().washAlpha,0);
+idle.api.position(idle.check.level().forecasts[0].trigger-10);step(idle,1);assert(idle.state().idleCompute.waiting);assert.equal(idle.api.paper().paperStage,'safe');assert.equal(idle.api.paper().washAlpha,0);
 const waiting=JSON.stringify(idle.api.paper());step(idle,30);assert.equal(JSON.stringify(idle.api.paper()),waiting);
-idle.api.position(2900);step(idle,1);assert.equal(idle.api.paper().paperStage,'safe');assert.equal(idle.api.paper().heat,0);assert.equal(idle.api.paper().recovery,0,'A bay is protected, not a dismissed pending ticket');
+idle.api.position(idle.check.level().idleCompute.bays[0].start+30);step(idle,1);assert.equal(idle.api.paper().paperStage,'safe');assert.equal(idle.api.paper().heat,0);assert.equal(idle.api.paper().recovery,0,'A bay is protected, not a dismissed pending ticket');
 // Rendering follows surviving support, excluding authored gaps and protected bays.
 lab.key('KeyR');lab.key('KeyR',false);creep(lab,0,1950);lab.api.position(700);lab.check.draw();
 const parts=lab.check.platformList();for(const p of lab.api.segments()){
  assert(parts.some(a=>p.x>=a.x&&p.x+p.w<=a.x+a.w));
  assert(!lab.check.level().maintenance.some(b=>p.x<b.end&&p.x+p.w>b.start));
 }
-idle.api.position(5000);idle.api.balance(1);idle.key('Space');idle.key('Space',false);step(idle,1);assert.equal(idle.state().state,'compacting');const compacting=JSON.stringify(idle.api.paper());step(idle,1799);assert.equal(JSON.stringify(idle.api.paper()),compacting);step(idle,1);assert.equal(idle.api.paper().heat,0);assert.equal(idle.api.paper().unfold,0,'Compaction removes old warning paper');
+idle.api.position(idle.check.level().exit-200);idle.api.balance(1);idle.key('Space');idle.key('Space',false);step(idle,1);assert.equal(idle.state().state,'compacting');const compacting=JSON.stringify(idle.api.paper());step(idle,1799);assert.equal(JSON.stringify(idle.api.paper()),compacting);step(idle,1);assert.equal(idle.api.paper().heat,0);assert.equal(idle.api.paper().unfold,0,'Compaction removes old warning paper');
 const voice=load(source,new Map());assert.equal(new Set(Object.values(voice.api.pools()).flat()).size,18);assert.equal(new Set(Array.from({length:6},()=>voice.api.remark())).size,6);
 const legacy=load(source);assert.equal(legacy.api.pressure().enabled,false);assert.equal(legacy.api.paper().paperStage,'off','Original rooms do not gain an idle penalty');
 console.log('PASS: four paper-warning stages, subtle amber tint, truthful cleanup deadlines, run recovery, pause/wait freeze, gap/bay clipping, retry/compaction reset, 18 rotating remarks and unchanged original-room pressure.');

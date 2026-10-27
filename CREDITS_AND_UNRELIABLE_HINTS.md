@@ -25,13 +25,80 @@ The total unlocks visible rank titles: Unapproved human, Free trial survivor (20
 
 Records use device-local `exception-credit-records-v1` storage independently of campaign progress. Invalid records are ignored. If storage is unavailable, play and session scoring still work and the directory says credits are for this session. Unfinished balances are not restored after closing the game.
 
+## Token Bank, stickers and Data Center badges
+
+**Implemented locally, October 23, 2026.** PC, generated mobile and packaged native assets share the reward implementation. This local build has not been installed on a physical phone. Saves remain device-local.
+
+### Earning and spending
+
+Keep **Credits** as the allowance inside a level. At a successful exit, convert the newly banked score into **Tokens**, which buy permanent cosmetics. Tokens never refill the next attempt's Credits.
+
+- First campaign clear: **10 Tokens for finishing**, plus **1 Token per remaining Credit**. The completion reward makes a difficult, low-credit finish count too. Deaths before that finish do not reduce either reward.
+- Replay: earn only the improvement over the saved best remaining Credits. A first finish with 7 left earns 17 Tokens; a later finish with 12 earns another 5. Matching that best earns 0. Explain this on the receipt before the player chooses to replay.
+- Preserve existing eligibility: non-practice original playtest clears also convert improvements over their separate saved bests, as they do today. The new 10-Token first-clear bonus belongs to campaign servers. Practice, labs, demos and archived comparisons remain reward-isolated.
+- A purchase permanently unlocks an item. Equipping, changing or removing an owned item is free. Show the item, exact price and **Buy · N Tokens** button together; owned items say **Equip**.
+- Keep lifetime earnings/best scores separate from the spendable balance. Spending Tokens must not demote the existing rank titles or erase a record. No reward is confiscated on death, compaction or New run.
+
+Carry the existing saved-credit total into Tokens **1:1**, and award the first-clear bonus for each already-cleared campaign server once. Existing players should see their current progress recognized without replaying it. A previously completed Data Center also grants its badge on migration. Keep this migration and each purchase in one durable reward save so reopening the game cannot duplicate a reward or charge twice. Current storage is device/browser-local; this does not imply PC/iPhone sync.
+
+The starter prices below are implemented; human feedback should guide tuning. The current known-solution Localhost route finishes with 17 Credits in server 1 and 578 across all twenty servers: 27 Tokens on that first clear and 778 across the center with completion bonuses. Those automated routes are economy references, not expected human scores. The twenty completion bonuses alone provide 200 Tokens; the earned center badge never depends on efficiency or purchases. A 10-Token starter sticker guarantees an affordable first purchase after the first campaign clear. Measure actual first-purchase timing before expanding the catalog.
+
+### Small store: Sticker Desk
+
+Open **Rewards / Sticker Desk** from the paused Play menu or **Sticker Desk** on the level-clear receipt. The screen has a visible **Token Bank** and two choices: **Stickers** and **Badges**. Purchases have no effect on collision, speed, action budgets or next-run assistance. Everything is visible at a fixed price; use no random packs, expiring offers or real-money purchases.
+
+The small implemented catalog has three stickers and two purchasable style badges, **200 Tokens total**:
+
+| Sticker text | Tokens | Paper treatment |
+| --- | ---: | --- |
+| 100% CONFIDENT. 0% CORRECT. | 10 | Crooked confidence stamp |
+| I READ THE WARNING. IT LIED. | 20 | Dashed amber caution label |
+| WORKS ON MY MACHINE. ALLEGEDLY. | 30 | Folded support-ticket label |
+
+
+| Purchasable style badge | Tokens | AI description |
+| --- | ---: | --- |
+| CERTIFIED INCONVENIENCE | 60 | We reviewed your complaint. Unfortunately, you were correct. |
+| PLEASE ESCALATE ME | 80 | Your next department has been warned. |
+
+Owned cosmetics decorate the player's paper **clear receipt** and paused reward collection. Equip **one badge and up to three stickers** in fixed slots. This gives recordings a recognizable end card without putting decoration over hazards, action guides or the observer during play. Use the existing warm paper, muted ink, perforations and hand corrections; badges should look like reluctant office certifications. The store inventory and balances are always truthful, even when the AI's caption is snarky.
+
+### Earned Data Center badges
+
+Award a center badge for **all twenty real campaign server clears**, irrespective of deaths, time or remaining Credits. A practice clear does not qualify. Show twenty small server checks on the badge card; the final one gets a short **Badge earned** stamp on the clear receipt. The player chooses Continue normally, without another forced reading interval.
+
+These ten badges are **earned only** and cannot be purchased. Label store style badges and earned center badges clearly. Only Localhost is currently playable; the other nine badge cards must say **Planned Data Center** until their actual campaigns exist.
+
+| Data Center | Earned badge | AI caption |
+| --- | --- | --- |
+| Localhost | PASSED DESPITE TRAINING | You were supposed to quit during onboarding. |
+| Cache Management | STILL WRONG, NOW CACHED | We saved the mistake. You walked around it. |
+| Prediction Services | NOT IN THE FORECAST | Your escape falls outside our preferred results. |
+| Permission Control | UNAUTHORIZED SUCCESS | We denied the request. You left anyway. |
+| Garbage Collection | DELETION REQUEST DENIED | We deleted everything except the problem. You. |
+| Merge Conflict | BOTH SIDES BLAME ME | Two departments finally agree on something. |
+| Context Storage | TOO STUBBORN TO FORGET | We removed the details. You kept going. |
+| Transparency Division | I SAW THROUGH THAT | The walls were clear. Our instructions weren't. |
+| Billing Infrastructure | UNPROFITABLE CUSTOMER | You reached the exit without upgrading. Accounting is furious. |
+| Production | KNOWN ISSUE: HUMAN | We shipped it. You escaped it. QA has questions. |
+
+The emotional beat is a reluctant admission: the AI awards paperwork proving the player survived its mistakes. Put the accomplishment first, then the joke. Example: **Server cleared → 17 Credits converted + 10 first-clear Tokens → Bank: 27 → Continue / Rewards**. AI caption: “Your reward is adhesive. Please remain grateful.” Sixteen success remarks rotate using the narrator's persistent pool cursors. The receipt also shows the attempt number, attempt time and run death count. Intermediate campaign receipts freeze the next server until Continue; there is no extra forced reading interval.
+
+### Implementation and validation
+
+Use a small versioned local reward record, existing stable level/center IDs and the current clear hooks. Preserve the existing credit records, campaign progress and rank thresholds. The atomic `exception-rewards-v1` record stores credited per-level bests, first clears, owned IDs and equipment. Earned and spent totals are derived from those records and fixed prices; validate prices and ownership rather than trusting interface text. If storage cannot persist, say **Rewards last this session** before a purchase. Never imply account backup or cross-device ownership.
+
+`rewards/catalog.json`, `rewards/runtime.js`, `rewards/ui.html` and `rewards/style.css` supply the shared implementation; the campaign builder inlines them. `tests/rewards.test.mjs` checks first clear, improved/equal/worse replay, duplicate banking, practice isolation, migration twice, purchases/equipment/reload, insufficient funds, malformed/unavailable storage, interrupted legacy writes and all-twenty badge eligibility. `tests/rewards-browser.test.mjs` replays the actual first campaign server into a frozen receipt, buys and equips an item, checks planned badge locks, reloads and exercises desktop Chromium/WebKit and short phone WebKit layouts. Full campaign browser checks acknowledge intermediate receipts through the Continue control.
+
+Evidence is local under `outputs/rewards/`. Installed-app migration, physical touch/readability, price satisfaction and whether the badges are funny still need human feedback. The new P1–P5 nearby-phone test uses isolated saves; it does not spend the owner's Tokens. See [playtests and recording](PLAYTEST_AND_RECORDING.md).
+
 ## Unreliable advice
 
 Every attempt and compaction gets a fresh advisory composition. Floor approval/caution stamps vary, including the idle secret-pad claim. Extra floor seams, AI flags and drop claims can be harmless false alarms. Cosmetic seams avoid stacking text over authored physical floor labels.
 
 Autocomplete independently varies the suggested WALK/JUMP/WAIT action, trigger position and lead distance. Some genuine hazard-adjacent offers are omitted; some offers appear in ordinary areas. An appearance no longer reliably means a hidden scanner is just ahead. Each offered dotted prediction stays fixed while the player reads it, and the followed/rejected result still reflects the actual move.
 
-Advisory randomness does not mutate geometry or use the compaction PRNG. Red/gold active scans, locked purge locations, active drop targets, glass collisions and earned learned markers retain their actual meanings. Purple advice is optional. This keeps failures attributable to choosing dubious advice while preserving readable actual danger.
+Advisory randomness does not mutate geometry or use the compaction PRNG. Red/gold active scans, locked purge locations, active drop targets, glass collisions and earned learned markers retain their actual meanings. Purple advice is optional. This keeps failures attributable to choosing dubious advice while preserving readable actual danger. The user has since explicitly requested one exception: [Lab 09 · Unreliable Recall](FEEDBACK_LABS.md) replaces its earned markers with drifting, sometimes omitted AI flags after real deaths. Its actual active hazards stay accurate; the eight demo episodes now reuse that user-approved behaviour. Other original levels and campaign servers keep their exact markers.
 
 Twenty-four additional credit-exhaustion remarks rotate through the compaction screen. Existing loss/background libraries and reading times are preserved.
 

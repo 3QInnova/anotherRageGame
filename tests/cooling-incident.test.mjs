@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
-import {load,clear} from './data-centers.test.mjs';
+import {loadArchived as load,clear} from './archived-campaign-fixture.mjs';
 const root=new URL('../',import.meta.url),html=readFileSync(new URL('initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
 const fixture=html.replace('window.__DATA_CENTER_TEST__={',`window.__DATA_CENTER_TEST__={restart:restartCampaignRun,credits:()=>({...credits}),creditReceipt:()=>creditReceipt?{...creditReceipt}:null,total:creditTotal,position(x){player.x=x;player.y=FLOOR-PH;player.vy=0;player.grounded=true},balance(n){credits.balance=n},`);
 const press=(g,code)=>{g.key(code);g.key(code,false)},tick=(g,n=1)=>{for(let i=0;i<n;i++)g.check.step()};
@@ -33,5 +33,5 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  const out=new URL('outputs/local-host-puzzle/',root);mkdirSync(out,{recursive:true});
  writeFileSync(new URL('route.json',out),JSON.stringify(completionRoute,null,2)+'\n');
  writeFileSync(new URL('results.json',out),JSON.stringify({server:'localhost-18',normal:normal.result,chased:chased.result,markers:normal.markers,forcedWarningSeconds:6,headStartAtActivation:400,ordinaryRunStartsDeletion:true,protectedMinute:true,safePreviewCannotShock:true,pauseFreezesPoweredTest:true,liveGroundFaultAndReading:true,normalCampaignAdvancesTo19:true,creditsBanked:4,progressPersists:true,practiceIsolated:true,practiceRestartKeeps18:true,creditRewindReplaysPuzzle:true,exitHazards:3},null,2)+'\n');
- console.log('PASS: Localhost 18 traps → warned deletion → protected Puzzle Box → real cooling → final escape; minute-long rest, faults/retry, campaign saves/rewards, practice restart and credit rewind.');
+ console.log('PASS (archived short Localhost comparison): Localhost 18 traps → warned deletion → protected Puzzle Box → real cooling → final escape; minute-long rest, faults/retry, campaign saves/rewards, practice restart and credit rewind.');
 }

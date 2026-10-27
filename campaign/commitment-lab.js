@@ -89,9 +89,9 @@ function checkCommitment(){
  for(const c of commitment){
   if(c.phase!=='active')continue;
   if(['spot','batch'].includes(c.kind)&&c.time>=c.lease&&player.x<c.end&&player.x+PW>c.start){
-   die(c.kind==='spot'?'SPOT INSTANCE: The entire floor lease expired before you reached solid ground.':'BATCH TIMEOUT: The crossing finished without you.','commit-'+c.id);return;
+   die(c.kind==='spot'?'SPOT INSTANCE: The entire floor lease expired before you reached solid ground.':'BATCH TIMEOUT: The crossing finished without you.','commit-'+c.id,'deadline');return;
   }
-  if(commitmentHazards(c).some(h=>overlap({x:player.x,y:player.y,w:PW,h:PH},h))){die(c.kind==='batch'?'BATCH EXECUTION: The shared sequence caught you. Jump the gap and scanner while running.':'AUTOMATIC RETRY: Cross during the green cooldown; this service keeps retrying.','commit-'+c.id);return}
+  const hit=commitmentHazards(c).find(h=>overlap({x:player.x,y:player.y,w:PW,h:PH},h));if(hit){const receipt=hit.w===c.drop.w&&hit.x===c.drop.x;die(receipt?'A service receipt hit your crossing.':'A service scanner caught your crossing.','commit-'+c.id,receipt?'policy':'scan');return}
  }
 }
 function tickPresence(dt,oldX){

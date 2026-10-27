@@ -39,9 +39,9 @@ function creditActions(from=L.start){
  if(L.creditMoves)return L.creditMoves.filter(x=>x>=from-80).map(x=>({x,kind:'jump'}));
  if(L.glassTest)return L.glass.filter(g=>g.x+g.w>=from).map(g=>({x:g.x,kind:'jump'}));
  return [...L.crumble,...L.spikes.filter(h=>!h.sky),...L.secretPads,...L.pits.filter(p=>!p.bridge&&!['null-b','null-d'].includes(p.id))].map(h=>({x:h.x,kind:'jump'}))
-  .concat((L.stations??[]).map(s=>({x:s.x-80,kind:'jump'})),L.anomalies.map(a=>({x:a.x,kind:'rewrite'})),L.fake?[{x:L.exit-70,kind:'rewrite'}]:[]).filter(a=>a.x>=from-80);
+  .concat(L.creditExtraActions??[],(L.stations??[]).map(s=>({x:s.x-80,kind:'jump'})),L.anomalies.map(a=>({x:a.x,kind:'rewrite'})),L.fake?[{x:L.exit-70,kind:'rewrite'}]:[]).filter(a=>a.x>=from-80);
 }
-function creditBudget(from=L.start){return Math.max(2,creditActions(from).length+CREDIT_SPARE)}
+function creditBudget(from=L.start){return Math.max(2,creditActions(from).length+CREDIT_SPARE+(L.requiredLeft??0))}
 function resetCredits(){credits={balance:creditBudget(),budget:creditBudget(),spent:0,jumps:0,rewrites:0,left:0,leftMeter:0,rewinds:0,banked:false};refreshCredits()}
 function refillCredits(from){const old=credits;credits={...old,balance:creditBudget(from),budget:creditBudget(from),leftMeter:0,banked:false};refreshCredits()}
 function spendCredit(kind){
@@ -72,8 +72,9 @@ function bankCredits(){
  if(credits.banked)return;credits.banked=true;
  const id=creditLevelId(),practice=practiceMode||campaignPractice,best=creditRecords[id]??0;
  const gained=practice?0:Math.max(0,credits.balance-best);
+ const tokens=rewardAward(id,credits.balance,practice,campaignMode&&!campaignPractice);
  if(!practice){creditRecords[id]=Math.max(best,credits.balance);try{localStorage.setItem(CREDIT_SAVE_KEY,JSON.stringify({version:1,best:creditRecords}))}catch(_){creditStorageAvailable=false}}
- creditReceipt={id,remaining:credits.balance,gained,total:creditTotal(),practice,until:elapsed+12};refreshCredits();
+ creditReceipt={id,remaining:credits.balance,gained,total:creditTotal(),practice,tokens,stats:{attempt:attempts[room]??1,seconds:roomElapsed,runDeaths:totalDeaths},until:elapsed+12};refreshCredits();
 }
 function refreshCredits(){
  if(!credits)return;

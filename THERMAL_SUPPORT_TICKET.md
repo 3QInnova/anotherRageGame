@@ -1,6 +1,12 @@
 # Thermal Support Ticket and Puzzle Box
 
-## Localhost 18: Emergency Cooling Approval
+## Current long campaign: servers 18 and 20
+
+The October 23 campaign rebuild expands Localhost 18 into four named acts with 53 encounter clusters and a measured 2:59.68 clean route. The marked six-second cleanup entry occurs four clusters before its protected four-input Puzzle Box. The five-minute server 20 also contains this cooling interaction. Both preserve real TEST power, FAN 1 / DECK 0, the held maintenance harness, free deck actions, frozen deletion, hot-sink exclusion, explicit Pause and same-server practice Restart. Credit compaction returns before the first workbench and resets the circuit. Sources are `campaign/long-localhost.json`, `long-campaign.js` and `route-pieces.js`; shared Puzzle Box/thermal adapters still use `puzzleBoxEncounter`. See [the rebuilt campaign](DATA_CENTER_CAMPAIGN.md) and current long Node/browser suites.
+
+The detailed coordinates and earlier iPhone install evidence below describe the **retained short comparison**, available from **More practice → Original Cooling Incident · Short 18**. They do not describe the newly rebuilt browser route or prove a new device install.
+
+## Retained short Localhost 18: Emergency Cooling Approval
 
 The campaign server **18 · Dependencies Disagree** now combines the mechanics into one complete encounter. Open **Menu → Data Centers → Try Localhost 18 · Cooling Incident** for isolated practice, or reach server 18 in the normal campaign. Its stable ID, existing clears and best-credit records remain intact; the directory still contains twenty playable servers.
 

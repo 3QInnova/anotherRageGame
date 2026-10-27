@@ -2,7 +2,7 @@
 <div id="commitmentPanel" hidden><strong id="commitmentTitle" role="status" aria-live="polite"></strong><small id="commitmentDetail"></small><span id="commitmentPressure"></span></div>
 <div id="idleComputePanel" hidden><strong id="idleComputeTitle" role="status" aria-live="polite">IDLE COMPUTE</strong><div id="idleComputeMeter" role="progressbar" aria-label="Idle compute pressure" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="idleComputeFill"></span></div><small id="idleComputeCaption"></small></div>
 <section id="coolingPanel" hidden aria-label="Cooling circuit switches">
- <strong id="coolingTitle"></strong><small id="coolingDetail"></small>
+ <strong id="coolingAction"></strong><strong id="coolingTitle"></strong><small id="coolingDetail"></small>
  <div id="coolingBoard" class="cooling-board"><button id="coolingGate0" type="button"></button><button id="coolingGate1" type="button"></button><button id="coolingGate2" type="button"></button><button id="coolingGate3" type="button"></button><button id="coolingGate4" type="button"></button><button id="coolingGate5" type="button"></button><button id="coolingGate6" type="button"></button><button id="coolingGate7" type="button"></button><button id="coolingGate8" type="button"></button><button id="coolingGate9" type="button"></button></div>
  <div class="cooling-inspector"><button id="coolingRotate" type="button" disabled>SELECT GATE THEN ROTATE</button><strong id="coolingSelected" role="status" aria-live="polite"></strong><small id="coolingValues"></small><small id="coolingRule"></small><small id="coolingNext"></small></div>
  <small id="coolingGround"></small>
@@ -12,27 +12,36 @@
  <div class="puzzle-box-card">
   <header><strong id="puzzleBoxHeading"></strong><small id="puzzleBoxMode"></small></header>
   <div id="puzzleBoxDiagram"></div>
-  <div class="puzzle-box-caption"><small>● 1 = ON · ○ 0 = OFF · Crossing wires do not join.</small><div id="puzzleBoxStatus" role="status" aria-live="polite"></div></div>
+  <div class="puzzle-box-caption"><small id="puzzleActionGuide"></small><small>● 1 = ON · ○ 0 = OFF · Crossing wires do not join.</small><div id="puzzleBoxStatus" role="status" aria-live="polite"></div></div>
   <div class="puzzle-box-actions"><button id="puzzleInput0" type="button"></button><button id="puzzleInput1" type="button"></button><button id="puzzleInput2" type="button"></button><button id="puzzleInput3" type="button"></button><button id="puzzleInput4" type="button"></button><button id="puzzleBoxTest" type="button">TEST CIRCUIT</button><button id="puzzleBoxClose" type="button">BACK TO DECK</button></div>
  </div>
 </section>
+<div id="labHud" hidden aria-label="Feedback lab objective"><strong id="labHudTitle"></strong><span id="labHudCue"></span><span id="labHudAction"></span><small id="labHudResult" role="status" aria-live="polite"></small></div>
+<div id="labWinActions" hidden><button id="demoNext" type="button" hidden>Next demo →</button><button id="labRetry" type="button">Retry this lab</button><button id="labChoose" type="button">Choose another lab</button></div>
 <div id="campaignMenu" hidden role="dialog" aria-modal="true" aria-labelledby="campaignTitle">
  <div class="campaign-card">
-  <div class="campaign-heading"><div><small>EXCEPTION: HUMAN / NETWORK DIRECTORY</small><h2 id="campaignTitle">Data Centers</h2></div><button id="campaignClose" type="button">← Back</button></div>
-  <p class="campaign-intro">Ten departments. Two hundred server slots. The AI insists the next computer will be more competent.</p>
-  <div class="campaign-actions"><button id="campaignContinue" type="button">Start Localhost</button><button id="campaignCoolingIncident" type="button">Try Localhost 18 · Cooling Incident</button></div>
-  <div class="campaign-actions"><button id="campaignIdleTrial" type="button">Try Idle Compute · DC1 / 15</button><button id="campaignLegacy" type="button">Original playtest · 15 levels + glass lab</button><label><input id="campaignPractice" type="checkbox"> Practice any playable server</label></div>
-  <div class="campaign-actions"><button id="campaignGarbageCollection" type="button">Garbage Collection Day · Idle &amp; deletion test</button><button id="campaignCommitmentTrial" type="button">Try Commitment Lab · 4 encounters + Service Desk</button></div>
-  <div class="campaign-actions"><button id="campaignCooling" type="button">Thermal Support Ticket · Cooling &amp; logic gates</button></div>
-  <div class="campaign-actions"><button id="campaignPuzzleBox" type="button">Puzzle Box · Visible signals &amp; switches</button></div>
-  <p class="campaign-save">Localhost 18: traps, a warned deletion chase, one protected Puzzle Box, a cooled crossing and a final escape. Direct practice uses the same campaign level without changing saves.</p>
-  <p class="campaign-save">Puzzle Box: three fixed circuits, 3–5 input switches, visible ON/OFF signals. Editing is an unpowered preview. TEST applies power. FAN 1 / DECK 0. Maintenance harness included.</p>
-  <p class="campaign-save">Thermal Support: 3, 6 and 10 electrical logic gates. Tap a labeled gate to SELECT it, then press ROTATE. High outputs into GND electrify the platform. Switch decks suspend cleanup and action credits. Keep your balance.</p>
-  <p class="campaign-save">Garbage Collection Day: three cleanup stretches, five visible gaps and wide maintenance bays. Stand still to watch the warning, then outrun deletion. Practice only.</p>
-  <p class="campaign-save">Commitment Lab: leased floors, shared trap sequences, automatic retry and moving platforms. Study before entry; green bays and Pause are safe. Practice does not change your saved campaign.</p>
-  <p class="campaign-save">Localhost cleanup: short stops are covered on all 20 servers. Continuous creeping starts deletion. Run to green maintenance bays; Pause suspends the instance.</p>
-  <p class="campaign-save">Server clears save on this device when storage is available. Servers restart from their beginning. Selecting a route replaces the current run.</p>
-  <p id="creditSummary"></p><p id="creditRules" class="campaign-save"></p>
-  <div class="campaign-columns"><nav id="campaignWorlds" aria-label="Data Centers"></nav><section class="campaign-detail" aria-labelledby="campaignCenterName"><h3 id="campaignCenterName"></h3><p id="campaignCenterDescription"></p><p id="campaignCenterQuote"></p><p id="campaignCenterStatus" role="status" aria-live="polite"></p><div id="campaignServers"></div></section></div>
+  <div class="campaign-heading"><div><small>EXCEPTION: HUMAN</small><h2 id="campaignTitle">Data Centers</h2></div><button id="campaignClose" type="button">Back to game</button></div>
+  <div class="campaign-tabs" aria-label="Choose a play mode"><button id="campaignTab-campaign" type="button" aria-pressed="true">Campaign</button><button id="campaignTab-demos" type="button" aria-pressed="false">Demos · 8</button><button id="campaignTab-labs" type="button" aria-pressed="false">Feedback labs · 9</button><button id="campaignTab-practice" type="button" aria-pressed="false">More practice</button></div>
+  <section id="campaignView-campaign">
+   <div class="campaign-actions"><button id="campaignContinue" type="button">Start Localhost</button><button id="campaignCoolingIncident" type="button">Cooling Incident · Practice 18</button><label><input id="campaignPractice" type="checkbox"> Practice any server</label></div>
+   <details id="campaignWorldPicker"><summary>Data centers · Localhost + 9 planned</summary><nav id="campaignWorlds" aria-label="Data Centers"></nav></details>
+   <section class="campaign-detail" aria-labelledby="campaignCenterName"><h3 id="campaignCenterName"></h3><p id="campaignCenterDescription"></p><p id="campaignCenterQuote"></p><p id="campaignCenterStatus" role="status" aria-live="polite"></p><div id="campaignServers"></div></section>
+   <p class="campaign-save">Clears save on this device. Practice does not change campaign progress or bank credits. Selecting a route replaces the current run.</p>
+  </section>
+  <section id="campaignView-demos" hidden aria-labelledby="campaignDemosHeading"><h3 id="campaignDemosHeading">Demo playlist</h3><p class="campaign-intro">Eight episodes. Confident instructions, questionable memories, actual exits. Pick a demo or play them in order.</p><div id="campaignDemoList"></div><p class="campaign-save">Move · Jump · Rewrite. Retry retains the AI’s imperfect memory. Two Continue taps skip the loss reading. Demos do not change campaign progress.</p></section>
+  <section id="campaignView-labs" hidden aria-labelledby="campaignLabsHeading"><h3 id="campaignLabsHeading">Feedback labs</h3><p class="campaign-intro">Eight focused experiments, plus 09 · Unreliable Recall: the combined route with drifting, forgetful AI flags. Retry stays in your lab.</p><div id="campaignLabList"></div><p class="campaign-save">Move, Jump and Rewrite. Full Pause and the two-tap retry work here. Your campaign record stays yours.</p></section>
+  <section id="campaignView-practice" hidden aria-label="Other practice routes">
+   <h3>More practice</h3><h3>Cache Management · 3 prototypes</h3><p>Separate practice routes. The next twenty-server campaign remains planned.</p><div id="campaignCacheList" class="practice-route-list"></div><div class="practice-route-list">
+    <button id="campaignOriginalCooling" type="button">Original Cooling Incident · Short 18</button>
+    <button id="campaignLegacy" type="button">Original playtest · 15 levels + glass lab</button>
+    <button id="campaignIdleTrial" type="button">Idle Compute · DC1 / 15</button>
+    <button id="campaignGarbageCollection" type="button">Garbage Collection Day · Idle &amp; deletion</button>
+    <button id="campaignCommitmentTrial" type="button">Commitment Lab · Leases, retry &amp; moving platforms</button>
+    <button id="campaignCooling" type="button">Thermal Support Ticket · Rotating logic gates</button>
+    <button id="campaignPuzzleBox" type="button">Puzzle Box · Visible signals &amp; switches</button>
+   </div>
+   <details><summary>Original Localhost · 20 short comparison routes</summary><label for="originalLocalhostSelect">Original server</label><select id="originalLocalhostSelect"><option value="localhost-01">01 · Original Localhost</option><option value="localhost-02">02 · Original Localhost</option><option value="localhost-03">03 · Original Localhost</option><option value="localhost-04">04 · Original Localhost</option><option value="localhost-05">05 · Original Localhost</option><option value="localhost-06">06 · Original Localhost</option><option value="localhost-07">07 · Original Localhost</option><option value="localhost-08">08 · Original Localhost</option><option value="localhost-09">09 · Original Localhost</option><option value="localhost-10">10 · Original Localhost</option><option value="localhost-11">11 · Original Localhost</option><option value="localhost-12">12 · Original Localhost</option><option value="localhost-13">13 · Original Localhost</option><option value="localhost-14">14 · Original Localhost</option><option value="localhost-15">15 · Original Localhost</option><option value="localhost-16">16 · Original Localhost</option><option value="localhost-17">17 · Original Localhost</option><option value="localhost-18">18 · Original Localhost</option><option value="localhost-19">19 · Original Localhost</option><option value="localhost-20">20 · Original Localhost</option></select><button id="campaignOriginalLocalhost" type="button">Play original server</button></details>
+   <details><summary>Credits and practice rules</summary><p id="creditSummary"></p><p id="creditRules" class="campaign-save"></p><p class="campaign-save">Green bays and Pause suspend cleanup. Puzzle workbenches suspend cleanup and action costs. Practice never unlocks a server or banks a reward.</p></details>
+  </section>
  </div>
 </div>

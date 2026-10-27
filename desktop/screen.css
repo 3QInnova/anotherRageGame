@@ -1,0 +1,34 @@
+/* Same paper surface and tabbed pause card as the phone; keyboard controls stay visible. */
+body:has(#desktopApp){background:#eeeadd;color:#2b3a40;margin:0;overflow:hidden;font:14px/1.4 system-ui,-apple-system,sans-serif}
+body:has(#desktopApp) #desktopApp{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;padding:0;margin:0;overflow:hidden}
+body:has(#desktopApp) #stage,body.recording-view:has(#desktopApp) #stage{position:absolute;inset:0;width:100%;height:100%;margin:0;border:0;border-radius:0;box-shadow:none;transform:none;background:#eeeadd}
+#desktopApp #game{width:100%;height:100%;display:block;image-rendering:auto}
+#desktopHeader{position:absolute;z-index:60;top:12px;right:14px;display:flex;gap:8px}
+#desktopHeader button{min-height:48px;padding:8px 14px;background:#eeeadddf;color:#2b3a40;border:1px solid #839284;border-radius:9px;font:600 13px system-ui,sans-serif;cursor:pointer}
+#desktopMusic[aria-pressed="true"]{background:#d0e6db}
+#desktopGuide{position:absolute;z-index:35;top:88px;left:18px;width:min(560px,calc(100% - 36px));background:#f7f2e5f5;border:1px solid #8aa58b;border-left:3px solid #426d65;border-radius:4px;padding:7px 10px;pointer-events:none;box-sizing:border-box;color:#2b3a40}
+#desktopGuide strong,#desktopGuide span{display:block}#desktopGuide strong{font:600 13px/1.35 ui-monospace,monospace}#desktopGuide span{font:12px/1.35 system-ui,sans-serif;margin-top:3px}
+#desktopApp #message{position:absolute;z-index:5;left:18px;top:158px;width:min(300px,28vw);max-height:110px;min-height:0;overflow:hidden;padding:6px 10px;margin:0;border:0;border-left:2px solid #418d8766;border-radius:3px;background:#eeeaddd9;color:#2b3a40;pointer-events:none;box-sizing:border-box;font:13px/1.4 system-ui,sans-serif}
+#desktopApp #message label{display:block;font:10px ui-monospace,monospace;color:#586963;margin-bottom:3px}#desktopApp #line{display:block}
+body:has(#desktopApp) #touch{display:none!important}
+body:has(#desktopApp) #desktopMenu{z-index:80;background:#17212a99;padding:16px;color:#2b3a40}
+body:has(#desktopApp) .desktop-menu-card{width:min(780px,100%);max-height:calc(100dvh - 32px);overflow:auto;padding:18px 22px;background:#f7f2e5;border:1px solid #b9bdac;border-radius:12px;box-shadow:0 10px 40px #17212a44;box-sizing:border-box}
+body:has(#desktopApp) #desktopMenu button,body:has(#desktopApp) #desktopMenu select{min-height:48px;background:#e9e5d7;color:#2b3a40;border:1px solid #a5aea1;border-radius:8px;padding:8px 14px;font:14px system-ui,sans-serif;cursor:pointer}
+body:has(#desktopApp) button:focus-visible,body:has(#desktopApp) select:focus-visible{outline:3px solid #418d87;outline-offset:2px}
+body:has(#desktopApp) .desktop-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px}body:has(#desktopApp) .desktop-menu-heading h2{font-size:20px;margin:0}body:has(#desktopApp) .desktop-menu-heading>span{font:11px ui-monospace,monospace;white-space:nowrap}
+#desktopMenuTabs{display:flex;gap:4px;border-bottom:1px solid #bec4b4;margin:10px 0}#desktopMenuTabs button{flex:1;border:0!important;background:transparent!important}#desktopMenuTabs [aria-selected="true"]{background:#d0e6db!important;color:#285c57!important;border-bottom:3px solid #426d65!important;border-radius:5px 5px 0 0!important}
+.desktop-play-modes,.desktop-play-actions{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}.desktop-play-modes button,.desktop-play-actions button{flex:1}.desktop-play-modes button,#desktopResume{background:#426d65!important;color:#fff9eb!important;font-weight:700!important}
+#desktopMenu section[hidden],#desktopNewRunConfirm[hidden]{display:none!important}#desktopMenu p{font:14px/1.5 system-ui,sans-serif}#desktopMenu h3{font-size:16px;margin:12px 0}#desktopLatest{border-left:3px solid #418d8755;padding:10px;background:#e8e9dc}#desktopNewRunConfirm{padding:10px;border:1px solid #aa6d63;border-radius:6px;background:#f5e6d9}
+#desktopMenu #observerComment{margin:8px 0;color:#2b3a40;padding:8px 0;min-height:0}#desktopMenu #observerComment label{color:#586963}#desktopMenu #feed{max-height:220px;overflow:auto;color:#586963}#desktopMenu #victoryLogs{white-space:pre-line;color:#2b3a40}#desktopMenu #longLevelSelect{display:block;width:100%;margin-top:8px}
+body:has(#desktopApp) #labHud{top:12px;width:min(440px,46vw)}#labHudAction{font-weight:700!important;color:#285c57!important}
+body:has(#desktopApp) #creditPanel{top:12px}body:has(#desktopApp) #idleComputePanel,body:has(#desktopApp) #commitmentPanel{top:12px}
+body:has(#desktopApp) #overlay{pointer-events:auto;z-index:70;background:#152029b8}.overlay .card{box-sizing:border-box}body:has(#desktopApp) #overlay .card{width:min(620px,calc(100% - 32px));max-width:calc(100% - 32px);max-height:calc(100% - 24px);overflow:auto;background:#232b35;border:2px solid #ecddbd;border-radius:5px;color:#f5f0df;padding:14px 18px;box-shadow:6px 6px #11192280}body:has(#desktopApp) #overlay h2{font-size:21px}body:has(#desktopApp) #overlay #ovDesc{font:17px/1.4 system-ui,sans-serif;color:#fff2d4}body:has(#desktopApp) #lossReason{font:12px/1.4 system-ui,sans-serif;color:#f5f0df;margin-top:7px}
+body:has(#desktopApp) #compactionScreen,body:has(#desktopApp) #paywallScreen{z-index:70}
+@media(max-width:1000px){#desktopHeader{top:10px;right:10px}#desktopHeader button{padding:8px 10px;font-size:12px}body:has(#desktopApp) #labHud{width:44vw}body:has(#desktopApp) #idleComputePanel{width:32vw}}
+@media(max-width:700px){#desktopGuide{top:80px;font-size:12px}#desktopHeader button{min-height:44px;padding:7px 9px}.desktop-menu-heading{flex-wrap:wrap}.desktop-play-modes,.desktop-play-actions{gap:5px}body:has(#desktopApp) .desktop-menu-card{padding:12px}#desktopApp #message{width:30vw;font-size:11px}}
+@media(max-width:1000px){body:has(#desktopApp) #labHud{top:80px;width:min(440px,calc(100% - 36px))}}
+
+body:has(#desktopApp) .puzzle-box-card header{padding-right:230px}#coolingAction{display:block;font:700 10px/1.3 ui-monospace,monospace;color:#285c57;margin-bottom:4px}#puzzleActionGuide{color:#285c57;font-weight:700}
+#desktopHistory{max-height:240px;overflow:auto;padding-left:22px}#desktopHistory li{margin:8px 0}
+/* Pause remains reachable over loss, victory and compaction cards. Menus still own focus. */
+#desktopHeader{z-index:75}

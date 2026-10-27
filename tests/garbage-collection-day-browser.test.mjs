@@ -1,3 +1,4 @@
+import {openModeMenu} from './browser-controls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
@@ -10,7 +11,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1280,height:900},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/garbage.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
   const step=n=>page.evaluate(n=>window.gcReview.step(n),n);
-  const start=async()=>{await page.goto('http://localhost/garbage.html');await page.locator('#openDataCenters').click();await page.locator('#campaignGarbageCollection').click();await step(0)};
+  const start=async()=>{await page.goto('http://localhost/garbage.html');await openModeMenu(page,'#openDataCenters');await page.locator('#campaignTab-practice').click();await page.locator('#campaignGarbageCollection').click();await step(0)};
   await start();assert.equal(await page.locator('#idleComputeTitle').textContent(),'GARBAGE COLLECTION DAY');assert.match(await page.locator('#idleComputeCaption').textContent(),/16.0s/);assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().practiceMode),true);
   await page.screenshot({path:new URL(name+'-start.png',out).pathname,fullPage:true});await step(1980);assert.match(await page.locator('#idleComputeTitle').textContent(),/TERMINATION SCHEDULED/);
   for(const viewport of mobile?[{width:568,height:320},{width:667,height:375},{width:844,height:280},{width:956,height:440}]:[{width:1280,height:900}]){
@@ -20,7 +21,7 @@ for(const [name,engine,mobile] of [['iphone-webkit',webkit,true],['desktop-chrom
   }
   if(mobile)await page.setViewportSize({width:844,height:390});await step(660);assert.equal(await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().state),'play');await step(120);
   assert.match(await page.locator('#idleComputeTitle').textContent(),/TERMINATING/);await page.screenshot({path:new URL(name+'-deleting.png',out).pathname,fullPage:true});
-  if(mobile)await page.locator('#mobilePause').tap();else await page.locator('#openDataCenters').click();
+  if(mobile)await page.locator('#mobilePause').tap();else await openModeMenu(page,'#openDataCenters');
   const frozen=await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state());await step(1200);assert.deepEqual(await page.evaluate(()=>window.__IDLE_COMPUTE_TEST__.state()),frozen);
   await start();
   const replay=await page.evaluate(({events,frames,mobile})=>{

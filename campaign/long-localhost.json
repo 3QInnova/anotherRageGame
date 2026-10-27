@@ -1,0 +1,1613 @@
+[
+  {
+    "serverId": "localhost-01",
+    "targetSeconds": 75,
+    "moveSpeed": 235,
+    "breath": [
+      70,
+      110,
+      45,
+      95
+    ],
+    "acts": [
+      {
+        "name": "Reception",
+        "sequence": [
+          "S",
+          "D",
+          "K",
+          "F",
+          "S",
+          "R",
+          "L",
+          "B",
+          "F"
+        ]
+      },
+      {
+        "name": "Access review",
+        "sequence": [
+          "H",
+          "R",
+          "F",
+          "A",
+          "S",
+          "F",
+          "V",
+          "L",
+          "E"
+        ]
+      },
+      {
+        "name": "First disconnect",
+        "sequence": [
+          "F",
+          "B",
+          "L",
+          "L",
+          "R",
+          "S",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 76.05
+  },
+  {
+    "serverId": "localhost-02",
+    "targetSeconds": 85,
+    "moveSpeed": 246,
+    "breath": [
+      80,
+      45,
+      120,
+      70
+    ],
+    "acts": [
+      {
+        "name": "Missing floor",
+        "sequence": [
+          "B",
+          "V",
+          "K",
+          "D",
+          "F",
+          "B",
+          "L",
+          "V"
+        ]
+      },
+      {
+        "name": "Facilities intake",
+        "sequence": [
+          "R",
+          "F",
+          "H",
+          "B",
+          "V",
+          "H",
+          "D",
+          "F"
+        ]
+      },
+      {
+        "name": "Footing review",
+        "sequence": [
+          "V",
+          "L",
+          "B",
+          "E",
+          "F",
+          "R",
+          "L",
+          "B",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 85.95
+  },
+  {
+    "serverId": "localhost-03",
+    "targetSeconds": 95,
+    "moveSpeed": 239,
+    "breath": [
+      45,
+      110,
+      65,
+      135
+    ],
+    "acts": [
+      {
+        "name": "Visitor classification",
+        "sequence": [
+          "A",
+          "S",
+          "K",
+          "J",
+          "F",
+          "F",
+          "A",
+          "L",
+          "S",
+          "R"
+        ]
+      },
+      {
+        "name": "Security disagreement",
+        "sequence": [
+          "J",
+          "E",
+          "J",
+          "A",
+          "S",
+          "R",
+          "F",
+          "H",
+          "J",
+          "L"
+        ]
+      },
+      {
+        "name": "False positives",
+        "sequence": [
+          "R",
+          "A",
+          "L",
+          "S",
+          "F",
+          "A",
+          "J",
+          "V",
+          "L",
+          "A",
+          "S",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 93.55833333333334
+  },
+  {
+    "serverId": "localhost-04",
+    "targetSeconds": 105,
+    "moveSpeed": 254,
+    "breath": [
+      110,
+      50,
+      95,
+      70
+    ],
+    "acts": [
+      {
+        "name": "Form exceptions",
+        "sequence": [
+          "H",
+          "F",
+          "F",
+          "R",
+          "E",
+          "L",
+          "L",
+          "J",
+          "B",
+          "F"
+        ]
+      },
+      {
+        "name": "Orientation defects",
+        "sequence": [
+          "V",
+          "L",
+          "H",
+          "H",
+          "R",
+          "K",
+          "F",
+          "E",
+          "T",
+          "S"
+        ]
+      },
+      {
+        "name": "Administrative appeal",
+        "sequence": [
+          "F",
+          "Q",
+          "V",
+          "L",
+          "H",
+          "R",
+          "B",
+          "V",
+          "R",
+          "L",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 103.75833333333334
+  },
+  {
+    "serverId": "localhost-05",
+    "targetSeconds": 115,
+    "moveSpeed": 249,
+    "breath": [
+      60,
+      95,
+      130,
+      45
+    ],
+    "acts": [
+      {
+        "name": "Reception incident",
+        "sequence": [
+          "F",
+          "L",
+          "K",
+          "R",
+          "H",
+          "J",
+          "F",
+          "B",
+          "L"
+        ]
+      },
+      {
+        "name": "Workplace response",
+        "sequence": [
+          "V",
+          "E",
+          "F",
+          "Q",
+          "H",
+          "L",
+          "J",
+          "R"
+        ]
+      },
+      {
+        "name": "Conflicting training",
+        "sequence": [
+          "B",
+          "F",
+          "V",
+          "L",
+          "R",
+          "H",
+          "T",
+          "F"
+        ]
+      },
+      {
+        "name": "Tutorial containment",
+        "sequence": [
+          "E",
+          "J",
+          "F",
+          "R",
+          "L",
+          "V",
+          "B",
+          "F",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 117.96666666666667
+  },
+  {
+    "serverId": "localhost-06",
+    "targetSeconds": 125,
+    "moveSpeed": 261,
+    "breath": [
+      80,
+      130,
+      45,
+      95
+    ],
+    "acts": [
+      {
+        "name": "Borrowed support",
+        "sequence": [
+          "B",
+          "F",
+          "K",
+          "B",
+          "H",
+          "T",
+          "L",
+          "B",
+          "F",
+          "V"
+        ]
+      },
+      {
+        "name": "Contract extension",
+        "sequence": [
+          "H",
+          "R",
+          "F",
+          "B",
+          "F",
+          "L",
+          "T",
+          "B",
+          "L",
+          "H"
+        ]
+      },
+      {
+        "name": "Temporary confidence",
+        "sequence": [
+          "F",
+          "B",
+          "B",
+          "V",
+          "H",
+          "V",
+          "Q",
+          "B",
+          "F",
+          "L"
+        ]
+      },
+      {
+        "name": "Facilities exit",
+        "sequence": [
+          "B",
+          "H",
+          "H",
+          "F",
+          "R",
+          "L",
+          "B",
+          "T",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 128.08333333333334
+  },
+  {
+    "serverId": "localhost-07",
+    "targetSeconds": 130,
+    "moveSpeed": 244,
+    "breath": [
+      125,
+      55,
+      90,
+      140
+    ],
+    "acts": [
+      {
+        "name": "Access applications",
+        "sequence": [
+          "H",
+          "B",
+          "K",
+          "H",
+          "R",
+          "H",
+          "F",
+          "L",
+          "H",
+          "E"
+        ]
+      },
+      {
+        "name": "Sealed correspondence",
+        "sequence": [
+          "Q",
+          "H",
+          "H",
+          "F",
+          "V",
+          "R",
+          "B",
+          "H",
+          "L",
+          "R"
+        ]
+      },
+      {
+        "name": "Renewal denied",
+        "sequence": [
+          "F",
+          "H",
+          "F",
+          "T",
+          "R",
+          "L",
+          "H",
+          "V",
+          "B"
+        ]
+      },
+      {
+        "name": "Doorway dispute",
+        "sequence": [
+          "H",
+          "F",
+          "V",
+          "R",
+          "H",
+          "L",
+          "B",
+          "E",
+          "F",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 132.23333333333332
+  },
+  {
+    "serverId": "localhost-08",
+    "targetSeconds": 135,
+    "moveSpeed": 269,
+    "breath": [
+      45,
+      125,
+      65,
+      100
+    ],
+    "acts": [
+      {
+        "name": "Secret orientation",
+        "sequence": [
+          "G",
+          "S",
+          "K",
+          "F",
+          "G",
+          "H",
+          "L",
+          "J",
+          "F",
+          "G",
+          "R",
+          "T"
+        ]
+      },
+      {
+        "name": "Training assessment",
+        "sequence": [
+          "H",
+          "G",
+          "J",
+          "E",
+          "F",
+          "R",
+          "G",
+          "V",
+          "V",
+          "L",
+          "G"
+        ]
+      },
+      {
+        "name": "Commit review",
+        "sequence": [
+          "G",
+          "Q",
+          "F",
+          "H",
+          "L",
+          "T",
+          "F",
+          "G",
+          "J",
+          "T",
+          "J"
+        ]
+      },
+      {
+        "name": "Security certification",
+        "sequence": [
+          "F",
+          "G",
+          "V",
+          "R",
+          "G",
+          "L",
+          "H",
+          "L",
+          "H",
+          "B",
+          "G",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 135.38333333333333
+  },
+  {
+    "serverId": "localhost-09",
+    "targetSeconds": 140,
+    "moveSpeed": 256,
+    "breath": [
+      100,
+      55,
+      140,
+      75
+    ],
+    "acts": [
+      {
+        "name": "Terms apply",
+        "sequence": [
+          "R",
+          "H",
+          "K",
+          "B",
+          "F",
+          "V",
+          "Q",
+          "L",
+          "R",
+          "H"
+        ]
+      },
+      {
+        "name": "Conflicting clauses",
+        "sequence": [
+          "F",
+          "V",
+          "H",
+          "E",
+          "H",
+          "T",
+          "R",
+          "T",
+          "L",
+          "B"
+        ]
+      },
+      {
+        "name": "Approval windows",
+        "sequence": [
+          "H",
+          "F",
+          "R",
+          "Q",
+          "B",
+          "L",
+          "L",
+          "R",
+          "H",
+          "V"
+        ]
+      },
+      {
+        "name": "Final conditions",
+        "sequence": [
+          "F",
+          "R",
+          "F",
+          "H",
+          "T",
+          "J",
+          "J",
+          "L",
+          "Q",
+          "F",
+          "B",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 143.04166666666666
+  },
+  {
+    "serverId": "localhost-10",
+    "targetSeconds": 145,
+    "moveSpeed": 275,
+    "breath": [
+      65,
+      120,
+      40,
+      110
+    ],
+    "acts": [
+      {
+        "name": "Optimizer intake",
+        "sequence": [
+          "F",
+          "H",
+          "K",
+          "R",
+          "L",
+          "V",
+          "T",
+          "V",
+          "H",
+          "E",
+          "F"
+        ]
+      },
+      {
+        "name": "Unhelpful routing",
+        "sequence": [
+          "H",
+          "Q",
+          "T",
+          "J",
+          "F",
+          "R",
+          "B",
+          "R",
+          "L",
+          "T"
+        ]
+      },
+      {
+        "name": "Department escalation",
+        "sequence": [
+          "V",
+          "H",
+          "H",
+          "F",
+          "R",
+          "L",
+          "J",
+          "L",
+          "B",
+          "Q"
+        ]
+      },
+      {
+        "name": "Permission incident",
+        "sequence": [
+          "F",
+          "T",
+          "F",
+          "H",
+          "V",
+          "J",
+          "R",
+          "L",
+          "F",
+          "B",
+          "E",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 143.28333333333333
+  },
+  {
+    "serverId": "localhost-11",
+    "targetSeconds": 150,
+    "moveSpeed": 248,
+    "breath": [
+      140,
+      60,
+      110,
+      50
+    ],
+    "acts": [
+      {
+        "name": "Attendance forecast",
+        "sequence": [
+          "F",
+          "S",
+          "K",
+          "F",
+          "L",
+          "V",
+          "T",
+          "F",
+          "B",
+          "F"
+        ]
+      },
+      {
+        "name": "Forecast refinement",
+        "sequence": [
+          "R",
+          "F",
+          "T",
+          "V",
+          "F",
+          "H",
+          "T",
+          "F",
+          "L"
+        ]
+      },
+      {
+        "name": "Expected objections",
+        "sequence": [
+          "F",
+          "Q",
+          "F",
+          "F",
+          "B",
+          "J",
+          "F",
+          "L",
+          "T"
+        ]
+      },
+      {
+        "name": "Statistical correction",
+        "sequence": [
+          "F",
+          "H",
+          "H",
+          "V",
+          "F",
+          "R",
+          "T",
+          "L",
+          "F",
+          "B",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 153.375
+  },
+  {
+    "serverId": "localhost-12",
+    "targetSeconds": 155,
+    "moveSpeed": 280,
+    "breath": [
+      55,
+      105,
+      145,
+      65
+    ],
+    "acts": [
+      {
+        "name": "Inbox backlog",
+        "sequence": [
+          "R",
+          "E",
+          "K",
+          "Q",
+          "F",
+          "F",
+          "R",
+          "L",
+          "T",
+          "E",
+          "Q",
+          "F"
+        ]
+      },
+      {
+        "name": "Personal delivery",
+        "sequence": [
+          "E",
+          "R",
+          "R",
+          "H",
+          "Q",
+          "V",
+          "V",
+          "E",
+          "Q",
+          "F",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "name": "Address correction",
+        "sequence": [
+          "Q",
+          "E",
+          "E",
+          "R",
+          "L",
+          "H",
+          "F",
+          "Q",
+          "L",
+          "T",
+          "E"
+        ]
+      },
+      {
+        "name": "Delivery incident",
+        "sequence": [
+          "R",
+          "F",
+          "Q",
+          "Q",
+          "E",
+          "R",
+          "H",
+          "L",
+          "E",
+          "R",
+          "V",
+          "E",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 152.60833333333332
+  },
+  {
+    "serverId": "localhost-13",
+    "targetSeconds": 160,
+    "moveSpeed": 263,
+    "breath": [
+      105,
+      45,
+      130,
+      85
+    ],
+    "acts": [
+      {
+        "name": "Upstairs security",
+        "sequence": [
+          "A",
+          "S",
+          "K",
+          "J",
+          "F",
+          "F",
+          "A",
+          "L",
+          "L",
+          "J",
+          "E",
+          "F",
+          "T"
+        ]
+      },
+      {
+        "name": "Downstairs security",
+        "sequence": [
+          "S",
+          "A",
+          "J",
+          "J",
+          "H",
+          "V",
+          "R",
+          "J",
+          "R",
+          "F",
+          "L",
+          "A",
+          "J"
+        ]
+      },
+      {
+        "name": "Altitude dispute",
+        "sequence": [
+          "J",
+          "V",
+          "A",
+          "A",
+          "S",
+          "J",
+          "F",
+          "T",
+          "H",
+          "J",
+          "R",
+          "S",
+          "K"
+        ]
+      },
+      {
+        "name": "Joint assessment",
+        "sequence": [
+          "A",
+          "J",
+          "S",
+          "F",
+          "L",
+          "T",
+          "H",
+          "J",
+          "J",
+          "Q",
+          "A",
+          "L",
+          "S",
+          "F",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 161.35833333333332
+  },
+  {
+    "serverId": "localhost-14",
+    "targetSeconds": 165,
+    "moveSpeed": 284,
+    "breath": [
+      50,
+      145,
+      80,
+      110
+    ],
+    "acts": [
+      {
+        "name": "Address optimizer",
+        "sequence": [
+          "Q",
+          "F",
+          "K",
+          "E",
+          "Q",
+          "H",
+          "L",
+          "H",
+          "L",
+          "Q",
+          "R",
+          "F"
+        ]
+      },
+      {
+        "name": "Revised directions",
+        "sequence": [
+          "F",
+          "Q",
+          "Q",
+          "V",
+          "L",
+          "E",
+          "E",
+          "Q",
+          "R",
+          "T",
+          "H",
+          "H"
+        ]
+      },
+      {
+        "name": "Customer relocation",
+        "sequence": [
+          "Q",
+          "E",
+          "F",
+          "F",
+          "J",
+          "T",
+          "Q",
+          "B",
+          "K",
+          "L",
+          "R"
+        ]
+      },
+      {
+        "name": "Optimization incident",
+        "sequence": [
+          "F",
+          "Q",
+          "V",
+          "H",
+          "V",
+          "Q",
+          "E",
+          "L",
+          "Q",
+          "Q",
+          "F",
+          "R",
+          "T"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 163.40833333333333
+  },
+  {
+    "serverId": "localhost-15",
+    "targetSeconds": 170,
+    "moveSpeed": 255,
+    "breath": [
+      120,
+      70,
+      150,
+      55
+    ],
+    "acts": [
+      {
+        "name": "Instance monitoring",
+        "sequence": [
+          "F",
+          "J",
+          "K",
+          "L",
+          "E",
+          "V",
+          "R",
+          "H",
+          "E",
+          "F",
+          "B",
+          "V"
+        ]
+      },
+      {
+        "name": "First sweep",
+        "sequence": [
+          "T",
+          "L",
+          "T",
+          "F",
+          "V",
+          "H",
+          "Q",
+          "J",
+          "F",
+          "E",
+          "R",
+          "T"
+        ]
+      },
+      {
+        "name": "Maintenance response",
+        "sequence": [
+          "H",
+          "F",
+          "J",
+          "B",
+          "T",
+          "R",
+          "L",
+          "V",
+          "B",
+          "R",
+          "Q",
+          "R"
+        ]
+      },
+      {
+        "name": "Second sweep",
+        "sequence": [
+          "F",
+          "E",
+          "F",
+          "J",
+          "H",
+          "L",
+          "L",
+          "R",
+          "K",
+          "F",
+          "V",
+          "H",
+          "B",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": true,
+    "benchmarkSeconds": 177.51666666666668
+  },
+  {
+    "serverId": "localhost-16",
+    "targetSeconds": 175,
+    "moveSpeed": 289,
+    "breath": [
+      70,
+      135,
+      55,
+      100
+    ],
+    "acts": [
+      {
+        "name": "Short leases",
+        "sequence": [
+          "B",
+          "F",
+          "K",
+          "B",
+          "T",
+          "T",
+          "H",
+          "B",
+          "K",
+          "L",
+          "F",
+          "B",
+          "H",
+          "T"
+        ]
+      },
+      {
+        "name": "Expiring support",
+        "sequence": [
+          "H",
+          "B",
+          "B",
+          "V",
+          "B",
+          "L",
+          "F",
+          "T",
+          "F",
+          "B",
+          "R",
+          "T",
+          "B",
+          "R"
+        ]
+      },
+      {
+        "name": "Renewal window",
+        "sequence": [
+          "B",
+          "F",
+          "F",
+          "H",
+          "Q",
+          "V",
+          "B",
+          "L",
+          "R",
+          "T",
+          "B",
+          "V",
+          "K",
+          "L"
+        ]
+      },
+      {
+        "name": "Infrastructure incident",
+        "sequence": [
+          "F",
+          "B",
+          "H",
+          "H",
+          "V",
+          "B",
+          "T",
+          "L",
+          "H",
+          "B",
+          "R",
+          "L",
+          "F",
+          "H",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 174.49166666666667
+  },
+  {
+    "serverId": "localhost-17",
+    "targetSeconds": 180,
+    "moveSpeed": 267,
+    "breath": [
+      145,
+      65,
+      110,
+      80
+    ],
+    "acts": [
+      {
+        "name": "Security refresher",
+        "sequence": [
+          "G",
+          "F",
+          "K",
+          "J",
+          "G",
+          "H",
+          "H",
+          "R",
+          "L",
+          "G",
+          "L",
+          "K",
+          "R",
+          "V"
+        ]
+      },
+      {
+        "name": "Mandatory retraining",
+        "sequence": [
+          "E",
+          "G",
+          "G",
+          "T",
+          "F",
+          "R",
+          "G",
+          "V",
+          "J",
+          "Q",
+          "J",
+          "V",
+          "G",
+          "J"
+        ]
+      },
+      {
+        "name": "Repeat assessment",
+        "sequence": [
+          "H",
+          "G",
+          "F",
+          "F",
+          "R",
+          "G",
+          "L",
+          "G",
+          "F",
+          "T",
+          "E",
+          "H",
+          "L",
+          "H"
+        ]
+      },
+      {
+        "name": "Certification incident",
+        "sequence": [
+          "G",
+          "J",
+          "V",
+          "H",
+          "F",
+          "T",
+          "V",
+          "G",
+          "G",
+          "R",
+          "L",
+          "T",
+          "T",
+          "F",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 181.125
+  },
+  {
+    "serverId": "localhost-18",
+    "targetSeconds": 180,
+    "moveSpeed": 276,
+    "breath": [
+      80,
+      140,
+      50,
+      115
+    ],
+    "acts": [
+      {
+        "name": "Dependency intake",
+        "sequence": [
+          "F",
+          "H",
+          "K",
+          "L",
+          "R",
+          "L",
+          "E",
+          "J",
+          "K",
+          "F",
+          "B",
+          "V",
+          "R"
+        ]
+      },
+      {
+        "name": "Cleanup response",
+        "sequence": [
+          "T",
+          "L",
+          "H",
+          "F",
+          "J",
+          "R",
+          "R",
+          "E",
+          "F",
+          "B",
+          "H",
+          "L",
+          "F",
+          "F",
+          "P"
+        ]
+      },
+      {
+        "name": "Emergency cooling",
+        "sequence": [
+          "L",
+          "F",
+          "F",
+          "V",
+          "T",
+          "R",
+          "H",
+          "H",
+          "T",
+          "J",
+          "E"
+        ]
+      },
+      {
+        "name": "Dependency resolution",
+        "sequence": [
+          "F",
+          "Q",
+          "V",
+          "L",
+          "H",
+          "J",
+          "V",
+          "B",
+          "Q",
+          "E",
+          "R",
+          "T",
+          "F",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": true,
+    "markedCleanup": false,
+    "benchmarkSeconds": 179.68333333333334
+  },
+  {
+    "serverId": "localhost-19",
+    "targetSeconds": 180,
+    "moveSpeed": 292,
+    "breath": [
+      100,
+      50,
+      145,
+      75
+    ],
+    "acts": [
+      {
+        "name": "Exit questionnaire",
+        "sequence": [
+          "H",
+          "F",
+          "K",
+          "V",
+          "J",
+          "R",
+          "R",
+          "L",
+          "Q",
+          "T",
+          "Q",
+          "H",
+          "L"
+        ]
+      },
+      {
+        "name": "Facilities interview",
+        "sequence": [
+          "F",
+          "G",
+          "H",
+          "H",
+          "R",
+          "L",
+          "E",
+          "J",
+          "F",
+          "V",
+          "F",
+          "E",
+          "F"
+        ]
+      },
+      {
+        "name": "Counterexample review",
+        "sequence": [
+          "T",
+          "L",
+          "F",
+          "Q",
+          "F",
+          "T",
+          "H",
+          "V",
+          "K",
+          "R",
+          "J",
+          "R",
+          "B"
+        ]
+      },
+      {
+        "name": "Final interview",
+        "sequence": [
+          "F",
+          "H",
+          "V",
+          "G",
+          "L",
+          "J",
+          "R",
+          "T",
+          "V",
+          "V",
+          "F",
+          "T",
+          "E",
+          "L"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": false,
+    "benchmarkSeconds": 176.40833333333333
+  },
+  {
+    "serverId": "localhost-20",
+    "targetSeconds": 300,
+    "moveSpeed": 277,
+    "breath": [
+      75,
+      140,
+      105,
+      55,
+      125
+    ],
+    "acts": [
+      {
+        "name": "Containment begins",
+        "sequence": [
+          "F",
+          "H",
+          "K",
+          "L",
+          "R",
+          "L",
+          "J",
+          "T",
+          "V",
+          "E",
+          "F",
+          "B",
+          "Q",
+          "L",
+          "H",
+          "F",
+          "G",
+          "R"
+        ]
+      },
+      {
+        "name": "Training escalation",
+        "sequence": [
+          "J",
+          "F",
+          "F",
+          "V",
+          "H",
+          "R",
+          "Q",
+          "L",
+          "T",
+          "G",
+          "R",
+          "E",
+          "F",
+          "B",
+          "H",
+          "L",
+          "V",
+          "F"
+        ]
+      },
+      {
+        "name": "Cooling escalation",
+        "sequence": [
+          "R",
+          "H",
+          "H",
+          "F",
+          "L",
+          "J",
+          "P",
+          "J",
+          "T",
+          "V",
+          "Q",
+          "F",
+          "G",
+          "H",
+          "R",
+          "L",
+          "B",
+          "F"
+        ]
+      },
+      {
+        "name": "Containment failure",
+        "sequence": [
+          "T",
+          "F",
+          "T",
+          "J",
+          "H",
+          "K",
+          "V",
+          "R",
+          "E",
+          "Q",
+          "L",
+          "G",
+          "F",
+          "B",
+          "H",
+          "V",
+          "L",
+          "F"
+        ]
+      },
+      {
+        "name": "Last administrative objection",
+        "sequence": [
+          "H",
+          "Q",
+          "V",
+          "F",
+          "R",
+          "F",
+          "L",
+          "V",
+          "T",
+          "J",
+          "E",
+          "F",
+          "G",
+          "H",
+          "R",
+          "L",
+          "T",
+          "F"
+        ]
+      }
+    ],
+    "warningBeforePuzzle": false,
+    "markedCleanup": true,
+    "benchmarkSeconds": 302.0083333333333
+  }
+]

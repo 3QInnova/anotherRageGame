@@ -54,10 +54,10 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  const still=make();tick(still,3600);assert.equal(still.state().state,'play');assert(still.api.commit().encounters.every(c=>c.phase==='idle'),'Waiting before entry cannot consume encounters');
  const lease=make();walk(lease,420);const leaseTime=lease.api.commit().encounters[0].time;
  for(let i=0;i<8&&lease.state().state==='play';i++){lease.key('KeyD');tick(lease,2);lease.key('KeyD',false);tick(lease,38)}
- assert.equal(lease.state().state,'dead');assert.match(lease.nodes.get('lossReason').textContent,/floor lease expired/);assert(lease.api.commit().encounters[0].time>leaseTime);
+ assert.equal(lease.state().state,'dead');assert.equal(lease.voice.last().family,'deadline');assert(lease.api.commit().encounters[0].time>leaseTime);
  const paused=make();walk(paused,500);paused.api.open();const frozen=JSON.stringify(paused.api.commit());tick(paused,2400);assert.equal(JSON.stringify(paused.api.commit()),frozen);paused.api.close();tick(paused);assert.notEqual(JSON.stringify(paused.api.commit()),frozen);
- const batch=make();batch.api.fixturePosition(1320);tick(batch,110);assert.equal(batch.state().state,'dead');assert.match(batch.nodes.get('lossReason').textContent,/BATCH/,'Entry receipt catches a player who stays put');
- const batchScan=make();batchScan.api.fixturePosition(1320);walk(batchScan,1505);jump(batchScan,1700);assert.throws(()=>walk(batchScan,1850),/BATCH/,'Shared scanner demands the second jump');
+ const batch=make();batch.api.fixturePosition(1320);tick(batch,110);assert.equal(batch.state().state,'dead');assert.equal(batch.voice.last().family,'policy','Entry receipt catches a player who stays put');
+ const batchScan=make();batchScan.api.fixturePosition(1320);walk(batchScan,1505);jump(batchScan,1700);assert.throws(()=>walk(batchScan,1850),/scanner|scan field/i,'Shared scanner demands the second jump');assert.equal(batchScan.voice.last().family,'scan');
  const batchGap=make();batchGap.api.fixturePosition(1320);walk(batchGap,1650);tick(batchGap,100);assert.equal(batchGap.state().state,'dead','Batch floor opens on the same sequence');
  const retry=make();retry.api.fixturePosition(2410);tick(retry);const cyclePhases=[];
  for(let i=0;i<4;i++){tick(retry,360);assert.equal(retry.state().state,'play');assert.equal(retry.api.commit().encounters[2].phase,'active');cyclePhases.push(retry.api.commit().encounters[2].time)}

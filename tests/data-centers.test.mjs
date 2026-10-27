@@ -1,20 +1,22 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import vm from 'node:vm';
+import {clearLongCampaign} from './long-campaign-route.mjs';
 const root=new URL('../',import.meta.url),html=readFileSync(new URL('initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
 export function load(source=html,storage=new Map()){
  const nodes=new Map(),events=new Map(),ctx=new Proxy({},{get:()=>()=>{}});
  const el=id=>{if(!nodes.has(id))nodes.set(id,{hidden:true,style:{},classList:{add(){},remove(){}},getContext:()=>ctx,addEventListener(){}});return nodes.get(id)};
  const localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)};
  const c={window:{addEventListener(){},localStorage},document:{getElementById:el,querySelectorAll:()=>[],addEventListener:(t,f)=>events.set(t,f)},localStorage,Math,requestAnimationFrame(){}};
- const boot=`initRoom(true);window.campaignCheck={step:()=>runFrame(1/120),level:()=>L,seed(n){compactSeed=n;resetCompactWatch();paywallSeed=(n^0x5afeb011)>>>0;resetPaywallWatch()},draw,barrier,platformList,points:()=>COMPACT_POINTS[room],compact:()=>startCompaction('review'),die:()=>die('Fixture loss','review')};`;
+ const boot=`initRoom(true);window.campaignCheck={step:()=>runFrame(1/120),level:()=>L,peek:()=>({state,room,player,trap,sceneTime,credits,receipt:creditReceipt,idle:idleCompute,paper:rageLab}),seed(n){compactSeed=n;resetCompactWatch();paywallSeed=(n^0x5afeb011)>>>0;resetPaywallWatch()},draw,barrier,platformList,points:()=>COMPACT_POINTS[room],compact:()=>startCompaction('review'),die:()=>die('Fixture loss','review')};`;
  vm.runInNewContext(source.match(/<script>([\s\S]*?)<\/script>/)[1].replace('initRoom(true);requestAnimationFrame(frame);',boot),c);
  let frame=0;const route=[],originalStep=c.window.campaignCheck.step;c.window.campaignCheck.step=()=>{frame++;originalStep()};
  const key=(code,down=true)=>{route.push({frame,code,down});events.get(down?'keydown':'keyup')({code,repeat:false,preventDefault(){}})};
- return {api:c.window.__DATA_CENTER_TEST__,puzzle:c.window.__PUZZLE_BOX_TEST__,check:c.window.campaignCheck,state:c.window.__EXCEPTION_TEST__.getState,key,nodes,route,frame:()=>frame};
+ return {api:c.window.__DATA_CENTER_TEST__,puzzle:c.window.__PUZZLE_BOX_TEST__,labs:c.window.__RAGE_LAB_TEST__,demos:c.window.__DEMO_TEST__,voice:c.window.__FAILURE_VOICE_TEST__,check:c.window.campaignCheck,state:c.window.__EXCEPTION_TEST__.getState,key,nodes,route,frame:()=>frame};
 }
 const COMPACT=Symbol(),PAYWALL=Symbol();
 export function clear(g,{campaign=false,walkDuty=1,chaseZones=false}={}){
+ if(g.check.level().counterplay)return clearLongCampaign(g);
  const startRoom=g.state().room,startId=g.check.level().serverId,held=new Set(),chased=new Set();let ticks=0,compactions=0,paywalls=0;
  const key=(code,down=true)=>{if(down)held.add(code);else held.delete(code);g.key(code,down)};
  function step(){assert(++ticks<100000,'Bounded clear: '+startId);g.check.step();const s=g.state();if(s.state==='compacting')throw COMPACT;if(s.state==='paywall')throw PAYWALL;assert(['play','won'].includes(s.state),startId+' died at '+s.player.x+' / '+g.nodes.get('lossReason')?.textContent)}
@@ -73,24 +75,24 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  assert.equal(new Set(catalog.centers.flatMap(c=>c.servers.map(s=>s.id))).size,200);
  assert(catalog.centers.every(c=>c.servers.length===20&&c.servers.filter(s=>s.role==='incident').length===4));
  assert.equal(levels.filter(l=>l.incident).length,4);assert.equal(levels.filter(l=>l.mcpTool).length,2);
- assert.equal(new Set(levels.map(l=>JSON.stringify(l.encounters.map(h=>[h.kind,h.x,h.w])))).size,20,'Every server has a distinct authored route');
+ assert.equal(new Set(levels.map(l=>JSON.stringify(l.routeBeats.map(h=>[h.kind,h.x])))).size,20,'Every server has a distinct authored route');
  assert(levels.filter(l=>l.incident).every(l=>l.width>4500));
- assert.equal(new Set(levels.flatMap(l=>l.voice)).size,240);
+ assert.equal(new Set(levels.flatMap(l=>l.voice)).size,480);
  assert.equal(new Set(levels.map(l=>l.incidentCard.job)).size,20);
  assert.equal(new Set(levels.flatMap(l=>l.incidentCard.failures)).size,60);
  assert(levels.every(l=>['trouble','notice','remember','counterplay','excuse'].every(k=>l.incidentCard[k]?.length)));
  assert(levels.find(l=>l.serverId==='localhost-06').pits[0].w>2*617/1730*265,'The contractor gap requires Rewrite');
- const contracts=levels.find(l=>l.serverId==='localhost-16').anomalies;
- assert.equal(contracts.length,3);assert(contracts[0].duration>contracts[1].duration&&contracts[1].duration>contracts[2].duration,'Contract deadlines escalate physically');
+ assert.equal(new Set(levels.map(l=>l.moveSpeed)).size,20,'Each route has an authored pace');
  const lossStorage=new Map(),loss=load(html,lossStorage);loss.api.start('localhost-01',true);loss.check.die();
- assert.equal(loss.nodes.get('ovDesc').textContent,levels[0].incidentCard.failures[0]);
+ assert.equal(loss.voice.last().family,'unknown');assert(loss.voice.pools().unknown.includes(loss.nodes.get('ovDesc').textContent));
  for(let i=0;i<1200;i++)loss.check.step();assert.equal(loss.state().state,'dead','Keep the full loss reading interval');
- const lossReload=load(html,lossStorage);lossReload.api.start('localhost-01',true);lossReload.check.die();assert.equal(lossReload.nodes.get('ovDesc').textContent,levels[0].incidentCard.failures[1],'Server loss cursor survives reload');
+ const lossReload=load(html,lossStorage);lossReload.api.start('localhost-01',true);lossReload.check.die();assert.notEqual(lossReload.nodes.get('ovDesc').textContent,loss.nodes.get('ovDesc').textContent,'Contextual loss cursor survives reload');
  const aftermath=load();aftermath.api.start('localhost-01',true);clear(aftermath);
  assert.equal(aftermath.api.receipt().text,levels[0].incidentCard.excuse);assert.match(aftermath.nodes.get('ovDesc').textContent,/AI excuse/);
  const failed=load();failed.api.start('localhost-01',true);failed.check.die();assert.equal(failed.api.receipt(),null,'Deaths never receive an incident-survived receipt');
  assert.equal(g.api.start('cache-01'),false,'Planned servers cannot launch');assert.equal(g.api.start('localhost-02'),false,'Progression is sequential');
  assert(g.api.start('localhost-01'));g.check.seed(424242);
+ mkdirSync(new URL('outputs/data-centers/',root),{recursive:true});
  const results=[];for(let i=0;i<20;i++){assert.equal(g.state().room,i);results.push(clear(g,{campaign:true}));assert.equal(g.api.progress().cleared.length,i+1)}
  assert.equal(g.state().state,'won');assert.equal(g.api.progress().currentServerId,'localhost-20');
  assert.match(g.nodes.get('ovTitle').textContent,/LOCALHOST DISCONNECTED/);
@@ -106,10 +108,10 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  for(const level of levels){
   for(const x of level.returnPoints){
    assert(!level.pits.some(h=>x+24>h.x&&x<h.x+h.w),'Return point is above support');
-   assert(!level.encounters.some(h=>!h.sky&&h.kind!=='bridge'&&x+24>h.x&&x<h.x+h.w),'Return point is outside hazards');
+   assert(![...level.blocks,...level.spikes,...level.crumble,...level.secretPads,...(level.walls??[])].some(h=>!h.sky&&x+24>h.x&&x<h.x+h.w),'Return point is outside hazards');
   }
  }
  mkdirSync(new URL('outputs/data-centers/',root),{recursive:true});
- writeFileSync(new URL('outputs/data-centers/runtime-results.json',root),JSON.stringify({mappedCenters:10,mappedServers:200,playableServers:20,plannedServers:180,uniqueAuthoredNewBackgroundLines:240,distinctWorkplaceDisasters:20,serverSpecificLossLines:60,escapeExcuses:20,lossReadingPreserved:true,serverLossRotationSurvivesReload:true,contractorGapRequiresRewrite:true,bridgeContractsEscalate:true,incidents:4,mcpIncidents:2,progressionPersists:true,practiceDoesNotUnlock:true,storageDeniedWorks:true,plannedServersCannotLaunch:true,ordinaryInputZeroDeathRoutes:results},null,2)+'\n');
- console.log('PASS: 10 centers / 200 mapped servers, 20 distinct Localhost routes across four seeds, no paywalls, 240 authored lines, sequential saved progress, practice isolation and safe return points.');
+ writeFileSync(new URL('outputs/data-centers/runtime-results.json',root),JSON.stringify({mappedCenters:10,mappedServers:200,playableServers:20,plannedServers:180,uniqueAuthoredBackgroundLines:480,distinctWorkplaceDisasters:20,serverSpecificLossLines:60,escapeExcuses:20,lossReadingPreserved:true,contextualLossRotationSurvivesReload:true,contractorGapRequiresRewrite:true,authoredPaces:20,incidents:4,mcpIncidents:2,progressionPersists:true,practiceDoesNotUnlock:true,storageDeniedWorks:true,plannedServersCannotLaunch:true,ordinaryInputZeroDeathRoutes:results},null,2)+'\n');
+ console.log('PASS: 10 centers / 200 mapped servers, 20 distinct Localhost routes across four seeds, no paywalls, 480 authored lines, sequential saved progress, practice isolation and safe return points.');
 }

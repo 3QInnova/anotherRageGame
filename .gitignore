@@ -18,6 +18,33 @@ __pycache__/
 /blob-report/
 /coverage/
 
+# Captures belong in outputs/, including captures made outside test runners.
+**/[Ss]creenshots/
+**/screen-captures/
+**/recordings/
+*[Ss]creenshot*.png
+*[Ss]creenshot*.jpg
+*[Ss]creenshot*.jpeg
+*[Ss]creenshot*.webp
+Screen Shot *.png
+*[Ss]creen*[Rr]ecord*.mov
+*[Ss]creen*[Rr]ecord*.mp4
+*[Ss]creen*[Rr]ecord*.webm
+**/test-results/
+**/playwright-report/
+**/blob-report/
+
+# This historical capture is also preserved inside the original playtest ZIP.
+/initalDemoDocs/Exception_Human_V3_forecast.png
+
+# Deliberately curated Play Store evidence is the capture exception.
+# Keep this after capture rules; native app icons/splashes are source assets.
+!/release/play-store/evidence/**/
+!/release/play-store/evidence/**/*.png
+!/release/play-store/evidence/**/*.jpg
+!/release/play-store/evidence/**/*.jpeg
+!/release/play-store/evidence/**/*.webp
+
 # Capacitor assets and downloaded native toolchains
 /apps/native/www/
 /apps/native/.cache/
@@ -37,6 +64,10 @@ __pycache__/
 *.xcuserstate
 xcuserdata/
 *.xcresult/
+*.dSYM/
+*.apk
+*.aab
+*.ipa
 
 # Local environment and signing credentials
 .env

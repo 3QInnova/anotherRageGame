@@ -9,10 +9,10 @@ function idleWaitWindow(){
  // Only genuine, already armed waits suspend compute. Optional advice never does.
  if(commitmentRetryWait())return true;
  for(const h of [...L.forecasts,...L.blocks]){
-  if(h.commit)continue;
+  if(h.commit&&!h.counterplayWait)continue;
   const z=trap[h.id];if(!['armed','on'].includes(z.phase))continue;
   const target=z.x??h.x,w=h.w;
-  if(player.x+PW<=target&&player.x>=h.trigger-60&&player.x<=h.trigger+35)return true;
+  if(player.x+PW<=target&&player.x>=h.trigger-(L.counterplay?160:60)&&player.x<=h.trigger+35)return true;
  }
  return false;
 }
@@ -63,14 +63,16 @@ function drawIdleComputeEye(cx,cy,threat){
 }
 function drawIdleComputeWorld(){
  if(!idleCompute)return;
- const top=typeof mobileView==='undefined'?62:mobileView.top,bottom=typeof mobileView==='undefined'?H:mobileView.top+mobileView.height;
- const width=typeof mobileView==='undefined'?W:mobileView.width;
+ const top=visibleWorldTop(),bottom=typeof mobileView==='undefined'?H:mobileView.top+mobileView.height;
+ const width=visibleWorldWidth();
  ctx.save();
  for(const bay of L.commitmentTrial?[]:L.idleCompute.bays){
+  if(L.counterplay&&(L.stations??[]).some(s=>s.x===bay.start))continue; // The workbench already labels its protected deck.
   if(bay.end<cameraX||bay.start>cameraX+width)continue;
   rect(bay.start,FLOOR+2,bay.end-bay.start,20,'#b6dacb');dotline(bay.start,FLOOR-6,bay.end,FLOOR-6,'#418d87');
-  label('MAINTENANCE', (bay.start+bay.end)/2,FLOOR-47,10,'#285c57','center');
-  label('EXCLUSION / REST HERE',(bay.start+bay.end)/2,FLOOR-32,9,'#285c57','center');
+  const lift=L.counterplay&&(L.betrayals??[]).some(b=>b.x-190===bay.start)?27:0;
+  label('MAINTENANCE', (bay.start+bay.end)/2,FLOOR-47-lift,10,'#285c57','center');
+  label('EXCLUSION / REST HERE',(bay.start+bay.end)/2,FLOOR-32-lift,9,'#285c57','center');
  }
  for(const z of idleCompute.zones){
   if(Number.isFinite(z.warningAt)&&z.warningAt>=cameraX-80&&z.warningAt<=cameraX+width){dotline(z.warningAt,FLOOR-80,z.warningAt,FLOOR,GOLD);label('CLEANUP ENTRY / 6s WARNING',z.warningAt,FLOOR-92,10,'#956d30','center')}

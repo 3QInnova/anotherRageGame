@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
-import {load,clear} from './data-centers.test.mjs';
+import {loadArchived as load,clear} from './archived-campaign-fixture.mjs';
 const root=new URL('../',import.meta.url),html=readFileSync(new URL('initalDemoDocs/Exception_Human_Misclassification_V3.html',root),'utf8');
 const fixture=html.replace('window.__DATA_CENTER_TEST__={',`window.__DATA_CENTER_TEST__={hud:refreshHud,
  position(x){player.x=x;player.y=FLOOR-PH;player.vy=0;player.grounded=true},balance(n){credits.balance=n},`);
@@ -44,4 +44,4 @@ const original=load();assert.equal(original.state().idleCompute,null);original.a
 const out=new URL('outputs/localhost-cleanup/',root);mkdirSync(out,{recursive:true});
 writeFileSync(new URL('routes.json',out),JSON.stringify(routes,null,2)+'\n');
 writeFileSync(new URL('results.json',out),JSON.stringify({servers:20,cleanupStretches:results.reduce((n,r)=>n+r.cleanupZones,0),idleAllowance:16,warningSeconds:6,allWarningsStartLiveDeletion:true,pauseAndRetry:true,maintenanceMinuteSafe:true,requiredWaitFreeze:true,practiceIsolated:true,originalPlaytestPreserved:true,routes:results},null,2)+'\n');
-console.log('PASS: all 20 Localhost servers, every cleanup stretch escaped through ordinary controls, exact idle/warning timing, deletion contact, pause/retry, safe minute-long maintenance rests, required waits and preserved original playtest.');
+console.log('PASS (archived short Localhost comparison): all 20 Localhost servers, every cleanup stretch escaped through ordinary controls, exact idle/warning timing, deletion contact, pause/retry, safe minute-long maintenance rests, required waits and preserved original playtest.');

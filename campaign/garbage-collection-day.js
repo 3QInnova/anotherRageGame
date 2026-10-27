@@ -23,7 +23,7 @@ function startGarbageCollectionDay(){
 }
 function drawGarbageCollectionDay(){
  if(!L.idleDeletionTrial)return;
- const width=typeof mobileView==='undefined'?W:mobileView.width;
+ const width=visibleWorldWidth();
  const signs=[
   {x:380,title:'01 / DESK CLEARANCE',detail:'WAIT HERE. FACILITIES WILL NOTICE.'},
   {x:2840,title:'02 / ARCHIVE QUEUE',detail:'TINY STEPS STILL USE THE SERVER.'},
