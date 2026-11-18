@@ -23,8 +23,14 @@ EXCEPTION: HUMAN is a tricky platformer with three actions: move, jump, and Rewr
 THE RULES ARE WRONG. THE TIMING IS YOURS.
 Read the warning. Find the opening. Commit to the jump. The traps reward learning their timing, even when the narrator refuses to learn anything at all.
 
+KEEP MOVING. THE AI IS WATCHING.
+Stand still too long and cleanup comes looking for you. Try to inch past everything with tiny taps and the AI may provide a helpful electric jolt. Its definition of helpful needs work.
+
+TRUST THE FLAGS. MAYBE.
+The paper world shifts between attempts, and the AI's remembered warnings are not always where the traps are. A little hope. A lot of confidence. Absolutely no accountability.
+
 ONE CAMPAIGN. TWENTY ESCAPES.
-Work through 20 levels across four chapters, from your first rejected landing to the final escape. Progress saves as you go, with a checkpoint for the final approach. The AI would prefer you start over. It does not get a vote.
+Work through 20 levels, from your first rejected landing to the final escape. Progress saves as you go, with a checkpoint for the final approach. The AI would prefer you start over. It does not get a vote.
 
 FAILURE COMES WITH COMMENTARY.
 Miss a jump and receive a very confident explanation of why this is your fault. Take a moment to read it, then retry when you are ready. You supply the persistence. The AI supplies the excuses.

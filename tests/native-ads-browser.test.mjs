@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {webkit} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
+import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
 const html=readFileSync(new URL('../outputs/release/native.html',import.meta.url),'utf8');
-const browser=await webkit.launch();
+const engine=process.env.EXCEPTION_ADS_BROWSER==='chromium'?chromium:webkit;
+const browser=await engine.launch();
 try {
  for(const fail of [false,true]){
   const page=await browser.newPage({viewport:{width:844,height:390},isMobile:true,hasTouch:true});

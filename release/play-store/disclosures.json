@@ -1,0 +1,79 @@
+{
+  "checkedDate": "2026-11-17",
+  "privacy": {
+    "url": "https://3qinnova.com/exception-human-info/#privacy",
+    "published": true,
+    "websiteCommit": "dc0ee6d0e6284ffdf5b7b84aa28237e263e65b77",
+    "liveMatchesPrepared": true,
+    "playSaved": true
+  },
+  "adsDeclaration": "Yes - saved",
+  "appAccess": "No sign-in or payment required - saved",
+  "dataSafety": {
+    "status": "Submitted for review",
+    "collectedAndShared": [
+      "Approximate location",
+      "Diagnostics",
+      "App interactions",
+      "Device or other IDs"
+    ],
+    "purposes": [
+      "Advertising or marketing",
+      "Analytics",
+      "Fraud prevention, security, and compliance"
+    ],
+    "ephemeral": false,
+    "collectionOptionalForAllUsers": false,
+    "encryptedInTransit": true,
+    "accounts": false,
+    "deletionRequestUrl": "https://3qinnova.com/exception-human-info/#privacy",
+    "scopeNotes": "Offline saves stay on device. Support opens an external email app; no in-app email collection or publisher upload endpoint. User-initiated sharing is separately described in the privacy policy. No Firebase, mediation adapters or publisher gameplay analytics.",
+    "sources": [
+      "https://developers.google.com/admob/android/privacy/play-data-disclosure",
+      "https://support.google.com/googleplay/android-developer/answer/10787469"
+    ]
+  },
+  "admob": {
+    "appAdsTxt": "Verified correct public publisher entry at https://3qinnova.com/app-ads.txt",
+    "storeLink": "Exact package search returned no listing. Link and complete readiness review when Google Play listing is available.",
+    "bannerVerified": true
+  },
+  "publishedGame": false,
+  "targetAudience": [
+    "13\u201315",
+    "16\u201317",
+    "18+"
+  ],
+  "advertisingId": {
+    "used": true,
+    "purposes": [
+      "Advertising or marketing",
+      "Analytics",
+      "Fraud prevention, security, and compliance"
+    ],
+    "status": "saved"
+  },
+  "otherDeclarations": {
+    "governmentApp": false,
+    "financialFeatures": false,
+    "healthFeatures": false,
+    "trader": true,
+    "status": "saved"
+  },
+  "contentRating": {
+    "status": "IARC Completed; saved",
+    "submitted": "2026-11-17",
+    "ESRB": "Everyone 10+ \u2014 Fantasy Violence",
+    "PEGI": "7 \u2014 Mild Violence, Fear",
+    "certificateId": "Not yet displayed"
+  },
+  "storeContact": {
+    "email": "Support.exeptionHuman@3qinnova.com",
+    "website": "https://3qinnova.com/exception-human-info/",
+    "category": "Action",
+    "status": "saved"
+  },
+  "appContentOverview": "You are all caught up; no declarations requiring attention",
+  "submittedForAppReview": true,
+  "reviewStatus": "Submitted with Android production release; automated pre-review checks running"
+}

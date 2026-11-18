@@ -1,0 +1,52 @@
+{
+  "status": "Completed in App Store Connect 2026-11-17",
+  "build": "8",
+  "ageRating": {
+    "advertising": true,
+    "cartoonOrFantasyViolence": "Frequent - repeated stylized paper-character deaths, electric shocks and traps",
+    "expectedRating": "Apple assigned 13+; earlier operating systems 12+",
+    "realisticViolence": "None",
+    "sexualContent": "None",
+    "drugsAlcoholTobacco": "None",
+    "gambling": "None",
+    "lootBoxes": false,
+    "userGeneratedContent": false,
+    "messagingChat": false,
+    "unrestrictedWebAccess": false,
+    "profanityCrudeHumor": "Infrequent",
+    "horrorFear": "Infrequent",
+    "gunsOtherWeapons": "Infrequent"
+  },
+  "exportCompliance": {
+    "answer": "None of the listed proprietary or standard non-OS encryption algorithms",
+    "basis": "App networking and bundled SDK undefined crypto symbols use Apple NSURLSession, CommonCrypto and Security APIs; no custom application encryption. Missing Compliance cleared in App Store Connect.",
+    "currentInfoPlistDeclaration": "ITSAppUsesNonExemptEncryption absent; answered for build 8 in App Store Connect."
+  },
+  "privacy": {
+    "dataCollected": "Yes; do not select Data Not Collected",
+    "inventory": "sdk-privacy-inventory.json",
+    "candidateDataTypes": [
+      "Coarse Location",
+      "Device ID",
+      "Advertising Data",
+      "Product Interaction",
+      "Crash Data",
+      "Performance Data",
+      "Other Diagnostic Data"
+    ],
+    "purposes": "Saved SDK manifest purpose union; UMP App Functionality added for coarse location, product interaction and performance. Crash data Analytics only.",
+    "linkedToUser": "Google manifest marks coarse location, device ID, advertising data and product interaction linked; an account is not required for device linkage.",
+    "tracking": "No for configured build: iOS 15 minimum, no ATT request/IDFA access, npa=1, publisher personalization disabled, publisher first-party ID disabled, no mediation/Firebase or shared publisher identifiers. Generic SDK manifest marks potential Device ID tracking but does not describe this restricted configuration.",
+    "support": "User-initiated email and optional submitted images/text/device details. Evaluate Apple optional-support exception; otherwise disclose Email Address and applicable User Content for App Functionality, linked to sender, not tracking.",
+    "localSaves": "Device-only gameplay and settings are not uploaded by publisher."
+  },
+  "reviewContact": {
+    "status": "Owner-supplied private Apple review contact saved directly in App Store Connect; omitted from repository."
+  },
+  "sources": [
+    "https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/",
+    "https://developer.apple.com/app-store/app-privacy-details/",
+    "https://developers.google.com/admob/ios/privacy/data-disclosure",
+    "https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations"
+  ]
+}

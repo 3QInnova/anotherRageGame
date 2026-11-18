@@ -20,7 +20,7 @@ function installNativeUI(){
  window.__EXCEPTION_NATIVE_TEST__={health:()=>window.ExceptionNative?.health??{native:false},paused:()=>mobilePaused};
 }
 
-// Native-only UI: these controls never appear in browser or Android builds.
+// Native-only UI shared by the iOS and Android ad bridges.
 function installNativeAds(){
  const ads=window.ExceptionNative?.ads;if(!ads)return;
  document.documentElement.classList.add('native-ads');
@@ -32,7 +32,7 @@ function installNativeAds(){
   const button=document.createElement('button');button.id=id;button.type='button';button.textContent=label;
   button.onclick=async()=>{pauseMobile('Paused for ad privacy.');button.disabled=true;try{await ads[method]()}catch(_){status.textContent='Unable to open ad options. Please try again.'}finally{button.disabled=false}};panel.appendChild(button);
  }
- const status=document.createElement('p');status.id='nativeAdsStatus';status.setAttribute('role','status');status.textContent='Preparing test ads…';
+ const status=document.createElement('p');status.id='nativeAdsStatus';status.setAttribute('role','status');status.textContent='Checking ad privacy…';
  ($('menuSettings')||$('panel-play')).append(panel,status);
  window.addEventListener('exception:ad-pause',()=>pauseMobile('Paused while the ad or privacy dialog is open.'));
  window.addEventListener('exception:ad-status',event=>{status.textContent=event.detail?.status||'No ad available. You can keep playing.'});

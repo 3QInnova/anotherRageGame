@@ -13,7 +13,8 @@
     "android:build": "node scripts/android-build.mjs",
     "ios:test": "node scripts/ios-smoke.mjs",
     "android:sim": "node scripts/android-simulator.mjs",
-    "android:test": "node ../../tests/android-native.test.mjs"
+    "android:test": "node ../../tests/android-native.test.mjs",
+    "android:release": "node scripts/android-release.mjs"
   },
   "dependencies": {
     "@capacitor/android": "8.5.3",

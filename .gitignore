@@ -93,3 +93,6 @@ SourcePackages/
 # Apple signing and API private keys (public ad/team identifiers are not secrets).
 *.p8
 *.key
+
+# Local App Store marketing concept gallery and generated artwork.
+/App Store Marketing/

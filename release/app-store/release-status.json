@@ -1,19 +1,19 @@
 {
   "updated": "2026-11-17",
-  "publicReleaseBlocked": true,
-  "reason": "Owner requires company seller identity; separate 3QInnova LLC organization enrollment is pending Apple approval.",
+  "publicReleaseBlocked": false,
+  "reason": "Submitted to Apple; waiting for review. Automatic release after approval. Not yet approved or published.",
   "registeredIndividualTeamBundleId": "com.threeqinnova.exceptionhuman",
   "individualTeam": "NM3KNV8248",
-  "productionIdentityStatus": "Local preparation only; resolve ownership or use company-owned ID after organization approval.",
-  "appStoreRecord": "Apple UI reported created, with Full Access fallback warning; app ID and saved listing not verified before session expired. No public submission.",
+  "productionIdentityStatus": "Individual team NM3KNV8248 authorized for this submission on 2026-11-17.",
+  "appStoreRecord": "Verified current-account app 6836090160, EXCEPTION: HUMAN, com.threeqinnova.exceptionhuman",
   "version": "1.0.0",
-  "latestLocalBuild": "7",
-  "archive1": "Succeeded; development signed; installed and launched on William’s iPhone. Not a TestFlight build.",
+  "latestLocalBuild": "8",
+  "archive1": "Succeeded; development signed; installed and launched on William\u2019s iPhone. Not a TestFlight build.",
   "archive2": "Succeeded; superseded by build 3.",
-  "storeMetadata": "Prepared in marketing/submission-preparation.json; not uploaded.",
-  "supportPrivacyConsent": "Published in prior turn; live ads disabled.",
-  "storeScreenshots": "Marketing compositions remain draft browser captures; final native screenshots not yet captured.",
-  "privacyReview": "SDK manifests inventoried; final Apple answers require actual SDK behavior review. No Data Not Collected claim.",
+  "storeMetadata": "Marketing metadata and private review contact saved. Automatic release after approval selected.",
+  "supportPrivacyConsent": "Public legal/support pages verified; UMP US message published; build 8 uses live AdMob unit with non-personalized requests.",
+  "storeScreenshots": "Two native screenshots uploaded and accepted in required medium iPhone slot: Puzzle Box and AI loss commentary; resized to 2622x1206.",
+  "privacyReview": "Seven data disclosures completed; published by owner in App Store Connect on 2026-11-17. No cross-app tracking declared for configured build.",
   "runtimeDependencyAudit": {
     "info": 0,
     "low": 0,
@@ -24,12 +24,8 @@
   },
   "physicalAcceptance": "Build 7 flag trust mix requires hands-on acceptance; prior simplified menus accepted.",
   "remaining": [
-    "Wait for organization approval and sign in to its App Store Connect account.",
-    "Resolve company-owned app record, identifier and signing.",
-    "Complete final physical-device consent, ad, audio and sustained gameplay validation.",
-    "Capture accurate native store screenshots and upload metadata.",
-    "Finalize privacy labels, age rating, encryption and asset rights checks under company account.",
-    "Archive/export/upload under approved organization; TestFlight validation before public submission."
+    "Wait for Apple review; address reviewer requests if any.",
+    "After public listing appears, link it in AdMob and complete Google app readiness review."
   ],
   "validation": [
     "native-ads-browser passed test/offline, privacy/report, legal screens, banner coverage, pause, rotation and menu clearance",
@@ -46,12 +42,73 @@
     "Build 6: jitter timing/penalty/protection and 25 persistent comments passed",
     "Build 6: keyboard/touch rendering and help visually checked; all campaign/challenge routes passed",
     "Build 7: 10000 recall rerolls measured 39.69% accurate displayed flags; existing recall physics parity and all twenty normal/cautious routes passed",
-    "Build 7: twenty campaign/four challenge routes passed desktop and phone; native ad and release-package checks passed"
+    "Build 7: twenty campaign/four challenge routes passed desktop and phone; native ad and release-package checks passed",
+    "Build 8 simulator Release build installed and launched; live ad unit yields simulator test-device creatives as expected.",
+    "Build 8 native-ads browser test passed; archive and App Store upload succeeded."
   ],
-  "archive3": "Succeeded; development-signed build with gameplay-only ads and simplified campaign/pause menus. Installed on William’s iPhone; local testing only.",
-  "legalNavigation": "Bundled support/privacy instructions updated for Settings & help. Generated website copy updated locally; public website navigation wording still needs publishing.",
+  "archive3": "Succeeded; development-signed build with gameplay-only ads and simplified campaign/pause menus. Installed on William\u2019s iPhone; local testing only.",
+  "legalNavigation": "Published and verified live 2026-11-17; website commit 7c346665ab3ee5ef9145c3c94acccd0bfd2c738f.",
   "archive4": "Archive succeeded; installed on paired iPhone. Adds generic visible-control collision guard and 24px clearance; local testing only.",
   "archive5": "Archive succeeded; installed on paired iPhone. Restores progress-based idle pressure throughout campaign. Local device testing only.",
   "archive6": "Archive succeeded: Exception-Human-6-final.xcarchive; installed on paired iPhone. Adds AI jitter zap and animated help. Local testing only.",
-  "archive7": "Archive succeeded; installed on paired iPhone. 40% accurate / 60% misleading displayed retry flags across all twenty campaign levels. Local testing only."
+  "archive7": "Archive succeeded; installed on paired iPhone. 40% accurate / 60% misleading displayed retry flags across all twenty campaign levels. Local testing only.",
+  "submissionPreparation": "Final questionnaire answers saved in App Store Connect; build 8 compliance resolved.",
+  "appStoreConnectSession": "Signed in; current individual account authorized by owner.",
+  "distributionPreflight": {
+    "date": "2026-11-17",
+    "build": "7",
+    "team": "NM3KNV8248",
+    "result": "App Store distribution export succeeded",
+    "uploaded": false,
+    "submissionReady": false,
+    "reason": "Signing preflight only; build 7 still uses Google test advertisements. Final ad mode and Apple account sign-in pending.",
+    "artifacts": [
+      {
+        "file": "App.ipa",
+        "bytes": 7132588,
+        "sha256": "3b13b1d3e45228fb1841615bfe335eb98a4771d4b536e99e55268fca1afcdbe6"
+      }
+    ]
+  },
+  "submissionAuthorization": "2026-11-17: Owner explicitly authorizes review submission under the existing individual seller; company enrollment no longer blocks submission.",
+  "archive8": {
+    "version": "1.0.0",
+    "build": "8",
+    "bundleId": "com.threeqinnova.exceptionhuman",
+    "liveAdsEnabled": true,
+    "bannerAdUnit": "ca-app-pub-1989852905612367/1474986230",
+    "iconSourceSha256": "d7b2cc089969cc6dfded619c2f9c92159ca8129b1ccec5b163dc55afe93bad73",
+    "upload": "Succeeded; processed and attached to version 1.0",
+    "warnings": [
+      "GoogleMobileAds vendor dSYM absent",
+      "UserMessagingPlatform vendor dSYM absent"
+    ],
+    "reviewSubmitted": true,
+    "exportCompliance": "None of listed non-OS encryption algorithms; Missing Compliance cleared"
+  },
+  "ageRating": "Apple calculated 13+; saved. Earlier OS rating 12+.",
+  "admobLink": "Exact Apple ID 6836090160 returned no listing in AdMob. Requires public listing before link and readiness review.",
+  "launchAvailability": "United States only; free; future territories not automatically enabled; Mac and Vision Pro disabled.",
+  "icon": "Build 8 icon visually verified in App Store Connect.",
+  "contentRights": "Necessary third-party content rights declared and saved; Games / Action / Puzzle categories saved.",
+  "submission": {
+    "app": "EXCEPTION: HUMAN",
+    "appleId": "6836090160",
+    "storeVersion": "1.0",
+    "binaryVersion": "1.0.0",
+    "build": "8",
+    "submittedDate": "2026-11-17",
+    "observedStatus": "Waiting for Review",
+    "confirmation": "1 Item Submitted",
+    "submissionId": "0ca9e667-57d3-4add-84ae-b8b0c9bf750e",
+    "reviewUrl": "https://appstoreconnect.apple.com/apps/6836090160/distribution/reviewsubmissions/details/0ca9e667-57d3-4add-84ae-b8b0c9bf750e",
+    "releaseMode": "Automatically release after approval",
+    "availability": [
+      "United States"
+    ],
+    "priceUSD": 0,
+    "approved": false,
+    "published": false,
+    "evidence": "App Store Connect native accessibility state after Submit for Review; verified 2026-11-17."
+  }
 }

@@ -6,7 +6,7 @@ import { StatusBar } from '@capacitor/status-bar';
 const native = Capacitor.isNativePlatform();
 const health = { native, platform: Capacitor.getPlatform(), listenersReady: false, iosAudioSession: window.__IOS_AUDIO_SESSION__ ?? null, errors: [] };
 const emit = (name, detail = {}) => window.dispatchEvent(new CustomEvent(name, { detail }));
-const ads = native && Capacitor.getPlatform() === 'ios' ? registerPlugin('GameAds') : null;
+const ads = native ? registerPlugin('GameAds') : null;
 const adListeners = ads ? Promise.all([
   ads.addListener('pause', () => emit('exception:ad-pause')),
   ads.addListener('status', detail => emit('exception:ad-status', detail)),

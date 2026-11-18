@@ -1,0 +1,20 @@
+{
+  "app": "EXCEPTION: HUMAN",
+  "appleId": "6836090160",
+  "storeVersion": "1.0",
+  "binaryVersion": "1.0.0",
+  "build": "8",
+  "submittedDate": "2026-11-17",
+  "observedStatus": "Waiting for Review",
+  "confirmation": "1 Item Submitted",
+  "submissionId": "0ca9e667-57d3-4add-84ae-b8b0c9bf750e",
+  "reviewUrl": "https://appstoreconnect.apple.com/apps/6836090160/distribution/reviewsubmissions/details/0ca9e667-57d3-4add-84ae-b8b0c9bf750e",
+  "releaseMode": "Automatically release after approval",
+  "availability": [
+    "United States"
+  ],
+  "priceUSD": 0,
+  "approved": false,
+  "published": false,
+  "evidence": "App Store Connect native accessibility state after Submit for Review; verified 2026-11-17."
+}

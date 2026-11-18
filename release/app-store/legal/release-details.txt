@@ -5,7 +5,7 @@ Support URL: https://3qinnova.com/exception-human-info/#support
 Privacy URL: https://3qinnova.com/exception-human-info/#privacy
 Terms URL: https://3qinnova.com/exception-human-info/#terms
 License: Apple Standard EULA; leave custom EULA unset unless separately reviewed.
-Website commit: 512afcb7eed4973b97c73714309b5724561a1e80
+Website commit: 7c346665ab3ee5ef9145c3c94acccd0bfd2c738f
 US consent: Published in AdMob; all current/future supported US states; opt-out On.
 Live ads: OFF. Publishing consent does not enable live ads.
 
@@ -30,3 +30,5 @@ https://developers.google.com/admob/ios/privacy/data-disclosure
 https://developers.google.com/admob/ios/privacy
 https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 https://developer.apple.com/app-store/review/guidelines/
+
+2026-11-17: Updated Settings & help navigation published and live HTML verified byte-identical to prepared page.

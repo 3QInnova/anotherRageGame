@@ -26,16 +26,14 @@
     "note": "Size and placement must be implemented in native app code; the ad-unit name does not enforce them."
   },
   "nextSteps": [
-    "Validate real UMP opt-out/reopen flows, Google test banners, audio and lifecycle on a physical iPhone.",
-    "Enter published support/privacy URLs and accurate App Store privacy disclosures in App Store Connect.",
-    "Link the App Store listing and developer website; complete AdMob app review and app-ads.txt verification.",
-    "Keep EHLiveAdsEnabled false until release requirements pass."
+    "After Apple listing becomes public, link Apple app 6836090160 in AdMob and complete Google readiness/app-ads.txt verification.",
+    "Verify production ad fill and consent behavior on a physical iPhone; live ad delivery has not been proven."
   ],
   "sdkVersions": {
     "GoogleMobileAds": "13.13.0",
     "UserMessagingPlatform": "3.1.0"
   },
-  "liveAdsEnabled": false,
+  "liveAdsEnabled": true,
   "testBannerAdUnitId": "ca-app-pub-3940256099942544/2934735716",
   "usPrivacyMessage": {
     "name": "EXCEPTION HUMAN - US privacy choices",
@@ -68,5 +66,11 @@
     "coarseLocationCollectionEnabled": false,
     "maxAdContentRating": "G",
     "attRequested": false
+  },
+  "productionBuild": "8",
+  "storeLinkAttempt": {
+    "date": "2026-11-17",
+    "appleId": "6836090160",
+    "result": "No listing found; public store listing pending"
   }
 }

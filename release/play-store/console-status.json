@@ -1,0 +1,47 @@
+{
+  "checkedDate": "2026-11-17",
+  "developerName": "3QInnova",
+  "accountType": "Organization",
+  "developerAccountId": "6403006891642104331",
+  "appName": "EXCEPTION: HUMAN",
+  "appId": "4974634036304178954",
+  "packageName": "com.threeqinnova.exceptionhuman",
+  "pricing": "free",
+  "categoryType": "game",
+  "defaultLanguage": "en-US",
+  "track": "production",
+  "trackId": "4697392211637202442",
+  "draftRelease": 1,
+  "status": "Submitted for production review; Play shows Changes in review; automated pre-review checks running",
+  "uploadUrl": "https://play.google.com/console/u/1/developers/6403006891642104331/app/4974634036304178954/tracks/4697392211637202442/releases/1/prepare",
+  "bundleUploaded": true,
+  "published": false,
+  "remainingBuildWork": [
+    "Physical Android controls, audio, native ads and consent acceptance",
+    "Secure off-device upload-key backup"
+  ],
+  "authorization": "User requested packaging and publication; selected United States only. Prior Play signing and policy declarations approved.",
+  "localAndroidRelease": {
+    "version": "1.0.0",
+    "versionCode": 1,
+    "signedBundle": "outputs/play-store/EXCEPTION-HUMAN-1.0.0-1.aab",
+    "report": "release/play-store/ANDROID_RELEASE.md",
+    "artifactAudit": "passed",
+    "emulatorInstallLaunch": "passed",
+    "physicalDeviceAcceptance": "pending",
+    "sha256": "eef877c267d97fc71071ff8d15d87a67bfa8840fdc8720d8a69bca18044310d2"
+  },
+  "disclosuresReport": "release/play-store/disclosures.json",
+  "appContent": "All required declarations completed and saved; staged for review",
+  "storeCategory": "Action",
+  "storeContactSaved": true,
+  "countries": [
+    "US"
+  ],
+  "managedPublishing": false,
+  "storeListing": "English US listing saved with icon, feature graphic, four screenshots and AI artwork labels",
+  "googlePlayGamesOnPC": "Opted out for the initial mobile launch",
+  "submittedForReview": true,
+  "publicationMode": "Automatic publication after approval",
+  "publishingUrl": "https://play.google.com/console/u/1/developers/6403006891642104331/app/4974634036304178954/publishing"
+}

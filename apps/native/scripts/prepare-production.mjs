@@ -20,7 +20,7 @@ const packagePath=resolve(dest,'App/CapApp-SPM/Package.swift');
 writeFileSync(packagePath,readFileSync(packagePath,'utf8').replaceAll('../../../.cache/',resolve(app,'.cache')+'/').replaceAll('../../../node_modules/',resolve(app,'node_modules')+'/'));
 const capPath=resolve(dest,'App/App/capacitor.config.json');
 const cap=JSON.parse(readFileSync(capPath));cap.appId=config.appId;cap.appName=config.appName;writeFileSync(capPath,JSON.stringify(cap,null,2)+'\n');
-const script=`import plistlib,json,sys\np=sys.argv[1]\nc=json.loads(sys.argv[2])\nwith open(p,'rb') as f:d=plistlib.load(f)\nd['CFBundleDisplayName']=c['appName']\nd['EHLiveAdsEnabled']=False\nwith open(p,'wb') as f:plistlib.dump(d,f,sort_keys=False)\n`;
+const script=`import plistlib,json,sys\np=sys.argv[1]\nc=json.loads(sys.argv[2])\nwith open(p,'rb') as f:d=plistlib.load(f)\nd['CFBundleDisplayName']=c['appName']\nd['EHLiveAdsEnabled']=c['ads']=='live'\nwith open(p,'wb') as f:plistlib.dump(d,f,sort_keys=False)\n`;
 const result=spawnSync('python3',['-c',script,resolve(dest,'App/App/Info.plist'),JSON.stringify(config)],{stdio:'inherit'});if(result.status)process.exit(result.status);
 writeFileSync(resolve(out,'Production.xcconfig'),`PRODUCT_BUNDLE_IDENTIFIER = ${config.appId}\nMARKETING_VERSION = ${config.version}\nCURRENT_PROJECT_VERSION = ${config.build}\nDEVELOPMENT_TEAM = ${config.team}\nCODE_SIGN_STYLE = Automatic\nTARGETED_DEVICE_FAMILY = 1\n`);
 writeFileSync(resolve(out,'identity.json'),JSON.stringify(config,null,2)+'\n');

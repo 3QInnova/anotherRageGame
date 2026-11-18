@@ -1,0 +1,24 @@
+{
+  "platform": "Android",
+  "appId": "ca-app-pub-1989852905612367~4611239287",
+  "bannerAdUnitId": "ca-app-pub-1989852905612367/4577781395",
+  "placement": "Android - Fixed Bottom Banner - 320x50",
+  "storeLinked": false,
+  "note": "Unpublished app; store linking and AdMob readiness review remain pending.",
+  "consent": {
+    "european": "Published; consent, do not consent, manage options",
+    "usStates": "Published; existing game message now covers iOS and Android",
+    "verifiedAt": "2026-11-17"
+  },
+  "checkedDate": "2026-11-17",
+  "bannerVerified": true,
+  "storeSearch": {
+    "package": "com.threeqinnova.exceptionhuman",
+    "result": "No listing found"
+  },
+  "appAdsTxt": {
+    "url": "https://3qinnova.com/app-ads.txt",
+    "publisher": "pub-1989852905612367",
+    "entryVerified": true
+  }
+}
