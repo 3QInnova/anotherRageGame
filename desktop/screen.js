@@ -7,6 +7,7 @@ function visibleWorldTop(){return typeof mobileView!=='undefined'?mobileView.top
 function viewEye(){return typeof mobileView!=='undefined'?{x:mobileView.eyeX,y:mobileView.eyeY}:desktopView.enabled?{x:desktopView.eyeX,y:desktopView.eyeY}:{x:785,y:173}}
 function actionPrompt(){
  const keyboard=typeof mobilePaused==='undefined',key=keyboard?'X':'Rewrite';
+ if(puzzleIsOpen()&&L.releaseCampaign)return 'A · FAN ON   B · DECK OFF   TEST CIRCUIT';
  if(puzzleIsOpen())return keyboard?'1–5 · Inputs   Enter · TEST   Esc · Back to deck':'Tap inputs · TEST CIRCUIT · Back to deck';
  const deck=coolingProtectedStation();if(deck){if(hasPuzzleBoxes())return key+' · Open Puzzle Box';if(!deck.solved)return keyboard?'1–0 · Select gate   X · Rotate selected gate':'Tap a gate · ROTATE selected gate'}
  const a=nearest();if(a)return key+' · '+(a.kind==='repair'?'Repair the floor':a.kind==='wall'?'Rewrite wall → air':a.kind==='bridge'?'Rewrite gap → bridge':'Restore exit');

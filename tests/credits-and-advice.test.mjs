@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {load,clear} from './data-centers.test.mjs';
+// Historical credit rules remain covered on archived short routes. Release free actions are covered by release-progress.test.mjs.
+import {loadArchived as load,clear} from './archived-campaign-fixture.mjs';
 const source=readFileSync(new URL('../initalDemoDocs/Exception_Human_Misclassification_V3.html',import.meta.url),'utf8');
 const fixture=source.replace('window.__DATA_CENTER_TEST__={',`window.__DATA_CENTER_TEST__={
  creditRemark:()=>nextRemark('credit-compaction'),credit:()=>({...credits}),creditReceipt:()=>creditReceipt?{...creditReceipt}:null,total:creditTotal,records:()=>({...creditRecords}),

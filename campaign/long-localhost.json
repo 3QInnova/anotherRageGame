@@ -1,8 +1,8 @@
 [
   {
     "serverId": "localhost-01",
-    "targetSeconds": 75,
-    "moveSpeed": 235,
+    "targetSeconds": 17,
+    "moveSpeed": 265,
     "breath": [
       70,
       110,
@@ -11,54 +11,41 @@
     ],
     "acts": [
       {
-        "name": "Reception",
+        "name": "First steps",
         "sequence": [
           "S",
+          "S"
+        ]
+      },
+      {
+        "name": "The floor lied",
+        "sequence": [
           "D",
-          "K",
-          "F",
           "S",
-          "R",
-          "L",
-          "B",
-          "F"
+          "D"
         ]
       },
       {
-        "name": "Access review",
+        "name": "Your first Rewrite",
         "sequence": [
-          "H",
-          "R",
-          "F",
-          "A",
-          "S",
-          "F",
-          "V",
-          "L",
-          "E"
-        ]
-      },
-      {
-        "name": "First disconnect",
-        "sequence": [
-          "F",
           "B",
-          "L",
-          "L",
-          "R",
           "S",
-          "F"
+          "B"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 76.05
+    "benchmarkSeconds": 16.9,
+    "chapter": 1,
+    "onboarding": true,
+    "unreliableFlags": true,
+    "goal": "Jump over red scanners. Rewrite a glowing gap, then cross."
   },
   {
     "serverId": "localhost-02",
-    "targetSeconds": 85,
-    "moveSpeed": 246,
+    "targetSeconds": 36,
+    "moveSpeed": 265,
     "breath": [
       80,
       45,
@@ -67,54 +54,57 @@
     ],
     "acts": [
       {
-        "name": "Missing floor",
+        "name": "Read the gap",
         "sequence": [
           "B",
-          "V",
-          "K",
           "D",
-          "F",
-          "B",
-          "L",
-          "V"
+          "B"
         ]
       },
       {
-        "name": "Facilities intake",
+        "name": "Land on paper",
         "sequence": [
-          "R",
-          "F",
-          "H",
+          "S",
           "B",
-          "V",
-          "H",
           "D",
-          "F"
+          "S",
+          "B"
         ]
       },
       {
-        "name": "Footing review",
+        "name": "Leave on your terms",
         "sequence": [
-          "V",
-          "L",
+          "D",
           "B",
-          "E",
-          "F",
-          "R",
-          "L",
+          "S",
+          "D",
+          "B"
+        ]
+      },
+      {
+        "name": "Bridges without guesses",
+        "sequence": [
           "B",
-          "F"
+          "D",
+          "B",
+          "S",
+          "B",
+          "D"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 85.95
+    "benchmarkSeconds": 35.541666666666664,
+    "chapter": 1,
+    "onboarding": true,
+    "unreliableFlags": true,
+    "goal": "Cross temporary bridges before they expire. Solid paper lets you stop."
   },
   {
     "serverId": "localhost-03",
-    "targetSeconds": 95,
-    "moveSpeed": 239,
+    "targetSeconds": 42,
+    "moveSpeed": 265,
     "breath": [
       45,
       110,
@@ -123,61 +113,61 @@
     ],
     "acts": [
       {
-        "name": "Visitor classification",
+        "name": "Stay low",
         "sequence": [
           "A",
           "S",
-          "K",
-          "J",
-          "F",
-          "F",
-          "A",
-          "L",
-          "S",
-          "R"
+          "A"
         ]
       },
       {
-        "name": "Security disagreement",
+        "name": "Choose your jump",
         "sequence": [
-          "J",
-          "E",
-          "J",
+          "L",
+          "S",
+          "A",
+          "L",
+          "S"
+        ]
+      },
+      {
+        "name": "Look before landing",
+        "sequence": [
+          "L",
+          "D",
           "A",
           "S",
-          "R",
-          "F",
-          "H",
-          "J",
+          "L",
+          "D"
+        ]
+      },
+      {
+        "name": "Read the ceiling",
+        "sequence": [
+          "A",
+          "L",
+          "S",
+          "A",
+          "L",
+          "D",
+          "S",
+          "A",
           "L"
-        ]
-      },
-      {
-        "name": "False positives",
-        "sequence": [
-          "R",
-          "A",
-          "L",
-          "S",
-          "F",
-          "A",
-          "J",
-          "V",
-          "L",
-          "A",
-          "S",
-          "F"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 93.55833333333334
+    "benchmarkSeconds": 42.125,
+    "chapter": 1,
+    "onboarding": true,
+    "unreliableFlags": true,
+    "goal": "Jump over low scanners; walk beneath high ones."
   },
   {
     "serverId": "localhost-04",
-    "targetSeconds": 105,
-    "moveSpeed": 254,
+    "targetSeconds": 73,
+    "moveSpeed": 265,
     "breath": [
       110,
       50,
@@ -186,60 +176,73 @@
     ],
     "acts": [
       {
-        "name": "Form exceptions",
+        "name": "Delivery notice",
         "sequence": [
-          "H",
-          "F",
-          "F",
           "R",
-          "E",
-          "L",
-          "L",
-          "J",
-          "B",
-          "F"
-        ]
-      },
-      {
-        "name": "Orientation defects",
-        "sequence": [
-          "V",
-          "L",
-          "H",
-          "H",
           "R",
-          "K",
-          "F",
-          "E",
-          "T",
           "S"
         ]
       },
       {
-        "name": "Administrative appeal",
+        "name": "Wait or climb",
         "sequence": [
-          "F",
-          "Q",
-          "V",
+          "R",
           "L",
-          "H",
           "R",
           "B",
-          "V",
+          "R"
+        ]
+      },
+      {
+        "name": "Return to sender",
+        "sequence": [
+          "L",
+          "R",
+          "S",
+          "R",
+          "B",
+          "L",
+          "R"
+        ]
+      },
+      {
+        "name": "Signed for delivery",
+        "sequence": [
           "R",
           "L",
-          "F"
+          "R",
+          "S",
+          "R",
+          "B",
+          "L",
+          "R"
+        ]
+      },
+      {
+        "name": "Choose the crossing",
+        "sequence": [
+          "R",
+          "B",
+          "R",
+          "L",
+          "R",
+          "S",
+          "R"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 103.75833333333334
+    "benchmarkSeconds": 72.74166666666666,
+    "chapter": 1,
+    "onboarding": true,
+    "unreliableFlags": true,
+    "goal": "Wait behind the receipt, or jump across the raised papers."
   },
   {
     "serverId": "localhost-05",
-    "targetSeconds": 115,
-    "moveSpeed": 249,
+    "targetSeconds": 83,
+    "moveSpeed": 265,
     "breath": [
       60,
       95,
@@ -248,68 +251,82 @@
     ],
     "acts": [
       {
-        "name": "Reception incident",
+        "name": "Orientation complete",
         "sequence": [
-          "F",
-          "L",
-          "K",
-          "R",
-          "H",
-          "J",
-          "F",
+          "S",
+          "D",
           "B",
-          "L"
-        ]
-      },
-      {
-        "name": "Workplace response",
-        "sequence": [
-          "V",
-          "E",
-          "F",
-          "Q",
-          "H",
           "L",
-          "J",
           "R"
         ]
       },
       {
-        "name": "Conflicting training",
+        "name": "Instructions disputed",
         "sequence": [
-          "B",
-          "F",
-          "V",
-          "L",
           "R",
-          "H",
-          "T",
-          "F"
+          "A",
+          "L",
+          "B",
+          "D",
+          "R"
         ]
       },
       {
-        "name": "Tutorial containment",
+        "name": "Tutorial denied",
         "sequence": [
-          "E",
-          "J",
-          "F",
+          "L",
+          "R",
+          "B",
+          "A",
+          "S",
+          "L",
+          "R",
+          "B"
+        ]
+      },
+      {
+        "name": "Prove you learned it",
+        "sequence": [
+          "R",
+          "B",
+          "L",
+          "A",
+          "S",
+          "D",
+          "R",
+          "B",
+          "L",
+          "R"
+        ]
+      },
+      {
+        "name": "Dismissed from orientation",
+        "sequence": [
+          "L",
+          "R",
+          "B",
+          "D",
+          "S",
+          "A",
           "R",
           "L",
-          "V",
           "B",
-          "F",
-          "L"
+          "R"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 117.96666666666667
+    "benchmarkSeconds": 83.25833333333334,
+    "chapter": 1,
+    "onboarding": true,
+    "unreliableFlags": true,
+    "goal": "Use the rules you learned to escape orientation."
   },
   {
     "serverId": "localhost-06",
-    "targetSeconds": 125,
-    "moveSpeed": 261,
+    "targetSeconds": 90,
+    "moveSpeed": 265,
     "breath": [
       80,
       130,
@@ -318,73 +335,79 @@
     ],
     "acts": [
       {
-        "name": "Borrowed support",
+        "name": "One Rewrite at a time",
         "sequence": [
           "B",
-          "F",
-          "K",
-          "B",
           "H",
-          "T",
-          "L",
           "B",
-          "F",
-          "V"
-        ]
-      },
-      {
-        "name": "Contract extension",
-        "sequence": [
-          "H",
-          "R",
-          "F",
-          "B",
-          "F",
-          "L",
-          "T",
-          "B",
-          "L",
           "H"
         ]
       },
       {
-        "name": "Temporary confidence",
+        "name": "Permanent midpoints",
         "sequence": [
-          "F",
-          "B",
-          "B",
-          "V",
           "H",
-          "V",
-          "Q",
+          "L",
+          "R",
+          "H",
           "B",
-          "F",
-          "L"
+          "H"
         ]
       },
       {
-        "name": "Facilities exit",
+        "name": "Access granted temporarily",
+        "sequence": [
+          "H",
+          "B",
+          "L",
+          "H",
+          "R",
+          "H",
+          "B"
+        ]
+      },
+      {
+        "name": "Transfer denied",
+        "sequence": [
+          "H",
+          "R",
+          "H",
+          "B",
+          "L",
+          "H",
+          "R",
+          "H",
+          "B"
+        ]
+      },
+      {
+        "name": "Keep your footing",
         "sequence": [
           "B",
           "H",
+          "L",
+          "R",
           "H",
-          "F",
+          "B",
+          "H",
           "R",
           "L",
-          "B",
-          "T",
-          "F"
+          "H"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 128.08333333333334
+    "benchmarkSeconds": 89.63333333333334,
+    "chapter": 2,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Cross the bridge. Stand on permanent paper before rewriting the wall."
   },
   {
     "serverId": "localhost-07",
-    "targetSeconds": 130,
-    "moveSpeed": 244,
+    "targetSeconds": 129,
+    "moveSpeed": 265,
     "breath": [
       125,
       55,
@@ -393,73 +416,75 @@
     ],
     "acts": [
       {
-        "name": "Access applications",
+        "name": "The stamp is not a save",
         "sequence": [
-          "H",
+          "V",
           "B",
-          "K",
-          "H",
-          "R",
-          "H",
-          "F",
-          "L",
-          "H",
-          "E"
+          "V"
         ]
       },
       {
-        "name": "Sealed correspondence",
+        "name": "Repair and return",
         "sequence": [
-          "Q",
           "H",
-          "H",
-          "F",
+          "V",
+          "L",
+          "B",
+          "V",
+          "H"
+        ]
+      },
+      {
+        "name": "A recoverable mistake",
+        "sequence": [
           "V",
           "R",
-          "B",
           "H",
+          "V",
+          "B",
           "L",
+          "V"
+        ]
+      },
+      {
+        "name": "Return address",
+        "sequence": [
+          "V",
+          "R",
+          "H",
+          "V",
+          "B",
+          "L",
+          "V",
           "R"
         ]
       },
       {
-        "name": "Renewal denied",
-        "sequence": [
-          "F",
-          "H",
-          "F",
-          "T",
-          "R",
-          "L",
-          "H",
-          "V",
-          "B"
-        ]
-      },
-      {
-        "name": "Doorway dispute",
+        "name": "The floor can be fixed",
         "sequence": [
           "H",
-          "F",
           "V",
           "R",
-          "H",
-          "L",
           "B",
-          "E",
-          "F",
-          "L"
+          "V",
+          "L",
+          "H",
+          "V"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 132.23333333333332
+    "benchmarkSeconds": 128.73333333333332,
+    "chapter": 2,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "A false save stamp drops you onto a recovery shelf. Return left and repair."
   },
   {
     "serverId": "localhost-08",
-    "targetSeconds": 135,
-    "moveSpeed": 269,
+    "targetSeconds": 99,
+    "moveSpeed": 265,
     "breath": [
       45,
       125,
@@ -468,80 +493,85 @@
     ],
     "acts": [
       {
-        "name": "Secret orientation",
+        "name": "Watch the floor seam",
         "sequence": [
           "G",
           "S",
-          "K",
-          "F",
           "G",
-          "H",
-          "L",
-          "J",
-          "F",
-          "G",
-          "R",
-          "T"
+          "L"
         ]
       },
       {
-        "name": "Training assessment",
+        "name": "Jump past rejection",
         "sequence": [
+          "G",
+          "B",
+          "L",
+          "G",
+          "H",
+          "R"
+        ]
+      },
+      {
+        "name": "Commit rejected",
+        "sequence": [
+          "G",
+          "L",
+          "V",
           "H",
           "G",
-          "J",
-          "E",
-          "F",
           "R",
-          "G",
-          "V",
-          "V",
-          "L",
+          "B",
           "G"
         ]
       },
       {
-        "name": "Commit review",
+        "name": "Rejected overhead",
         "sequence": [
           "G",
-          "Q",
-          "F",
           "H",
           "L",
-          "T",
-          "F",
           "G",
-          "J",
-          "T",
-          "J"
+          "R",
+          "B",
+          "G",
+          "L",
+          "H",
+          "G",
+          "R"
         ]
       },
       {
-        "name": "Security certification",
+        "name": "A different way through",
         "sequence": [
-          "F",
-          "G",
           "V",
+          "G",
+          "H",
           "R",
           "G",
           "L",
-          "H",
-          "L",
-          "H",
           "B",
           "G",
-          "F"
+          "H",
+          "R",
+          "G",
+          "L",
+          "V"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 135.38333333333333
+    "benchmarkSeconds": 99.21666666666667,
+    "chapter": 2,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Jump over marked floor seams to avoid the rejection above."
   },
   {
     "serverId": "localhost-09",
-    "targetSeconds": 140,
-    "moveSpeed": 256,
+    "targetSeconds": 125,
+    "moveSpeed": 265,
     "breath": [
       100,
       55,
@@ -550,76 +580,82 @@
     ],
     "acts": [
       {
-        "name": "Terms apply",
+        "name": "Terms you can cross",
         "sequence": [
           "R",
           "H",
-          "K",
-          "B",
-          "F",
-          "V",
-          "Q",
-          "L",
           "R",
-          "H"
-        ]
-      },
-      {
-        "name": "Conflicting clauses",
-        "sequence": [
-          "F",
           "V",
-          "H",
-          "E",
-          "H",
-          "T",
-          "R",
-          "T",
-          "L",
           "B"
         ]
       },
       {
-        "name": "Approval windows",
+        "name": "Choose the upper route",
         "sequence": [
-          "H",
-          "F",
           "R",
-          "Q",
+          "L",
+          "H",
+          "R",
+          "V",
+          "R",
+          "B"
+        ]
+      },
+      {
+        "name": "Read the landing",
+        "sequence": [
+          "L",
+          "R",
+          "V",
+          "H",
+          "R",
           "B",
+          "H",
+          "R"
+        ]
+      },
+      {
+        "name": "Choose your complaint",
+        "sequence": [
+          "R",
+          "H",
+          "V",
+          "R",
           "L",
-          "L",
+          "B",
           "R",
           "H",
           "V"
         ]
       },
       {
-        "name": "Final conditions",
+        "name": "Customer exit",
         "sequence": [
-          "F",
-          "R",
-          "F",
           "H",
-          "T",
-          "J",
-          "J",
-          "L",
-          "Q",
-          "F",
+          "R",
           "B",
-          "L"
+          "V",
+          "R",
+          "L",
+          "H",
+          "R",
+          "V",
+          "B"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 143.04166666666666
+    "benchmarkSeconds": 125.01666666666667,
+    "chapter": 2,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Choose a safe wait or the raised receipt route."
   },
   {
     "serverId": "localhost-10",
-    "targetSeconds": 145,
-    "moveSpeed": 275,
+    "targetSeconds": 127,
+    "moveSpeed": 265,
     "breath": [
       65,
       120,
@@ -628,77 +664,84 @@
     ],
     "acts": [
       {
-        "name": "Optimizer intake",
-        "sequence": [
-          "F",
-          "H",
-          "K",
-          "R",
-          "L",
-          "V",
-          "T",
-          "V",
-          "H",
-          "E",
-          "F"
-        ]
-      },
-      {
-        "name": "Unhelpful routing",
+        "name": "Access review",
         "sequence": [
           "H",
-          "Q",
-          "T",
-          "J",
-          "F",
+          "V",
           "R",
           "B",
-          "R",
-          "L",
-          "T"
-        ]
-      },
-      {
-        "name": "Department escalation",
-        "sequence": [
-          "V",
-          "H",
-          "H",
-          "F",
-          "R",
-          "L",
-          "J",
-          "L",
-          "B",
-          "Q"
-        ]
-      },
-      {
-        "name": "Permission incident",
-        "sequence": [
-          "F",
-          "T",
-          "F",
-          "H",
-          "V",
-          "J",
-          "R",
-          "L",
-          "F",
-          "B",
-          "E",
+          "G",
           "L"
+        ]
+      },
+      {
+        "name": "Permission withdrawn",
+        "sequence": [
+          "R",
+          "H",
+          "L",
+          "V",
+          "B",
+          "R",
+          "H"
+        ]
+      },
+      {
+        "name": "Permission to leave",
+        "sequence": [
+          "V",
+          "H",
+          "R",
+          "L",
+          "B",
+          "G",
+          "H",
+          "R",
+          "V"
+        ]
+      },
+      {
+        "name": "Review the exceptions",
+        "sequence": [
+          "V",
+          "H",
+          "R",
+          "L",
+          "G",
+          "H",
+          "B",
+          "R",
+          "V"
+        ]
+      },
+      {
+        "name": "Department exit",
+        "sequence": [
+          "R",
+          "H",
+          "V",
+          "B",
+          "L",
+          "R",
+          "G",
+          "H",
+          "V",
+          "R"
         ]
       }
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 143.28333333333333
+    "benchmarkSeconds": 127.45833333333333,
+    "chapter": 2,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Chain bridges, repairs and receipt crossings to leave the access department."
   },
   {
     "serverId": "localhost-11",
-    "targetSeconds": 150,
-    "moveSpeed": 248,
+    "targetSeconds": 146,
+    "moveSpeed": 265,
     "breath": [
       140,
       60,
@@ -768,12 +811,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 153.375
+    "benchmarkSeconds": 146.3,
+    "chapter": 3,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Bait the gold target, retreat, then Rewrite the crossing after the purge."
   },
   {
     "serverId": "localhost-12",
-    "targetSeconds": 155,
-    "moveSpeed": 280,
+    "targetSeconds": 158,
+    "moveSpeed": 265,
     "breath": [
       55,
       105,
@@ -852,12 +899,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 152.60833333333332
+    "benchmarkSeconds": 158.35833333333332,
+    "chapter": 3,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Delivery follows your position. Wait for the target to lock before moving."
   },
   {
     "serverId": "localhost-13",
     "targetSeconds": 160,
-    "moveSpeed": 263,
+    "moveSpeed": 265,
     "breath": [
       105,
       45,
@@ -942,12 +993,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 161.35833333333332
+    "benchmarkSeconds": 160.46666666666667,
+    "chapter": 3,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Read high and low scanners before choosing whether to jump."
   },
   {
     "serverId": "localhost-14",
-    "targetSeconds": 165,
-    "moveSpeed": 284,
+    "targetSeconds": 171,
+    "moveSpeed": 265,
     "breath": [
       50,
       145,
@@ -1026,12 +1081,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 163.40833333333333
+    "benchmarkSeconds": 170.8,
+    "chapter": 3,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Ignore purple guesses. Gold locked targets show the real danger."
   },
   {
     "serverId": "localhost-15",
-    "targetSeconds": 170,
-    "moveSpeed": 255,
+    "targetSeconds": 173,
+    "moveSpeed": 265,
     "breath": [
       120,
       70,
@@ -1112,12 +1171,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": true,
-    "benchmarkSeconds": 177.51666666666668
+    "benchmarkSeconds": 172.575,
+    "chapter": 3,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Cleanup is announced. Reach green maintenance paper to stop the chase."
   },
   {
     "serverId": "localhost-16",
-    "targetSeconds": 175,
-    "moveSpeed": 289,
+    "targetSeconds": 185,
+    "moveSpeed": 265,
     "breath": [
       70,
       135,
@@ -1205,12 +1268,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 174.49166666666667
+    "benchmarkSeconds": 185.38333333333333,
+    "chapter": 4,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Prepare your crossing before starting a short bridge lease."
   },
   {
     "serverId": "localhost-17",
-    "targetSeconds": 180,
-    "moveSpeed": 267,
+    "targetSeconds": 182,
+    "moveSpeed": 265,
     "breath": [
       145,
       65,
@@ -1298,12 +1365,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 181.125
+    "benchmarkSeconds": 182.15833333333333,
+    "chapter": 4,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Combine familiar warnings. Your movement speed stays the same."
   },
   {
     "serverId": "localhost-18",
-    "targetSeconds": 180,
-    "moveSpeed": 276,
+    "targetSeconds": 185,
+    "moveSpeed": 265,
     "breath": [
       80,
       140,
@@ -1387,12 +1458,16 @@
     ],
     "warningBeforePuzzle": true,
     "markedCleanup": false,
-    "benchmarkSeconds": 179.68333333333334
+    "benchmarkSeconds": 184.74166666666667,
+    "chapter": 4,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Escape the cleanup, switch on the fan, then cross the cooled deck."
   },
   {
     "serverId": "localhost-19",
-    "targetSeconds": 180,
-    "moveSpeed": 292,
+    "targetSeconds": 188,
+    "moveSpeed": 265,
     "breath": [
       100,
       50,
@@ -1476,12 +1551,16 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": false,
-    "benchmarkSeconds": 176.40833333333333
+    "benchmarkSeconds": 187.94166666666666,
+    "chapter": 4,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Take a breath. Repair the route and prepare for the final escape."
   },
   {
     "serverId": "localhost-20",
-    "targetSeconds": 300,
-    "moveSpeed": 277,
+    "targetSeconds": 311,
+    "moveSpeed": 265,
     "breath": [
       75,
       140,
@@ -1608,6 +1687,10 @@
     ],
     "warningBeforePuzzle": false,
     "markedCleanup": true,
-    "benchmarkSeconds": 302.0083333333333
+    "benchmarkSeconds": 311.46666666666664,
+    "chapter": 4,
+    "onboarding": false,
+    "unreliableFlags": true,
+    "goal": "Break containment. The midpoint checkpoint preserves your final approach."
   }
 ]

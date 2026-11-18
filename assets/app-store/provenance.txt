@@ -1,0 +1,6 @@
+EXCEPTION: HUMAN production icon
+Generated November 17, 2026 using the imagegen skill and the approved assets/visitor-error/visitor-error-hero.png character as reference.
+Source: visitor-error-icon-source.png (retained original output).
+Delivery: icon-1024.png, mechanically resized to Apple icon dimensions.
+Opaque square; no added rounded corners; no text.
+Native local app icon is preserved; prepare-production.mjs installs this icon in the isolated production project.

@@ -27,7 +27,7 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
   let solutions=0,faults=0;
   for(let mask=0;mask<2**b.count;mask++){
    const bits=Array.from({length:b.count},(_,i)=>!!(mask&(1<<i))),[a,c,d,e,f]=bits;
-   const expected=index===0?{fan:(a!==c)&&d,ground:a&&c}:index===1?{fan:(a||c)&&(d!==e),ground:a&&e}:{fan:(a!==c)&&(d||e),ground:(a&&d)||(c&&f)};
+   const expected=index===3?{fan:a,ground:c}:index===0?{fan:(a!==c)&&d,ground:a&&c}:index===1?{fan:(a||c)&&(d!==e),ground:a&&e}:{fan:(a!==c)&&(d||e),ground:(a&&d)||(c&&f)};
    const actual=g.api.evaluate(b,bits);assert.equal(actual.fan,expected.fan);assert.equal(actual.ground,expected.ground);
    if(actual.fan&&!actual.ground)solutions++;if(actual.ground)faults++;
    for(const edge of g.api.edges(b).edges){assert(edge.source in actual.signals);if(!['FAN','DECK'].includes(edge.target)){const target=actual.values.find(v=>v.id===edge.target);assert.equal(target.inputs[edge.pin],edge.source);assert.equal(target[edge.pin?'b':'a'],actual.signals[edge.source])}}
@@ -45,5 +45,5 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  const voices=Object.values(g.api.pools()).flat();assert.equal(voices.length,76);assert.equal(new Set(voices).size,76);const storage=new Map(),speaker=make(storage),cycle=Array.from({length:30},()=>speaker.api.shock());assert.equal(new Set(cycle).size,30);assert.equal(make(storage).api.shock(),cycle[0]);
  const rewind=make();rewind.api.position(2300);rewind.api.balance(1);press(rewind,'Space');rewind.check.step();assert.equal(rewind.state().state,'compacting');for(let i=0;i<1800;i++)rewind.check.step();assert.equal(rewind.state().state,'play');assert(rewind.api.puzzle().every(s=>!s.solved));assert(!rewind.api.box());
  const out=new URL('outputs/puzzle-box/',root);mkdirSync(out,{recursive:true});writeFileSync(new URL('route.json',out),JSON.stringify({frames:chased.frame(),events:chased.route},null,2)+'\n');writeFileSync(new URL('results.json',out),JSON.stringify({normal,chased:chase,layouts,independentLogicAndWireOracle:true,previewCannotShockOrCool:true,previewHoldsPlayer:true,editingAndTestingFree:true,idleAndDeletionFrozen:true,pauseFreezes:true,inputsLockDuringTest:true,incorrectSafeTestReturnsToPreview:true,deliberateGroundTestElectrocutes:true,shockDelaySeconds:1.5,readingPausePreserved:true,windAndFallReset:true,hotSinksBurn:true,creditRewind:true,sameLevelRestart:true,practiceIsolated:true,voiceLines:76,shockLines:30},null,2)+'\n');
- console.log('PASS: Puzzle Box 3/4/5 inputs, all 56 configurations, literal wire oracle, normal/chased clears, safe preview, held player, explicit tests/faults, pause, reset, credits, 76 remarks and practice isolation.');
+ console.log('PASS: Puzzle Box 3/4/5 inputs, all 60 configurations including the two-switch campaign board, literal wire oracle, normal/chased clears, safe preview, held player, explicit tests/faults, pause, reset, credits, 76 remarks and practice isolation.');
 }

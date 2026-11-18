@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "name": 16,
+    "subtitle": 24,
+    "promotionalText": 143,
+    "keywords": 84,
+    "description": 1699,
+    "whatsNew": 117
+  },
+  "limits": {
+    "name": 30,
+    "subtitle": 30,
+    "promotionalText": 170,
+    "keywords": 100,
+    "description": 4000,
+    "whatsNew": 4000
+  },
+  "keywordsUnit": "ASCII bytes",
+  "status": "Polished marketing copy; within Apple metadata limits. Name availability remains unverified.",
+  "source": "https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information"
+}

@@ -1,0 +1,33 @@
+EXCEPTION: HUMAN — PROMOTIONAL AD HANDOFF
+
+DELIVERED
+Three hooks, each exported as opaque PNG:
+- Square: 1080 x 1080 (1:1)
+- Portrait feed: 1080 x 1350 (4:5)
+- Vertical: 1080 x 1920 (9:16)
+- Landscape: 1920 x 1080 (16:9)
+
+Use ad-copy.json for matching headlines, primary text and short captions. Asset names begin with the copy variant ID. The ad artwork uses the approved illustration; it does not pretend to be gameplay. These are general-purpose creative masters, not a claim that every ad network accepts every size. Check placement previews when selecting a network. Vertical brand, headline and CTA stay within the central area, leaving 250 pixels above and 420 below for common interface overlays; platform previews remain the final check.
+
+FIRST TEST
+Lead with 01-prove-it as the control. Compare 02-floor-quit and 03-excuses with the same audience, placement, destination and budget. Change the hook first so the result is understandable. No audience size, spend, conversion rate or likely winner has been invented. Pick the objective and measurement available in the final ad account before spending.
+
+ACTIVATION
+1. Choose the ad network and placements.
+2. Add the verified public App Store product URL for this app. No destination is currently configured.
+3. Confirm that the live listing matches the 20-level campaign and four challenges advertised here.
+4. Paste the matching copy; preview line breaks, crops, CTA and platform overlays.
+5. Choose the actual budget and campaign dates in the ad account.
+6. Review the complete campaign before activating it.
+
+No ads have been uploaded, scheduled, purchased or activated. No release date, live availability badge, rating, sale price or made-up review is printed in the creatives. Use a platform install/download CTA only once the real destination is available. The current visual CTA is ESCAPE LOCALHOST.
+
+PACKAGE BOUNDARY
+These are ads FOR the game. No in-game ad SDK, ad-unit IDs, consent flow or banner inventory is changed by this package. Store screenshot composites still use the browser release candidate and retain its placeholder ad slot; replace those captures with the final native build before App Store submission. The static promotional illustrations do not contain that placeholder.
+
+REBUILD
+From the project root:
+MARKETING_OUT=outputs/app-store/marketing-v2/ node tools/marketing/build-store-pack.mjs
+node tools/marketing/build-ads.mjs
+
+The marketing-v2/raw folder contains the approved capture set from v1. To regenerate actual gameplay captures, use tools/marketing/capture-store.mjs, which currently writes to marketing-v1/raw, then copy the reviewed raw images into v2/raw before rebuilding. Never hand-edit gameplay geometry or HUD values for marketing.

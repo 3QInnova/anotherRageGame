@@ -1,5 +1,6 @@
 // Navigate the actual tabbed pause menus in either presentation.
 export async function openPauseTab(page,tab='play'){
+ if(await page.locator('#campaignMenu').isVisible())await page.locator('#campaignClose').click();
  const desktop=await page.locator('#desktopPause').count();
  if(desktop){if(!(await page.locator('#desktopMenu').isVisible()))await page.locator('#desktopPause').click();await page.locator('#desktopTab-'+tab).click()}
  else{if(!(await page.locator('#mobileMenu').isVisible()))await page.locator('#mobilePause').click();await page.locator('#tab-'+tab).click()}

@@ -53,7 +53,7 @@ function assemblePaperRoute(id,title,hook,claim,beats,props={}){
   }
   if(b.kind==='puzzle'){
    l.puzzleBoxEncounter=true;l.stations??=[];
-   l.stations.push({id:p+'-deck',x,w:240,y:FLOOR-80,count:[3,4,5][b.board??1],puzzle:b.board??1,sink:{x:x+300,y:FLOOR-80,w:300,h:80}});
+   l.stations.push({id:p+'-deck',x,w:240,y:FLOOR-80,count:[3,4,5,2][b.board??1],puzzle:b.board??1,sink:{x:x+300,y:FLOOR-80,w:300,h:80}});
   }
   if(b.kind==='stamp'){
    l.mastery=true;l.stampTarget={supportId:p+'-stamp',forecastId:l.forecasts.at(-1).id};

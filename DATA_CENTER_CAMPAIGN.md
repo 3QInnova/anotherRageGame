@@ -1,5 +1,24 @@
 # Data Center campaign
 
+## November 17 — Escape Localhost release edit
+
+Implemented locally on `feature/escape-localhost-release` following the mobile-director review. The public game now presents one complete twenty-level campaign in four chapters; future-center blueprints and historical demos/labs stay out of its menus. Existing IDs, clears, Tokens and owned cosmetics are retained. First clears award ten Tokens, while replays and optional challenges do not award currency.
+
+Levels 1–5 teach scanners, missing support, temporary bridges, high/low readings and receipt routes. Levels 6–10 develop handoffs, repairs and secret seams. Forecast counterplay and unreliable recall enter at 11; later levels retain sustained authored combinations. All campaign movement uses 265 px/s. Action costs and compaction are disabled in release play, and cleanup appears only as an announced encounter in 15, 18 and 20. The twenty revised routes have about 44.7 minutes of known-solution traversal; a 2–3-hour human first playthrough is still a test target.
+
+Campaign cooling uses two labeled inputs: A powers FAN, B powers DECK. The full three-board Puzzle Box is an optional challenge, alongside newly curated Forecast Commitment / Unreliable Recall routes and Glass Sightline. Each challenge tracks best active time and fewest deaths independently; a deathless finish marks mastery. They remain isolated from campaign progression and currency.
+
+The finale has a real midpoint checkpoint that persists on this device and restores after retry/reload. Its final door audit can be corrected again if Rewrite expires. The closing receipt resolves the escape and grants PASSED DESPITE TRAINING; it does not promise another world. Release deaths show the two-second byte burst, then allow one deliberate Retry whenever the player is ready. Older fixtures keep their historical loss timing.
+
+Validation completed for the release edit: twenty campaign routes and cautious alternatives; all four challenge routes; forty-eight browser route replays across desktop Chromium and phone WebKit; fixed-banner layout checks across forty-two viewport/control combinations; checkpoint retry/reload and final-door expiry recovery; fixed first-clear rewards, legacy ownership migration and challenge isolation; 195,062 original PC/mobile parity snapshots. Fresh-player pacing, physical touch comfort and installed-device listening remain unverified.
+
+Release packaging audit: `tools/build-release.mjs` now bakes only the twenty campaign routes and four approved challenges. Archived geometry, future-center catalogs, developer globals, test controls and level URL selectors are removed from public desktop/mobile/native files. Private authoring and QA fixtures remain under development sources and ignored output folders. The default preview serves only the three release pages; use `--development` explicitly for archives. Native web debugging/logging are disabled, production assets are minified without source maps, and the offline content policy rejects network connections. Local progress and cosmetic balances are still editable on an owner's device; this is not a cheat-proof or security-certification claim.
+
+Packaging validation: public desktop/phone UI, death/retry, malformed-save handling, ignored level hashes, private-path 404s, native asset parity and release allowlists passed. All 48 compiled-engine route replays and 42 banner-layout cases passed. An unsigned iOS simulator **Release** build succeeded; no new device installation or publication was performed. The banner remains a 320 × 50 bottom-center placeholder with 24-pixel inactive clearance, not an integrated advertising SDK.
+
+Sources: `campaign/release.js`, `long-localhost.json`, `long-campaign.js`, shared runtime and existing UI/builders. Use the release validation commands at the top of `agents.md`. This update is built locally, with browser/simulation evidence under ignored `outputs/release/`; it does not establish physical-device acceptance or publication. The older sections below document development history and are superseded where they conflict.
+
+
 **Playtest setting:** Fake AI paywall popups are temporarily disabled in the shared PC/mobile/native game at the user’s request. New runs, retries and compaction keep them disabled. The implementation is retained for later review; dedicated billing fixtures explicitly enable it.
 
 

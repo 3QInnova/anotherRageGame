@@ -43,7 +43,7 @@ function syncMobileUI(){
  const cue=playCue();if($('mobileObjectiveText').textContent!==cue)$('mobileObjectiveText').textContent=cue;const prompt=actionPrompt();if($('mobileAction').textContent!==prompt)$('mobileAction').textContent=prompt;$('mobileObjective').hidden=!!L.rageLab||state!=='play'||puzzleIsOpen()||!!(L.coolingTrial&&circuit);
  const blocked=state==='dead'||state==='compacting'||state==='paywall';
  $('mobileApp').dataset.blocked=String(mobilePaused||state!=='play'||rewardBlocksPlay());
- $('mobileWinRestart').hidden=state!=='won'||!!L.rageLab;
+ $('mobileWinRestart').hidden=state!=='won'||!!L.rageLab||rewardReceiptOpen;
  for(const id of ['restart','floorPractice','glassPractice','longPractice','longLevelSelect','newRun','confirmNewRun'])$(id).disabled=blocked;
  $('glitch').textContent=box?'OPEN BOX':switchDeck?(circuit.solved?'FAN READY':canRotate?'ROTATE U'+(circuit.selected+1):'PICK GATE'):target?.kind==='repair'?'REPAIR':'REWRITE';$('glitch').disabled=(box?puzzleIsOpen():switchDeck?!canRotate:!target)||mobilePaused||state!=='play';$('glitch').classList.toggle?.('ready',switchDeck?canRotate:!!target);
  $('mobileDialogue').dataset.quiet=String((L.rageLab&&mobileMessageText===L.intro)||(!active&&!target&&mobileMessageMode!=='danger'&&performance.now()-mobileMessageAt>7000));

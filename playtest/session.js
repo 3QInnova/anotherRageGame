@@ -5,7 +5,7 @@ function playtestEvent(type,extra={}){
  if(!playtestActive||!playtestData||!PLAYTEST_ROUTE.includes(L?.serverId))return;
  playtestData.events.push({type,level:L.serverId,activeSeconds:Math.round(playtestData.activeSeconds*100)/100,...extra});playtestData.events=playtestData.events.slice(-1500);playtestPersist();
 }
-function playtestInit(previousState,reason){if(previousState==='dead')playtestEvent('retry',{method:lossSkipPresses>=2?'player':'automatic'});else if(reason==='retry'&&playtestActive)playtestEvent('restart')}
+function playtestInit(previousState,reason){if(previousState==='dead')playtestEvent('retry',{method:lossSkipPresses>=(L?.unlimitedActions?1:2)?'player':'automatic'});else if(reason==='retry'&&playtestActive)playtestEvent('restart')}
 function playtestLevelStart(){if(playtestActive)playtestEvent('attempt',{attempt:attempts[room]??1})}
 function advancePlaytest(dt){
  if(!playtestActive||!playtestData||!PLAYTEST_ROUTE.includes(L?.serverId))return;

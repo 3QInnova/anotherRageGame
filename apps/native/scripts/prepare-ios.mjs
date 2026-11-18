@@ -34,5 +34,12 @@ let package = Package(name: "capacitor-swift-pm", products: [.library(name: "Cap
   const result=s.replace(/\.package\(url: "https:\/\/github.com\/ionic-team\/capacitor-swift-pm.git", (?:exact|from): "[^"]+"\)/g,'.package(path: "../../../.cache/capacitor-swift-pm")');
   writeFileSync(path,result);
  }
- console.log('iOS uses checksum-verified local frameworks; subsequent native builds work offline.');
+ const packagePath=app+'ios/App/CapApp-SPM/Package.swift';
+ let packageText=readFileSync(packagePath,'utf8');
+ if(!packageText.includes('swift-package-manager-google-mobile-ads')){
+  packageText=packageText.replace('    dependencies: [','    dependencies: [\n        .package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads.git", exact: "13.13.0"),\n        .package(url: "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git", exact: "3.1.0"),');
+  packageText=packageText.replace('            dependencies: [','            dependencies: [\n                .product(name: "GoogleMobileAds", package: "swift-package-manager-google-mobile-ads"),\n                .product(name: "GoogleUserMessagingPlatform", package: "swift-package-manager-google-user-messaging-platform"),');
+  writeFileSync(packagePath,packageText);
+ }
+ console.log('iOS uses checksum-verified local frameworks; Capacitor cache ready; Google SDK packages resolve with pinned versions.');
 }

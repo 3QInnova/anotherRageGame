@@ -155,7 +155,8 @@ function resetRageRecall(full,reason){
   // The first retry after discovering a hazard always shows a flag. Later recall can fail.
   const show=!note.shown||recallRandom()>=.28;
   if(!show)continue;
-  const offset=(recallRandom()<.5?-1:1)*(30+recallRandom()*50);
+  // Of displayed flags, 40% recall the real center. Wrong flags sit beyond the remembered hazard edge.
+  const offset=recallRandom()<.4?0:(recallRandom()<.5?-1:1)*((note.width??0)/2+30+recallRandom()*50);
   rageRecall.flags.push({id:note.id,x:Math.max(L.start+25,Math.min(L.exit-25,note.x+offset)),offset});note.shown=true;
  }
 }
@@ -166,7 +167,7 @@ function rememberRageHazard(id){
  if(!hazard)return true;
  const z=trap[hazard.id],x=(z?.x??hazard.x)+hazard.w/2;
  const note=rageRecall.known.find(n=>n.id===hazard.id);
- if(note){note.x=x;note.hits++}else rageRecall.known.push({id:hazard.id,x,hits:1,shown:false});
+ if(note){note.x=x;note.width=hazard.w??0;note.hits++}else rageRecall.known.push({id:hazard.id,x,width:hazard.w??0,hits:1,shown:false});
  return true;
 }
 function drawRageRecall(){
@@ -206,7 +207,7 @@ function rageRewrite(a){
  glitch={};glitch[a.kind]=sceneTime+a.duration;
  rageLab.activeRewrite={id:a.id,objectId:a.objectId,kind:a.kind,until:sceneTime+a.duration};
  soundCue('rewrite');addBurst(a.x,a.y,CYAN,10);
- say(nextRemark(a.kind==='wall'?'rewrite-wall':'rewrite-bridge'),'warn');return true;
+ if(a.kind==='exit'){doorLocked=false;say('EXIT RESTORED. Your visitor pass is no longer my problem.','warn')}else say(nextRemark(a.kind==='wall'?'rewrite-wall':'rewrite-bridge'),'warn');return true;
 }
 function labRecord(id,text,cue='survived'){
  if(!rageLab||rageLab.events.some(e=>e.id===id))return;

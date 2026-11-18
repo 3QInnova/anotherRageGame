@@ -4,7 +4,17 @@
   "webDir": "www",
   "backgroundColor": "#121821",
   "zoomEnabled": false,
-  "loggingBehavior": "debug",
-  "ios": {"contentInset": "never"},
-  "android": {"backgroundColor": "#121821"}
+  "loggingBehavior": "none",
+  "ios": {
+    "contentInset": "never",
+    "webContentsDebuggingEnabled": false
+  },
+  "android": {
+    "backgroundColor": "#121821",
+    "webContentsDebuggingEnabled": false
+  },
+  "server": {
+    "cleartext": false,
+    "allowNavigation": []
+  }
 }

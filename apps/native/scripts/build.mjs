@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -8,17 +8,11 @@ const root = fileURLToPath(new URL('../../../', import.meta.url));
 const child = spawnSync('python3', ['tools/build-mobile.py'], { cwd: root, stdio: 'inherit' });
 if (child.status !== 0) process.exit(child.status ?? 1);
 const html = await readFile(new URL('../../../mobile/index.html', import.meta.url), 'utf8');
-const adapter = await readFile(new URL('../src/game-adapter.js', import.meta.url), 'utf8');
-const boot = 'installMobileUI();initRoom(true);requestAnimationFrame(frame);';
-if (!html.includes(boot)) throw Error('Mobile bootstrap changed; review native adapter injection.');
-const page = html
-  .replace('<title>EXCEPTION: HUMAN — iPhone</title>', '<title>EXCEPTION: HUMAN — Local Phone Build</title>')
-  .replace('</style>', '#mobileMenu{z-index:80}.native-app #mobileApp{height:100vh;height:100dvh}</style>')
-  .replace('<script>', '<script src="native-bridge.js"></script>\n<script>')
-  .replace(boot, adapter + '\ninstallMobileUI();initRoom(true);installNativeUI();requestAnimationFrame(frame);');
+const page = await readFile(new URL('../../../outputs/release/native.html', import.meta.url), 'utf8');
+await rm(new URL('../www/', import.meta.url), {recursive:true,force:true});
 await mkdir(new URL('../www/', import.meta.url), { recursive: true });
 await writeFile(new URL('../www/index.html', import.meta.url), page);
-await build({ entryPoints: [app + 'src/bridge.js'], outfile: app + 'www/native-bridge.js', bundle: true, format: 'iife', target: ['safari15', 'chrome110'], minify: false });
+await build({ entryPoints: [app + 'src/bridge.js'], outfile: app + 'www/native-bridge.js', bundle: true, format: 'iife', target: ['safari15', 'chrome110'], minify: true, sourcemap: false });
 await mkdir(new URL('../../../outputs/capacitor/', import.meta.url), { recursive: true });
 const sha = text => createHash('sha256').update(text).digest('hex');
 const desktop = await readFile(new URL('../../../initalDemoDocs/Exception_Human_Misclassification_V3.html', import.meta.url));

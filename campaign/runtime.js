@@ -6,6 +6,7 @@ const CAMPAIGN_PROGRESS_KEY='exception-data-centers-v1';
 let campaignReceipt=null,campaignReportKey='';
 let campaignMode=false,campaignPractice=false,campaignMenuOpen=false,campaignSelectedCenter='localhost';
 let campaignView='campaign',desktopMenuOpen=false;
+let campaignPersistent=true;
 let campaignProgress={schemaVersion:1,cleared:[],currentServerId:'localhost-01'};
 try{
  const stored=JSON.parse(localStorage.getItem(CAMPAIGN_PROGRESS_KEY)||'null');
@@ -14,7 +15,7 @@ try{
   campaignProgress.cleared=[...new Set(Array.isArray(stored.cleared)?stored.cleared.filter(id=>ids.has(id)):[])];
   if(ids.has(stored.currentServerId))campaignProgress.currentServerId=stored.currentServerId;
  }
-}catch(_){}
+}catch(_){campaignPersistent=false}
 for(const level of DATA_CENTER_LEVELS){
  BACKGROUND_QUIPS.levels[level.title]=level.voice;
  ALL_REMARK_POOLS[level.serverId]=level.voice;
@@ -43,7 +44,7 @@ function syncCampaignIncidentUI(){
  $('incidentCounterplay').textContent='If you are stuck: '+card.counterplay+(L.idleCompute?' Idle cleanup: short stops are covered; green maintenance bays and Pause suspend the timer.':'');
  $('incidentExcuse').textContent=campaignReceipt?'Last incident / AI excuse: '+campaignReceipt.text:'';
 }
-function saveCampaignProgress(){try{localStorage.setItem(CAMPAIGN_PROGRESS_KEY,JSON.stringify(campaignProgress))}catch(_){}}
+function saveCampaignProgress(){try{localStorage.setItem(CAMPAIGN_PROGRESS_KEY,JSON.stringify(campaignProgress));campaignPersistent=true}catch(_){campaignPersistent=false}}
 function campaignBlocked(){return ['dead','compacting','paywall'].includes(state)}
 function campaignUnlocked(index){return index===0||campaignProgress.cleared.includes(DATA_CENTER_LEVELS[index-1]?.serverId)}
 function selectLevelCollection(useCampaign){
@@ -58,7 +59,7 @@ function startCampaignServer(id,practice=false){
  const index=DATA_CENTER_LEVELS.findIndex(l=>l.serverId===id);
  if(index<0||(!practice&&!campaignUnlocked(index)))return false;
  for(const level of DATA_CENTER_LEVELS)BACKGROUND_QUIPS.levels[level.title]=level.voice;
- selectLevelCollection(true);initRoom(true);campaignPractice=practice;
+ campaignPractice=practice;selectLevelCollection(true);initRoom(true);
  practiceMode=practice;practiceRoom=practice?index:-1;
  if(index!==0){room=index;clockRoom=-1;initRoom(false,'level')}else refreshHud();
  if(!practice){campaignProgress.currentServerId=id;saveCampaignProgress()}
@@ -78,6 +79,7 @@ function recordCampaignClear(){
  saveCampaignProgress();
 }
 function restartCampaignRun(){
+ if(L.releaseChallenge){startReleaseChallenge(L.releaseChallenge);return}
  if(L.originalLocalhost){startOriginalLocalhost(L.serverId);return}
  if(L.rageLab){if(L.demo)startDemo(L.serverId);else startRageLab(L.serverId);return}
  if(L.puzzleBoxTrial){startPuzzleBox();return}
@@ -110,6 +112,7 @@ function closeCampaignMenu(play=false){
  suspendPresenceInput();
  campaignMenuOpen=false;const node=$('campaignMenu');if(node)node.hidden=true;refreshCooling();
  keys.clear();pressedKeys.clear();last=typeof performance!=='undefined'?performance.now()/1000:0;acc=0;
+ if(releaseBooting)return;
  if(typeof mobilePaused!=='undefined'){
   if(play)resumeMobile();else if(mobilePaused){$('mobileMenu').hidden=false;$('mobileApp').inert=true;$('openDataCenters')?.focus?.();}
  }else if(!desktopMenuOpen)resumeSound();
@@ -119,18 +122,10 @@ function openCampaignMenu(view='campaign'){
  if(typeof view!=='string')view='campaign';
  if(desktopMenuOpen){desktopMenuOpen=false;$('desktopMenu').hidden=true}
  suspendPresenceInput();
- if(typeof mobilePaused!=='undefined')pauseMobile('Choose a Data Center.');
+ if(typeof mobilePaused!=='undefined')pauseMobile('Escape Localhost');
  rememberBackgroundVoice();campaignMenuOpen=true;keys.clear();pressedKeys.clear();suspendSound();refreshCooling();
  if(typeof mobilePaused!=='undefined')$('mobileMenu').hidden=true;
  $('campaignMenu').hidden=false;setCampaignView(view);renderCampaignMenu();$('campaignClose')?.focus?.();
-}
-function setCampaignView(view){
- campaignView=['campaign','demos','labs','practice'].includes(view)?view:'campaign';
- const card=$('campaignMenu')?.querySelector?.('.campaign-card');if(card)card.scrollTop=0;
- for(const name of ['campaign','demos','labs','practice']){
-  const panel=$('campaignView-'+name);if(panel)panel.hidden=name!==campaignView;
-  const tab=$('campaignTab-'+name);tab?.setAttribute?.('aria-pressed',String(name===campaignView));
- }
 }
 function toggleDesktopMenu(open=!desktopMenuOpen){
  if(typeof mobilePaused!=='undefined'||campaignMenuOpen)return;
@@ -148,6 +143,7 @@ function playCue(){
  const a=nearest();if(a)return 'Rewrite '+a.kind.toUpperCase()+' · '+(typeof mobilePaused==='undefined'?'X':'tap Rewrite');
  if(L.counterplay){
   for(const b of paperRecoveries()){const r=paperRecoveryState(b);if(r.caught&&!r.repaired&&Math.abs(player.x-b.x)<650)return 'Still alive. Return left, jump to the bank, then Rewrite REPAIR.'}
+  if(L.releaseGoal)return releaseLesson();
   const act=L.acts.filter(a=>player.x>=a.start).at(-1);return (act?.name??'Localhost')+' · '+campaignRouteTime(roomElapsed)+' / ~'+campaignRouteTime(L.benchmarkSeconds)+' clean run. Purple flags may lie.';
  }
  if(L.serverId==='localhost-01')return 'Jump the opening ahead. Green bays and Pause are safe.';
@@ -156,31 +152,6 @@ function playCue(){
  return 'Move · Jump · Rewrite the nearest glowing object.';
 }
 function refreshPlayCue(){const node=$('playCue'),text=playCue();if(node&&node.textContent!==text)node.textContent=text}
-function renderCampaignMenu(){
- const worlds=$('campaignWorlds'),servers=$('campaignServers');if(!worlds?.replaceChildren)return;
- const make=(tag,text,cls)=>{const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n};
- const selected=DATA_CENTER_CATALOG.centers.find(c=>c.id===campaignSelectedCenter)||DATA_CENTER_CATALOG.centers[0];
- const practice=!!$('campaignPractice').checked;
- worlds.replaceChildren(...DATA_CENTER_CATALOG.centers.map(center=>{
-  const b=make('button',String(center.number).padStart(2,'0')+' · '+center.name+'\n'+(center.status==='playable'?center.servers.filter(s=>campaignProgress.cleared.includes(s.id)).length+'/20 servers cleared':'20 servers · planned'));
-  b.type='button';b.style.borderLeftColor=center.accent;b.setAttribute('aria-pressed',String(center.id===selected.id));
-  b.onclick=()=>{campaignSelectedCenter=center.id;renderCampaignMenu()};return b;
- }));
- $('campaignCenterName').textContent=selected.name;$('campaignCenterDescription').textContent=selected.description;
- $('campaignCenterQuote').textContent='“'+selected.transfer+'”';
- $('campaignCenterStatus').textContent=selected.status==='playable'?'20 rebuilt routes · about 1–3 minutes, five-minute finale · '+(practice?'Practice: any server; clears do not advance the campaign.':'Campaign: clear each server to connect the next.'):'Expansion blueprint · these servers are planned and cannot be played yet.';
- servers.replaceChildren(...selected.servers.map(server=>{
-  const cleared=campaignProgress.cleared.includes(server.id),index=DATA_CENTER_LEVELS.findIndex(l=>l.serverId===server.id);
-  const b=make('button',String(server.number).padStart(2,'0')+' · '+server.title+'\n'+(server.status!=='playable'?'PLANNED':cleared?'CLEARED':server.role==='incident'?(server.mcp?'MCP INCIDENT':'INCIDENT'):server.role.toUpperCase()));
-  if(server.status==='playable')b.textContent+='\n'+LOCALHOST_INCIDENTS[server.id].job+(creditRecords[server.id]===undefined?'':'\nBest: '+creditRecords[server.id]+' credits');
-  const level=DATA_CENTER_LEVELS[index];if(level?.counterplay)b.textContent+='\n'+campaignRouteTime(level.benchmarkSeconds??level.targetSeconds)+' clean route · '+campaignPaceLabel(level.moveSpeed);
-  b.type='button';b.className='campaign-server'+(server.role==='incident'?' incident':'');
-  b.disabled=server.status!=='playable'||(!practice&&!campaignUnlocked(index));
-  b.onclick=()=>startCampaignServer(server.id,practice);return b;
- }));
- $('campaignContinue').textContent=campaignProgress.cleared.length===DATA_CENTER_LEVELS.length?'Replay Localhost':campaignProgress.cleared.length?'Continue Localhost':'Start Localhost';
- renderRageLabs();renderDemoPlaylist();
-}
 function installCampaignUI(){
  installVisitorArt();
  installRewards();
@@ -228,6 +199,6 @@ function installCampaignUI(){
    if((e.shiftKey&&document.activeElement===first)||(!e.shiftKey&&document.activeElement===end)){e.preventDefault();(e.shiftKey?end:first)?.focus()}
   }
  });
- renderCampaignMenu();
+ renderCampaignMenu();installReleaseUI();
 }
 window.__DATA_CENTER_TEST__={catalog:()=>JSON.parse(JSON.stringify(DATA_CENTER_CATALOG)),levels:()=>JSON.parse(JSON.stringify(DATA_CENTER_LEVELS)),progress:()=>JSON.parse(JSON.stringify(campaignProgress)),receipt:()=>campaignReceipt?{...campaignReceipt}:null,mode:()=>({campaignMode,campaignPractice,campaignMenuOpen}),start:startCampaignServer,archive:startOriginalLocalhost,open:openCampaignMenu,close:closeCampaignMenu,legacy(){selectLevelCollection(false);campaignPractice=false;initRoom(true)}};

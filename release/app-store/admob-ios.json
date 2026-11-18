@@ -1,0 +1,72 @@
+{
+  "appName": "EXCEPTION: HUMAN",
+  "platform": "iOS",
+  "appId": "ca-app-pub-1989852905612367~4424583200",
+  "bannerAdUnitId": "ca-app-pub-1989852905612367/1474986230",
+  "bannerAdUnitName": "iOS - Fixed Bottom Banner - 320x50",
+  "format": "banner",
+  "createdDate": "2026-11-17",
+  "verifiedBy": "AdMob console displayed: Ad unit successfully created, with both IDs",
+  "consoleUrl": "https://admob.google.com/v2/apps/4424583200/adunits/list",
+  "storeListingLinked": false,
+  "sdkIntegrated": true,
+  "liveAdsValidated": false,
+  "partnerBidding": false,
+  "automaticRefresh": "Google optimized",
+  "ecpmFloor": "Google optimized / All prices",
+  "adTypes": [
+    "Text, image, and rich media",
+    "Video"
+  ],
+  "placementIntent": {
+    "position": "fixed bottom-center",
+    "widthPoints": 320,
+    "heightPoints": 50,
+    "inactiveBufferPoints": 24,
+    "note": "Size and placement must be implemented in native app code; the ad-unit name does not enforce them."
+  },
+  "nextSteps": [
+    "Validate real UMP opt-out/reopen flows, Google test banners, audio and lifecycle on a physical iPhone.",
+    "Enter published support/privacy URLs and accurate App Store privacy disclosures in App Store Connect.",
+    "Link the App Store listing and developer website; complete AdMob app review and app-ads.txt verification.",
+    "Keep EHLiveAdsEnabled false until release requirements pass."
+  ],
+  "sdkVersions": {
+    "GoogleMobileAds": "13.13.0",
+    "UserMessagingPlatform": "3.1.0"
+  },
+  "liveAdsEnabled": false,
+  "testBannerAdUnitId": "ca-app-pub-3940256099942544/2934735716",
+  "usPrivacyMessage": {
+    "name": "EXCEPTION HUMAN - US privacy choices",
+    "status": "Published",
+    "verifiedDate": "2026-11-17",
+    "geography": "All current and future supported US States",
+    "optOut": "On",
+    "language": "en-US"
+  },
+  "validation": {
+    "unsignedReleaseSimulatorBuild": "passed",
+    "mockNativeBrowserTests": "passed; does not validate native ad delivery",
+    "physicalDeviceTestAd": "pending"
+  },
+  "legalOperator": "3QInnova LLC",
+  "supportEmail": "Support.exeptionHuman@3qinnova.com",
+  "supportUrl": "https://3qinnova.com/exception-human-info/#support",
+  "privacyPolicyUrl": "https://3qinnova.com/exception-human-info/#privacy",
+  "termsUrl": "https://3qinnova.com/exception-human-info/#terms",
+  "license": "Apple Standard EULA; no custom EULA",
+  "appAdsTxt": {
+    "url": "https://3qinnova.com/app-ads.txt",
+    "publisherEntryVerified": true,
+    "admobAppVerification": "Pending store linkage"
+  },
+  "adPrivacyConfiguration": {
+    "nonPersonalized": true,
+    "publisherPrivacyPersonalization": "disabled",
+    "publisherFirstPartyIdEnabled": false,
+    "coarseLocationCollectionEnabled": false,
+    "maxAdContentRating": "G",
+    "attRequested": false
+  }
+}

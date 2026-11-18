@@ -2,6 +2,7 @@
 const IDLE_GRACE=16,IDLE_WARNING=6,IDLE_WORK_SPEED=180,IDLE_DELETE_SPEED=145,IDLE_HEAD_START=400;
 let idleCompute=null;
 function resetIdleCompute(x=L.start){
+ resetJitterZap();
  idleCompute=L.idleCompute?{zones:L.idleCompute.zones.map(z=>({...z,phase:x>=z.end?'cleared':'monitoring',debt:0,highX:Math.max(z.start,x),front:null,warning:0,noticed:false})),zone:-1,waiting:false,phase:'monitoring',activeSeconds:0}:null;
  refreshIdleCompute();
 }
@@ -21,16 +22,17 @@ function warnIdleZone(z){z.phase='warning';z.warning=IDLE_WARNING;z.front=player
 function tickIdleCompute(dt){
  if(!idleCompute||state!=='play')return;
  const m=idleCompute;
- if(coolingProtectedStation()){m.waiting=true;m.phase='circuit';return}
+ if(coolingProtectedStation()){tickJitterZap(dt,null,true);m.waiting=true;m.phase='circuit';return}
  for(const z of m.zones){
   if(player.x>=z.end&&z.phase!=='cleared'){z.phase='cleared';z.debt=0;idleSpeak('idle-rest','');soundCue('confirm')}
  }
  if(idleComputeContact())return;
  const index=m.zones.findIndex(z=>player.x>=z.start&&player.x<z.end&&z.phase!=='cleared');
  m.zone=index;m.waiting=false;
- if(index<0){m.phase='maintenance';return}
+ if(index<0){tickJitterZap(dt,null,true);m.phase='maintenance';return}
  const z=m.zones[index];m.phase=z.phase;
- if(idleWaitWindow()){m.waiting=true;return}
+ if(idleWaitWindow()){tickJitterZap(dt,z,true);m.waiting=true;return}
+ tickJitterZap(dt,z,false);
  m.activeSeconds+=dt;
  const progress=Math.max(0,player.x-z.highX);z.highX=Math.max(z.highX,player.x);
  if(z.phase==='monitoring'){
@@ -63,6 +65,7 @@ function drawIdleComputeEye(cx,cy,threat){
 }
 function drawIdleComputeWorld(){
  if(!idleCompute)return;
+ drawJitterZap();
  const top=visibleWorldTop(),bottom=typeof mobileView==='undefined'?H:mobileView.top+mobileView.height;
  const width=visibleWorldWidth();
  ctx.save();
@@ -108,7 +111,7 @@ function refreshIdleCompute(){
  const m=idleCompute,z=m.zones[m.zone],phase=m.waiting?'waiting':m.phase;
  const circuit=coolingProtectedStation(),ground=!!circuit?.route.grounded;
  const title=hasPuzzleBoxes()&&circuit?(circuit.solved?'PUZZLE BOX PASSED':puzzleIsOpen()?'PUZZLE BOX / HARNESS ON':'PUZZLE BOX DECK'):ground?'GROUND FAULT':circuit?(circuit.selected>=0?'U'+(circuit.selected+1)+' '+circuit.board.cells[circuit.selected].type+' · SELECTED':'CIRCUIT DECK'):phase==='maintenance'?'INSTANCE SUSPENDED':phase==='cleanup'?'IDLE INSTANCE: TERMINATING':phase==='warning'?'TERMINATION SCHEDULED':phase==='waiting'?'TRAP WAIT: COMPUTE PAUSED':L.idleDeletionTrial?'GARBAGE COLLECTION DAY':'IDLE COMPUTE';
- const caption=hasPuzzleBoxes()&&circuit?(circuit.solved?'Safe to cross':puzzleIsOpen()?'Trace inputs · TEST applies power':'X / OPEN BOX · actions free'):ground?'Platform live · rewire in '+Math.max(0,COOLING_SHOCK_DELAY-circuit.groundTime).toFixed(1)+'s':circuit?(circuit.solved?'Fan ready · safe to cross':circuit.selected>=0?'ROTATE U'+(circuit.selected+1)+' / X · actions free':'Tap a gate → ROTATE · actions free'):phase==='maintenance'?'Rest here. Pause also freezes time.':phase==='cleanup'?'Run right to the maintenance bay':phase==='warning'?'Cleanup starts in '+z.warning.toFixed(1)+'s':phase==='waiting'?'Trap wait · compute paused':L.idleDeletionTrial?'Idle allowance · '+Math.max(0,IDLE_GRACE-(z?.debt??0)).toFixed(1)+'s':(z?.debt??0)>=IDLE_GRACE/2?'Keep moving · AI is losing patience':'Short stops are covered.';
+ const caption=hasPuzzleBoxes()&&circuit?(circuit.solved?'Safe to cross':puzzleIsOpen()?'Trace inputs · TEST applies power':'X / OPEN BOX · actions free'):ground?'Platform live · rewire in '+Math.max(0,COOLING_SHOCK_DELAY-circuit.groundTime).toFixed(1)+'s':circuit?(circuit.solved?'Fan ready · safe to cross':circuit.selected>=0?'ROTATE U'+(circuit.selected+1)+' / X · actions free':'Tap a gate → ROTATE · actions free'):phase==='maintenance'?'Rest here. Pause also freezes time.':phase==='cleanup'?'Run right to the maintenance bay':phase==='warning'?'Cleanup starts in '+z.warning.toFixed(1)+'s':phase==='waiting'?'Trap wait · compute paused':(L.idleDeletionTrial||L.releaseCampaign)?'Keep moving · '+Math.max(0,IDLE_GRACE-(z?.debt??0)).toFixed(1)+'s':(z?.debt??0)>=IDLE_GRACE/2?'Keep moving · AI is losing patience':'Short stops are covered.';
  if($('idleComputeTitle').textContent!==title)$('idleComputeTitle').textContent=title;
  if($('idleComputeCaption').textContent!==caption)$('idleComputeCaption').textContent=caption;
  $('idleComputeFill').style.width=(idleComputeIntensity()*100).toFixed(1)+'%';

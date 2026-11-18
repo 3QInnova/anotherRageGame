@@ -1,0 +1,2 @@
+// This file is used ONLY in outputs/release-tests, never in the shipped website or native assets.
+window.__QA__={tick:()=>runFrame(1/120),paint(){draw();refreshHud()},start(id,practice=true){startCampaignServer(id,practice)},challenge:startReleaseChallenge,level:()=>L,state:()=>({state,player:{...player},room,deaths:totalDeaths,sceneTime,credits:{...credits}}),jitter:()=>jitterZap,idle:()=>idleCompute,pause:()=>campaignMenuOpen,puzzle:()=>cooling,progress:()=>campaignProgress,record:()=>releaseRecord,badges:rewardEarnedBadges,bank:rewardBalance,ledger:()=>rewardLedger};

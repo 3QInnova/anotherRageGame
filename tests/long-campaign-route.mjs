@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 // Known-answer routes use only the ordinary movement/Jump/Rewrite/Puzzle Box inputs.
 // The observer peeks avoid serializing hundreds of distant traps on every fixed tick.
-export function clearLongCampaign(g,{fast=true,from=null,chaseZones=false}={}){
+export function clearLongCampaign(g,{fast=true,from=null,chaseZones=false,expectedDeaths=0}={}){
  const l=g.check.level(),start=g.frame(),room=g.check.peek().room,markers=[],held=new Set(),chased=new Set(),noted=new Set();
  const s=()=>g.check.peek(),key=(code,down=true)=>{if(down)held.add(code);else held.delete(code);g.key(code,down)},tap=code=>{key(code);key(code,false)},mark=name=>markers.push({name,frame:g.frame()-start});
  function step(){g.check.step();assert(g.frame()-start<(chaseZones?120000:60000),'Bounded long route '+l.serverId);assert(['play','won'].includes(s().state),l.serverId+' / '+s().player.x.toFixed(1)+' / '+g.nodes.get('lossReason').textContent);
@@ -52,7 +52,8 @@ export function clearLongCampaign(g,{fast=true,from=null,chaseZones=false}={}){
    walk(x+198);tap('Space');walk(x+670);until(()=>s().player.grounded);
   }
  }
+ if(l.releaseFinale){walk(l.auditX+5);tap('KeyX')}
  key('KeyD');until(()=>s().state==='won'||s().room!==room);key('KeyD',false);mark('escaped');
- assert.equal(g.state().deaths,0);const remaining=s().room===room?s().credits.balance:s().receipt.remaining;assert(remaining>0,l.serverId+' needs spare credits');
+ assert.equal(g.state().deaths,expectedDeaths);const remaining=s().room===room?s().credits.balance:s().receipt.remaining;assert(l.unlimitedActions||remaining>0,l.serverId+' needs spare credits');
  return {id:l.serverId,fast,cleanupZones:chased.size,seconds:(g.frame()-start)/120,frames:g.frame()-start,markers,credits:remaining,events:g.route.filter(e=>e.frame>=start).map(e=>({...e,frame:e.frame-start}))};
 }

@@ -43,12 +43,12 @@ function tickPressurePaper(dt){
  const target=s.amount>=.2?s.amount:0;
  v.heat+=(target-v.heat)*Math.min(1,dt*3);
  v.unfold+=((s.countdown!==null||s.consequence==='deleting'?1:0)-v.unfold)*Math.min(1,dt*5);
- if(s.amount>=.2&&!v.noticed){v.noticed=true;say(nextRemark('pressure-notice'),'warn')}
- if(s.amount>=.65&&!v.urged){v.urged=true;say(nextRemark('pressure-urge'),'warn')}
+ if(s.amount>=.2&&!v.noticed){v.noticed=true;if(!jitterZap?.zaps||sceneTime>jitterZap.until+3)say(nextRemark('pressure-notice'),'warn')}
+ if(s.amount>=.65&&!v.urged){v.urged=true;if(!jitterZap?.zaps||sceneTime>jitterZap.until+3)say(nextRemark('pressure-urge'),'warn')}
  if(s.amount>=.45)v.wasHot=true;
  if(v.wasHot&&s.amount<.2&&!s.consequence){
   v.wasHot=false;v.recovery=4;v.noticed=false;v.urged=false;
-  say(nextRemark('pressure-recovered'));
+  if(!jitterZap?.zaps||sceneTime>jitterZap.until+3)say(nextRemark('pressure-recovered'));
  }
 }
 function pressurePaperView(){

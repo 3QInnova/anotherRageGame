@@ -5,6 +5,8 @@ const PUZZLE_BOARDS=[
  {name:'SHARED RESPONSIBILITY',count:4,gates:[{id:'G1',type:'OR',inputs:['A','B'],x:250,y:52},{id:'G2',type:'XOR',inputs:['C','D'],x:250,y:174},{id:'G3',type:'AND',inputs:['G1','G2'],x:490,y:52},{id:'G4',type:'AND',inputs:['A','D'],x:490,y:174}],fan:'G3',ground:'G4',routes:{'G4-0':[[105,25],[105,5],[378,5],[378,164]],'G4-1':[[120,190],[120,216],[398,216],[398,184]]}},
  {name:'EVERY SWITCH HAS COLLEAGUES',count:5,gates:[{id:'G1',type:'XOR',inputs:['A','B'],x:232,y:38},{id:'G2',type:'OR',inputs:['C','D'],x:232,y:114},{id:'G3',type:'AND',inputs:['A','C'],x:232,y:190},{id:'G4',type:'AND',inputs:['G1','G2'],x:448,y:38},{id:'G5',type:'AND',inputs:['B','E'],x:448,y:156},{id:'G6',type:'OR',inputs:['G3','G5'],x:626,y:190}],fan:'G4',ground:'G6',routes:{'G5-0':[[92,64],[92,5],[356,5],[356,146]],'G5-1':[[108,196],[108,219],[374,219],[374,166]]}}
 ];
+// Campaign workbench: two labeled switches, with the full logic puzzles reserved for Challenges.
+PUZZLE_BOARDS.push({name:'COOLING OVERRIDE',count:2,gates:[{id:'G1',type:'OR',inputs:['A','A'],x:250,y:52},{id:'G2',type:'OR',inputs:['B','B'],x:250,y:174}],fan:'G1',ground:'G2',routes:{}});
 const PUZZLE_BOX_LEVEL={...COOLING_LEVEL,title:'PUZZLE BOX',serverId:'puzzle-box',serverNumber:'BOX',puzzleBoxTrial:true,remarkPool:'puzzle-background',sectionLabel:'FACILITIES / PUZZLE BOX',
  stations:COOLING_LEVEL.stations.map((s,i)=>({...s,sink:{...s.sink},count:[3,4,5][i],puzzle:i})),
  intro:'Puzzle Box. Jump onto a maintenance deck. Flip A/B/C switches and trace the visible signals. ANY means either; BOTH means both; ONE ONLY means exactly one. Preview is unpowered. TEST CIRCUIT powers the hardware. Aim for FAN 1 and DECK 0. The harness holds you steady while the box is open.',
@@ -19,6 +21,7 @@ function puzzleEvaluate(board,bits){
 }
 function resetPuzzleBoxStation(s){
  s.board=PUZZLE_BOARDS[s.puzzle];s.bits=Array(s.board.count).fill(false);s.logic=puzzleEvaluate(s.board,s.bits);s.route={fan:s.logic.fan,grounded:false};s.phase='preview';s.testElapsed=0;s.testCount=0;s.viewed=false;s.focus=null;s.selected=-1;s.temperature=1;s.solved=false;s.groundTime=0;s.flips=0;s.quip='Flip an input. Follow the signal. TEST applies power; preview does not.';
+ if(L.releaseCampaign)s.quip='A powers the FAN. B powers the DECK. Turn A ON, leave B OFF, then TEST.';
  if(puzzleBoxOpenId===s.id)puzzleBoxOpenId=null;
 }
 function resetPuzzleBoxCooling(){puzzleBoxOpenId=null;return L.stations.map(s=>{const station={...s,sink:{...s.sink},time:0,resets:0,occupied:false};resetPuzzleBoxStation(station);return station})}
@@ -64,7 +67,7 @@ function startPuzzleBox(){
  selectLevelCollection(true);LEVELS=[PUZZLE_BOX_LEVEL];COMPACT_POINTS=[PUZZLE_BOX_LEVEL.returnPoints];GLASS_TEST_INDEX=1;initRoom(true);campaignPractice=true;practiceMode=true;practiceRoom=0;closeCampaignMenu(true);refreshHud();return true;
 }
 function puzzleEdges(board){
- const sources=Object.fromEntries(Array.from({length:board.count},(_,i)=>[String.fromCharCode(65+i),{x:48,y:board.count===3?[36,110,184][i]:board.count===4?[25,80,135,190][i]:[20,64,108,152,196][i]}]));
+ const sources=Object.fromEntries(Array.from({length:board.count},(_,i)=>[String.fromCharCode(65+i),{x:48,y:board.count===2?[52,174][i]:board.count===3?[36,110,184][i]:board.count===4?[25,80,135,190][i]:[20,64,108,152,196][i]}]));
  const nodes={...sources,...Object.fromEntries(board.gates.map(g=>[g.id,{x:g.x,y:g.y}]))},edges=[];
  for(const g of board.gates)for(let pin=0;pin<2;pin++){
   const source=g.inputs[pin],n=nodes[source],a={x:n.x+(sources[source]?18:46),y:n.y},b={x:g.x-46,y:g.y+(pin?10:-10)},via=board.routes[g.id+'-'+pin],mid=sources[source]?94+(source.charCodeAt(0)-65)*18:a.x+26+(edges.length%3)*13;
@@ -120,7 +123,7 @@ function refreshPuzzleBox(){
  if(panel.dataset?.diagram!==key){$('puzzleBoxDiagram').innerHTML=puzzleDiagramSvg(s);if(panel.dataset)panel.dataset.diagram=key}
  panel.style.setProperty?.('--signal-time',String(s.time*24));
  if(panel.dataset){panel.dataset.phase=s.phase;panel.dataset.focused=String(!!s.focus)}
- for(let i=0;i<5;i++){const b=$('puzzleInput'+i);b.hidden=i>=s.board.count;b.disabled=s.phase!=='preview';b.textContent=String.fromCharCode(65+i)+' '+(s.bits[i]?'● ON':'○ OFF');b.setAttribute?.('aria-pressed',String(!!s.bits[i]));b.setAttribute?.('aria-label','Input '+String.fromCharCode(65+i)+', '+(s.bits[i]?'ON, turn off':'OFF, turn on'))}
+ for(let i=0;i<5;i++){const b=$('puzzleInput'+i);b.hidden=i>=s.board.count;b.disabled=s.phase!=='preview';b.textContent=String.fromCharCode(65+i)+(L.releaseCampaign?(i===0?' FAN':' DECK'):'')+' '+(s.bits[i]?'● ON':'○ OFF');b.setAttribute?.('aria-pressed',String(!!s.bits[i]));b.setAttribute?.('aria-label','Input '+String.fromCharCode(65+i)+', '+(s.bits[i]?'ON, turn off':'OFF, turn on'))}
  $('puzzleBoxTest').disabled=s.phase!=='preview';$('puzzleBoxTest').textContent=s.phase==='testing'?'TESTING…':s.phase==='cooling'?'COOLING…':s.solved?'PASSED ✓':'TEST CIRCUIT';
  $('puzzleBoxClose').disabled=!['preview','solved'].includes(s.phase);
  const g=s.logic.values.find(g=>g.id===s.focus);

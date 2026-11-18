@@ -6,7 +6,7 @@ function compileLongCampaign(catalog,recipes,voice,incidents){
  return recipes.map(recipe=>{
   const center=catalog.centers.find(c=>c.servers.some(s=>s.id===recipe.serverId)),server=center?.servers.find(s=>s.id===recipe.serverId);
   if(!center||server.status!=='playable')throw Error('Unmapped long campaign recipe '+recipe.serverId);
-  let cursor=55,index=0;const beats=[],acts=[],bays=[];
+  let cursor=server.number===1?450:55,index=0;const beats=[],acts=[],bays=[];
   for(const [ai,act] of recipe.acts.entries()){
    const start=cursor;
    for(const code of act.sequence){
@@ -17,7 +17,7 @@ function compileLongCampaign(catalog,recipes,voice,incidents){
     if(kind==='receipt')b.lift=[75,90,100][(index+server.number)%3];
     if(kind==='recovery')b.depth=[65,75,85][(ai+server.number)%3];
     if(kind==='shifting')b.delay=.65;
-    if(kind==='puzzle')b.board=1;
+    if(kind==='puzzle')b.board=3;
     beats.push(b);cursor=x+PAPER_ROUTE_END[kind];index++;
    }
    acts.push({name:act.name,start,end:cursor});
@@ -26,11 +26,12 @@ function compileLongCampaign(catalog,recipes,voice,incidents){
   const exit=cursor+250;
   const level=assemblePaperRoute(server.id,server.title.toUpperCase(),center.description,'Welcome to '+center.name+'. '+incidents[server.id].trouble,beats,{
    demo:false,rageLab:false,counterplay:true,campaignServer:true,centerId:center.id,centerNumber:center.number,serverNumber:server.number,
-   role:server.role,incident:server.role==='incident',moveSpeed:recipe.moveSpeed,targetSeconds:recipe.targetSeconds,benchmarkSeconds:recipe.benchmarkSeconds,acts,
+   releaseCampaign:true,unlimitedActions:true,quietAdvisories:true,unreliableFlags:recipe.unreliableFlags,chapter:recipe.chapter,releaseGoal:recipe.goal,role:server.role,incident:server.role==='incident',moveSpeed:recipe.moveSpeed,targetSeconds:recipe.targetSeconds,benchmarkSeconds:recipe.benchmarkSeconds,acts,
    exit,sectionLabel:center.stamp,sectionSpacing:2400,remarkPool:server.id,mcpTool:server.mcp?(server.number===10?'route.optimize':'human.contain'):null,
-   voice:voice[server.id],incidentCard:{...incidents[server.id],notice:'Long route. Gold targets lock before purging. One temporary Rewrite at a time. Purple recall flags may drift or disappear.',counterplay:'Bait and retreat, use permanent paper before handing off a Rewrite, and recover from false save stamps. Green maintenance bays and Pause let you think.'},
+   voice:voice[server.id],incidentCard:{...incidents[server.id],notice:recipe.goal,counterplay:recipe.goal},
    signs:acts.map((a,i)=>({x:a.start+80,text:(i+1)+' / '+a.name.toUpperCase()}))
   });
+  if(server.number===20){level.releaseFinale=true;level.auditX=exit-110;level.anomalies.push({id:'localhost-final-exit',kind:'exit',x:exit-20,y:FLOOR-40,range:150,duration:2.3});}
   level.routeBeats=beats;delete level.demoBeats;
   // Workbench decks are permanent exclusions; their heat sinks are never safe bays.
   // A return-to-repair encounter must never send the human back into an active deletion edge.
@@ -39,12 +40,13 @@ function compileLongCampaign(catalog,recipes,voice,incidents){
   const end=level.exit-140;bays.push({start:end,end:level.width});bays.sort((a,b)=>a.start-b.start);
   const zones=[];let begin=10;
   for(const b of bays){if(b.start<=begin)throw Error('Overlapping maintenance '+level.serverId);zones.push({start:begin,end:b.start});begin=b.end}
-  level.idleCompute={zones,bays};
+  level.idleCompute={zones,bays,activation:'progress'};
   if(recipe.warningBeforePuzzle){
    const at=beats.findIndex(b=>b.kind==='puzzle'),warning=beats[Math.max(0,at-4)].x-80,z=zones.find(z=>warning>=z.start&&warning<z.end);
    if(!z||level.stations[0].x-warning<1800)throw Error('Cooling chase needs a clear warned approach');z.warningAt=warning;z.followWarning=true;
   }
   if(recipe.markedCleanup)for(const ai of [1,3]){const a=acts[ai],z=zones.find(z=>a&&a.start+100>=z.start&&a.start+100<z.end);if(z){z.warningAt=a.start+100;z.followWarning=true}}
+  level.releaseCheckpoints=server.number===20?[bays.find(b=>b.start>acts[1].end&&b.start<acts[2].start)?.start+30].filter(Number.isFinite):[];
   level.returnPoints=[55,...bays.filter(b=>b.start<end&&!(level.stations??[]).some(s=>s.x===b.start)).map(b=>b.start+30)].filter(x=>!level.puzzleBoxEncounter||x<level.stations[0].x-80);
   return level;
  });

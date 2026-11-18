@@ -1,0 +1,19 @@
+EXCEPTION: HUMAN — AD COPY
+
+01-PROVE-IT
+HEADLINE: Outsmart the AI
+PRIMARY TEXT: The AI has predicted your failure. Very confidently. Again. Move, jump, and Rewrite your way through 20 levels in EXCEPTION: HUMAN.
+SHORT CAPTION: The AI is wrong. Your next jump can prove it.
+ARTWORK CTA: ESCAPE LOCALHOST
+
+02-FLOOR-QUIT
+HEADLINE: Rewrite your escape
+PRIMARY TEXT: Missing floor? Inconvenient. Rewrite it into a temporary bridge, make the jump, and leave the AI to update its excuses. EXCEPTION: HUMAN.
+SHORT CAPTION: Move. Jump. Rewrite. Please stop invalidating the model.
+ARTWORK CTA: ESCAPE LOCALHOST
+
+03-EXCUSES
+HEADLINE: An AI with an ego
+PRIMARY TEXT: Bad predictions. Missing floors. Excellent excuses. Take on a stubborn AI in EXCEPTION: HUMAN, a tricky platformer with 20 campaign levels and four extra challenges.
+SHORT CAPTION: Twenty levels. One AI that will never admit this was its fault.
+ARTWORK CTA: ESCAPE LOCALHOST

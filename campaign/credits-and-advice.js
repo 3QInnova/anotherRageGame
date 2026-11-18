@@ -46,7 +46,7 @@ function resetCredits(){credits={balance:creditBudget(),budget:creditBudget(),sp
 function refillCredits(from){const old=credits;credits={...old,balance:creditBudget(from),budget:creditBudget(from),leftMeter:0,banked:false};refreshCredits()}
 function spendCredit(kind){
  if(state!=='play')return false;
- if(coolingProtectedStation())return true;
+ if(L.unlimitedActions||coolingProtectedStation())return true;
  credits.balance=Math.max(0,credits.balance-1);credits.spent++;credits[kind]++;
  refreshCredits();
  if(credits.balance===0){startCompaction('credits exhausted');return false}
@@ -54,7 +54,7 @@ function spendCredit(kind){
  return true;
 }
 function chargeLeftDistance(distance){
- if(coolingProtectedStation())return true;
+ if(L.unlimitedActions||coolingProtectedStation())return true;
  if(!creditLeftCosts||distance<=0)return true;
  credits.leftMeter-=distance;
  if(credits.leftMeter<=0){credits.leftMeter+=LEFT_CREDIT_DISTANCE;return spendCredit('left')}
@@ -71,13 +71,16 @@ function creditReturnPoint(){
 function bankCredits(){
  if(credits.banked)return;credits.banked=true;
  const id=creditLevelId(),practice=practiceMode||campaignPractice,best=creditRecords[id]??0;
- const gained=practice?0:Math.max(0,credits.balance-best);
- const tokens=rewardAward(id,credits.balance,practice,campaignMode&&!campaignPractice);
- if(!practice){creditRecords[id]=Math.max(best,credits.balance);try{localStorage.setItem(CREDIT_SAVE_KEY,JSON.stringify({version:1,best:creditRecords}))}catch(_){creditStorageAvailable=false}}
- creditReceipt={id,remaining:credits.balance,gained,total:creditTotal(),practice,tokens,stats:{attempt:attempts[room]??1,seconds:roomElapsed,runDeaths:totalDeaths},until:elapsed+12};refreshCredits();
+ const score=L.unlimitedActions?0:credits.balance;
+ const gained=practice?0:Math.max(0,score-best);
+ const tokens=rewardAward(id,score,practice,campaignMode&&!campaignPractice);
+ if(!practice){creditRecords[id]=Math.max(best,score);try{localStorage.setItem(CREDIT_SAVE_KEY,JSON.stringify({version:1,best:creditRecords}))}catch(_){creditStorageAvailable=false}}
+ creditReceipt={id,remaining:score,release:!!L.unlimitedActions,gained,total:creditTotal(),practice,tokens,stats:{attempt:attempts[room]??1,seconds:roomElapsed,runDeaths:totalDeaths},until:elapsed+12};refreshCredits();
 }
 function refreshCredits(){
  if(!credits)return;
+ $('creditPanel').hidden=!!L.unlimitedActions;
+ if(L.unlimitedActions){$('creditSummary').textContent='10 Tokens for each first campaign clear. Replays and challenges are for personal bests.';$('creditRules').textContent='Move, Jump and Rewrite are free. No energy limits or paid retries.';return}
  const n=$('creditHud');n.textContent=credits.balance+' CREDITS'+(credits.balance<=2?' · LOW':'');n.dataset&&(n.dataset.low=String(credits.balance<=2));
  const detail=coolingProtectedStation()?'Switch deck · all actions free':creditReceipt&&elapsed<creditReceipt.until?(creditReceipt.practice?'Practice · '+creditReceipt.remaining+' left': '+'+creditReceipt.gained+' saved · '+creditReceipt.total+' total'): 'Jump 1 · Rewrite 1'+(creditLeftCosts?' · ← 1/100px':'');
  $('creditDetail').textContent=detail;

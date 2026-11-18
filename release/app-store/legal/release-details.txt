@@ -1,0 +1,32 @@
+EXCEPTION: HUMAN — support/privacy release details
+Operator: 3QInnova LLC
+Support and privacy: Support.exeptionHuman@3qinnova.com (owner-confirmed working)
+Support URL: https://3qinnova.com/exception-human-info/#support
+Privacy URL: https://3qinnova.com/exception-human-info/#privacy
+Terms URL: https://3qinnova.com/exception-human-info/#terms
+License: Apple Standard EULA; leave custom EULA unset unless separately reviewed.
+Website commit: 512afcb7eed4973b97c73714309b5724561a1e80
+US consent: Published in AdMob; all current/future supported US states; opt-out On.
+Live ads: OFF. Publishing consent does not enable live ads.
+
+Data inventory for App Store disclosure review (not submitted answers)
+- Local gameplay saves/settings: device storage; not uploaded to publisher. Device backups are separate.
+- Support: email address, submitted text, optional images and device/app details; used for support/privacy requests. User initiates. Retain only while needed for requests/follow-up/disputes/legal obligations. Email provider processes mail.
+- Ad reports: optional response reference, placement, timestamp, version and user description; shared only when user chooses. No automatic image capture or submission.
+- Google advertising/consent: IP-derived approximate location, app/device identifiers, advertising interactions, consent state and diagnostics/performance can be processed. Review SDK manifest and current Google disclosure page against actual traffic; do not select Data Not Collected.
+- Website: GitHub Pages hosting/security requests; no page analytics scripts, forms or ads.
+- No publisher game account, cloud save, chat, user upload service, purchases, Firebase or generative AI calls in this release.
+- IDFA permission is not requested; publisher first-party ID and device-location collection are disabled. Non-personalized ads alone do not prove absence of all tracking. Validate the actual SDK behavior before final Apple tracking/linkage answers.
+
+Before distribution
+1. Enter the URLs above into App Store Connect and review the current seller/age/privacy answers.
+2. Verify the installed iPhone build's privacy form, opt-out persistence, reopening, offline failure, background return, report and email actions.
+3. Validate third-party SDK disclosures and archive privacy report; do not infer final privacy labels solely from local saves or missing ATT prompt.
+4. Keep the initial storefront US-only. Additional regions require a new privacy/consent review.
+5. Link the store app in AdMob, verify app-ads.txt, complete app review, and only then consider enabling live requests.
+
+References
+https://developers.google.com/admob/ios/privacy/data-disclosure
+https://developers.google.com/admob/ios/privacy
+https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+https://developer.apple.com/app-store/review/guidelines/

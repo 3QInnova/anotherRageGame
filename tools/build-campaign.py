@@ -34,6 +34,7 @@ body+=(root/'campaign/long-campaign.js').read_text()+'\n'
 body+=(root/'campaign/encounters.js').read_text()+'\n'+(root/'campaign/runtime.js').read_text()
 body+='\n'+(root/'campaign/credits-and-advice.js').read_text()
 body+='\n'+(root/'campaign/idle-compute.js').read_text()
+body+='\n'+(root/'campaign/jitter-zap.js').read_text()
 body+='\n'+(root/'campaign/commitment-lab.js').read_text()
 body+='\n'+(root/'campaign/pressure-feedback.js').read_text()
 body+='\n'+(root/'campaign/garbage-collection-day.js').read_text()
@@ -47,7 +48,7 @@ body+=(root/'campaign/failure-voice.js').read_text()+'\n'+(root/'desktop/screen.
 body+='\nconst REWARD_CATALOG='+json.dumps(json.loads((root/'rewards/catalog.json').read_text()),separators=(',',':'))+';\n'+(root/'rewards/runtime.js').read_text()
 body+='\n'+(root/'playtest/session.js').read_text()
 body+='\nconst VISITOR_HERO_SRC='+json.dumps('data:image/png;base64,'+base64.b64encode((root/'assets/visitor-error/visitor-error-hero.png').read_bytes()).decode())+';\n'
-body+=(root/'characters/visitor-error.js').read_text()
+body+=(root/'characters/visitor-error.js').read_text()+'\n'+(root/'campaign/release.js').read_text()
 assert '</script' not in body.lower()
 page=replace_block(page,'DATA CENTER CAMPAIGN',body,"for(const b of document.querySelectorAll('[data-hold]'))")
 page=replace_block(page,'PLAYTEST STORAGE',(root/'playtest/storage.js').read_text(),'const canvas=document.getElementById')

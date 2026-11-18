@@ -25,18 +25,18 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  assert.equal(g.labs.recall().flags.length,0,'New memory is deferred until the next attempt');
  g.labs.seedRecall(42);tap(g,'Enter');assert.equal(g.state().state,'dead');tap(g,'Enter');
  assert.equal(g.state().state,'play');assert.equal(g.labs.recall().flags.length,1,'First retry always flags the newly hit obstacle');
- assert(Math.abs(g.labs.recall().flags[0].x-(1430+32))>=30);
+ assert(g.labs.recall().flags[0].offset===0||Math.abs(g.labs.recall().flags[0].offset)>=62);
  const stable=JSON.stringify(g.labs.recall());for(let i=0;i<60;i++)g.check.draw();assert.equal(JSON.stringify(g.labs.recall()),stable,'Drawing never rerolls a flag');
  g.api.open();for(let i=0;i<1000;i++)g.check.step();assert.equal(JSON.stringify(g.labs.recall()),stable,'Pause never rerolls recall');g.api.close();
  const samples=[];g.labs.seedRecall(1234);
  for(let i=0;i<128;i++){
   tap(g,'KeyR');const f=g.labs.recall().flags[0];samples.push(f?f.offset:null);
   assert.equal(JSON.stringify(g.check.level()),geometry,'Recall never edits obstacle geometry');
-  if(f){assert(Math.abs(f.offset)>=30&&Math.abs(f.offset)<80);assert.equal(f.id,'recall-receipt')}
+  if(f){assert(f.offset===0||(Math.abs(f.offset)>=62&&Math.abs(f.offset)<112));assert.equal(f.id,'recall-receipt')}
  }
  const forgotten=samples.filter(x=>x===null).length;
  assert(forgotten>10&&forgotten<60);assert(samples.some(x=>x<0));assert(samples.some(x=>x>0));
- assert(new Set(samples.filter(x=>x!==null)).size>30,'Offset magnitude varies rather than alternating fixed positions');
+ assert(new Set(samples.filter(x=>x!==null)).size>20,'Offset magnitude varies rather than alternating fixed positions');
  // All recall outcomes remain cosmetic: complete the same ordinary-input route after a real loss.
  const traces=[];
  for(const seed of [1,42,1234,98765]){
@@ -71,6 +71,6 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  assert.equal(exhausted.labs.recall().known.length,1);assert.equal(exhausted.state().player.x,55);replay(exhausted,route);assert.equal(exhausted.state().state,'won');
  g.labs.start('lab-forecast-commitment');assert.equal(g.labs.recall(),null,'Other labs retain their original marker rules');
  g.labs.start(id);assert.equal(g.labs.recall().known.length,0,'Choosing a fresh lab run clears recall');
- writeFileSync(new URL('results.json',out),JSON.stringify({firstDeathIsLearned:true,firstRetryGuaranteed:true,independentlyLearnedHazardTypes:['redaction','popup','scan'],sampleAttempts:128,forgotten,offsetRange:[30,80],bothDirections:true,stableWhileReadingAndPaused:true,geometryUnchanged:true,ordinaryInputRecallSeedClears:4,allPhysicsSnapshotsMatch:true,creditRewindPreservesKnowledge:true,newRunClearsKnowledge:true,otherLevelsUnchanged:true},null,2)+'\n');
+ writeFileSync(new URL('results.json',out),JSON.stringify({firstDeathIsLearned:true,firstRetryGuaranteed:true,independentlyLearnedHazardTypes:['redaction','popup','scan'],sampleAttempts:128,forgotten,accurateDisplayedProbability:.4,wrongDistanceBeyondEdge:[30,80],bothDirections:true,stableWhileReadingAndPaused:true,geometryUnchanged:true,ordinaryInputRecallSeedClears:4,allPhysicsSnapshotsMatch:true,creditRewindPreservesKnowledge:true,newRunClearsKnowledge:true,otherLevelsUnchanged:true},null,2)+'\n');
  console.log('PASS: real popup death, first-retry flag, 128 drifting/forgetting attempts, four identical ordinary-input clears, pause, credit rewind and lab isolation.');
 }

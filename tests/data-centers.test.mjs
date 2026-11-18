@@ -12,7 +12,7 @@ export function load(source=html,storage=new Map()){
  vm.runInNewContext(source.match(/<script>([\s\S]*?)<\/script>/)[1].replace('initRoom(true);requestAnimationFrame(frame);',boot),c);
  let frame=0;const route=[],originalStep=c.window.campaignCheck.step;c.window.campaignCheck.step=()=>{frame++;originalStep()};
  const key=(code,down=true)=>{route.push({frame,code,down});events.get(down?'keydown':'keyup')({code,repeat:false,preventDefault(){}})};
- return {api:c.window.__DATA_CENTER_TEST__,puzzle:c.window.__PUZZLE_BOX_TEST__,labs:c.window.__RAGE_LAB_TEST__,demos:c.window.__DEMO_TEST__,voice:c.window.__FAILURE_VOICE_TEST__,check:c.window.campaignCheck,state:c.window.__EXCEPTION_TEST__.getState,key,nodes,route,frame:()=>frame};
+ return {release:c.window.__RELEASE_TEST__,rewards:c.window.__REWARD_TEST__,api:c.window.__DATA_CENTER_TEST__,puzzle:c.window.__PUZZLE_BOX_TEST__,labs:c.window.__RAGE_LAB_TEST__,demos:c.window.__DEMO_TEST__,voice:c.window.__FAILURE_VOICE_TEST__,check:c.window.campaignCheck,state:c.window.__EXCEPTION_TEST__.getState,key,nodes,route,frame:()=>frame};
 }
 const COMPACT=Symbol(),PAYWALL=Symbol();
 export function clear(g,{campaign=false,walkDuty=1,chaseZones=false}={}){
@@ -82,7 +82,7 @@ if(import.meta.url===new URL(process.argv[1],'file://').href){
  assert.equal(new Set(levels.flatMap(l=>l.incidentCard.failures)).size,60);
  assert(levels.every(l=>['trouble','notice','remember','counterplay','excuse'].every(k=>l.incidentCard[k]?.length)));
  assert(levels.find(l=>l.serverId==='localhost-06').pits[0].w>2*617/1730*265,'The contractor gap requires Rewrite');
- assert.equal(new Set(levels.map(l=>l.moveSpeed)).size,20,'Each route has an authored pace');
+ assert.equal(new Set(levels.map(l=>l.moveSpeed)).size,1,'Consistent campaign movement');
  const lossStorage=new Map(),loss=load(html,lossStorage);loss.api.start('localhost-01',true);loss.check.die();
  assert.equal(loss.voice.last().family,'unknown');assert(loss.voice.pools().unknown.includes(loss.nodes.get('ovDesc').textContent));
  for(let i=0;i<1200;i++)loss.check.step();assert.equal(loss.state().state,'dead','Keep the full loss reading interval');

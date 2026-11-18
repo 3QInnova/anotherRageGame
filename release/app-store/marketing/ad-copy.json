@@ -1,0 +1,43 @@
+{
+  "locale": "en-US",
+  "campaign": "Escape Localhost",
+  "status": "Creative prepared; no campaign created or activated",
+  "destinationUrl": null,
+  "budget": null,
+  "artwork": "Approved promotional key art; not gameplay footage",
+  "variants": [
+    {
+      "id": "01-prove-it",
+      "angle": "AI versus human",
+      "title": "The AI is wrong.",
+      "accent": "Prove it.",
+      "support": "A tricky platformer. A very confident opponent.",
+      "headline": "Outsmart the AI",
+      "primaryText": "The AI has predicted your failure. Very confidently. Again. Move, jump, and Rewrite your way through 20 levels in EXCEPTION: HUMAN.",
+      "shortCaption": "The AI is wrong. Your next jump can prove it.",
+      "creativeCta": "ESCAPE LOCALHOST"
+    },
+    {
+      "id": "02-floor-quit",
+      "angle": "Rewrite mechanic",
+      "title": "The floor quit.",
+      "accent": "You didn't.",
+      "support": "Rewrite missing ground. Cross before it expires.",
+      "headline": "Rewrite your escape",
+      "primaryText": "Missing floor? Inconvenient. Rewrite it into a temporary bridge, make the jump, and leave the AI to update its excuses. EXCEPTION: HUMAN.",
+      "shortCaption": "Move. Jump. Rewrite. Please stop invalidating the model.",
+      "creativeCta": "ESCAPE LOCALHOST"
+    },
+    {
+      "id": "03-excuses",
+      "angle": "Comedy and retry appeal",
+      "title": "It blames you.",
+      "accent": "Naturally.",
+      "support": "You bring persistence. It brings excuses.",
+      "headline": "An AI with an ego",
+      "primaryText": "Bad predictions. Missing floors. Excellent excuses. Take on a stubborn AI in EXCEPTION: HUMAN, a tricky platformer with 20 campaign levels and four extra challenges.",
+      "shortCaption": "Twenty levels. One AI that will never admit this was its fault.",
+      "creativeCta": "ESCAPE LOCALHOST"
+    }
+  ]
+}

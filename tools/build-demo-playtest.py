@@ -17,7 +17,7 @@ hero='data:image/png;base64,'+base64.b64encode((root/'assets/visitor-error/visit
 mascot='<figure class="preview-mascot"><img src="'+hero+'" width="1024" height="1536" alt="Visitor Error, the paper human with a rejected visitor pass."><figcaption>VISITOR ERROR / ACCESS DENIED</figcaption></figure>'
 landing = (root / 'playtest/demos.html').read_text().replace('<!-- VISITOR_PREVIEW -->',mascot)
 assert '<!-- DEMO_CARDS -->' in landing
-(out / 'index.html').write_text(landing.replace('<!-- DEMO_CARDS -->', '\n'.join(cards)))
+(out / 'development.html').write_text(landing.replace('<!-- DEMO_CARDS -->', '\n'.join(cards)))
 recipes = json.loads((root / 'campaign/long-localhost.json').read_text())
 servers = json.loads((root / 'campaign/data-centers.json').read_text())['centers'][0]['servers']
 campaign_cards = []
@@ -41,10 +41,11 @@ cache_cards=[]
 for number,(id_,title,focus) in enumerate(cache_entries,1):
     cache_cards.append(f'<article class="card" data-cache="{id_}"><small>PROTOTYPE {number:02d} / 03</small><h2>{html.escape(title)}</h2><p>{html.escape(focus)}</p><a class="button" href="desktop.html#cache={id_}">Practice · PC</a><a class="button" href="mobile.html#cache={id_}">Practice · Phone</a></article>')
 (out/'cache.html').write_text((root/'playtest/cache.html').read_text().replace('<!-- CACHE_CARDS -->','\n'.join(cache_cards)))
-for source, target in [('initalDemoDocs/Exception_Human_Misclassification_V3.html', 'desktop.html'), ('mobile/index.html', 'mobile.html')]:
+for source, target in [('initalDemoDocs/Exception_Human_Misclassification_V3.html', 'desktop.html'), ('outputs/development/mobile.html', 'mobile.html')]:
     page = (root / source).read_text()
     page = page.replace('<head>', '<head><meta name="robots" content="noindex,nofollow">', 1)
     (out / target).write_text(page)
+(out/'index.html').write_text("""<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EXCEPTION: HUMAN</title><script>location.replace((matchMedia('(pointer: coarse)').matches?'mobile.html':'desktop.html')+location.hash)</script><body><p>Escape Localhost: <a href="desktop.html">Play with keyboard</a> · <a href="mobile.html">Play with touch</a></p></body></html>""")
 manifest = {p.name: {'bytes': p.stat().st_size, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(out.glob('*.html'))}
 (out.parent / 'package.json').write_text(json.dumps({'episodes': [{'id': id_, 'title': title} for id_, title, _ in catalog], 'files': manifest}, indent=2) + '\n')
 print('Prepared local demo playlist at ' + str(out.relative_to(root)))

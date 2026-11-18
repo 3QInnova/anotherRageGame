@@ -1,0 +1,40 @@
+EXCEPTION: HUMAN — APP STORE MARKETING / V2 — APPROVED DIRECTION, POLISHED COPY
+
+POSITIONING
+A precision platformer where an overconfident AI turns bad assumptions into physical traps. The player survives by learning timing and temporarily rewriting nearby objects.
+
+PRIMARY LINE
+The AI is wrong. Prove it.
+
+VOICE
+Confident, dry, specific. Let the antagonist take credit for your success and blame you for its mistakes. Describe the physical action before the joke. No AI chatbot/productivity positioning.
+
+VISUAL DIRECTION
+Warm paper, charcoal ink, mint-teal observer, gold lanyard, rust-red rejection marks. Visitor Error remains the central character. Promotional illustration is separate from actual gameplay captures. Keep the approved in-game ad allocation visible in captures.
+
+SCREENSHOT ORDER
+01 The AI is wrong. Prove it. / Move. Jump. Rewrite.
+02 No floor? Rewrite it. / Turn missing ground into a temporary bridge.
+03 Make it miss. / Bait the prediction. Leave before the purge.
+04 It blames you. Naturally. / Read the excuse. Retry when you are ready.
+05 One campaign. Twenty escapes. / Four chapters. One very stubborn AI.
+06 Still not impressed? / Four optional challenges. Cleaner runs to chase.
+
+SCOPE AND CLAIMS
+20 campaign levels, four optional challenges, earned cosmetic Tokens, saved campaign progress and final-approach checkpoint are implemented. Do not claim 200 playable levels, multiplayer, a live generative AI opponent, guaranteed hours of play, ad-free play, zero hacking risk, or an approved App Store release. Do not promise an update schedule.
+
+DELIVERY STATUS
+All screenshots are draft marketing compositions using the compiled game in WebKit, not physical-device or submitted-build captures. The ad slot currently says ADVERTISEMENT and contains no ad SDK. Re-capture from the final native release candidate after its advertising/UI decisions are final. This package does not change the app icon, gameplay, ads or app listing.
+
+HANDOFF ITEMS
+Verify name availability in App Store Connect. Supply the final support URL, privacy-policy URL, copyright holder, pricing and age-rating answers. Those values are deliberately not invented. Confirm device support; iPad artwork is not included. Select a real device capture for any eventual App Store preview video.
+
+SOURCES CHECKED
+https://developer.apple.com/app-store/product-page/
+https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information
+https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/
+
+Apple currently lists 2868 x 1320 and 2622 x 1206 as accepted iPhone landscape sizes for large and medium Dynamic Island displays respectively. Opaque PNG exports are included for both. Metadata uses the 30-character name/subtitle, 170-character promotional text, 100-byte keywords and 4000-character description limits. Character checks are in metadata-validation.json. Format validation does not establish App Review approval.
+
+ADVERTISING DELIVERY
+Twelve static promotional creatives: three hooks in 1:1, 4:5, 9:16 and 16:9. These promote the game; they are not in-game banner inventory or an advertising SDK. They reuse the approved promotional illustration. No campaign is activated, destination invented or budget assigned. See ad-copy.json and ads-handoff.txt.

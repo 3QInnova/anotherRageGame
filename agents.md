@@ -1,4 +1,33 @@
+**Retry flag trust mix (November 17):** All 20 release levels use unreliable recall. Among displayed flags, 40% use the remembered hazard center and 60% drift 30–80px beyond either edge. Appearance never reveals which. First discovery always appears on the next retry; later flags retain 28% omission. Keep positions stable within an attempt and real hazard warnings/geometry unchanged. This supersedes older all-drifting and first-ten-level exclusions.
+
+**Jitter zap (November 17):** Release campaign short directional bursts (up to 0.22s, gaps up to 0.8s) trigger an eye zap after a fresh random 9–13 completed taps. Subtract exactly 4s from idle allowance, carrying overflow into the warning. Smooth holds reset the streak; protected waits/decks/bays do not accumulate taps. Preserve 25 persistent cycling jokes, readable zap feedback, and the animated Controls help preview.
+
+**Restored idle pressure (November 17):** All 20 release campaign levels use progress-based idle debt: 16 seconds of allowance, 6 seconds of warning, then cleanup. Tiny taps, retracing old ground and jumping in place do not reset it. Preserve maintenance bays, required hazard waits, puzzle decks and Pause protection. Keep a visible countdown. Actions remain free; this update restores time pressure, not stamina costs.
+
+**Banner collision guard:** Native ads must hide if any visible interactive control enters the fixed banner rectangle or its 24px buffer. Keep the generic runtime guard, including disabled controls and animated positions, in addition to gameplay-only visibility rules. Verify all visible controls in banner layout tests.
+
+# Latest user correction — November 17
+
+Ads are gameplay-only. Hide them on every menu, pause, campaign picker, results/receipts, privacy/support screen and puzzle panel. This supersedes older instructions to show banners on menus. Keep the fixed bottom-center gameplay position and 24px inactive buffer. Campaign UI shows only “Campaign” and unlocked level buttons; keep secondary features behind Extras / Settings & help. Never restore the rejected menu clutter or menu ads.
+
 # Project guide for agents — EXCEPTION: HUMAN
+
+
+## November 17 release branch — current direction
+
+The user authorized the mobile director review and implementation priorities 1–4 on `feature/escape-localhost-release`. This section supersedes conflicting historical requirements below for the release campaign only. Keep all work local; no publication or device acceptance is implied.
+
+- Public UI: one Escape Localhost campaign with twenty sequential levels in four chapters, four optional Challenges, Collection and existing pause/settings. Exclude prototypes, labs, demos, archived routes and nine planned centers from release bundles entirely; their authoring source and private test fixtures remain available.
+- Campaign movement is a consistent 265 px/s. Levels 1–10 stage the vocabulary; forecasts and unreliable recall enter at 11. `campaign/long-localhost.json` remains authoritative. The previous 905-cluster / twenty-speed requirements are historical.
+- Release campaign and challenges have unlimited actions and no compaction. Cleanup is presence-triggered only in 15, 18 and 20, with protected waits and truthful warnings. Archived comparisons retain their original rules.
+- Release deaths retain the two-second byte burst, then wait indefinitely for one deliberate Retry / Space / Enter input. No mandatory reading countdown or automatic retry. Historical modes retain fifteen seconds and two inputs. Preserve all causal joke libraries and AI log history.
+- First campaign clears award ten Tokens once. Existing wallet balances, ownership, old bests and stable server IDs migrate unchanged. Replays and challenges cannot farm Tokens. The 200-Token starter collection is fully affordable by campaign completion.
+- Localhost 18/20 use a two-switch FAN/DECK workbench. The optional Puzzle Box retains three full circuit boards. Finale midpoint checkpoint saves/restores at a validated authored point; its final exit audit requires a recoverable Rewrite. The ending resolves Localhost and awards the existing badge.
+- `campaign/release.js` owns chapter/challenge navigation, release persistence, teaching cues, and challenge mastery records. It is inlined by the existing builder. Never edit generated campaign blocks or native copies.
+- `tools/build-release.mjs` snapshots only the 20 campaign levels and four approved challenges, removes developer exports and deep-link selectors, and produces `outputs/release/site/` and `mobile/index.html`. Native packaging consumes its sanitized native page. Do not distribute the authoring HTML, `outputs/development/` or `outputs/release-tests/`. No source maps; native web debugging/logging disabled. Offline saves remain user-editable; this is not an anti-cheat guarantee.
+- Default preview `http://127.0.0.1:8766/` selects the touch or keyboard game. `/mobile.html` is the phone preview. Start with `python3 tools/serve-demos.py --port 8766`. Only index/desktop/mobile pages are served by default; archives require explicit `--development`.
+- Current automated clean campaign benchmark: about 44.7 minutes. Two-to-three-hour first-playthrough pacing is an unverified human-playtest target; do not claim it as measured playtime.
+- Required release checks: `long-campaign.test.mjs`, `data-centers.test.mjs`, `release-progress.test.mjs`, `release-challenges.test.mjs`, `rewards.test.mjs`, `puzzle-box.test.mjs`, causal/background narration and original mobile parity. With the local server: `release-ui-browser.test.mjs`, `long-campaign-browser.test.mjs`, `banner-layout-browser.test.mjs`, `release-package.test.mjs`. Run challenge Node checks before browser replays to generate their input traces. Captures stay ignored in `outputs/release/`.
 
 **Playtest setting:** Fake AI paywall popups are temporarily disabled in the shared PC/mobile/native game at the user’s request. New runs, retries and compaction keep them disabled. The implementation is retained for later review; dedicated billing fixtures explicitly enable it.
 
@@ -225,3 +254,8 @@ The V2 and archived V3 notes report historical checks. Current forecast and loss
 The next documented step is human playtesting: observe deaths and clear time per room, perceived fairness, understanding of X, willingness to retry or replay, and whether predictive purge is more engaging than the other hazards. V2 suggests 5–10 first-time players. Tune timing and readability before expanding content or undertaking an engine port.
 
 When handing off work, identify changed files, explain the resulting behavior, state what was actually checked, and distinguish implemented features from proposals and untested assumptions. Update this guide's resource map and run instructions as the workspace evolves.
+
+
+## November 17 release identity gate
+
+The user does not want their real name shown as the App Store seller. They already have a separate **3QInnova LLC organization enrollment pending Apple approval**. Do not submit publicly or upload the release under personal team NM3KNV8248. The existing individual-team bundle `com.threeqinnova.exceptionhuman` was registered during local release preparation before this clarification; resolve identifier/app ownership under the approved organization or use a new company-owned identifier. Do not delete registrations or start a duplicate membership conversion. `apps/native/config/production.json` explicitly marks this release blocked; its team is local build preparation only. Preserve `com.threeqinnova.exceptionhuman.local` and its saves. See `release/app-store/release-status.json` for current evidence and remaining work.

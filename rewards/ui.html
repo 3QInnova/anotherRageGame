@@ -1,13 +1,13 @@
 <section id="rewardReceipt" hidden aria-label="Clear receipt">
  <div class="reward-stamp">HUMAN ESCAPED</div><h3 id="rewardReceiptTitle"></h3>
  <p id="rewardExcuse"></p><p id="rewardRunStats" class="reward-fine"></p>
- <dl class="reward-totals"><div><dt>Credits left</dt><dd id="rewardCredits">0</dd></div><div><dt>Tokens earned</dt><dd id="rewardEarned">0</dd></div><div><dt>Token Bank</dt><dd id="rewardBank">0</dd></div></dl>
+ <dl id="rewardTotals" class="reward-totals"><div id="rewardCreditTotal"><dt>Credits left</dt><dd id="rewardCredits">0</dd></div><div><dt>Tokens earned</dt><dd id="rewardEarned">0</dd></div><div><dt>Token Bank</dt><dd id="rewardBank">0</dd></div></dl>
  <p id="rewardBreakdown"></p><p id="rewardNewBadge" hidden></p><div id="rewardReceiptDecorations" class="reward-decorations" aria-label="Your badge and stickers"></div>
- <div class="reward-actions"><button id="rewardContinue" type="button">Continue</button><button id="rewardShopFromReceipt" type="button">Sticker Desk</button></div>
+ <div class="reward-actions"><button id="rewardContinue" type="button">Continue</button><button id="releaseRetry" type="button" hidden>Replay challenge</button><button id="rewardShopFromReceipt" type="button">Collection</button></div>
 </section>
 <div id="rewardShop" hidden role="dialog" aria-modal="true" aria-labelledby="rewardShopTitle"><div class="reward-shop-card">
- <header class="reward-shop-heading"><div><small>REWARDS / PERMANENT COSMETICS</small><h2 id="rewardShopTitle">Sticker Desk</h2><strong id="rewardShopBank"></strong></div><button id="rewardShopClose" type="button">Back</button></header>
- <p id="rewardPersistence" role="status"></p><p>Tokens buy decorations for your receipt. Each attempt still starts with its own Credits.</p>
+ <header class="reward-shop-heading"><div><small>REWARDS / PERMANENT COSMETICS</small><h2 id="rewardShopTitle">Collection</h2><strong id="rewardShopBank"></strong></div><button id="rewardShopClose" type="button">Back</button></header>
+ <p id="rewardPersistence" role="status"></p><p>Earn 10 Tokens for each first campaign clear. Decorations never change your abilities.</p>
  <div class="reward-tabs" role="tablist" aria-label="Reward collection"><button id="rewardTab-sticker" type="button" role="tab" aria-selected="true">Stickers</button><button id="rewardTab-badge" type="button" role="tab" aria-selected="false">Badges</button></div>
  <div id="rewardEquipment" class="reward-decorations" aria-label="Equipped cosmetics"></div><p id="rewardStatus" role="status" aria-live="polite"></p><div id="rewardItems" class="reward-items"></div>
  <p class="reward-fine" id="rewardCareer"></p><p class="reward-fine">Three sticker slots · One badge · Free changes · Saved on this device</p>

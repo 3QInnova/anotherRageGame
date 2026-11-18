@@ -76,3 +76,20 @@ xcuserdata/
 *.jks
 *.p12
 *.mobileprovision
+
+# Reproducible mobile bundle; regenerate with python3 tools/build-mobile.py.
+/mobile/index.html
+
+# One-off layout diagnosis, retained locally rather than as a source asset.
+/thermal-layout-debug.png
+
+# Native archives and downloaded/build caches, regardless of output location.
+*.xcarchive/
+DerivedData/
+SourcePackages/
+.swiftpm/
+*.xcframework/
+
+# Apple signing and API private keys (public ad/team identifiers are not secrets).
+*.p8
+*.key

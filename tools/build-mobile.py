@@ -37,7 +37,9 @@ script = script.replace('initRoom(true);requestAnimationFrame(frame);', viewport
 campaign_css = (root/'campaign/menu.css').read_text()+'\n'+(root/'campaign/rage-labs.css').read_text()+'\n'+(root/'characters/visitor-error.css').read_text()+'\n'+(root/'rewards/style.css').read_text()
 campaign_css+='\n'+(root/'playtest/session.css').read_text()
 html = (root / 'mobile/layout.html').read_text().replace('/* GAME_SCRIPT */', script).replace('/* CAMPAIGN_CSS */',campaign_css).replace('<!-- VISITOR_MASCOT -->',(root/'characters/menu-mascot.html').read_text()).replace('<!-- CAMPAIGN_MENU -->',(root/'campaign/menu.html').read_text()+(root/'rewards/ui.html').read_text()+(root/'playtest/session-ui.html').read_text()).replace('<!-- INCIDENT_PANEL -->',(root/'campaign/incident-panel.html').read_text())
-(root / 'mobile/index.html').write_text(html)
+(root/'outputs/development').mkdir(parents=True,exist_ok=True)
+(root/'outputs/development/mobile.html').write_text(html)
+subprocess.run(['node',str(root/'tools/build-release.mjs')],check=True)
 assert source.read_bytes() == original
 (root / 'outputs/mobile').mkdir(parents=True, exist_ok=True)
 (root / 'outputs/mobile/build.json').write_text(json.dumps({'desktopSource':str(source.relative_to(root)), 'desktopSha256':hashlib.sha256(original).hexdigest(), 'mobileArtifact':'mobile/index.html', 'desktopUnchanged':True},indent=2)+'\n')

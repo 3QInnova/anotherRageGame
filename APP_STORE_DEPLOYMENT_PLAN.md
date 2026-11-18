@@ -228,3 +228,84 @@ Own the following responsibilities even if one person fills several roles: game 
 Begin phase 0 and the first TestFlight checklist: establish the production identity, preserve the owner's local save, create a clean release configuration, and archive the bundled campaign. Deliver the archive and its evidence before performing an upload. The request in this planning pass does not create cloud resources, change Apple accounts, upload a build, or publish the game.
 
 The next milestone is concrete: **EXCEPTION HUMAN installed from internal TestFlight on the owner's iPhone, with the current campaign playable offline and a recorded physical smoke test**. The following milestone adds the native banner and a demonstrated content update on the same binary.
+
+
+## November 17 — iOS AdMob integration prepared
+
+The local native app now includes Google Mobile Ads 13.13.0 and User Messaging Platform 3.1.0, pinned through the Capacitor sync preparation script. The real app and banner IDs are recorded in [admob-ios.json](release/app-store/admob-ios.json) and the native Info.plist. `EHLiveAdsEnabled` is **false**; Debug always uses Google's test banner even if that flag changes. The unsigned Release simulator build also uses test ads. No live delivery or physical-device acceptance is claimed.
+
+`GameAdsPlugin.swift` owns the fixed 320 × 50-point bottom-center banner. JavaScript can request coverage or privacy actions but cannot supply an ID, URL, size or position. Menus reserve the banner plus its 24-point inactive gap. Portrait, backgrounding, the Puzzle Box console and native privacy dialogs hide the banner without changing its allocation. Ad screens pause gameplay; returning does not automatically resume it. Failed consent or ad requests leave the game playable. Browser and Android builds have no ad SDK integration.
+
+Consent information refreshes at launch; requests wait for a successful consent flow and `canRequestAds`. Requests ask for non-personalized ads; this is not a claim that no data is collected. The Play menu exposes Ad privacy & info and Report an ad. Reporting currently opens a user-controlled share sheet with the ad response ID; it does not submit a report to a support service. A final support destination remains required. No ATT prompt, Firebase or mediation adapters were added. The Info.plist contains the 50 SKAdNetwork identifiers listed in Google's setup guide when checked November 17.
+
+The AdMob console has a saved, unpublished draft named **EXCEPTION HUMAN - US privacy choices**, assigned only to this iOS app. Existing messages for other apps were untouched. Final public privacy/support details, audience/content filters, and geographic availability must be settled before publishing the appropriate consent messages and completing Apple's disclosures. Do not mistake the saved draft for active consent messaging.
+
+[app-ads.txt](release/app-store/app-ads.txt) is a prepared local Google DIRECT publisher entry. Merge it into the developer website's root `/app-ads.txt` without replacing other apps' seller entries. AdMob verification needs the actual App Store listing and its linked developer website; this file has not been published or verified.
+
+Validation: native Release simulator compilation passed; `tests/native-ads-browser.test.mjs` checks the actual release HTML with a mocked native bridge for test/offline handling, privacy/report controls, pause, portrait coverage and menu separation at 844×390 and 568×320. These tests do not prove SDK ad delivery. Required device checks: load a labeled Google test banner; test both landscape orientations and safe areas; open privacy, opt out, background/resume, open/close an ad, play the Puzzle Box and check audio; confirm the touch gap and reporting path. Final native screenshots should be recaptured afterward. Only enable production requests after those checks, consent publication, store linkage and AdMob app review.
+
+Sources: [Google iOS setup](https://developers.google.com/admob/ios/quick-start), [Google consent integration](https://developers.google.com/admob/ios/privacy), [app-ads.txt setup](https://support.google.com/admob/answer/9363762).
+
+
+## November 17 — published support, privacy and terms
+
+Operator and mailbox were explicitly confirmed by the owner: **3QInnova LLC**, **Support.exeptionHuman@3qinnova.com**. The spelling `exeptionHuman` is intentional for this confirmed working mailbox. The owner authorized publication on 3qinnova.com.
+
+- Support: https://3qinnova.com/exception-human-info/#support
+- Privacy policy: https://3qinnova.com/exception-human-info/#privacy
+- Terms and license information: https://3qinnova.com/exception-human-info/#terms
+- App license: Apple Standard EULA; no custom EULA or additional acceptance wall.
+
+Website commit: `512afcb7eed4973b97c73714309b5724561a1e80` in the separate public `3QInnova/3QInnova.github.io` repository. Public HTML was fetched and matched the generated local file byte-for-byte. Existing corporate pages and local uncommitted website changes were not modified. Source of truth for the new page and bundled native text is `release/app-store/legal/content.json`; regenerate the website with `node tools/legal/build.mjs` and native assets with `npm --prefix apps/native run sync`. The game repository was not pushed.
+
+AdMob now shows **EXCEPTION HUMAN - US privacy choices** as **Published**, English, opt-out On, targeting all current and future supported US states, assigned only to this app. Google's supplied wording was retained. Publishing does not enable live requests: the native app still uses test ads. Other apps' messages and account-wide settings were left unchanged. Google's generic allow-choice wording mentions interest-based ads; this app's explicit non-personalized configuration stays restrictive regardless of that choice. Device testing must confirm the opt-out signal is honored and privacy choices can be reopened. Publication can take up to an hour to propagate according to the console.
+
+The native Play menu now offers offline Support, Privacy policy, and Terms & game information, with the confirmed email action. The banner is hidden while those screens are open; closing returns to the paused menu. Reports include the destination address and app/build version, and remain user-reviewed share actions rather than automatic transmission. The SDK request configuration disables publisher first-party ID, automatic device-location collection and personalization, and caps ad content at General. This is not a claim that Google collects no identifiers, approximate IP-derived location or diagnostic data.
+
+The existing live root `https://3qinnova.com/app-ads.txt` already contains `google.com, pub-1989852905612367, DIRECT, f08c47fec0942fa0`; it was verified without overwriting the website. AdMob app verification still depends on store linkage.
+
+Validation: unsigned iOS Release simulator build passed with the final code; release boundary checks passed; WebKit tests exercised all three offline legal screens, fixed banner coverage/reappearance, paused return, ad privacy/report controls, test/offline handling, and small-screen menu clearance. The static page fits a 390-pixel viewport and has no scripts, forms or embedded trackers. Physical iPhone consent delivery/opt-out behavior, actual ad delivery, support mail sending, and App Store privacy answers remain separate release checks. The owner confirmed mailbox operation; no test email was sent.
+
+
+## November 17 — company seller gate and local archive preparation
+
+The owner requires the public seller to be **3QInnova LLC**, not their personal name. A separate organization enrollment already exists and is pending approval. Do not start a duplicate conversion or submit under the individual account. Apple confirms individual memberships use the legal name; organization membership is required for a company seller. [Membership guidance](https://developer.apple.com/help/account/membership/updating-your-account-information/).
+
+Local production preparation is reproducible with `node apps/native/scripts/prepare-production.mjs` after native sync. It writes an isolated project and overrides under ignored `outputs/app-store/production/`; the current `.local` app and saves remain separate. The production configuration is explicitly marked release-blocked while still referencing the individual team for local preparation. Registration of `com.threeqinnova.exceptionhuman` on that team was verified before the owner clarified the seller requirement. App Store Connect reported an app was created but fell back to Full Access and the session expired before its app ID/listing could be verified. Do not assume company ownership or a completed listing.
+
+Device archives 1.0.0 (1) and (2) succeeded. Build 1 was installed and launched on William’s iPhone via devicectl; it is development-signed, not TestFlight delivery. Build 2 adds the Visitor Error app icon, branded launch screen and offline third-party notices; it is archived locally and has not replaced the user's running build. The runtime npm audit reports zero vulnerabilities; SDK privacy manifests were extracted to `outputs/app-store/production/sdk-privacy-inventory.json`. This does not prove all binary/asset licenses or privacy declarations complete. Google wrapper licenses are distinguished from binary SDK terms. Final native screenshots, physical ad/consent/audio acceptance, final rights/encryption/privacy answers, organization signing, distribution validation and upload remain outstanding. See `release/app-store/release-status.json`.
+
+
+### November 17 — simplified menus and gameplay-only ads (build 3)
+
+Physical feedback supersedes the previous menu-banner behavior: banners are hidden on campaign, pause, collection, results, privacy dialogs and puzzle panels. The fixed bottom-center allocation remains during active gameplay. Native ad presentation also hides immediately when an ad/privacy action pauses play.
+
+Campaign shows only unlocked level buttons; completed levels have a check mark. Chapter headings, locked-level lists and duplicate Start/Continue actions are removed from the visible campaign menu. Mobile pause provides Campaign, Resume and Retry, with secondary options collapsed under Extras and Settings & help. Saved progression and the twenty-level campaign remain intact.
+
+Build 3 archived successfully and installed on the paired iPhone for local testing. Browser verification passed for fresh/saved campaign menus, native-ad bridge test/offline behavior including loss/retry, release package boundaries, and 42 gameplay banner/control layout cases. Physical acceptance remains pending. Company enrollment remains pending; no public release or TestFlight upload is authorized under the personal seller identity. Bundled legal navigation is updated; the generated website copy needs its navigation wording republished.
+
+### November 17 — all-control banner guard (build 4)
+
+User accepted the simplified menus and requested that the banner never cover a button. Native presentation now checks all visible buttons (including disabled buttons), links, fields, summaries, button-role elements and keyboard-focusable elements against the fixed 320×50 banner plus 24px clearance. A conflict hides the ad; the guard never relocates or resizes it. Missing/offscreen allocation also hides it. Mutation and animation-frame checks cover inserted controls, size/style changes and CSS animations. Existing menu, results, privacy and puzzle visibility rules remain in force.
+
+WebKit native-bridge tests exercised nine injected interactive control types in the safety buffer, an animated button, test/offline flows, privacy dialogs, loss/retry and rotation. WebKit/Chromium passed all 42 safe-area/control-size layout cases checking every visible control. These are automated checks, not a guarantee about every future UI or physical-device acceptance.
+
+### November 17 — restored idle pressure (build 5)
+
+All twenty campaign levels again use forward-progress debt across ordinary encounter stretches. Time accrues at one second per active second; genuinely new forward travel offsets debt at 180 world pixels per second. The allowance is 16 seconds, then a 6-second warning followed by a 145px/second deletion chase. Small taps do not reset debt; revisiting old ground and jumping in place earn no progress credit. Existing marked cleanup entries remain. Maintenance bays, required armed-hazard waits, puzzle decks and Pause are protected. The HUD shows remaining allowance. Movement, Jump and Rewrite remain free; stamina costs are not restored in this update.
+
+Validation: all twenty ordinary and cautious input routes pass; all twenty campaign routes and four challenges pass on Chromium/WebKit. New tests verify stillness, creeping, wiggling, jumping, forward recovery, pause/death freeze, maintenance and puzzle protection, and required hazard waits. Packaged desktop/phone tiny-tap tests lose to cleanup after approximately 25 seconds with a visible countdown. Native ad regression and release-package checks passed. Build 5 archived for local iPhone testing; no store upload.
+
+### November 17 — AI jitter zap (build 6)
+
+Consecutive short directional taps now trigger an AI eye-to-player lightning arc after a randomly selected 9–13 completed taps; a new threshold is selected after each zap. Short means at most 0.22s held, with no more than 0.8s between taps. A smooth hold or longer gap resets the streak. The zap subtracts four seconds from idle allowance, carrying overflow into the six-second warning. It does not knock back the player or change hazard geometry. Protection for required waits, maintenance and puzzle decks remains.
+
+The warm arc, sparks and ZAP! −4s label last 0.85s in simulation time. Twenty-five event-specific quips rotate without repetition and persist across reloads. Routine pressure jokes cannot immediately overwrite the zap line; real danger cues remain active. Controls help on desktop/mobile includes an animated eye/visitor illustration, corrected user-requested copy, and a reduced-motion alternative.
+
+Validation: threshold endpoints and randomized range, exact penalty/overflow, smooth movement, isolated adjustments, protected waits, persistent 25-line rotation, and actual desktop keyboard/phone touch zap rendering passed. All twenty normal/cautious routes and all twenty campaign/four challenge browser routes passed. Native ad visibility and release boundary regressions passed. Build 6 archived for local iPhone testing; no public submission. Captures: outputs/jitter-zap/.
+
+### November 17 — useful but unreliable retry flags (build 7)
+
+All twenty release levels now share the user-requested trust mix: among displayed AI FLAG? markers, 40% are at the remembered hazard center; 60% sit 30–80 world pixels beyond either remembered edge. They look identical and remain fixed for the attempt. A newly discovered hazard always gets a flag on the first retry; subsequent attempts retain the existing independent 28% omission chance. These percentages refer to shown flags, not all remembered hazards. This replaces the previous first-ten accurate/later-ten always-offset split. Trap geometry and truthful active warnings are unchanged.
+
+A deterministic 10,000-reroll check measured 39.69% accurate among displayed flags, 2,822 omissions, misleading positions on both sides outside the remembered trap, stable rendering and unchanged level geometry. Existing recall tests passed four identical ordinary-input clears across different recall seeds. All twenty normal/cautious campaign routes passed. Build 7 is local device preparation only, pending company account approval for publication.

@@ -3,9 +3,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {webkit,chromium} from '/private/tmp/exception-forecast-browser/node_modules/playwright/index.mjs';
 
 const root=new URL('../',import.meta.url),out=new URL('outputs/app-store/banner-layout/',root);mkdirSync(out,{recursive:true});
-const html=readFileSync(new URL('mobile/index.html',root),'utf8');
-const fixture=html.replace('requestAnimationFrame(frame);\n})();',`window.bannerReview={paint(){draw();refreshHud()},step(n){for(let i=0;i<n;i++)runFrame(1/120);draw();refreshHud()},start(id){startCampaignServer(id,true);draw();refreshHud()}};draw();refreshHud();\n})();`);
-assert.notEqual(fixture,html);
+const fixture=readFileSync(new URL('outputs/release-tests/mobile.html',root),'utf8');
 const selected=process.env.EXCEPTION_BANNER_BROWSER;
 assert(!selected||['chromium','webkit'].includes(selected),'Use an explicit supported browser name.');
 const engines=[['webkit',webkit],['chromium',chromium]].filter(([name])=>!selected||selected===name),results=[];
@@ -25,18 +23,20 @@ for(const [name,engine] of engines){
   const page=await browser.newPage({viewport:{width:844,height:390},isMobile:true,hasTouch:true,deviceScaleFactor:2}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/banner.html',r=>r.fulfill({body:fixture,contentType:'text/html'}));
-  await page.goto('http://localhost/banner.html');
+  await page.goto('http://localhost/banner.html#campaign=localhost-01&practice=1');
+  await page.evaluate(()=>window.__QA__.start('localhost-01'));
   for(const viewport of viewports){
    await page.setViewportSize({width:viewport.width,height:viewport.height});
    await page.evaluate(v=>{const s=document.documentElement.style;for(const key of ['left','right','bottom'])s.setProperty('--safe-'+key,v[key]+'px');window.dispatchEvent(new Event('resize'))},viewport);
    let fixed;
    for(const prefs of [{size:90,inset:10},{size:100,inset:14},{size:115,inset:30}]){
     if(await page.locator('#mobileMenu').isHidden())await page.locator('#mobilePause').tap();
+    if(!await page.locator('#menuSettings').evaluate(el=>el.open))await page.locator('#menuSettings > summary').tap();
     await page.locator('#tab-controls').tap();await page.locator('#controlSize').fill(String(prefs.size));await page.locator('#controlInset').fill(String(prefs.inset));
-    await page.locator('#tab-play').tap();await page.locator('#mobileResume').tap();await page.evaluate(()=>window.bannerReview.paint());
+    await page.locator('#tab-play').tap();await page.locator('#mobileResume').tap();await page.evaluate(()=>window.__QA__.paint());
     const fit=await page.evaluate(()=>({
      banner:document.getElementById('mobileBannerSlot').getBoundingClientRect().toJSON(),
-     controls:[...document.querySelectorAll('#touch button')].map(el=>({id:el.id||el.dataset.hold,r:el.getBoundingClientRect().toJSON()})),
+     controls:[...document.querySelectorAll('button,a[href],input,select,textarea,summary,[role="button"]')].filter(el=>el.getClientRects().length&&getComputedStyle(el).visibility==='visible').map(el=>({id:el.id||el.dataset.hold,r:el.getBoundingClientRect().toJSON()})),
      overflow:document.documentElement.scrollWidth>innerWidth||document.documentElement.scrollHeight>innerHeight,
     }));
     assert.equal(fit.banner.width,320);assert.equal(fit.banner.height,50);
@@ -52,9 +52,9 @@ for(const [name,engine] of engines){
      assert(!overlaps(c.r,exclusion),c.id+' stays outside the banner and inactive buffer');
     }
     for(let i=0;i<fit.controls.length;i++)for(let j=i+1;j<fit.controls.length;j++)assert(!overlaps(fit.controls[i].r,fit.controls[j].r),'Touch targets never overlap.');
-    const before=await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().player);
-    await page.touchscreen.tap(fixed.x+160,fixed.y+25);await page.evaluate(()=>window.bannerReview.step(1));
-    const after=await page.evaluate(()=>window.__EXCEPTION_TEST__.getState().player);
+    const before=await page.evaluate(()=>window.__QA__.state().player);
+    await page.touchscreen.tap(fixed.x+160,fixed.y+25);await page.evaluate(()=>window.__QA__.tick());
+    const after=await page.evaluate(()=>window.__QA__.state().player);
     assert.equal(after.jumpBuffer,0,'Tapping the reserved ad space never queues a jump.');assert.equal(after.vy,before.vy);
     results.push({browser:name,viewport,prefs,banner:fixed,controls:fit.controls});
     if(prefs.size===100&&viewport.left===viewport.right)await page.screenshot({path:new URL(name+'-'+viewport.width+'x'+viewport.height+'.png',out).pathname});
@@ -64,15 +64,15 @@ for(const [name,engine] of engines){
   await page.evaluate(()=>{const s=document.documentElement.style;s.setProperty('--safe-left','44px');s.setProperty('--safe-right','44px');s.setProperty('--safe-bottom','21px');window.dispatchEvent(new Event('resize'))});
   await page.locator('#mobilePause').tap();await page.locator('#tab-controls').tap();await page.locator('#resetControls').tap();await page.locator('#tab-play').tap();await page.locator('#mobileResume').tap();
   const anchor=await page.locator('#mobileBannerSlot').boundingBox();
-  await page.evaluate(()=>window.bannerReview.start('localhost-01'));
+  await page.evaluate(()=>window.__QA__.start('localhost-01'));
   assert.deepEqual(await page.locator('#mobileBannerSlot').boundingBox(),anchor,'Selecting a level never relocates the banner.');
-  await page.locator('[data-hold="right"]').dispatchEvent('pointerdown',{pointerId:11,pointerType:'touch'});await page.locator('#touchjump').tap();await page.evaluate(()=>window.bannerReview.step(6));
-  const moving=await page.evaluate(()=>window.__EXCEPTION_TEST__.getState());assert(moving.player.vx>0&&moving.player.vy<0,'Move and Jump still work together.');
+  await page.locator('[data-hold="right"]').dispatchEvent('pointerdown',{pointerId:11,pointerType:'touch'});await page.locator('#touchjump').tap();await page.evaluate(()=>Array.from({length:6},()=>window.__QA__.tick()));
+  const moving=await page.evaluate(()=>window.__QA__.state());assert(moving.player.vx>0&&moving.player.vy<0,'Move and Jump still work together.');
   await page.locator('[data-hold="right"]').dispatchEvent('pointercancel',{pointerId:11,pointerType:'touch'});
-  await page.locator('#mobilePause').tap();await page.locator('#mobileResume').tap();await page.evaluate(()=>window.bannerReview.step(1));
-  assert.equal((await page.evaluate(()=>window.__EXCEPTION_TEST__.getState())).player.vx,0,'Pause/resume releases movement.');
+  await page.locator('#mobilePause').tap();await page.locator('#mobileResume').tap();await page.evaluate(()=>window.__QA__.tick());
+  assert.equal((await page.evaluate(()=>window.__QA__.state())).player.vx,0,'Pause/resume releases movement.');
   assert.deepEqual(await page.locator('#mobileBannerSlot').boundingBox(),anchor,'Pause/resume never relocates the banner.');
-  await page.evaluate(()=>window.bannerReview.start('localhost-01'));await page.locator('#mobilePause').focus();await page.locator('#mobilePause').blur();await page.evaluate(()=>window.bannerReview.paint());
+  await page.evaluate(()=>window.__QA__.start('localhost-01'));await page.locator('#mobilePause').focus();await page.locator('#mobilePause').blur();await page.evaluate(()=>window.__QA__.paint());
   await page.screenshot({path:new URL(name+'-fixed-banner-preview.png',out).pathname});
   assert.deepEqual(errors,[]);
  }finally{await browser.close()}
